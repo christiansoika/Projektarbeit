@@ -1,0 +1,19 @@
+set term tikz standalone color dashed clip size 5in,3in font "\\rmfamily,12pt" 
+
+
+set logscale x
+set xrange [50:1500000]
+set yrange [0:20]
+set ytics 10 nomirror
+set xtics auto nomirror scale 0
+unset mxtics
+set format x "$10^{%T}$" 
+set xlabel "Number of particles"
+set ylabel "$|(E_{kB}-E_k)/E_k|$"
+set format y '%2.0f\%%'
+set boxwidth 0.25
+set style fill solid border -1
+#set zeroaxis lt -1
+set title "64 cells per direction"
+set output "kineticEnergy_numberOfParticles.tex"
+plot "./daten" using 1:2 w boxes notitle, \
