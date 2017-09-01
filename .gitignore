@@ -200,6 +200,7 @@ TSWLatexianTemp*
 
 # Kile
 *.backup
+*.DS_Store
 
 # KBibTeX
 *~[0-9]*
