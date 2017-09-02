@@ -61,13 +61,13 @@ they can be written in the so-called 'divergence form':
   \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{H} = 0
 \end{equation}
 \nomenclature{$\vec\nabla$}{Nabla-operator} %Erstellt automatisch die Nomenclature-Liste
-\nomenclature{$\vec\Q$}{Container for conserved variables in the Navier-Stokes equations}
+\nomenclature{$\vec{Q}$}{Container for conserved variables in the Navier-Stokes equations}
 \nomenclature{$\vec{H}$}{Container for fluctuating variables in the Navier-Stokes equations}
 It should be noted by the reader that this work only contains investigations about chemically inert fluids and particles, and that the simulation results
 only fit under this condition. The vector $ \vec{Q} $ contains the density $ \rho $, 
 the velocity $ \vec{u} $ and the specific inner energy $ E $: 
 \nomenclature{$\rho$}{Density}
-\nomenclature{$\vec\u$}{Three-dimensional velocity}
+\nomenclature{$\vec{u}$}{Three-dimensional velocity}
 \nomenclature{$E$}{Specific inner energy}
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right)
@@ -434,12 +434,14 @@ The velocties of the fluid were interpolated for each particle to match the velo
 
 boundary conditions, for example Reynolds number?
 
-%\begin{figure}
- %\centering %setzt das Bild mittig
- %\includegraphics{} %Dateiname einfuegen um Datei zu verwenden
- %\caption{} %setzt die Bildunterschrift
-% \label{} %setzt das Label
-%\end{figure}
+ \includepdf[pages={1}]{./Stephen B. Pope-Turbulent Flows} %Dateiname einfuegen um Datei zu verwenden
+ 
+\begin{figure}
+ \centering %setzt das Bild mittig
+ \includepdf[]{./Stephen B. Pope-Turbulent Flows.pdf} %Dateiname einfuegen um Datei zu verwenden
+ \caption{Gaps in kinetic energy between different number of particles} %setzt die Bildunterschrift
+ \label{Gaps_64} %setzt das Label
+\end{figure}
 
 Graphen (particleFree rot, Laden gruen)
 \pagebreak
