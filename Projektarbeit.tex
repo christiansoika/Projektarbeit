@@ -8,6 +8,7 @@
 \usepackage{cite}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{caption}
 %bindet die benutzten Packages ein
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
@@ -45,9 +46,10 @@
 
 \section{Introduction}
 in Computational Methods for Multiphase Flow ist auf den Seiten 3-9 ein interessantes Beispiel.
+Sollen wir hier außerdem noch ein Bild von einer turbulenten Strömung einfügen?
 \pagebreak
 \section{Mathematical models}
-Sollen wir hier noch isotrope Turbulenz etc. erklaeren?
+Zusammenfassung mathematische Modelle
 \subsection{Single-phase flow} %Christian
 In this section the mathematical basics for understanding and simulating turbulent flows are discussed. However, it should be pointed out that this is no
 complete treatise of the mathematical and physical basics. The reader can achieve further insight on this topic by looking at different books and papers, 
@@ -149,8 +151,8 @@ Siewert:
 -3.1a-3.14 (spherical particles) OHNE GRAVITATION
 Stokes Drag/Stokes Coefficient
 Filterung (Fritz) ->Viskositaet durch numerischen Fehler, Smagorinksy nicht benutzen
-
-\pagebreak
+\newline
+\newline
 Cause this work deals with particle laden fluids and the impact of these particles on the flow conditions, we need to describe the interaction between them. 
 We deal with small and heavy, rigid particles, that have a spherical shape. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 Due to the small particle concentration, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as an mathematical point source of mass, momentum and energy. In this case we focus on the momentum exchange.Effects like particle-particle interactions, particle-wall interactions are also neglected.  
@@ -280,7 +282,7 @@ The updated particle position must be corrected by an additional term according 
 \subsection{Particle clustering}
 \nomenclature{$m_\mathrm{c}$}{number of clustered particles}% ++ nomenclature funktioniert noch nicht! ++
 The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the programm has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
-\pagebreak
+\newline
 \newline
 Projektion (noComputationalParticles), Diskretisierung
 implizite LES (Motivation fuer LES -  Pope Chapter 9, Bild 9.4), DNS
@@ -298,11 +300,50 @@ The turbulence was initialised using a seed-based random generator. To achieve p
 at which a restart file was written out. This procedure insures a fully developed turbulent 
 flow, which has emancipated from the initialisation. In this flow field, a specific number of spherical particles were injected. 
 The velocties of the fluid were interpolated for each particle to match the velocities of particles and fluid as accurately as possible.
+\begin{table}[h]
+\begin{tabular}{l | c c c c c c c }
+Case & $Re$ & $Re_\lambda$ & $Re_\lambda (restart)$ & $c_fl$ & timesteps  & $m_c$ & particle Diameter \\
+\hline
+\hline
+64 & ? & ? & ? & ? & ? & ? & ? \\
+96 & ? & ? & ? & ? & ? & ? & ? \\
+128 & ? & ? & ? & ? & ? & ? & ?  \\
+264 & ? & ? & ? & ? & ? & ? & ?  \\
+\hline
+\end{tabular}
+\caption{Example of a table}
+\label{table1}
+\end{table}
 \newline
+See table \ref{table1} on page \pageref{table1} for the example table.
 boundary conditions, for example Reynolds number?
-\newline
-\includegraphics[]{./Simulationsergebnisse/variationPartikelAnzahl/64/kineticEnergy_numberOfParticles.pdf}
+\begin{figure}[h]
+	\centering
+  \includegraphics[]{./Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
+	\caption{Include Caption}
+	\label{kineticEnergy_numberOfParticles}
+\end{figure}
 
+\begin{figure}[h]
+	\centering
+  \includegraphics[]{./Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
+	\caption{Include Caption}
+	\label{coupling_time_128}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+  \includegraphics[]{./Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
+	\caption{Include Caption}
+	\label{der(kineticEnergy)_time_128}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+  \includegraphics[]{./Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
+	\caption{Include Caption}
+	\label{kineticEnergy_time_128}
+\end{figure}
 Graphen (particleFree rot, Laden gruen)
 \pagebreak
 \section{Conclusion}
