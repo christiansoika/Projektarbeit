@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{float}
 %bindet die benutzten Packages ein
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
@@ -317,30 +318,30 @@ Case & $Re$ & $Re_\lambda$ & $Re_\lambda (restart)$ & $c_fl$ & timesteps  & $m_c
 \newline
 See table \ref{table1} on page \pageref{table1} for the example table.
 boundary conditions, for example Reynolds number?
-\begin{figure}[h]
+\begin{figure}[]
 	\centering
-  \includegraphics[]{./Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
+  \includegraphics[width=\textwidth]{./Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
 	\caption{Include Caption}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[]
 	\centering
-  \includegraphics[]{./Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
+  \includegraphics[width=0.5\textwidth]{./Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
 	\caption{Include Caption}
 	\label{coupling_time_128}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[]
 	\centering
-  \includegraphics[]{./Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
+  \includegraphics[width=0.5\textwidth]{./Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
 	\caption{Include Caption}
 	\label{der(kineticEnergy)_time_128}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[]
 	\centering
-  \includegraphics[]{./Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
+  \includegraphics[width=0.5\textwidth]{./Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
 	\caption{Include Caption}
 	\label{kineticEnergy_time_128}
 \end{figure}
