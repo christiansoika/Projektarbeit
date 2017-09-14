@@ -1,7 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{tocloft}
-\usepackage{nomencl}
+\usepackage[]{nomencl}
 \usepackage{pdfpages}
 \usepackage{scrextend}
 \usepackage{bm}
@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{multicol}
 %bindet die benutzten Packages ein
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
@@ -35,6 +36,8 @@
 
 \maketitle
 
+\setlength{\columnsep}{30pt}
+
 \pagebreak
 
 \tableofcontents{} %erstellt die Inhaltsangabe
@@ -42,15 +45,20 @@
 \pagebreak
 
 \section{Nomenclature}
+\begin{multicols}{2}
+\setlength{\columnseprule}{1pt}
 \printnomenclature
+\end{multicols}
 \pagebreak
 
 \section{Introduction}
 in Computational Methods for Multiphase Flow ist auf den Seiten 3-9 ein interessantes Beispiel.
-Sollen wir hier außerdem noch ein Bild von einer turbulenten Strömung einfügen?
+Sollen wir hier außerdem noch ein Bild von einer turbulenten Strömung und der Sammlung der Partikel in low-vortex-areas einfügen?
+Unterschiedliche Sections erklären
+Einführung von $m_c$ beschreiben. 
 \pagebreak
 \section{Mathematical models}
-Zusammenfassung mathematische Modelle
+Zusammenfassung mathematische Modelle und kurze Einleitung in das mathematische Grundkonzept der Simulation.
 \subsection{Single-phase flow} %Christian
 In this section the mathematical basics for understanding and simulating turbulent flows are discussed. However, it should be pointed out that this is no
 complete treatise of the mathematical and physical basics. The reader can achieve further insight on this topic by looking at different books and papers, 
@@ -318,25 +326,27 @@ Case & $Re$ & $Re_\lambda$ & $Re_\lambda (restart)$ & $c_fl$ & timesteps  & $m_c
 \newline
 See table \ref{table1} on page \pageref{table1} for the example table.
 boundary conditions, for example Reynolds number?
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{./Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
+        \caption{Example Caption 1}
+        \label{der(kineticEnergy)_time_128}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{./Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
+        \caption{Example Caption 2}
+        \label{coupling_time_128}
+    \end{minipage}
+\end{figure}
+
 \begin{figure}[]
 	\centering
   \includegraphics[width=\textwidth]{./Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
 	\caption{Include Caption}
 	\label{kineticEnergy_numberOfParticles}
-\end{figure}
-
-\begin{figure}[]
-	\centering
-  \includegraphics[width=0.5\textwidth]{./Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
-	\caption{Include Caption}
-	\label{coupling_time_128}
-\end{figure}
-
-\begin{figure}[]
-	\centering
-  \includegraphics[width=0.5\textwidth]{./Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
-	\caption{Include Caption}
-	\label{der(kineticEnergy)_time_128}
 \end{figure}
 
 \begin{figure}[]
