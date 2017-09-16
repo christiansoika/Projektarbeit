@@ -3,68 +3,68 @@
  \nomgroup{A}
 
   \item [{$\eta$}]\begingroup Kolomogorov scale\nomeqref {3.23}
-		\nompageref{10}
+		\nompageref{9}
   \item [{$\matrix{\tau}$}]\begingroup Stress tensor\nomeqref {3.5}
-		\nompageref{6}
+		\nompageref{5}
   \item [{$\matrix{I}$}]\begingroup Identity tensor\nomeqref {3.10}
-		\nompageref{7}
+		\nompageref{6}
   \item [{$\matrix{S}$}]\begingroup Rate-of-strain-tensor\nomeqref {3.10}
-		\nompageref{7}
+		\nompageref{6}
   \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {3.7}
-		\nompageref{7}
-  \item [{$\rho$}]\begingroup Density\nomeqref {3.1}\nompageref{6}
+		\nompageref{6}
+  \item [{$\rho$}]\begingroup Density\nomeqref {3.1}\nompageref{5}
   \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {3.23}
-		\nompageref{10}
+		\nompageref{9}
   \item [{$\tau_mathrm{p}$}]\begingroup Particle response time\nomeqref {3.25}
-		\nompageref{11}
+		\nompageref{9}
   \item [{$\vec\nabla$}]\begingroup Nabla-operator\nomeqref {3.1}
-		\nompageref{6}
-  \item [{$\vec{u}$}]\begingroup Three-dimensional velocity\nomeqref {3.1}
-		\nompageref{6}
+		\nompageref{5}
   \item [{$\vec{a}$}]\begingroup particle acceleration\nomeqref {4.1}
-		\nompageref{13}
+		\nompageref{11}
   \item [{$\vec{H^\mathrm{i}}$}]\begingroup Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations\nomeqref {3.3}
-		\nompageref{6}
+		\nompageref{5}
   \item [{$\vec{H^\mathrm{v}}$}]\begingroup Stores the viscous variables in the flux-vector included in the Navier-Stokes equations\nomeqref {3.3}
-		\nompageref{6}
+		\nompageref{5}
   \item [{$\vec{H}$}]\begingroup Container for fluctuating variables in the Navier-Stokes equations\nomeqref {3.1}
-		\nompageref{6}
+		\nompageref{5}
   \item [{$\vec{Q}$}]\begingroup Container for conserved variables in the Navier-Stokes equations\nomeqref {3.1}
-		\nompageref{6}
+		\nompageref{5}
   \item [{$\vec{q}$}]\begingroup Heat conduction\nomeqref {3.5}
-		\nompageref{6}
+		\nompageref{5}
+  \item [{$\vec{u}$}]\begingroup Three-dimensional velocity\nomeqref {3.1}
+		\nompageref{5}
   \item [{$\vec{v_\mathrm{p}}$}]\begingroup Particle velocity\nomeqref {3.24}
-		\nompageref{11}
+		\nompageref{9}
   \item [{$\vec{v}$}]\begingroup particle velocity\nomeqref {4.1}
-		\nompageref{13}
+		\nompageref{11}
   \item [{$\vec{x_\mathrm{p}}$}]\begingroup Particle position\nomeqref {3.24}
-		\nompageref{11}
+		\nompageref{9}
   \item [{$\vec{x}$}]\begingroup particle position\nomeqref {4.1}
-		\nompageref{13}
-  \item [{$c_p$}]\begingroup Specific isobaric heat capacity\nomeqref {3.8}
-		\nompageref{7}
-  \item [{$c_v$}]\begingroup Specific isochoric heat capacity\nomeqref {3.8}
-		\nompageref{7}
-  \item [{$E$}]\begingroup Specific inner energy\nomeqref {3.1}
-		\nompageref{6}
-  \item [{$e$}]\begingroup Specific internal energy\nomeqref {3.6}
-		\nompageref{7}
-  \item [{$f_mathrm{D}$}]\begingroup Drag correction\nomeqref {3.25}
 		\nompageref{11}
-  \item [{$k_t$}]\begingroup thermal conductivity\nomeqref {3.9}
-		\nompageref{7}
-  \item [{$m_\mathrm{c}$}]\begingroup number of clustered particles\nomeqref {4.5}
-		\nompageref{13}
-  \item [{$p$}]\begingroup Pressure\nomeqref {3.4}\nompageref{6}
-  \item [{$Pr$}]\begingroup Prandtl number\nomeqref {3.7}\nompageref{7}
-  \item [{$R$}]\begingroup Universal gas constant\nomeqref {3.11}
-		\nompageref{7}
-  \item [{$r_p$}]\begingroup Particle radius\nomeqref {3.23}
-		\nompageref{10}
-  \item [{$Re$}]\begingroup Reynolds number\nomeqref {3.5}
+  \item [{$c_p$}]\begingroup Specific isobaric heat capacity\nomeqref {3.8}
 		\nompageref{6}
+  \item [{$c_v$}]\begingroup Specific isochoric heat capacity\nomeqref {3.8}
+		\nompageref{6}
+  \item [{$E$}]\begingroup Specific inner energy\nomeqref {3.1}
+		\nompageref{5}
+  \item [{$e$}]\begingroup Specific internal energy\nomeqref {3.6}
+		\nompageref{6}
+  \item [{$f_mathrm{D}$}]\begingroup Drag correction\nomeqref {3.25}
+		\nompageref{9}
+  \item [{$k_t$}]\begingroup thermal conductivity\nomeqref {3.9}
+		\nompageref{6}
+  \item [{$m_\mathrm{c}$}]\begingroup number of clustered particles\nomeqref {4.5}
+		\nompageref{11}
+  \item [{$p$}]\begingroup Pressure\nomeqref {3.4}\nompageref{5}
+  \item [{$Pr$}]\begingroup Prandtl number\nomeqref {3.7}\nompageref{6}
+  \item [{$R$}]\begingroup Universal gas constant\nomeqref {3.11}
+		\nompageref{6}
+  \item [{$r_p$}]\begingroup Particle radius\nomeqref {3.23}
+		\nompageref{9}
+  \item [{$Re$}]\begingroup Reynolds number\nomeqref {3.5}
+		\nompageref{5}
   \item [{$S$}]\begingroup Sutherland temperature\nomeqref {3.11}
-		\nompageref{7}
-  \item [{$T$}]\begingroup Temperature\nomeqref {3.10}\nompageref{7}
+		\nompageref{6}
+  \item [{$T$}]\begingroup Temperature\nomeqref {3.10}\nompageref{6}
 
 \end{thenomenclature}

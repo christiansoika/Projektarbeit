@@ -1,3 +1,7 @@
+% !TEX TS-program = Arara
+% arara: pdflatex
+% arara: nomencl
+% arara: pdflatex
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{tocloft}
@@ -8,7 +12,7 @@
 \usepackage{cite}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{caption}
+\usepackage[justification=centering]{caption}
 \usepackage{float}
 \usepackage{multicol}
 %bindet die benutzten Packages ein
@@ -241,8 +245,8 @@ After all this simplifications we obtain a simplified version of the Maxey-Riley
 \begin{equation}
  \frac{\partial{\vec{x_\mathrm{p}}}}{\partial{t}} = \vec{v_\mathrm{p}}
 \end{equation}
-\nomenclature{$\vec{x_\mathrm{p}$}}{Particle position}
-\nomenclature{$\vec{v_\mathrm{p}$}}{Particle velocity}
+\nomenclature{$\vec{x_\mathrm{p}}$}{Particle position}
+\nomenclature{$\vec{v_\mathrm{p}}$}{Particle velocity}
 \begin{equation}
  \frac{\partial{\vec{v_\mathrm{p}}}}{\partial{t}} = \frac{f_mathrm{D}}{tau_mathrm{p}} (\vec{u(x_\mathrm{p}}) - \vec{v_\mathrm{p}})
  \end{equation}
@@ -290,7 +294,7 @@ The updated particle position must be corrected by an additional term according 
 \end{equation}
 \subsection{Particle clustering}
 \nomenclature{$m_\mathrm{c}$}{number of clustered particles}% ++ nomenclature funktioniert noch nicht! ++
-The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the programm has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
+The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
 \newline
 \newline
 Projektion (noComputationalParticles), Diskretisierung
@@ -305,10 +309,42 @@ In this case the turbulence was simulated on a cubic grid using $64^3$,$96^3$,$1
 the case in which $256^3$ cells where used is carried out as DNS. Futher information can be gained by looking at \cite[p.344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 For simplification, the special case of isotropic turbulence was used. For this idealised flow form the statistical 
 velocities are invariant in all directions of the grid. It follows that the flows velocity are invariant for rotations and reflections. 
-The turbulence was initialised using a seed-based random generator. To achieve physical results, the simulation was carried out  to timestep 150, 
+The turbulence was initialised using a seed-based random generator. To achieve physical results, the simulation of the particle-free flow was carried out  to timestep 150, 
 at which a restart file was written out. This procedure insures a fully developed turbulent 
-flow, which has emancipated from the initialisation. In this flow field, a specific number of spherical particles were injected. 
-The velocties of the fluid were interpolated for each particle to match the velocities of particles and fluid as accurately as possible.
+flow, whom has emancipated from the initialisation. In this flow field, a specific number of spherical particles were injected. 
+The velocties of the fluid were interpolated for each particle to match the velocities of particles and fluid as accurately as possible. 
+\newline
+\nomenclature{$m_\mathrm{c}$}{Number of particles in a particle cluster}
+As noted in \cite{PreferentialConcentrationOfHeavyParticles}, particles tend to cluster in certain regions of the turbulent flow. This behavior can bee used to minimize computational effort for simulating the flow while still achieving high quality results. To investigate the differences in accuracy for different sizes of particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations where then set up with the overall same number of particles ($ 10^6 $), just the number of particles in one cluster was altered. Then the simulations where carried out normally and result in the graphs Figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} on page \pageref{coupling_time_128}. 
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./../Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
+        \caption{Change in kinetic Energy over normalized time}
+        \label{der(kineticEnergy)_time_128}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./../Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
+        \caption{Coupling Rate over normalized time}
+        \label{coupling_time_128}
+    \end{minipage}
+\end{figure}
+The Graphs clearly show that for simulations with highly clustered particles the examples are not very accurate. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation after about one eddy turnover time ($t^*$). In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows kind of a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
+\newline
+\newline
+Coupling-Rate Ergebnisse beschreiben
+\newline
+\newline
+To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even unphysical results. In these simulations, no particle clustering was used, just different amount of particles where injected into the same flow. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
+\begin{figure}[h]
+	\centering
+  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
+	\caption{Results for initializing different numbers of particles}
+	\label{kineticEnergy_numberOfParticles}
+\end{figure}
+\pagebreak
 \begin{table}[h]
 \begin{tabular}{l | c c c c c c c }
 Case & $Re$ & $Re_\lambda$ & $Re_\lambda (restart)$ & $c_fl$ & timesteps  & $m_c$ & particle Diameter \\
@@ -323,39 +359,12 @@ Case & $Re$ & $Re_\lambda$ & $Re_\lambda (restart)$ & $c_fl$ & timesteps  & $m_c
 \caption{Example of a table}
 \label{table1}
 \end{table}
-\newline
-See table \ref{table1} on page \pageref{table1} for the example table.
-boundary conditions, for example Reynolds number?
-\begin{figure}[h]
-    \centering
-    \begin{minipage}{.5\textwidth}
-        \centering
-        \includegraphics[width=0.9\linewidth]{./../Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
-        \caption{Example Caption 1}
-        \label{der(kineticEnergy)_time_128}
-    \end{minipage}%
-    \begin{minipage}{0.5\textwidth}
-        \centering
-        \includegraphics[width=0.9\linewidth]{./../Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
-        \caption{Example Caption 2}
-        \label{coupling_time_128}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}[]
-	\centering
-  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
-	\caption{Include Caption}
-	\label{kineticEnergy_numberOfParticles}
-\end{figure}
-
 \begin{figure}[]
 	\centering
   \includegraphics[width=0.5\textwidth]{./../Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
 	\caption{Include Caption}
 	\label{kineticEnergy_time_128}
 \end{figure}
-Graphen (particleFree rot, Laden gruen)
 \pagebreak
 \section{Conclusion}
 \pagebreak
