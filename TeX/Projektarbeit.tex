@@ -182,7 +182,7 @@ To achieve closure the caloric state equation $ e = c_v T $ and the state eqauti
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_p - c_v $. 
 These equations form a set of partial differential equations, so for solving them starting values are needed.
 \pagebreak
-\subsubsection{Turbulent flows: Across all scales}
+\subsubsection{Turbulent motion across all scales}
 Turbulent flows contain eddies of all sizes and forms. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1922. The theory then was developed further by Kolmogorov and published 1941.
 \newline
 The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is the called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
@@ -408,20 +408,20 @@ Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time
 \newline
 The same impression can be achieved by looking at the graphs describing the coupling rate. The particle-laden-case makes the biggest jump into negative coupling rate. The higher the amount of coupled particles, the lower is the negative coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-The properties of these simulations can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 \textbf{Uebepruefen, ist die Viskositaet die richtige?}.
+Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 \textbf{Uebepruefen, ist die Viskositaet die richtige? Diameter einfuegen, Tabelle ueberarbeiten}.
 \begin{table}[h]
 \begin{tabular}{l | c c c c c c c }
 $m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\lambda$ & $\eta $ & $Re_\lambda$ \\
 \hline
 \hline
-1 & 0.7628 & 5.22897 & 0.0317221 & 0.00207819 & 60.1557  \\
-10 & 0.7628 & 5.22927 & 0.0317214 & 0.00207816 & 60.1547 \\
-50 & 0.76282 & 5.23008 & 60.1512 & 0.0020780 & 60.1512   \\
-100 & 0.76286 & 5.23117 & 0.0317167 & 0.00207797 & 60.148  \\
-1000 & 0.76301 & 5.2359 & 0.0317056 & 0.00207751 & 60.1329   \\
+1 & ? & 5.22897 & 0.0317221 & 0.00207819 & 60.1557  \\
+10 & ? & 5.22927 & 0.0317214 & 0.00207816 & 60.1547 \\
+50 & ? & 5.23008 & 60.1512 & 0.0020780 & 60.1512   \\
+100 & ? & 5.23117 & 0.0317167 & 0.00207797 & 60.148  \\
+1000 & ? & 5.2359 & 0.0317056 & 0.00207751 & 60.1329   \\
 \hline
 \end{tabular}
-\caption{Variables of the first set of simulations at the time of injection for $128^3$-case}
+\caption{Variables of the first set of simulations one turnover time after injection for the $128^3$-case}
 \label{table_properties}
 \end{table}
 \newline
