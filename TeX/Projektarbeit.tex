@@ -445,19 +445,21 @@ The same impression can be achieved by looking at the graphs describing the coup
 \newline
 Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 \textbf{Uebepruefen, ist die Viskositaet die richtige? Diameter einfuegen, Tabelle ueberarbeiten}.
 \begin{table}[h]
+\begin{center}
 \begin{tabular}{l | c c c c c c c }
 $m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\lambda$ & $\eta $ & $Re_\lambda$ \\
 \hline
 \hline
-1 & ? & 5.22897 & 0.0317221 & 0.00207819 & 60.1557  \\
-10 & ? & 5.22927 & 0.0317214 & 0.00207816 & 60.1547 \\
-50 & ? & 5.23008 & 60.1512 & 0.0020780 & 60.1512   \\
-100 & ? & 5.23117 & 0.0317167 & 0.00207797 & 60.148  \\
-1000 & ? & 5.2359 & 0.0317056 & 0.00207751 & 60.1329   \\
+1 & 0.21496 & 0.79150 & 0.0432 & 0.00333 & 43.360  \\
+10 & 0.22364 & 1.02918 & 0.03866 & 0.00312 & 39.5653 \\
+50 & 0.25654 & 1.78788 & 0.03144 & 0.00272 & 34.4702   \\
+100 & 0.28357 & 2.26144 & 0.02940 & 0.00257 & 33.8869 \\
+1000 & 0.33543 & 2.2855 & 0.03184 & 0.00256 & 39.8993   \\
 \hline
 \end{tabular}
-\caption{Variables of the first set of simulations one turnover time after injection for the $128^3$-case}
+\caption{Variables of the first set of simulations \textbf{about} one turnover time after injection for the $128^3$-case}
 \label{table_properties}
+\end{center}
 \end{table}
 \newline
 To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even unphysical results. In these simulations, no particle clustering was used, just different amount of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
