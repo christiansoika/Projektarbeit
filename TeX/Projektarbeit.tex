@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[11pt,a4paper,openany,oneside,parskip=half*]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{tocloft}
 \usepackage[]{nomencl}
@@ -13,19 +13,53 @@
 \usepackage{multicol}
 \usepackage{float}
 \usepackage[section]{placeins}
+\usepackage[english]{babel} 
+\usepackage{geometry} %Gr�ߟe des Bodys innerhalb der Seite 
+\usepackage[utf8]{inputenc} 
 %bindet die benutzten Packages ein
+
+\linespread{1.25} %gr��erer Zeilenabstand
+
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
 \renewcommand*\matrix[1]{\boldsymbol{#1}}
 
 %setzt die fettgedruckte Schreibweise fuer Vektoren und Matrizen
 
-%opening
-\title{Investigations on one-way coupling effects of particle-laden decaying isotropic turbulent flows}
-\author{Julian Stemmermann, Steffen Trienekens, Christian Soika}
-\date{Aachen, 3rd of July 2017}
+\geometry{top=3cm, bottom=4cm}
+\geometry{bindingoffset=1.5cm} %offset zum binden
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}  % definere gerade Linie mit 0.5mm Dicke
 
-%schreibt die generellen Informationen aus
+\begin{document}
+\begin{titlepage}
+\begin{figure}[htp]
+\vspace*{-3cm} 
+\hspace*{2.7cm}  
+\includegraphics{./Titelseite/rwth_aia_en_rgb.eps}
+\end{figure}
+\begin{center}
+\textbf{Diese Arbeit wurde vorgelegt am Aerodynamischen Institut}
+\end{center}
+\begin{center} % ab hier zentriert
+\vspace*{4.2cm} %lasse 4.5 cm Platz von oben
+{ \huge \bfseries Investigations on two-way coupling effects of particle-laden decaying isotropic turbulent flows}\\[0.3cm] % Groߟe Buchstaben, fett gedruckt, lasse 0.3cm Platz nach unten
+\HRule \\[0.5cm] %Linie, 0,5cm Platz nach unten
+\textsc{\Large{Projektarbeit}}\\ %in Kapitälchen
+\textsc{\Large{von}}\\
+\textsc{\LARGE{Julian Stemmermann, Steffen Trienekens und Christian Soika}}\\[0.5cm]
+\HRule \\[0.4cm]
+{\Large{Aerodynamisches Institut der RWTH Aachen}}\\[.5cm]
+{\large \today} \\[1.5cm] % heutiges Datum
+\vfill % So viel Platz lassen, dass es bis zur Ende der Seite geht, wobei die Abstände bei dem nächsten vfill gleich sind
+\begin{flushleft} \large  %Einrückung, groß
+\begin{tabular}{ll} % Tabelle
+Betreuer: &Konstantin Fr\"ohlich \\
+Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
+\end{tabular}
+\end{flushleft}
+\vfill % So viel Platz lassen, dass es bis zur Ende der Seite geht
+\end{center}
+\end{titlepage}
 
 \numberwithin{equation}{section} %bestimmt die Nummerierung der Gleichungen, in diesem Fall nach Kapitel anstatt sie einfach durchzunummerieren
 
@@ -34,9 +68,7 @@
 \renewcommand{\refname}{}
 \renewcommand{\nomname}{}
 
-\begin{document}
 
-\maketitle
 
 \setlength{\columnsep}{30pt}
 
@@ -372,23 +404,24 @@ It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic 
         \label{coupling_time_128}
     \end{minipage}
 \end{figure}
-Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations results differ a lot. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation at about one eddy turnover time ($t^*$). In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
+Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations results differ a lot. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation at about one eddy turnover time. In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
 \newline
-The same impression can be achieved by looking at the graphs describing the coupling rate. The particle-laden-case makes the biggest jump into negative coupling rate, which is defined as: \textbf{Defnition Coupling Rate}. The higher the amount of coupled particles, the lower is the negative coupling force. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
+The same impression can be achieved by looking at the graphs describing the coupling rate. The particle-laden-case makes the biggest jump into negative coupling rate. The higher the amount of coupled particles, the lower is the negative coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-The properties of these simulations can be found in table \ref{table_properties} on page \pageref{table_properties}.
+The properties of these simulations can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 \textbf{Uebepruefen, ist die Viskositaet die richtige?}.
 \begin{table}[h]
 \begin{tabular}{l | c c c c c c c }
-Case & $u_0$ & $\epsilon$ & $l$ & $\lambda$ & $\eta $ & $Re_\mathrm{l}$ & $Re_\lambda$ \\
+$m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\lambda$ & $\eta $ & $Re_\lambda$ \\
 \hline
 \hline
-64 & 1.50053 & 0.0022661 & ? & 0.0348981 & ? & ? & 41.4212 \\
-96 & ? & ? & ? & ? & ? & ? & ? \\
-128 & ? & ? & ? & ? & ? & ? & ?  \\
-264 & ? & ? & ? & ? & ? & ? & ?  \\
+1 & 0.7628 & 5.22897 & 0.0317221 & 0.00207819 & 60.1557  \\
+10 & 0.7628 & 5.22927 & 0.0317214 & 0.00207816 & 60.1547 \\
+50 & 0.76282 & 5.23008 & 60.1512 & 0.0020780 & 60.1512   \\
+100 & 0.76286 & 5.23117 & 0.0317167 & 0.00207797 & 60.148  \\
+1000 & 0.76301 & 5.2359 & 0.0317056 & 0.00207751 & 60.1329   \\
 \hline
 \end{tabular}
-\caption{Properties of the first set of simulations}
+\caption{Variables of the first set of simulations at the time of injection for $128^3$-case}
 \label{table_properties}
 \end{table}
 \newline
@@ -399,9 +432,10 @@ To find out at which number of particles the results are sufficiently exact, a s
 	\caption{Results for initializing different numbers of particles}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
-The normalized difference in \textbf{kinetic Energy} shows as expected a clear correlation between particle number and accuracy in the simulation. Athough this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. Simulations in other gridsizes show similar results.
+The normalized difference in \textbf{kinetic Energy} shows in this one-time simulation a clear correlation between particle number and accuracy in the simulation. Athough this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. One-time simulations in other gridsizes show similar results.
 \pagebreak
-\section{Conclusion}
+\section{Conclusion and outlook}
+Offene Themen: Statistische Auswertung der Anzahl der Partikel (Konvergenz)
 \subsection*{Acknowledgements}
 \pagebreak
 \section{References}
