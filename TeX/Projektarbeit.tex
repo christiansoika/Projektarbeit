@@ -58,9 +58,11 @@ in Computational Methods for Multiphase Flow ist auf den Seiten 3-9 ein interess
 Sollen wir hier außerdem noch ein Bild von einer turbulenten Strömung und der Sammlung der Partikel in low-vortex-areas einfügen?
 Unterschiedliche Sections erklären
 Einführung von $m_c$ beschreiben. 
+Ablauf:
+1. Beispiel für technische Anwendungen
+2. Inhalt der Arbeit zusammenfassen
 \pagebreak
 \section{Mathematical models}
-Zusammenfassung mathematische Modelle und kurze Einleitung in das mathematische Grundkonzept der Simulation.
 \subsection{Single-phase flow} %Christian
 In this section the mathematical basics for understanding and simulating turbulent flows are discussed. However, it should be pointed out that this is no
 complete treatise of the mathematical and physical basics. The reader can achieve further insight on this topic by looking at different books and papers, 
@@ -70,14 +72,13 @@ e.g. \cite{turbulentFlows}.
 The Navier-Stokes-Equations are of great importance for understanding turbulent phenomena. This set of equations exists in forms for compressible and
 incompressible fluids. For an infinitesimal small volume element $ \mathrm{d} \tau $ and using the cartesian coordinate system, 
 they can be written in the so-called 'divergence form':
-\begin{equation}
-  \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{H} = 0
-\end{equation}
 \nomenclature{$\vec\nabla$}{Nabla-operator} %Erstellt automatisch die Nomenclature-Liste
 \nomenclature{$\vec{Q}$}{Container for conserved variables in the Navier-Stokes equations}
 \nomenclature{$\vec{H}$}{Container for fluctuating variables in the Navier-Stokes equations}
-It should be noted by the reader that this work only contains investigations about chemically inert fluids and particles, and that the simulation results
-only fit under this condition. The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the density $ \rho $, 
+\begin{equation}
+  \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{H} = 0
+\end{equation}
+The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the density $ \rho $, 
 the velocity $ \vec{u} $ and the specific inner energy $ E $: 
 \nomenclature{$\rho$}{Density}
 \nomenclature{$\vec{u}$}{Three-dimensional velocity}
@@ -85,23 +86,23 @@ the velocity $ \vec{u} $ and the specific inner energy $ E $:
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right)
 \end{equation}
-$ \vec{H} $ is the flux vector which stores all the floating variables and may be split up into two parts: 
+$ \vec{H} $ is the flux vector which stores all the floating variables and may be split up into two parts:
+\nomenclature{$\vec{H^\mathrm{i}}$}{Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations}
+\nomenclature{$\vec{H^\mathrm{v}}$}{Stores the viscous variables in the flux-vector included in the Navier-Stokes equations} 
 \begin{equation}
  \vec{H} = \vec{H^\mathrm{i}} + \vec{H^\mathrm{v}}
 \end{equation}
-\nomenclature{$\vec{H^\mathrm{i}}$}{Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations}
-\nomenclature{$\vec{H^\mathrm{v}}$}{Stores the viscous variables in the flux-vector included in the Navier-Stokes equations}
 The contents of the two vectors are displayed below:
-\begin{equation}
- \vec{H^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right)
-\end{equation}
 \nomenclature{$p$}{Pressure}
-\begin{equation}
- \vec{H^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\tau}\\ \matrix{\tau} \vec{u} + \vec{q} \end{array} \right)
-\end{equation}
 \nomenclature{$Re$}{Reynolds number}
 \nomenclature{$\matrix{\tau}$}{Stress tensor}
 \nomenclature{$\vec{q}$}{Heat conduction}
+\begin{equation}
+ \vec{H^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right)
+\end{equation}
+\begin{equation}
+ \vec{H^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\tau}\\ \matrix{\tau} \vec{u} + \vec{q} \end{array} \right)
+\end{equation}
 $ \vec{H^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
 with zero viscosity would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity. The Reynolds number 
 $ Re = \frac{\rho v d}{\eta} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
@@ -109,41 +110,41 @@ fact that two familiar objects with the same Reynolds number behave similar in t
 $ Re >> 1 $ are turbulent.
 To solve the Navier-Stokes-Equations, more information regarding some variables is required. For Calculating the specific inner Energy $ E $ 
 and the heat conduction $ \vec{q} $, the following equations are used:
+\nomenclature{$e$}{Specific internal energy}
+\nomenclature{$Pr$}{Prandtl number}
+\nomenclature{$\mu$}{Dynamic viscosity}
 \begin{equation}
  E = e  \frac{1}{2} \vec{|u|}^2
 \end{equation}
-\nomenclature{$e$}{Specific internal energy}
 \begin{equation}
  \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T
 \end{equation}
-\nomenclature{$Pr$}{Prandtl number}
-\nomenclature{$\mu$}{Dynamic viscosity}
 with 
+\nomenclature{$c_p$}{Specific isobaric heat capacity}
+\nomenclature{$c_v$}{Specific isochoric heat capacity}
 \begin{equation}
  \gamma = \frac{c_p}{c_v}
 \end{equation}
-\nomenclature{$c_p$}{Specific isobaric heat capacity}
-\nomenclature{$c_v$}{Specific isochoric heat capacity}
 and the Prandtl number
+\nomenclature{$k_t$}{thermal conductivity}
 \begin{equation}
  Pr = \frac{\mu_\infty c_p}{k_t}
 \end{equation}
-\nomenclature{$k_t$}{thermal conductivity}
 using the specific heat capacities of the fluid $ c_v $ and $ c_p $.
 If one could assume that the fluid is a newtonian fluid, the linear correlation between stress and the rate of strain results in:
-\begin{equation}
- \matrix{\tau} = 2 \mu \matrix{S} - \frac{2}{3} \mu (\vec\nabla * \vec{u}) \matrix{I}
-\end{equation}
 \nomenclature{$\matrix{I}$}{Identity tensor}
 \nomenclature{$\matrix{S}$}{Rate-of-strain-tensor}
 \nomenclature{$T$}{Temperature}
+\begin{equation}
+ \matrix{\tau} = 2 \mu \matrix{S} - \frac{2}{3} \mu (\vec\nabla * \vec{u}) \matrix{I}
+\end{equation}
 in which $ \matrix{S} = \frac{(\vec\nabla \vec{u})(\vec\nabla \vec{u})^T}{2} $ denotes the rate-of-strain-tensor. Additionally, the viscosity
 $ \mu $ can be aprroximated through Sutherland's law, which is based on the ideal gas-theory: 
+\nomenclature{$S$}{Sutherland temperature}
+\nomenclature{$R$}{Universal gas constant}
 \begin{equation}
  \mu (T) = \mu_\infty (\frac{T}{t_\infty})^{3/2} \frac{T_\infty + S}{T + S}
 \end{equation}
-\nomenclature{$S$}{Sutherland temperature}
-\nomenclature{$R$}{Universal gas constant}
 S is in this case the Sutherland temperature.
 To achieve closure the caloric state equation $ e = c_v T $ and the state eqaution for an ideal gas $
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_p - c_v $. 
@@ -296,22 +297,22 @@ The simulations where carried out using ZFS, the simulation tool developed and i
 The tool is capable of simulating finite-volume flows of compressible fluids. 
 In this case the turbulence was simulated on a cubic grid using $64^3$,$96^3$,$128^3$ and $256^3$. The first three cases where simulated using LES, 
 the case in which $256^3$ cells where used is carried out as DNS. Futher information can be gained by looking at \cite[p.344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
+\begin{figure}[h]
+	\centering
+  \includegraphics[width=0.9\textwidth]{./../Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
+	\caption{Kinetic Energy over time for different numbers of particles}
+	\label{kineticEnergy_time_128}
+\end{figure}
 \newline
 For simplification, the special case of isotropic turbulence was used. For this idealised flow form the statistical 
 velocities are invariant in all directions of the grid. It follows that the flows velocity are invariant for rotations and reflections. 
 The turbulence was initialised using a seed-based random generator. To achieve physical results, the simulation of the particle-free flow was carried out  to timestep 150, 
 at which a restart file was written out. This procedure ensures a fully developed turbulent 
 flow, whom has emancipated from the initialisation. In this flow field, a specific number of spherical particles were injected. 
-\newline
 \nomenclature{$m_\mathrm{c}$}{Number of particles in a particle cluster}
+\newline
 As noted in \cite{PreferentialConcentrationOfHeavyParticles}, particles tend to cluster in certain regions of the turbulent flow. This behavior can bee used to minimize computational effort for simulating the flow while still achieving high quality results. To investigate the differences in accuracy for different sizes of particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations where then set up with the overall same number of particles ($ 10^6 $), just the number of particles in one cluster was altered. Then the simulations where carried out normally and result in the following graphs (Figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
-\begin{figure}[h]
-	\centering
-  \includegraphics[width=0.9\textwidth]{./../Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
-	\caption{Kinetic Energy over time}
-	\label{kineticEnergy_time_128}
-\end{figure}
-It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends in a degree that is not negligible for most applications. With 10 particles per cluster, the solutions could be usable to get a first impression for technical purposes, all other simulations show a very high variety. 
+It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. \textbf{With 10 particles per cluster, the solutions could be usable to get a first impression for technical purposes, all other simulations show a very high variety.}
 \newline
 \begin{figure}[h]
     \centering
@@ -328,13 +329,27 @@ It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic 
         \label{coupling_time_128}
     \end{minipage}
 \end{figure}
-Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations are not very accurate. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation at about one eddy turnover time ($t^*$). In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
+Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations results differ a lot. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation at about one eddy turnover time ($t^*$). In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
 \newline
 The same impression can be achieved by looking at the graphs describing the coupling rate. The particle-laden-case makes the biggest jump into negative coupling rate, which is defined as: \textbf{Defnition Coupling Rate}. The higher the amount of coupled particles, the lower is the negative coupling force. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-One could conclude that particle clustering is one, but propably not the best method to minimize computational effort. It makes sense to a certain extent, but as one can see from the simulations, the boundaries show fast. 
+The properties of these simulations can be found in table \ref{table_properties} on page \pageref{table_properties}.
+\begin{table}[h]
+\begin{tabular}{l | c c c c c c c }
+Case & $u_0$ & $\epsilon$ & $l$ & $\lambda$ & $\eta $ & $Re_\mathrm{l}$ & $Re_\lambda$ \\
+\hline
+\hline
+64 & 1.50053 & 0.0022661 & ? & 0.0348981 & ? & ? & 41.4212 \\
+96 & ? & ? & ? & ? & ? & ? & ? \\
+128 & ? & ? & ? & ? & ? & ? & ?  \\
+264 & ? & ? & ? & ? & ? & ? & ?  \\
+\hline
+\end{tabular}
+\caption{Properties of the first set of simulations}
+\label{table_properties}
+\end{table}
 \newline
-To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even unphysical results. In these simulations, no particle clustering was used, just different amount of particles where injected into the same flow. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
+To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even unphysical results. In these simulations, no particle clustering was used, just different amount of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
@@ -343,22 +358,8 @@ To find out at which number of particles the results are sufficiently exact, a s
 \end{figure}
 The normalized difference in \textbf{kinetic Energy} shows as expected a clear correlation between particle number and accuracy in the simulation. Athough this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. Simulations in other gridsizes show similar results.
 \pagebreak
-\begin{table}[h]
-\begin{tabular}{l | c c c c c c c }
-Case & $Re$ & $Re_\lambda$ & $Re_\lambda (restart)$ & $c_fl$ & timesteps  & $m_c$ & particle Diameter \\
-\hline
-\hline
-64 & ? & ? & ? & ? & ? & ? & ? \\
-96 & ? & ? & ? & ? & ? & ? & ? \\
-128 & ? & ? & ? & ? & ? & ? & ?  \\
-264 & ? & ? & ? & ? & ? & ? & ?  \\
-\hline
-\end{tabular}
-\caption{Example of a table}
-\label{table1}
-\end{table}
-\pagebreak
 \section{Conclusion}
+\subsection*{Acknowledgements}
 \pagebreak
 \section{References}
 \nocite{*} %ermoeglicht, dass auch Literatur, welche nicht zitiert wurde in der Bibliography auftaucht
