@@ -86,23 +86,13 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \pagebreak
 
 \section{Introduction}
-<<<<<<< HEAD
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./Abbildungen/64_velocity.png}
 	\caption{Beschreibung einfuegen}
 	\label{introuction_picture}
 \end{figure}
-in Computational Methods for Multiphase Flow ist auf den Seiten 3-9 ein interessantes Beispiel.
-Sollen wir hier außerdem noch ein Bild von einer turbulenten Strömung und der Sammlung der Partikel in low-vortex-areas einfügen?
-Unterschiedliche Sections erklären
-Einführung von $m_c$ beschreiben. 
-Ablauf:
-1. Beispiel für technische Anwendungen
-2. Inhalt der Arbeit zusammenfassen
-=======
-
-This paper deals with the effects of particles on an the flow conditions of isotropic turbulent flows.
+This work deals with the effects of particles on an the flow conditions of isotropic turbulent flows.
 There are many examples of these particle laden turbulent flows in nature, for example in volcanic eruptions and in the "white water" of breaking waves.
 \newline
 Multiphase flows also occur in technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil rafinery and sediment accumulation in pipelines are just three of many cases, where it is of huge interest to predict the influence of particles on the turubulence of the mean flow.
@@ -120,7 +110,6 @@ Finally the computational method 'particle clustering' is introduced. This appro
 \newline
 In the following the deviations caused by using this method are determined and the applicability is evaluated. Therefore the influence of the number of particles per cluster on the accuracy of the plots of the turbulent kintic energy and the exchanged energy beween particles and fluid per time is identified.
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
->>>>>>> 986334b5ad0eb2295ea141201b31cb9063ec16c7
 \pagebreak
 \section{Mathematical models}
 \subsection{Single-phase flow} %Christian
@@ -255,7 +244,6 @@ Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}
 Together these scales form a powerful tool to understand and compute turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} 
-
 This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. This phenomenon is called two-way-coupling and the exchanged energy per time between fluid and particles is called coupling rate. 
 \newline
 Here small and heavy, rigid particles, with a spherical shape are considered. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
@@ -322,7 +310,6 @@ with
 \begin{equation}
 a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{d}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t})
 \end{equation}
-
 Since in gas-solid suspensions the particle density is of an factor of 1000 higher than the fluid density, it shows that, if it's not the unlikely case that the relative acceleration is of the same order higher than the gravity, the added mass force is negligible compared to the drag force.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relexation time of the order of $\tau$ results in
 \begin {equation}
@@ -370,9 +357,7 @@ The coupling rate $\psi$, that describes the transfered Energy per time between 
 \end{equation}
 Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe, how much the main fluid and the particles influence each other.
-
- 
- \pagebreak
+\pagebreak
 \section{Numerical methods} %Julian
 To simulate flows like those described above we have two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
 \subsection{Direct numerical simulation}
