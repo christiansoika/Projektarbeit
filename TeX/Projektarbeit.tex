@@ -442,7 +442,7 @@ flow, whom has emancipated from the initialisation. In this flow field, a specif
 \nomenclature{$m_\mathrm{c}$}{Number of particles in a particle cluster}
 \newline
 As noted in \cite{PreferentialConcentrationOfHeavyParticles}, particles tend to cluster in certain regions of the turbulent flow. This behavior can bee used to minimize computational effort for simulating the flow while still achieving high quality results. To investigate the differences in accuracy for different sizes of particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations where then set up with the overall same number of particles ($ 10^6 $), just the number of particles in one cluster was altered. Then the simulations where carried out normally and result in the following graphs (Figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
-It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. \textbf{With 10 particles per cluster, the solutions could be usable to get a first impression for technical purposes, all other simulations show a very high variety.}
+It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. 
 \newline
 \begin{figure}[h]
     \centering
@@ -459,7 +459,9 @@ It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic 
         \label{coupling_time_128}
     \end{minipage}
 \end{figure}
-Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations results differ a lot. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation at about one eddy turnover time. In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
+Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations results differ a lot. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in the kinetic Energy-rate of change. A similar behavior was found by Schneiders et al \cite{Schneiders2017}. The particles therefore have two effects on the fluid: Firstly, the viscous dissipation rises in the case of particle-load. Secondly, there is always an energy transfer from the particles to the surrounding fluid. Both of these influence the kinetic energy and a change in the direction of the transferred energy can be observed at about one eddy turnover time for the unclustered simulation. At this point in time, the rate of kinetic energy flowing from the particles to the fluid match the rate of dissipated energy. Schneider's results show, that for particles that have the same diameter this point is reached later in time for heavier/more dense particles due to their inertia. One could observe a similar effect with the simulation at hand: The more particles are summarized in one cluster, the later the balanced state of energy flow is achieved. 
+\newline 
+The case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
 \newline
 The same impression can be achieved by looking at the graphs describing the coupling rate. The particle-laden-case makes the biggest jump into negative coupling rate. The higher the amount of coupled particles, the lower is the negative coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
@@ -467,7 +469,7 @@ Being very similar in the time shortly after the injection, the flow statistics 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l | c c c c c c c }
-$m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\lambda$ & $\eta $ & $Re_\lambda$ \\
+$m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
 \hline
 \hline
 1 & 0.21496 & 0.79150 & 0.0432 & 0.00333 & 43.360  \\
@@ -489,7 +491,9 @@ To find out at which number of particles the results are sufficiently exact, a s
 	\caption{Results for initializing different numbers of particles}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
-The normalized difference in \textbf{kinetic Energy} shows in this one-time simulation a clear correlation between particle number and accuracy in the simulation. Athough this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. One-time simulations in other gridsizes show similar results.
+The normalized difference in turbulent kinetic Energy shows in this one-time simulation a clear correlation between particle number and accuracy in the simulation. Although this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. One-time simulations in other gridsizes show similar results.
+\newline
+Table: Initial Properties
 \pagebreak
 \section{Conclusion and outlook}
 Offene Themen: Statistische Auswertung der Anzahl der Partikel (Konvergenz)
