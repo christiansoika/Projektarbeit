@@ -14,11 +14,11 @@
 \usepackage{float}
 \usepackage[section]{placeins}
 \usepackage[english]{babel} 
-\usepackage{geometry} %GrößŸe des Bodys innerhalb der Seite 
+\usepackage{geometry} %Grï¿½ßŸe des Bodys innerhalb der Seite 
 \usepackage[utf8]{inputenc} 
 %bindet die benutzten Packages ein
 
-\linespread{1.25} %größerer Zeilenabstand
+\linespread{1.25} %grï¿½ï¿½erer Zeilenabstand
 
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
@@ -154,6 +154,7 @@ fact that two familiar objects with the same Reynolds number behave similar in t
 $ Re >> 1 $ are turbulent.
 To solve the Navier-Stokes-Equations, more information regarding some variables is required. For Calculating the specific inner Energy $ E $ 
 and the heat conduction $ \vec{q} $, the following equations are used:
+\nomenclature{$\gamma$}{Isentropic exponent}
 \nomenclature{$e$}{Specific internal energy}
 \nomenclature{$Pr$}{Prandtl number}
 \nomenclature{$\mu$}{Dynamic viscosity}
@@ -239,7 +240,7 @@ Together these scales form a powerful tool to understand and compute turbulent f
 \pagebreak
 \subsection{Particle dynamics} 
 
-This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. This phenomenon is called two-way-coupling and the exchanged energy per time between fluid and particles is called coupling rate. 
+This work deals with particle laden fluids. Therefore the impact of them on the flow behavior of the fluid needs to be described. This phenomenon is called two-way-coupling and the exchanged energy per time between fluid and particles is called coupling rate. 
 \newline
 Here small and heavy, rigid particles, with a spherical shape are considered. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 \newline
@@ -255,8 +256,11 @@ The Navier Stokes equation, described in chapter 1, becomes:
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
+\nomenclature{$\vec{F}$}{Force per unit volume from paticle on fluid}
 The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unit volume on the fluid.
 $\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
+\nomenclature{$\vec{x}_\mathrm{p}^\mathrm{n}$}{Positions of the n-th particle}
+\nomenclature{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
 \vec{F} = \sum \limits_{n=1}^{N_\mathrm{p}} \vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})\delta(\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}).
 \end{equation}
@@ -270,11 +274,18 @@ The delta function becomes one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ become
 Also it plays also an important role in the equation of motion of the particles:
 \begin{equation}
 \mathrm{v} \rho_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = \mathrm{v} \rho_\mathrm{p}\vec{g}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
+\nomenclature{\vec{g}}{Gravity konstant}
 \end{equation}
+\nomenclature{$\mathrm{v}$}{Particle volume}
 As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could be devided in several forces. Then the equation of particle motion looks like:
 \begin{equation}
 m_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = m_\mathrm{p}\vec{g}+\rho \mathrm{v}\biggl(\frac{D\vec{u}}{Dt}-\vec{g} \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
 \end{equation}
+\nomenclature{$\vec{f}_\mathrm{d}$}{Drag force}
+\nomenclature{$\vec{f}_\mathrm{l}$}{Lift force}
+\nomenclature{$\vec{f}_\mathrm{a}$}{Added mass force}
+\nomenclature{$\vec{f}_\mathrm{h}$}{History force}
+\nomenclature{$Re_\mathrm{p}$}{Particle Reynolds number}
 Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
 \begin{equation}
 \vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v} \frac{C_\mathrm{d}}{d}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
@@ -294,6 +305,7 @@ The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection, that resu
 \begin{equation}
 \vec{f}_\mathrm{h} = \frac{3}{2}d^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)  
 \end{equation}
+\nomenclature{$\nu$}{Kinetic viskosity}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
 In this case of gas-solid suspensions there could be made several simplifications.
 In the following there is shown with an rough approximation that the added mass and history forces are negligible compared with the drag force.
@@ -305,13 +317,16 @@ with
 \begin{equation}
 a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{d}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t})
 \end{equation}
-
+\nomenclature{$a_\mathrm{r}$}{Relative acceleration of particles}
 Since in gas-solid suspensions the particle density is of an factor of 1000 higher than the fluid density, it shows that, if it's not the unlikely case that the relative acceleration is of the same order higher than the gravity, the added mass force is negligible compared to the drag force.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relexation time of the order of $\tau$ results in
-\begin {equation}
+\begin{equation}
 \frac{|\vec{f}_\mathrm{h}|}{|\vec{f}_\mathrm{a}|}\simeq 18 \sqrt{\frac{\nu\tau}{d^\mathrm{2}}}.
 \end{equation}
+
+\nomenclature{$d$}{Particle diameter}
 Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \sim \frac{d^\mathrm{2}}{\nu}$.
+\nomenclature{$\tau_\mathrm{p}$}{Particle relexation time}
 Hence the history force is also negligible compared to the drag force.
 For the lift force the situation is the same, because is is also proportional to the fluid density and the length scale of the ambient flow vorticity might be much greater than the particle size.
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x_p}$ and the particle velocity $\vec{v_p}$.
@@ -336,21 +351,23 @@ Then the equation of motion of the particles becomes
 \rho_\mathrm{p}\frac{d\vec{v}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} = \frac{\rho_\mathrm{p}d^2}{18\nu\rho}$, that is the particle response time at resting fluid condtions, there finaly exists another form of this equaion 
+\nomenclature{$\tau_\mathrm{ps}$}{Stokes relexation time}
 \begin{equation}
 \rho_\mathrm{p}\frac{d\vec{v}_\mathrm{p}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d}
 \end{equation}
 with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is not the drag force.
 \newline
-\nomenclature{$r_p$}{Particle radius}
+\nomenclature{$r_\mathrm{p}$}{Particle radius}
 \nomenclature{$\rho_\mathrm{p}$}{Particle density}
 \nomenclature{$\vec{x}_\mathrm{p}$}{Particle position}
 \nomenclature{$\vec{v}_\mathrm{p}$}{Particle velocity}
-\nomenclature{$f_mathrm{D}$}{Drag correction}
-\nomenclature{$\tau_mathrm{p}$}{Particle response time}
+\nomenclature{$f_\mathrm{D}$}{Drag correction}
+\nomenclature{$\tau_\mathrm{p}$}{Particle response time}
 The coupling rate $\psi$, that describes the transfered Energy per time between particles and fluid, is defined as
 \begin{equation}
 \psi = \vec{F} \vec{u}. 
 \end{equation}
+\nomenclature{$\psi$}{Couling rate}
 Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe, how much the main fluid and the particles influence each other.
 
@@ -443,19 +460,21 @@ The same impression can be achieved by looking at the graphs describing the coup
 \newline
 Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 \textbf{Uebepruefen, ist die Viskositaet die richtige? Diameter einfuegen, Tabelle ueberarbeiten}.
 \begin{table}[h]
+\begin{center}
 \begin{tabular}{l | c c c c c c c }
 $m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\lambda$ & $\eta $ & $Re_\lambda$ \\
 \hline
 \hline
-1 & ? & 5.22897 & 0.0317221 & 0.00207819 & 60.1557  \\
-10 & ? & 5.22927 & 0.0317214 & 0.00207816 & 60.1547 \\
-50 & ? & 5.23008 & 60.1512 & 0.0020780 & 60.1512   \\
-100 & ? & 5.23117 & 0.0317167 & 0.00207797 & 60.148  \\
-1000 & ? & 5.2359 & 0.0317056 & 0.00207751 & 60.1329   \\
+1 & 0.21496 & 0.79150 & 0.0432 & 0.00333 & 43.360  \\
+10 & 0.22364 & 1.02918 & 0.03866 & 0.00312 & 39.5653 \\
+50 & 0.25654 & 1.78788 & 0.03144 & 0.00272 & 34.4702   \\
+100 & 0.28357 & 2.26144 & 0.02940 & 0.00257 & 33.8869 \\
+1000 & 0.33543 & 2.2855 & 0.03184 & 0.00256 & 39.8993   \\
 \hline
 \end{tabular}
-\caption{Variables of the first set of simulations one turnover time after injection for the $128^3$-case}
+\caption{Variables of the first set of simulations \textbf{about} one turnover time after injection for the $128^3$-case}
 \label{table_properties}
+\end{center}
 \end{table}
 \newline
 To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even unphysical results. In these simulations, no particle clustering was used, just different amount of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
