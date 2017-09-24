@@ -153,10 +153,9 @@ The contents of the two vectors are displayed below:
  \vec{H^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\tau}\\ \matrix{\tau} \vec{u} + \vec{q} \end{array} \right)
 \end{equation}
 $ \vec{H^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
-with zero viscosity would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity. The Reynolds number 
+with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity. The Reynolds number 
 $ Re = \frac{\rho v d}{\eta} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
-fact that two familiar objects with the same Reynolds number behave similar in turbulence. One can assume that flows with $ Re << 1 $ are laminar and flows with 
-$ Re >> 1 $ are turbulent.
+fact that two familiar objects with the same Reynolds number behave similar in turbulence.
 To solve the Navier-Stokes-Equations, more information regarding some variables is required. For Calculating the specific inner Energy $ E $ 
 and the heat conduction $ \vec{q} $, the following equations are used:
 \nomenclature{$\gamma$}{Isentropic exponent}
@@ -196,12 +195,12 @@ $ \mu $ can be aprroximated through Sutherland's law, which is based on the idea
  \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S}
 \end{equation}
 S is in this case the Sutherland temperature.
-To achieve closure the caloric state equation $ e = c_v T $ and the state eqaution for an ideal gas $
+To achieve closure the caloric state equation $ e = c_v T $ and the state equation for an ideal gas $
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_p - c_v $. 
-These equations form a set of partial differential equations, so for solving them starting values are needed.
+These equations form a set of partial differential equations, as a consequence starting values are needed.
 \pagebreak
 \subsubsection{Turbulent motion across all scales}
-Turbulent flows contain eddies of all sizes and forms. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1922. The theory then was developed further by Kolmogorov and published 1941.
+Turbulent flows contain eddies of all sizes and forms. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was developed further by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
 \newline
 The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is the called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
 \nomenclature{$L$}{Integral length scale}
@@ -229,7 +228,7 @@ Both these scales are coupled by the Reynolds number:
 \begin{equation}
 \frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = {Re_\mathrm{L}}^{1/2}
 \end{equation}
-It can be seen from these to equations that the difference between the scales increases for higher Reynolds numbers. 
+It can be seen from these to equations that the spacing between the scales increases for higher Reynolds numbers. 
 \newline
 A scale between these two is the Taylor microscale, often referred to as 'turbulence length scale'. \nomenclature{$\lambda$}{Taylor microscale}
 Although it lacks of a physical interpretation, it is often used to describe the intermediate range between integral and Kolmogorov scales. 
@@ -241,10 +240,9 @@ with $|\vec{v'}|$ denoting the absolute value of the velocities fluctuation. Thi
 \begin{equation}
 Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}
 \end{equation}
-Together these scales form a powerful tool to understand and compute turbulent flows. 
+Together these scales form a powerful tool to understand, compute and describe turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} 
-
 This work deals with particle laden fluids. Therefore the impact of them on the flow behavior of the fluid needs to be described. This phenomenon is called two-way-coupling and the exchanged energy per time between fluid and particles is called coupling rate. 
 \newline
 Here small and heavy, rigid particles, with a spherical shape are considered. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
