@@ -16,6 +16,7 @@
 \usepackage[english]{babel} 
 \usepackage{geometry} %Gr�ߟe des Bodys innerhalb der Seite 
 \usepackage[utf8]{inputenc} 
+
 %bindet die benutzten Packages ein
 
 \linespread{1.25} %gr��erer Zeilenabstand
@@ -71,6 +72,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 
 
 \setlength{\columnsep}{30pt}
+\setlength{\parindent}{0pt}
 
 \pagebreak
 
@@ -84,7 +86,6 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \printnomenclature
 \end{multicols}
 \pagebreak
-
 \section{Introduction}
 \begin{figure}[h]
 	\centering
@@ -373,9 +374,7 @@ The coupling rate $\psi$, that describes the transfered Energy per time between 
 \nomenclature{$\psi$}{Couling rate}
 Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe, how much the main fluid and the particles influence each other.
-
- 
- \pagebreak
+\pagebreak
 \section{Numerical methods} %Julian
 To simulate flows like those described above we have two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
 \subsection{Direct numerical simulation}
@@ -422,26 +421,25 @@ implizite LES (Motivation fuer LES -  Pope Chapter 9, Bild 9.4), DNS
 \section{Results}
 The simulations where carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
 \cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
-The tool is capable of simulating finite-volume flows of compressible fluids. 
-In this case the turbulence was simulated on a cubic grid using $64^3$,$96^3$,$128^3$ and $256^3$. The first three cases where simulated using LES, 
+The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
+The turbulence was simulated on a cubic grid using $64^3$,$96^3$,$128^3$ and $256^3$ grid points. As a consequence of grid refinement the first three cases where simulated using LES, 
 the case in which $256^3$ cells where used is carried out as DNS. Futher information can be gained by looking at \cite[p.344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 \begin{figure}[h]
 	\centering
   \includegraphics[width=0.9\textwidth]{./../Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
-	\caption{Kinetic Energy over eddy turnover times for different numbers of particles}
+	\caption{Kinetic Energy over eddy turnover times for different numbers of clustered particles with fixed all-over particle number}
 	\label{kineticEnergy_time_128}
 \end{figure}
 \newline
 For simplification, the special case of isotropic turbulence was used. For this idealised flow form the statistical 
-velocities are invariant in all directions of the grid. It follows that the flows velocity are invariant for rotations and reflections. 
-The turbulence was initialised using a seed-based random generator. To achieve physical results, the simulation of the particle-free flow was carried out  to timestep 150, 
+velocities are invariant in all directions of the grid. It follows that the flows velocity are also invariant for rotations and reflections. 
+The turbulence was initialized using a seed-based random generator. To achieve physical results, the simulation of the particle-free flow was carried out a reasonable amount of time, 
 at which a restart file was written out. This procedure ensures a fully developed turbulent 
-flow, whom has emancipated from the initialisation. In this flow field, a specific number of spherical particles were injected. 
+flow, whom has emancipated from the initialization. In this flow field, a specific number of spherical particles were injected. 
 \nomenclature{$m_\mathrm{c}$}{Number of particles in a particle cluster}
 \newline
-As noted in \cite{PreferentialConcentrationOfHeavyParticles}, particles tend to cluster in certain regions of the turbulent flow. This behavior can bee used to minimize computational effort for simulating the flow while still achieving high quality results. To investigate the differences in accuracy for different sizes of particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations where then set up with the overall same number of particles ($ 10^6 $), just the number of particles in one cluster was altered. Then the simulations where carried out normally and result in the following graphs (Figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
-It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. \textbf{With 10 particles per cluster, the solutions could be usable to get a first impression for technical purposes, all other simulations show a very high variety.}
-\newline
+To minimize computational effort for simulating the particle-laden flow while still achieving high quality results, a clustering of particles was integrated into the simulation tool. To investigate the differences in accuracy for different sizes of particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations where then set up with the overall same number of particles ($ 10^6 $), altering just the number of particles in one cluster. Then the simulations where carried out normally and result in the graphs  at hand(Figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
+It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. The kinetic energy in the particle-laden cases drops more rapidly in the time-period after the injection than the particle-free case due to a higher dissipation rate induced by the particles. 
 \begin{figure}[h]
     \centering
     \begin{minipage}{.5\textwidth}
@@ -457,41 +455,54 @@ It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic 
         \label{coupling_time_128}
     \end{minipage}
 \end{figure}
-Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the simulations results differ a lot. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in kinetic Energy. This behavior can be seen because of the particles initially 'soaking up' energy, then in later phases of the flow giving it back in form of their inertia and speed, which they gathered in the beginning. \textbf{This effect should grow bigger by particle size and weight.} This change in energy transfer occurs at the unclustered simulation at about one eddy turnover time. In cases with more clustered particles it occurs later, only the case in which 1000 particles where clustered shows a strange behavior. It catches up the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additional the change in kinetic Energy shows inconstancy which can also be traced back to the small cluster number. The amount is just to small to achieve high-quality information in the statistical variables. 
 \newline
-The same impression can be achieved by looking at the graphs describing the coupling rate. The particle-laden-case makes the biggest jump into negative coupling rate. The higher the amount of coupled particles, the lower is the negative coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
+Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the results differ a lot from unclustered simulations. Looking at the results for the change in kinetic Energy, the difference becomes evident: The lower $ m_\mathrm{c} $ is, the higher is the drop in rate of change of the kinetic energy. A similar result was found by Schneiders et al \cite{Schneiders2017}. The particles therefore have two effects on the fluid: Firstly, the viscous dissipation rises in the case of particle-load. Secondly, there is always an energy transfer from the particles to the surrounding fluid. Both of these effects influence the kinetic energy and a change in the direction of transferred energy can be observed at about one eddy turnover time for the unclustered simulation. At this point in time the rate of kinetic energy flowing from the particles to the fluid matches the additional rate of dissipated energy induced by the particles.
 \newline
-Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 \textbf{Uebepruefen, ist die Viskositaet die richtige? Diameter einfuegen, Tabelle ueberarbeiten}.
+Schneiders`results show, that for particles with the same diameter this point is reached later in time for heavier/more dense particles due to their inertia. One could observe a similar effect with the simulation at hand: The more particles are summarized in one cluster, the later the balanced state of energy flow is achieved. From this point on, the kinetic energy drops slower than in the particle-free case.
+\newline
+In difference to the others, the case in which 1000 particles where clustered shows a strange behavior.(It catches up to the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles.) Additionally the change in kinetic Energy shows inconstancy which can also be traced back to the small number of clusters. The amount is just to small to achieve high-quality information in the statistical variables. 
+\newline
+The same impression can be achieved by looking at the graphs describing the coupling rate (figure \ref{coupling_time_128}). The particle-laden-case makes the biggest jump into negative coupling rate. The higher the amount of coupled particles, the lower is the negative coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
+\newline
+Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the particle response time $\tau_\mathrm{p}=\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$ was 0.03497 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= ???$, $\phi_\mathrm{m}=???$).
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l | c c c c c c c }
-$m_\mathrm{c}$ & $u_0$ & $\epsilon$ & $\lambda$ & $\eta $ & $Re_\lambda$ \\
+$m_\mathrm{c}$ & $u_0$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ & $Pr$ \\
 \hline
 \hline
-1 & 0.21496 & 0.79150 & 0.0432 & 0.00333 & 43.360  \\
-10 & 0.22364 & 1.02918 & 0.03866 & 0.00312 & 39.5653 \\
-50 & 0.25654 & 1.78788 & 0.03144 & 0.00272 & 34.4702   \\
-100 & 0.28357 & 2.26144 & 0.02940 & 0.00257 & 33.8869 \\
-1000 & 0.33543 & 2.2855 & 0.03184 & 0.00256 & 39.8993   \\
+1 & 0.21496 & 0.79150 & 0.0432 & 0.00333 & 43.360 &\\
+10 & 0.22364 & 1.02918 & 0.03866 & 0.00312 & 39.5653 &\\
+50 & 0.25654 & 1.78788 & 0.03144 & 0.00272 & 34.4702 &\\
+100 & 0.28357 & 2.26144 & 0.02940 & 0.00257 & 33.8869 &\\
+1000 & 0.33543 & 2.2855 & 0.03184 & 0.00256 & 39.8993 &\\
 \hline
 \end{tabular}
-\caption{Variables of the first set of simulations \textbf{about} one turnover time after injection for the $128^3$-case}
+\caption{Variables of the first set of simulations one turnover time after injection for the $128^3$-case}
 \label{table_properties}
 \end{center}
 \end{table}
 \newline
-To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even unphysical results. In these simulations, no particle clustering was used, just different amount of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
+To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even physically questionable results. In these simulations, no particle clustering was used, just different numbers of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. The results can be seen on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
 	\caption{Results for initializing different numbers of particles}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
-The normalized difference in \textbf{kinetic Energy} shows in this one-time simulation a clear correlation between particle number and accuracy in the simulation. Athough this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. One-time simulations in other gridsizes show similar results.
+The normalized difference in turbulent kinetic Energy shows in this one-time simulation a correlation between particle number and accuracy in the simulation. Athough this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. One-time simulations in other gridsizes show similar results.
 \pagebreak
 \section{Conclusion and outlook}
+In this work two sets of simulations were carried out to evaluate a method for lowering computational effort and to find a limit of particles at which a simulation becomes inaccurate. 
+\newline
+To achieve this goals, first the mathematical basics for understanding particle-free and particle-laden flows were introduced. The reader achieved knowledge about the Navier-Stokes equations and their enhancement for computing interactions between fluid and particles. In the following the reader got information about the numeric basics and methods for simulating such complicated phenomena. 
+\newline
+The results presented in this work show, that for a sufficiently exact simulation, particle clustering has to be treated with caution. Depending on the application maybe small numbers of clustered particles could be used, but the savings in computing time would not balance the loss in accuracy out. This is the case in particular high numbers of clustered particles at which the results get highly inaccurate. Maybe investigations on smaller numbers of clustered particles could follow, the space between 2 and 10 could be closed by simulations in the future to determine the real border for inaccurate results. 
+\newline
+Further investigation is needed regarding the second set of simulation, in which the goal was to find out which number of particles is necessary to get accurate results for the turbulent kinetic energy of the particles.
 Offene Themen: Statistische Auswertung der Anzahl der Partikel (Konvergenz)
 \subsection*{Acknowledgements}
+This work was supervised by Konstantin Fr\"ohlich, we would like to express our gratitude. Thank you for the chance of learning about turbulent flows and simulations, the advice and the deep insights in scientific work. We also want to appreciate the chance of writing this work at the Institute of Aerodynamics of the RWTH Aachen University.
 \pagebreak
 \section{References}
 \nocite{*} %ermoeglicht, dass auch Literatur, welche nicht zitiert wurde in der Bibliography auftaucht
