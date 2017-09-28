@@ -269,8 +269,6 @@ After including all the simplifications mentioned before the Navier-Stokes equat
 \end{equation}
 \nomenclature[rF]{$\vec{F}$}{Force per unit volume from particle on fluid}
 The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unit volume on the fluid.
-\nomenclature{$\vec{F}$}{Force per unit volume from particle on fluid}
-The influence of the particles on the fluid is represented by the new term $\vec{F}$, which describes the force per unit volume on the fluid.
 $\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
 \nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
@@ -302,17 +300,6 @@ m_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = m_\ma
 Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
 \begin{equation}
 \vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v}_\mathrm{p} \frac{C_\mathrm{d}}{d}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
-\mathrm{v} \rho_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \mathrm{v} \rho_\mathrm{p}\vec{g}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n}).
-\end{equation}
-\nomenclature{$\vec{g}$}{Gravity constant}
-\nomenclature{$\mathrm{v}$}{Particle volume}
-As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could be divided in several forces. Then the equation of particle motion looks like
-\begin{equation} \label{navier_stokes_particle}
-m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}\vec{g}+\rho \mathrm{v}\biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\vec{g} \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}.
-\end{equation}
-Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines:
-\begin{equation}
-\vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u}).
 \end{equation}
 It depends on the empirical drag coefficient defined after Schiller and Naumann as
 \begin{equation} \label{C_d}
@@ -324,7 +311,6 @@ Furthermore the added mass force $\vec{f}_\mathrm{a}$ represents the influence o
 Hence it could be determined by
 \begin{equation}
 \vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{D\vec{u}}{Dt}-\frac{d\vec{v}_\mathrm{p}}{dt}\biggl)
-\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl).
 \end{equation}
 The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that results from of the vortices behind the particles into account. Basselt's result, neglecting the finite size correction, is proportional to $\vec\nabla^\mathrm{2}\vec{u}$:
 \begin{equation}
@@ -337,14 +323,13 @@ In this case of gas-solid suspensions several simplifications could be made.
 In the following the fact that the added mass and history forces are negligible small compared with the drag force is shown using a rough approximation.
 We use the approach that the relative velocity is of the same order as the terminal velocity $v_\mathrm{t} = \sqrt{(4/3)(\rho_\mathrm{p}/\rho)d_\mathrm{p}g/C_\mathrm{d}}$. The terminal velocity is the velocity of a particle in a resting fluid, when gravitation and drag force are in equilibrium. Then if the added mass and the drag force are compared, we get the following equation:
 \begin{equation}
-\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}} \simeq \frac{\frac{1}{2} \rho \mathrm{v}_\mathrm{p} g}{\frac{3}{4} \rho \mathrm{v}_\mathrm{p}(C_\mathrm{d}/d) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
-\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}|} \simeq \frac{\frac{1}{2} \rho \mathrm{v} g}{\frac{3}{4} \rho \mathrm{v}(C_\mathrm{d}/d_\mathrm{p}) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
+\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}|} \simeq \frac{\frac{1}{2} \rho \mathrm{v}_\mathrm{p} g}{\frac{3}{4} \rho \mathrm{v}_\mathrm{p}(C_\mathrm{d}/d_\mathrm{p}) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
 \end{equation}
 with 
-\begin{equation}
-a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{d}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}).
-\end{equation}
 \nomenclature[rar]{$a_\mathrm{r}$}{Relative acceleration of particles}
+\begin{equation}
+a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}).
+\end{equation}
 Since in gas-solid suspensions the particle density is by factor of 1000 higher than the fluid density the added mass force is negligible compared to the drag force if it is not the unlikely case that the relative acceleration is of the same order higher than the gravity.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relaxation time of the order of $\tau$ results in
 \begin{equation}
@@ -375,12 +360,10 @@ With equation (\ref{C_d}) and the Reynolds number in relation to the particles $
 \end{equation} 
 Then the equation of motion of the particles becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
 \nomenclature[g]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
-Using the Stokes response time $\tau_\mathrm{ps} =\frac{d_\mathrm{p}^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation:
-\nomenclature{$\tau_\mathrm{ps}$}{Stokes relaxation time}
 \begin{equation}
 \rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d},
 \end{equation}
