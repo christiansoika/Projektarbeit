@@ -2,29 +2,29 @@
 
  \nomgroup{G}
 
-  \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {3.12}
-		\nompageref{9}
   \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {3.5}
 		\nompageref{8}
+  \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {3.12}
+		\nompageref{9}
   \item [{$\lambda$}]\begingroup Taylor microscale\nomeqref {3.16}
 		\nompageref{9}
-  \item [{$\matrix{\tau}$}]\begingroup Stress tensor\nomeqref {3.3}
-		\nompageref{7}
   \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {3.5}
 		\nompageref{8}
   \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {3.28}
 		\nompageref{12}
-  \item [{$\psi$}]\begingroup Coupling rate\nomeqref {3.38}
-		\nompageref{14}
   \item [{$\rho$}]\begingroup Density\nomeqref {3.1}\nompageref{7}
   \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {3.37}
 		\nompageref{14}
+  \item [{$\matrix{\tau}$}]\begingroup Stress tensor\nomeqref {3.3}
+		\nompageref{7}
   \item [{$\tau_\mathrm{\eta}$}]\begingroup Kolmogorov time scale\nomeqref {3.12}
 		\nompageref{9}
-  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {3.36}
-		\nompageref{14}
   \item [{$\tau_\mathrm{p}$}]\begingroup Particle relaxation time\nomeqref {3.31}
 		\nompageref{13}
+  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {3.36}
+		\nompageref{14}
+  \item [{$\psi$}]\begingroup Coupling rate\nomeqref {3.38}
+		\nompageref{14}
 
  \nomgroup{O}
 
@@ -33,6 +33,8 @@
 
  \nomgroup{R}
 
+  \item [{$a_\mathrm{r}$}]\begingroup Relative acceleration of particles\nomeqref {3.29}
+		\nompageref{13}
   \item [{$c_p$}]\begingroup Specific isobaric heat capacity\nomeqref {3.7}
 		\nompageref{8}
   \item [{$c_v$}]\begingroup Specific isochoric heat capacity\nomeqref {3.7}
@@ -79,8 +81,6 @@
 		\nompageref{7}
   \item [{$\vec{q}$}]\begingroup Heat conduction\nomeqref {3.3}
 		\nompageref{7}
-  \item [{$a_\mathrm{r}$}]\begingroup Relative acceleration of particles\nomeqref {3.30}
-		\nompageref{13}
   \item [{$R$}]\begingroup Universal gas constant\nomeqref {3.10}
 		\nompageref{8}
   \item [{$Re$}]\begingroup Reynolds number\nomeqref {3.3}
