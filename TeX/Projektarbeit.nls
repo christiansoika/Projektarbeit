@@ -2,6 +2,8 @@
 
  \nomgroup{A}
 
+  \item [{$\eta$}]\begingroup Dynamic Viscosity\nomeqref {3.11}
+		\nompageref{8}
   \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {3.12}
 		\nompageref{8}
   \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {3.5}
@@ -18,7 +20,7 @@
 		\nompageref{7}
   \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {3.5}
 		\nompageref{7}
-  \item [{$\nu$}]\begingroup Kinetic viskosity\nomeqref {3.28}
+  \item [{$\nu$}]\begingroup Kinetic viscosity\nomeqref {3.28}
 		\nompageref{11}
   \item [{$\nu$}]\begingroup Viscosity of the fluid\nomeqref {3.12}
 		\nompageref{8}
@@ -29,9 +31,11 @@
 		\nompageref{13}
   \item [{$\tau_\mathrm{\eta}$}]\begingroup Kolmogorov time scale\nomeqref {3.12}
 		\nompageref{8}
-  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relexation time\nomeqref {3.36}
+  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {3.36}
 		\nompageref{13}
-  \item [{$\tau_\mathrm{p}$}]\begingroup Particle relexation time\nomeqref {3.31}
+  \item [{$\tau_\mathrm{p}$}]\begingroup Eddy turnover time\nomeqref {3.11}
+		\nompageref{8}
+  \item [{$\tau_\mathrm{p}$}]\begingroup Particle relaxation time\nomeqref {3.31}
 		\nompageref{12}
   \item [{$\tau_\mathrm{p}$}]\begingroup Particle response time\nomeqref {3.37}
 		\nompageref{13}
@@ -39,7 +43,7 @@
 		\nompageref{6}
   \item [{$\vec{a}$}]\begingroup particle acceleration\nomeqref {4.1}
 		\nompageref{15}
-  \item [{$\vec{F}$}]\begingroup Force per unit volume from paticle on fluid\nomeqref {3.20}
+  \item [{$\vec{F}$}]\begingroup Force per unit volume from particle on fluid\nomeqref {3.20}
 		\nompageref{10}
   \item [{$\vec{f}^\mathrm{n}$}]\begingroup Sum of forces acting on the fluid\nomeqref {3.20}
 		\nompageref{10}
