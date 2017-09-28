@@ -247,6 +247,7 @@ Together these scales form a powerful tool to understand, compute and describe t
 \pagebreak
 \subsection{Particle dynamics} %Steffen
 \textbf{Gravity anschauen, Terminal Velocity einfuegen}
+\newline
 This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described script is called two-way-coupling. 
 \newline
 In this context small and heavy rigid particles with a spherical shape are considered. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
@@ -254,17 +255,18 @@ In this context small and heavy rigid particles with a spherical shape are consi
 Due to the \textbf{small particle concentration}, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case we focus on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
 \newline
 At describing the motion of the particles in the following the fact that we deal with gas-solid flows is an advantage, since several simplifications can be made.
+\newline
 First the perspective is taken on the influence of the particles on the carrier fluid. Here the assumptions that the fluid is incompressible and that there is no mass exchange over the particle surface are used.
-Hence the continuity equation becomes: 
+Hence the continuity equation becomes
 \begin{equation}
 \vec{\nabla} \cdot\vec{u} = 0.
 \end{equation}
-After including all the simplifications mentioned before the Navier-Stokes equations - described in chapter 1 - become:
+After including all the simplifications mentioned before the Navier-Stokes equations - described in chapter 1 - become
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
 \nomenclature{$\vec{F}$}{Force per unit volume from particle on fluid}
-The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unit volume on the fluid.
+The influence of the particles on the fluid is represented by the new term $\vec{F}$, which describes the force per unit volume on the fluid.
 $\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
 \nomenclature{$\vec{x}_\mathrm{p}^\mathrm{n}$}{Positions of the n-th particle}
 \nomenclature{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
@@ -273,29 +275,30 @@ $\vec{F}$ could be approximated by a superposition of Dirac's delta functions ov
 \end{equation}
 $\vec{x}_\mathrm{p}^\mathrm{n} $ is the position of the n-th particle and results from the kinematic equation 
 \begin{equation}
- \frac{\partial{\vec{x}_\mathrm{p}}}{\partial{t}} = \vec{v}_\mathrm{p}^\mathrm{n},
+ \frac{\mathrm{d}\vec{x}_\mathrm{p}}{\mathrm{d}t} = \vec{v}_\mathrm{p}^\mathrm{n},
 \end{equation}
 with $\vec{v}_{\mathrm{p}}^\mathrm{n}$ being the velocity of the n-th particle.
-$\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid an particles.
-The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
-Also it plays also an important role in the equation of motion of the particles:
+\newline
+$\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid an particles. The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
+\newline
+Also it plays an important role in the equation of motion of the particles:
 \begin{equation}
-\mathrm{v} \rho_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = \mathrm{v} \rho_\mathrm{p}\vec{g}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
-\nomenclature{$\vec{g}$}{Gravity constant}
+\mathrm{v} \rho_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \mathrm{v} \rho_\mathrm{p}\vec{g}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n}).
 \end{equation}
+\nomenclature{$\vec{g}$}{Gravity constant}
 \nomenclature{$\mathrm{v}$}{Particle volume}
-As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could be divided in several forces. Then the equation of particle motion looks like:
+As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could be divided in several forces. Then the equation of particle motion looks like
 \begin{equation} \label{navier_stokes_particle}
-m_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = m_\mathrm{p}\vec{g}+\rho \mathrm{v}\biggl(\frac{D\vec{u}}{Dt}-\vec{g} \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
+m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}\vec{g}+\rho \mathrm{v}\biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\vec{g} \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}.
 \end{equation}
 \nomenclature{$\vec{f}_\mathrm{d}$}{Drag force}
 \nomenclature{$\vec{f}_\mathrm{l}$}{Lift force}
 \nomenclature{$\vec{f}_\mathrm{a}$}{Added mass force}
 \nomenclature{$\vec{f}_\mathrm{h}$}{History force}
 \nomenclature{$Re_\mathrm{p}$}{Particle Reynolds number}
-Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
+Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines:
 \begin{equation}
-\vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v} \frac{C_\mathrm{d}}{d}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
+\vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u}).
 \end{equation}
 It depends on the empirical drag coefficient defined after Schiller and Naumann as
 \begin{equation} \label{C_d}
@@ -304,32 +307,32 @@ C_\mathrm{d} = \frac{24}{Re_\mathrm{p}}(1+0.15Re_\mathrm{p}^\mathrm{0.687}).
 $\vec{u}$ is the velocity of the uniform stream, which is distant enough from the particle that it is not disturbed by it.
 The other partial hydrodynamical force, the lift force $\vec{f}_\mathrm{l}$ is perpendicular to the undisturbed streamlines.
 Furthermore the added mass force $\vec{f}_\mathrm{a}$ represents the influence of the fluid's inertia that has an impact on the particle, if it has a different acceleration than the mean flow.
-Hence it could be determined by:
+Hence it could be determined by
 \begin{equation}
-\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v} \biggl(\frac{D\vec{u}}{Dt}-\frac{d\vec{v}_\mathrm{p}}{dt}\biggl)
+\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl).
 \end{equation}
 The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that results from of the vortices behind the particles into account. Basselt's result, neglecting the finite size correction, is proportional to $\vec\nabla^\mathrm{2}\vec{u}$:
 \begin{equation}
-\vec{f}_\mathrm{h} = \frac{3}{2}d^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)  
+\vec{f}_\mathrm{h} = \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).  
 \end{equation}
 \nomenclature{$\nu$}{Kinetic viscosity}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
 In this case of gas-solid suspensions several simplifications could be made.
 \newline
 In the following the fact that the added mass and history forces are negligible small compared with the drag force is shown using a rough approximation.
-We use the approach that the relative velocity is of the same order as the terminal velocity $v_\mathrm{t}$. The terminal velocity is the velocity of a particle in a resting fluid, when gravitation and drag force are in equilibrium. Then if the added mass and the drag force are compared, we get the following equation:
+We use the approach that the relative velocity is of the same order as the terminal velocity $v_\mathrm{t} = \sqrt{(4/3)(\rho_\mathrm{p}/\rho)d_\mathrm{p}g/C_\mathrm{d}}$. The terminal velocity is the velocity of a particle in a resting fluid, when gravitation and drag force are in equilibrium. Then if the added mass and the drag force are compared, we get the following equation:
 \begin{equation}
-\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}} \simeq \frac{\frac{1}{2} \rho \mathrm{v} g}{\frac{3}{4} \rho \mathrm{v}(C_\mathrm{d}/d) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
+\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}|} \simeq \frac{\frac{1}{2} \rho \mathrm{v} g}{\frac{3}{4} \rho \mathrm{v}(C_\mathrm{d}/d_\mathrm{p}) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
 \end{equation}
 with 
 \begin{equation}
-a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{d}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t})
+a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{d}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}).
 \end{equation}
 \nomenclature{$a_\mathrm{r}$}{Relative acceleration of particles}
 Since in gas-solid suspensions the particle density is by factor of 1000 higher than the fluid density the added mass force is negligible compared to the drag force if it is not the unlikely case that the relative acceleration is of the same order higher than the gravity.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relaxation time of the order of $\tau$ results in
 \begin{equation}
-\frac{|\vec{f}_\mathrm{h}|}{|\vec{f}_\mathrm{a}|}\simeq 18 \sqrt{\frac{\nu\tau}{d^\mathrm{2}}}.
+\frac{|\vec{f}_\mathrm{h}|}{|\vec{f}_\mathrm{a}|}\simeq 18 \sqrt{\frac{\nu\tau}{d_\mathrm{p}^\mathrm{2}}}.
 \end{equation}
 \nomenclature{$d$}{Particle diameter}
 Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \sim \frac{d^\mathrm{2}}{\nu}$.
@@ -339,30 +342,31 @@ For the lift force the situation is similar, because is is also proportional to 
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
 Due to this assumptions (\ref{navier_stokes_particle}) becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{d\vec{v}_\mathrm{p}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}+\vec{f}_\mathrm{d}^\mathrm{n}
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}+\vec{f}_\mathrm{d}^\mathrm{n}.
 \end{equation}
 This equation can be rewritten with help of the relaxation time $\tau_\mathrm{p}$, which physically represents the time scale over which the drag force decreases the particle's relative velocity to zero. At one point in the fluid with the proportionality 
 \begin{equation}
 \frac{\rho_\mathrm{p} v_\mathrm{p}}{\tau_\mathrm{p}^\mathrm{n}} \sim f_\mathrm{d}
-\end{equation} it follows the equation for the relaxation time
+\end{equation} 
+it follows the equation for the relaxation time
 \begin{equation}
-\tau_\mathrm{p}^\mathrm{n} = \frac{4}{3}\frac{\rho_\mathrm{p}}{\rho} \frac{d}{C_\mathrm{d}^\mathrm{n}}\frac{1}{v_\mathrm{r}^\mathrm{n}}
+\tau_\mathrm{p}^\mathrm{n} = \frac{4}{3}\frac{\rho_\mathrm{p}}{\rho} \frac{d_\mathrm{p}}{C_\mathrm{d}^\mathrm{n}}\frac{1}{v_\mathrm{r}^\mathrm{n}},
 \end{equation}
 where $v_\mathrm{r}^\mathrm{n}$ is the relative velocity. 
-With equation (\ref{C_d}) and the Reynolds number in relation to the particles $Re_\mathrm{p}^\mathrm{n}=\frac{v_\mathrm{r}^\mathrm{n}d}{\nu}$, with the particle diameter d it follows
+With equation (\ref{C_d}) and the Reynolds number in relation to the particles $Re_\mathrm{p}^\mathrm{n}=\frac{v_\mathrm{r}^\mathrm{n}d_\mathrm{p}}{\nu}$, with the particle diameter $d_\mathrm{p}$ it follows:
 \begin{equation}
-\tau_\mathrm{p}^\mathrm{n} = \frac{\rho_\mathrm{p}}{p}\frac{d^2}{18\nu}\frac{1}{1+0.15Re_\mathrm{p}^\mathrm{n^\mathrm{0.687}}}.
+\tau_\mathrm{p}^\mathrm{n} = \frac{\rho_\mathrm{p}}{p}\frac{d_\mathrm{p}^2}{18\nu}\frac{1}{1+0.15Re_\mathrm{p}^\mathrm{n^\mathrm{0.687}}}.
 \end{equation} 
 Then the equation of motion of the particles becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{d\vec{v}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
-Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
+Using the Stokes response time $\tau_\mathrm{ps} =\frac{d_\mathrm{p}^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation:
 \nomenclature{$\tau_\mathrm{ps}$}{Stokes relaxation time}
 \begin{equation}
-\rho_\mathrm{p}\frac{d\vec{v}_\mathrm{p}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d}
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d},
 \end{equation}
-with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a factor describing the flow conditions and not the drag force mentioned before.
+with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
 \newline
 \nomenclature{$r_\mathrm{p}$}{Particle radius}
 \nomenclature{$\rho_\mathrm{p}$}{Particle density}
