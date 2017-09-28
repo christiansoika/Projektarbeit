@@ -1,7 +1,8 @@
 \documentclass[11pt,a4paper,openany,oneside,parskip=half*]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage{tocloft}
-\usepackage[]{nomencl}
+\usepackage{nomencl}
 \usepackage{pdfpages}
 \usepackage{scrextend}
 \usepackage{bm}
@@ -16,11 +17,17 @@
 \usepackage[english]{babel} 
 \usepackage{geometry} %Gr�ߟe des Bodys innerhalb der Seite 
 \usepackage[utf8]{inputenc} 
+\usepackage{ifthen}
 
 %bindet die benutzten Packages ein
 
-\linespread{1.25} %gr��erer Zeilenabstand
+\linespread{1.25}
 
+\RequirePackage{ifthen}
+\renewcommand{\nomgroup}[1]{%
+  \ifthenelse{\equal{#1}{R}}{\item[\textbf{Roman Letters}]}{%
+    \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Letters}]}{%
+      \ifthenelse{\equal{#1}{O}}{\item[\textbf{Operators}]}{}}}}
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
 \renewcommand*\matrix[1]{\boldsymbol{#1}}
@@ -81,10 +88,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \pagebreak
 
 \section{Nomenclature}
-\begin{multicols}{2}
-\setlength{\columnseprule}{1pt}
 \printnomenclature
-\end{multicols}
 \pagebreak
 \section{Introduction}
 \begin{figure}[h]
@@ -122,31 +126,31 @@ e.g. \cite{turbulentFlows}.
 The Navier-Stokes equations are of great importance for understanding turbulent phenomena. This set of equations exists in forms for compressible and
 incompressible fluids. For an infinitesimal small volume element $ \mathrm{d} \tau $ and using the cartesian coordinate system, 
 they can be written in the so-called 'divergence form':
-\nomenclature{$\vec\nabla$}{Nabla-operator} %Erstellt automatisch die Nomenclature-Liste
-\nomenclature{$\vec{Q}$}{Container for conserved variables in the Navier-Stokes equations}
-\nomenclature{$\vec{H}$}{Container for fluctuating variables in the Navier-Stokes equations}
+\nomenclature[o]{$\vec\nabla$}{Nabla-operator} %Erstellt automatisch die Nomenclature-Liste
+\nomenclature[rQ]{$\vec{Q}$}{Container for conserved variables in the Navier-Stokes equations}
+\nomenclature[rH]{$\vec{H}$}{Container for fluctuating variables in the Navier-Stokes equations}
 \begin{equation}
   \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{H} = 0.
 \end{equation}
 The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the density $ \rho $, 
 the velocity $ \vec{u} $ and the specific inner energy $ E $: 
-\nomenclature{$\rho$}{Density}
-\nomenclature{$\vec{u}$}{Three-dimensional velocity}
-\nomenclature{$E$}{Specific inner energy}
+\nomenclature[g]{$\rho$}{Density}
+\nomenclature[ru]{$\vec{u}$}{Velocity}
+\nomenclature[rE]{$E$}{Specific inner energy}
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
 \end{equation}
 $ \vec{H} $ is the flux vector which stores all the floating variables and may be split up into two parts:
-\nomenclature{$\vec{H^\mathrm{i}}$}{Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations}
-\nomenclature{$\vec{H^\mathrm{v}}$}{Stores the viscous variables in the flux-vector included in the Navier-Stokes equations} 
+\nomenclature[rHi]{$\vec{H^\mathrm{i}}$}{Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations}
+\nomenclature[rHv]{$\vec{H^\mathrm{v}}$}{Stores the viscous variables in the flux-vector included in the Navier-Stokes equations} 
 \begin{equation}
  \vec{H} = \vec{H^\mathrm{i}} + \vec{H^\mathrm{v}}.
 \end{equation}
 The contents of the two vectors are displayed below:
-\nomenclature{$p$}{Pressure}
-\nomenclature{$Re$}{Reynolds number}
-\nomenclature{$\matrix{\tau}$}{Stress tensor}
-\nomenclature{$\vec{q}$}{Heat conduction}
+\nomenclature[rp]{$p$}{Pressure}
+\nomenclature[rRe]{$Re$}{Reynolds number}
+\nomenclature[g]{$\matrix{\tau}$}{Stress tensor}
+\nomenclature[rq]{$\vec{q}$}{Heat conduction}
 \begin{equation}
  \vec{H^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right),
 \end{equation}
@@ -155,14 +159,14 @@ The contents of the two vectors are displayed below:
 \end{equation}
 $ \vec{H^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
 with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity. The Reynolds number 
-$ Re = \frac{\rho v d}{\eta} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
+$ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
 fact that two familiar objects with the same Reynolds number behave similar in turbulence.
 To solve the Navier-Stokes equations, more information regarding some variables is required. For Calculating the specific inner Energy $ E $ 
 and the heat conduction $ \vec{q} $, the following equations are used:
-\nomenclature{$\gamma$}{Isentropic exponent}
-\nomenclature{$e$}{Specific internal energy}
-\nomenclature{$Pr$}{Prandtl number}
-\nomenclature{$\mu$}{Dynamic viscosity}
+\nomenclature[g]{$\gamma$}{Isentropic exponent}
+\nomenclature[re]{$e$}{Specific internal energy}
+\nomenclature[rPr]{$Pr$}{Prandtl number}
+\nomenclature[g]{$\mu$}{Dynamic viscosity}
 \begin{equation}
  E = e  \frac{1}{2} \vec{|u|}^2,
 \end{equation}
@@ -170,28 +174,28 @@ and the heat conduction $ \vec{q} $, the following equations are used:
  \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T
 \end{equation}
 with 
-\nomenclature{$c_p$}{Specific isobaric heat capacity}
-\nomenclature{$c_v$}{Specific isochoric heat capacity}
+\nomenclature[rcp]{$c_p$}{Specific isobaric heat capacity}
+\nomenclature[rcv]{$c_v$}{Specific isochoric heat capacity}
 \begin{equation}
  \gamma = \frac{c_p}{c_v}
 \end{equation}
 and the Prandtl number
-\nomenclature{$k_t$}{thermal conductivity}
+\nomenclature[rkt]{$k_t$}{Thermal conductivity}
 \begin{equation}
  Pr = \frac{\mu_\infty c_p}{k_t}
 \end{equation}
 using the specific heat capacities of the fluid $ c_v $ and $ c_p $.
 If one could assume that the fluid is a newtonian fluid, the linear correlation between stress and the rate of strain results in:
-\nomenclature{$\matrix{I}$}{Identity tensor}
-\nomenclature{$\matrix{S}$}{Rate-of-strain-tensor}
-\nomenclature{$T$}{Temperature}
+\nomenclature[rI]{$\matrix{I}$}{Identity tensor}
+\nomenclature[rS]{$\matrix{S}$}{Rate-of-strain-tensor}
+\nomenclature[rT]{$T$}{Temperature}
 \begin{equation}
  \matrix{\tau} = 2 \mu \matrix{S} - \frac{2}{3} \mu (\vec\nabla * \vec{u}) \matrix{I}
 \end{equation}
 in which $ \matrix{S} = \frac{(\vec\nabla \vec{u})(\vec\nabla \vec{u})^T}{2} $ denotes the rate-of-strain-tensor. Additionally, the viscosity
 $ \mu $ can be approximated through Sutherland's law, which is based on the ideal gas-theory: 
-\nomenclature{$S$}{Sutherland temperature}
-\nomenclature{$R$}{Universal gas constant}
+\nomenclature[rS]{$S$}{Sutherland temperature}
+\nomenclature[rR]{$R$}{Universal gas constant}
 \begin{equation}
  \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S}.
 \end{equation}
@@ -204,20 +208,17 @@ These equations form a set of partial differential equations, as a consequence s
 Turbulent flows contain eddies of all sizes and forms. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was developed further by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
 \newline
 The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is the called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
-\nomenclature{$L$}{Integral length scale}
-\nomenclature{$U$}{Characteristic velocity}
-\nomenclature{$t^*$}{Eddy turnover time}
-\nomenclature{$\eta$}{Dynamic Viscosity}
-\nomenclature{$\tau_\mathrm{p}$}{Eddy turnover time}
+\nomenclature[rL]{$L$}{Integral length scale}
+\nomenclature[rU]{$U$}{Characteristic velocity}
+\nomenclature[rt*]{$t^*$}{Eddy turnover time}
 \begin{equation}
 \tau_\mathrm{L} = \frac{L}{U},
 \end{equation}
 where $U$ denotes the characteristic velocity.
 \newline
 The smallest scales in a turbulent flow are the Kolmogorov length ($\eta$) and time ($\tau_\mathrm{\eta}$) scale. At this scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \sim \frac{U^3}{L} $ they can be written as
-\nomenclature{$\eta$}{Kolmogorov length scale}
-\nomenclature{$\tau_\mathrm{\eta}$}{Kolmogorov time scale}
-\nomenclature{$\nu$}{Viscosity of the fluid}
+\nomenclature[g]{$\eta$}{Kolmogorov length scale}
+\nomenclature[g]{$\tau_\mathrm{\eta}$}{Kolmogorov time scale}
 \begin{equation}
 \eta = \biggl (\frac{\nu^3 L}{U^3} \biggl )^{1/4},
 \end{equation}
@@ -233,7 +234,8 @@ Both these scales are coupled by the Reynolds number:
 \end{equation}
 It can be seen from these to equations that the spacing between the scales increases for higher Reynolds numbers. 
 \newline
-A scale between these two is the Taylor microscale, often referred to as 'turbulence length scale'. \nomenclature{$\lambda$}{Taylor microscale}
+A scale between these two is the Taylor microscale, often referred to as 'turbulence length scale'. 
+\nomenclature[g]{$\lambda$}{Taylor microscale}
 Although it lacks of a physical interpretation, it is often used to describe the intermediate range between integral and Kolmogorov scales. 
 This scales definition is: 
 \begin{equation}
@@ -263,11 +265,10 @@ After including all the simplifications mentioned before the Navier-Stokes equat
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
-\nomenclature{$\vec{F}$}{Force per unit volume from particle on fluid}
+\nomenclature[rF]{$\vec{F}$}{Force per unit volume from particle on fluid}
 The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unit volume on the fluid.
 $\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
-\nomenclature{$\vec{x}_\mathrm{p}^\mathrm{n}$}{Positions of the n-th particle}
-\nomenclature{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
+\nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
 \vec{F} = \sum \limits_{n=1}^{N_\mathrm{p}} \vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})\delta(\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}).
 \end{equation}
@@ -280,22 +281,22 @@ $\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid an particles.
 The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
 Also it plays also an important role in the equation of motion of the particles:
 \begin{equation}
-\mathrm{v} \rho_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = \mathrm{v} \rho_\mathrm{p}\vec{g}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
-\nomenclature{$\vec{g}$}{Gravity constant}
+\mathrm{v}_\mathrm{p} \rho_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = \mathrm{v}_\mathrm{p} \rho_\mathrm{p}\vec{g}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
+\nomenclature[rg]{$\vec{g}$}{Gravity constant}
 \end{equation}
-\nomenclature{$\mathrm{v}$}{Particle volume}
+\nomenclature[rv]{$\mathrm{v}_\mathrm{p}$}{Particle volume}
 As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could be divided in several forces. Then the equation of particle motion looks like:
 \begin{equation} \label{navier_stokes_particle}
-m_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = m_\mathrm{p}\vec{g}+\rho \mathrm{v}\biggl(\frac{D\vec{u}}{Dt}-\vec{g} \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
+m_\mathrm{p} \frac{\partial{\vec{v}_\mathrm{p}^\mathrm{n}}}{\partial{t}} = m_\mathrm{p}\vec{g}+\rho \mathrm{v}_\mathrm{p}\biggl(\frac{D\vec{u}}{Dt}-\vec{g} \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
 \end{equation}
-\nomenclature{$\vec{f}_\mathrm{d}$}{Drag force}
-\nomenclature{$\vec{f}_\mathrm{l}$}{Lift force}
-\nomenclature{$\vec{f}_\mathrm{a}$}{Added mass force}
-\nomenclature{$\vec{f}_\mathrm{h}$}{History force}
-\nomenclature{$Re_\mathrm{p}$}{Particle Reynolds number}
+\nomenclature[rfd]{$\vec{f}_\mathrm{d}$}{Drag force}
+\nomenclature[rfl]{$\vec{f}_\mathrm{l}$}{Lift force}
+\nomenclature[rfa]{$\vec{f}_\mathrm{a}$}{Added mass force}
+\nomenclature[rfh]{$\vec{f}_\mathrm{h}$}{History force}
+\nomenclature[rRep]{$Re_\mathrm{p}$}{Particle Reynolds number}
 Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
 \begin{equation}
-\vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v} \frac{C_\mathrm{d}}{d}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
+\vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v}_\mathrm{p} \frac{C_\mathrm{d}}{d}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
 \end{equation}
 It depends on the empirical drag coefficient defined after Schiller and Naumann as
 \begin{equation} \label{C_d}
@@ -306,34 +307,34 @@ The other partial hydrodynamical force, the lift force $\vec{f}_\mathrm{l}$ is p
 Furthermore the added mass force $\vec{f}_\mathrm{a}$ represents the influence of the fluid's inertia that has an impact on the particle, if it has a different acceleration than the mean flow.
 Hence it could be determined by:
 \begin{equation}
-\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v} \biggl(\frac{D\vec{u}}{Dt}-\frac{d\vec{v}_\mathrm{p}}{dt}\biggl)
+\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{D\vec{u}}{Dt}-\frac{d\vec{v}_\mathrm{p}}{dt}\biggl)
 \end{equation}
 The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that results from of the vortices behind the particles into account. Basselt's result, neglecting the finite size correction, is proportional to $\vec\nabla^\mathrm{2}\vec{u}$:
 \begin{equation}
 \vec{f}_\mathrm{h} = \frac{3}{2}d^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)  
 \end{equation}
-\nomenclature{$\nu$}{Kinetic viscosity}
+\nomenclature[g]{$\nu$}{Kinematic viscosity}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
 In this case of gas-solid suspensions several simplifications could be made.
 \newline
 In the following the fact that the added mass and history forces are negligible small compared with the drag force is shown using a rough approximation.
 We use the approach that the relative velocity is of the same order as the terminal velocity $v_\mathrm{t}$. The terminal velocity is the velocity of a particle in a resting fluid, when gravitation and drag force are in equilibrium. Then if the added mass and the drag force are compared, we get the following equation:
 \begin{equation}
-\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}} \simeq \frac{\frac{1}{2} \rho \mathrm{v} g}{\frac{3}{4} \rho \mathrm{v}(C_\mathrm{d}/d) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
+\frac{|\vec{f}_\mathrm{a}|}{|\vec{f}_\mathrm{d}} \simeq \frac{\frac{1}{2} \rho \mathrm{v}_\mathrm{p} g}{\frac{3}{4} \rho \mathrm{v}_\mathrm{p}(C_\mathrm{d}/d) v_\mathrm{t}^\mathrm{2}}\frac{a_\mathrm{r}}{g} = \frac{1}{2}\frac{\rho}{\rho_\mathrm{p}}\frac{a_\mathrm{r}}{g}
 \end{equation}
 with 
 \begin{equation}
 a_\mathrm{r}=(\frac{\mathrm{D}\vec{u}}{\mathrm{d}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t})
 \end{equation}
-\nomenclature{$a_\mathrm{r}$}{Relative acceleration of particles}
+\nomenclature[rar]{$a_\mathrm{r}$}{Relative acceleration of particles}
 Since in gas-solid suspensions the particle density is by factor of 1000 higher than the fluid density the added mass force is negligible compared to the drag force if it is not the unlikely case that the relative acceleration is of the same order higher than the gravity.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relaxation time of the order of $\tau$ results in
 \begin{equation}
 \frac{|\vec{f}_\mathrm{h}|}{|\vec{f}_\mathrm{a}|}\simeq 18 \sqrt{\frac{\nu\tau}{d^\mathrm{2}}}.
 \end{equation}
-\nomenclature{$d$}{Particle diameter}
+\nomenclature[rd]{$d_\mathrm{p}$}{Particle diameter}
 Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \sim \frac{d^\mathrm{2}}{\nu}$.
-\nomenclature{$\tau_\mathrm{p}$}{Particle relaxation time}
+\nomenclature[g]{$\tau_\mathrm{p}$}{Particle relaxation time}
 It follows that the history force is also negligible compared to the drag force.
 For the lift force the situation is similar, because is is also proportional to the fluid density and the length scale of the ambient flow vorticity might be much greater than the particle size.
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
@@ -358,23 +359,22 @@ Then the equation of motion of the particles becomes
 \rho_\mathrm{p}\frac{d\vec{v}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
-\nomenclature{$\tau_\mathrm{ps}$}{Stokes relaxation time}
+\nomenclature[g]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
 \begin{equation}
 \rho_\mathrm{p}\frac{d\vec{v}_\mathrm{p}^\mathrm{n}}{dt} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d}
 \end{equation}
 with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a factor describing the flow conditions and not the drag force mentioned before.
 \newline
-\nomenclature{$r_\mathrm{p}$}{Particle radius}
-\nomenclature{$\rho_\mathrm{p}$}{Particle density}
-\nomenclature{$\vec{x}_\mathrm{p}$}{Particle position}
-\nomenclature{$\vec{v}_\mathrm{p}$}{Particle velocity}
-\nomenclature{$f_\mathrm{D}$}{Drag correction}
-\nomenclature{$\tau_\mathrm{p}$}{Particle response time}
+\nomenclature[rrp]{$r_\mathrm{p}$}{Particle radius}
+\nomenclature[g]{$\rho_\mathrm{p}$}{Particle density}
+\nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position}
+\nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity}
+\nomenclature[rD]{$f_\mathrm{D}$}{Drag correction}
 The coupling rate $\psi$, that describes the transferred Energy per time between particles and fluid, is defined as
 \begin{equation}
 \psi = \vec{F} \vec{u}. 
 \end{equation}
-\nomenclature{$\psi$}{Couling rate}
+\nomenclature[g]{$\psi$}{Coupling rate}
 Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
@@ -394,9 +394,6 @@ f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\
 is used.
 \newline
 The first step is the prediction of the new particle position $\vec{x}_{n+1}^\mathrm{(p)}$ using a Taylor expansion for a small time step $\delta t$
-\nomenclature{$\vec{x}$}{particle position}% ++ nomenclature funktioniert noch nicht! ++
-\nomenclature{$\vec{v}$}{particle velocity}% ++ nomenclature funktioniert noch nicht! ++
-\nomenclature{$\vec{a}$}{particle acceleration}% ++ nomenclature funktioniert noch nicht! ++
 \begin{equation}
 \vec{x}_{n+1}^\mathrm{(p)} = \vec{x}_n + \delta t \vec{v}_n + \frac{1}{2} \delta t^2 \vec{a}_n.
 \end{equation}
@@ -414,7 +411,7 @@ The updated particle position must be corrected by an additional term according 
 \vec{x}_{n+1} = \vec{x}_n + \frac{1}{2} \delta t \left( \vec{v}_{n+1} + \vec{v}_{n} \right) + \frac{1}{12} \delta t^2 \left( \vec{a}_{n+1} - \vec{a}_n \right).
 \end{equation}
 \subsection{Particle clustering}
-\nomenclature{$m_\mathrm{c}$}{number of clustered particles}% ++ nomenclature funktioniert noch nicht! ++
+\nomenclature[rmc]{$m_\mathrm{c}$}{Number of clustered particles}
 The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
 \newline
 \newline
@@ -439,7 +436,6 @@ velocities are invariant in all directions of the grid. It follows that the flow
 The turbulence was initialized using a seed-based random generator. To achieve physical results, the simulation of the particle-free flow was carried out a reasonable amount of time, 
 at which a restart file was written out. This procedure ensures a fully developed turbulent 
 flow, which has emancipated from the initialization. In this flow field, a specific number of spherical particles were injected. 
-\nomenclature{$m_\mathrm{c}$}{Number of particles in a particle cluster}
 \newline
 With the aim of minimized computational effort for simulating the particle-laden flow while still achieving high quality results, a clustering of particles was integrated into the simulation tool. To investigate the differences in accuracy for different particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations were then set up with the overall same number of particles ($ 10^6 $), altering just the number of particles in one cluster. Then the simulations were carried out normally and result in the graphs  at hand(Figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
 It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. The kinetic energy in the particle-laden cases drops more rapidly in the time-period after the injection than the particle-free case due to a higher dissipation rate induced by the particles. 
