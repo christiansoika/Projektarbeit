@@ -134,7 +134,7 @@ they can be written in the so-called 'divergence form':
 \end{equation}
 The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the density $ \rho $, 
 the velocity $ \vec{u} $ and the specific inner energy $ E $: 
-\nomenclature[g]{$\rho$}{Density}
+\nomenclature[gr]{$\rho$}{Density}
 \nomenclature[ru]{$\vec{u}$}{Velocity}
 \nomenclature[rE]{$E$}{Specific inner energy}
 \begin{equation}
@@ -149,7 +149,7 @@ $ \vec{H} $ is the flux vector which stores all the floating variables and may b
 The contents of the two vectors are displayed below:
 \nomenclature[rp]{$p$}{Pressure}
 \nomenclature[rRe]{$Re$}{Reynolds number}
-\nomenclature[g]{$\matrix{\tau}$}{Stress tensor}
+\nomenclature[gt]{$\matrix{\tau}$}{Stress tensor}
 \nomenclature[rq]{$\vec{q}$}{Heat conduction}
 \begin{equation}
  \vec{H^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right),
@@ -163,10 +163,10 @@ $ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity,
 fact that two familiar objects with the same Reynolds number behave similar in turbulence.
 To solve the Navier-Stokes equations, more information regarding some variables is required. For Calculating the specific inner Energy $ E $ 
 and the heat conduction $ \vec{q} $, the following equations are used:
-\nomenclature[g]{$\gamma$}{Isentropic exponent}
+\nomenclature[gg]{$\gamma$}{Isentropic exponent}
 \nomenclature[re]{$e$}{Specific internal energy}
 \nomenclature[rPr]{$Pr$}{Prandtl number}
-\nomenclature[g]{$\mu$}{Dynamic viscosity}
+\nomenclature[gm]{$\mu$}{Dynamic viscosity}
 \begin{equation}
  E = e  \frac{1}{2} \vec{|u|}^2,
 \end{equation}
@@ -217,8 +217,8 @@ The first set of scales describe the large eddies. These scales are called \text
 where $U$ denotes the characteristic velocity.
 \newline
 The smallest scales in a turbulent flow are the Kolmogorov length ($\eta$) and time ($\tau_\mathrm{\eta}$) scale. At this scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \sim \frac{U^3}{L} $ they can be written as
-\nomenclature[g]{$\eta$}{Kolmogorov length scale}
-\nomenclature[g]{$\tau_\mathrm{\eta}$}{Kolmogorov time scale}
+\nomenclature[gh]{$\eta$}{Kolmogorov length scale}
+\nomenclature[gth]{$\tau_\mathrm{\eta}$}{Kolmogorov time scale}
 \begin{equation}
 \eta = \biggl (\frac{\nu^3 L}{U^3} \biggl )^{1/4},
 \end{equation}
@@ -235,7 +235,7 @@ Both these scales are coupled by the Reynolds number:
 It can be seen from these to equations that the spacing between the scales increases for higher Reynolds numbers. 
 \newline
 A scale between these two is the Taylor microscale, often referred to as 'turbulence length scale'. 
-\nomenclature[g]{$\lambda$}{Taylor microscale}
+\nomenclature[gl]{$\lambda$}{Taylor microscale}
 Although it lacks of a physical interpretation, it is often used to describe the intermediate range between integral and Kolmogorov scales. 
 This scales definition is: 
 \begin{equation}
@@ -316,7 +316,7 @@ The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that resul
 \begin{equation}
 \vec{f}_\mathrm{h} = \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).  
 \end{equation}
-\nomenclature[g]{$\nu$}{Kinematic viscosity}
+\nomenclature[gn]{$\nu$}{Kinematic viscosity}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
 In this case of gas-solid suspensions several simplifications could be made.
 \newline
@@ -337,7 +337,7 @@ The relation of the history force and the added mass force with the assumption o
 \end{equation}
 \nomenclature[rd]{$d_\mathrm{p}$}{Particle diameter}
 Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \sim \frac{d^\mathrm{2}}{\nu}$.
-\nomenclature[g]{$\tau_\mathrm{p}$}{Particle relaxation time}
+\nomenclature[gtp]{$\tau_\mathrm{p}$}{Particle relaxation time}
 It follows that the history force is also negligible compared to the drag force.
 For the lift force the situation is similar, because is is also proportional to the fluid density and the length scale of the ambient flow vorticity might be much greater than the particle size.
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
@@ -363,14 +363,14 @@ Then the equation of motion of the particles becomes
 \rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
-\nomenclature[g]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
+\nomenclature[gtps]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
 \begin{equation}
 \rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}\vec{g}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d},
 \end{equation}
 with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
 \newline
 \nomenclature[rrp]{$r_\mathrm{p}$}{Particle radius}
-\nomenclature[g]{$\rho_\mathrm{p}$}{Particle density}
+\nomenclature[grp]{$\rho_\mathrm{p}$}{Particle density}
 \nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position}
 \nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity}
 \nomenclature[rD]{$f_\mathrm{D}$}{Drag correction}
@@ -378,7 +378,7 @@ The coupling rate $\psi$, that describes the transferred Energy per time between
 \begin{equation}
 \psi = \vec{F} \vec{u}. 
 \end{equation}
-\nomenclature[g]{$\psi$}{Coupling rate}
+\nomenclature[gx]{$\psi$}{Coupling rate}
 Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
