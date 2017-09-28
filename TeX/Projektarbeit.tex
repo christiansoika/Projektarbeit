@@ -93,28 +93,24 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field}
 	\label{introuction_picture}
 \end{figure}
-This paper deals with the effects of particles on the conditions of isotropic turbulent flows.
-There are many examples of these particle-laden turbulent flows in nature, for example in volcanic eruptions and the "white water" of breaking waves.
+This work deals with the effects of particles on an the flow conditions of isotropic turbulent flows.
+There are many examples of these particle laden turbulent flows in nature, for example in volcanic eruptions and in the "white water" of breaking waves.
 \newline
-Multiphase flows also occur in technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil rafineries and accumulation of sediment in pipelines are just three of many cases, where predictions of the influence of particles on the turbulence are of huge interest.
+Multiphase flows also occur in many technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil rafineries and sediment accumulation in pipelines are just three of many cases, where it is of huge interest to predict the influence of particles on the turbulence of the mean flow.
+Of major industrial interest is the fuel dispersion and combustion in an petrol-powered engine. To get a homogeneous and fast combustion, both should take place at turbulent flow conditions. One could say it is an important question, in which way and intensity the particles influence the turbulence.
 \newline
-Another major industrial interest is the fuel dispersion and combustion of dispersed fuel in a combustion chamber. To get a homogeneous and fast combustion, both should take place at turbulent flow conditions. So it is an important question, in which way and intensity the particles have an impact on the turbulence.
+Another important example is an fluidized bed. This is an application to realize an effective suspension and combustion of fluid particles in a vessel. The particles, which are at the bottom of the vessel, are suspended by a fluid, in most cases a gas, that streams from beyond the particles threw the porous bottom, if the pressure is larger than the gravitiy of the particles. While this happens the fluid suspends the particles and the contact between fluid and particles is very intimate, which fascilates for example the combustion of material with a low caloric content, the in situ absorption of the pollutants deriving from the combustion and the action of a catalyst. This process aims to produce a suspension with less heterogeneous regions, what means bubbles with a much smaller concentration of particles. Hence turbulence is very important requirement to produce a homogeneous fluid stream for effective and complete combustion.
 \newline
-Another important example is an fluidized bed. This is an application to realize an effective suspension and combustion of fluid particles in a vessel. The particles, which are at the bottom of the vessel, are suspended by a fluid, in most cases a gas, that streams from beyond the particles through the porous bottom, if the pressure is larger than the gravity of the particles. While this happens the fluid suspends the particles and the contact between fluid and particles is very intimate, which fascilates for example the combustion of material with a low caloric content, the in situ absorption of the pollutants deriving from the combustion or the action of a catalyst. This process aims to produce a suspension with more homogeneous regions. Hence turbulence is a very important requirement to produce a homogeneous fluid stream for an effective and complete combustion.
+In this work the influence of the particles on the streaming conditions is presented by using DNS and LES simulations. The focus lies on analyzing the energy transfer between particles and fluid as well as the intensity of the decrease of turbulent kinetic energy in the fluid.  
+At the beginning some mathematical background information about modeling turbulent single phase and particle laden flows are given. 
+Following the Navier-Stokes equations and the different scales of turbulent motion are presented as an approach to modelling turbulence. In addition to this for particle laden flows the equations of motion are expanded by a new term that describes the forces acting between fluid and particles. 
+Also the coupling rate, that describes the exchanged energy is introduced.
+Then the computational basics of methods used in this work are introduced. First the simulation methods DNS and LES, how they work and in which case which one is used is explained.
+Them the used discretization tool to integrate the particle tracking equations, that works with a predictor-corrector-scheme, is described.     
+Finally the computational method 'particle clustering' is introduced. This approach aims to decrease the computational effort of particle laden simulations. It works that way that the particles are coupled to cluster and each cluster is considered as one particle.
 \newline
-In this work the influence of the particles on the streaming conditions is presented by using DNS and LES simulations. The focus lies on analyzing the energy transfer between particles and fluid as well as the intensity of  decrease of turbulent kinetic energy in the fluidial phase.  
-At the beginning some mathematical background information about describing turbulent single-phase and particle-laden flows are given. 
-Here the Navier-Stokes equations and the Kolmogorov scales are presented as an approach to model turbulence.
-\newline
-Expanding this set of equations for particle laden flows a new term is introduced to the equations of motion which describes the forces acting between fluid and particles. 
-Also the coupling rate, that describes the exchange in energy between particles and fluid is introduced.
-\newline
-Then the computational basics of methods used in this work are introduced. First the simulation methods DNS and LES, how they work and in which case what one is the most fitting is explained.
-Then the used discretization tool for integration of the particle tracking equations, working with a predictor-corrector-scheme, is described.     
-Finally the computational method of 'particle clustering' is introduced, aiming to decrease the computational effort of particle-laden simulations. It works in the way that a specific amount of particles are coupled to a cluster and each cluster is considered numerically as one particle.
-\newline
-In the following the deviations caused by using this method are determined and the applicability is evaluated. Therefore the influence of the number of particles per cluster on the accuracy of the simulations of the turbulent kinetic energy and the exchanged energy between particles and fluid per time is identified.
-Also the number of particles that is needed to get consistent averaged values for the flow characteristics is investigated.
+In the following the deviations caused by using this method are determined and the applicability is evaluated. Therefore the influence of the number of particles per cluster on the accuracy of the plots of the turbulent kintic energy and the exchanged energy beween particles and fluid per time is identified.
+Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
 \pagebreak
 \section{Mathematical models}
 \subsection{Single-phase flow} %Christian
