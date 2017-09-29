@@ -373,13 +373,13 @@ Hence it results from the force per unit volume exerted between the fluid and th
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
 \section{Numerical methods} %Julian
-To simulate flows like those described above we have two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
+To simulate flows like those described above there are two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
 \subsection{Direct numerical simulation}
 The basis of the direct numerical simulation (DNS) are the Navier-Stokes equations as described above. The idea is that the computer is very good at calculating and solves these equations completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number. These computational resources were not available until the 1970s. Even though it is not advisable to resolve every scale of motion, if only the contained energy is of greatest interest. With the large-eddy simulation, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.%zum Uebergang zu LES siehe Pope S. 352 und Fig. 9.4
 \subsection{Large-eddy simulation}
 Due to the fact that DNS is effortful and wasting resources if a fully resolved resolution is not required, large-eddy simulation (LES) was created to save time and resources. This is especially efficient if mainly the temporal energy trend is considered, because the energy containing larger-scale motion is completely resolved and the indeed small effects of the expensive smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
 \newline
-Simulating only the larger-scale motions is also called filtering, which means that the smaller-scale motions are filtered out. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus we call it implicit LES (ILES) \cite{implicitLES}. %als Zitat die Dissertation TUM Hickel
+Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus we call it implicit LES (ILES) \cite{implicitLES}. %als Zitat die Dissertation TUM Hickel
 \subsection{Discretisation}
 To integrate the Lagrangian particle tracking equations, discussed above, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
 \begin{equation}
@@ -387,22 +387,22 @@ f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\
 \end{equation}
 is used.
 \newline
-The first step is the prediction of the new particle position $\vec{x}_{n+1}^\mathrm{(p)}$ using a Taylor expansion for a small time step $\delta t$
+The first step is the prediction of the new particle position $\vec{x}_{\mathrm{p}, n+1}$ using a Taylor expansion for a small time step $\delta t$
 \begin{equation}
-\vec{x}_{n+1}^\mathrm{(p)} = \vec{x}_n + \delta t \vec{v}_n + \frac{1}{2} \delta t^2 \vec{a}_n.
+\vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \delta t \vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t^2 \vec{a}_{\mathrm{p}, n}.
 \end{equation}
-Due to the computational effort we will put $\vec{u}_{n+1}^\mathrm{(p)}$ on the level of the nearest cell fluid velocity.
+Due to the computational effort we will put the fluid velocity $\vec{u}(\vec{x}_{\mathrm{p}, n+1})$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ on the level of the nearest cell fluid velocity.
 \newline
 The updated velocity and acceleration are calculated as
 \begin{equation}
-\vec{v}_{n+1} = \frac{\vec{v}_n + \frac{1}{2} \delta t \left(\vec{a}_n + \frac{f_\mathrm{D}}{\tau_\mathrm{p}}\vec{u}_{n+1}^\mathrm{(p)} + \vec{g} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
+\vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p}, }n + \frac{f_\mathrm{D}}{\tau_\mathrm{p}}\vec{u}(\vec{x}_{\mathrm{p}, n+1}) \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
 \end{equation}
 \begin{equation}
-\vec{a}_{n+1} = \frac{\frac{f_\mathrm{D}}{\tau_\mathrm{p}} \left(\vec{u}_{n+1}^\mathrm{(p)} - \vec{v}_n - \frac{1}{2} \delta t \vec{a}_n \right) + \vec{g}}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t}.
+\vec{a}_{\mathrm{p}, n+1} = \frac{\frac{f_\mathrm{D}}{\tau_\mathrm{p}} \left(\vec{u}(\vec{x}_{\mathrm{p}, n+1}) - \vec{v}_{\mathrm{p}, n} - \frac{1}{2} \delta t \vec{a}_{\mathrm{p}, n} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t}.
 \end{equation}
 The updated particle position must be corrected by an additional term according to the trapezoidal rule
 \begin{equation}
-\vec{x}_{n+1} = \vec{x}_n + \frac{1}{2} \delta t \left( \vec{v}_{n+1} + \vec{v}_{n} \right) + \frac{1}{12} \delta t^2 \left( \vec{a}_{n+1} - \vec{a}_n \right).
+\vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left( \vec{v}_{\mathrm{p}, n+1} + \vec{v}_{\mathrm{p}, n} \right) + \frac{1}{12} \delta t^2 \left( \vec{a}_{\mathrm{p}, n+1} - \vec{a}_{\mathrm{p}, n} \right).
 \end{equation}
 \subsection{Particle clustering}
 \nomenclature[rmc]{$m_\mathrm{c}$}{Number of clustered particles}
@@ -497,7 +497,7 @@ Further investigation is needed regarding the second set of simulation, in which
 This work was supervised by Konstantin Fr\"ohlich, we would like to express our gratitude. Thank you for the chance of learning about turbulent flows and simulations, the advice and the deep insights in scientific work. We also want to appreciate the chance of writing this work at the Institute of Aerodynamics of the RWTH Aachen University.
 \pagebreak
 \section{References}
-\nocite{*} %ermöglicht, dass auch Literatur, welche nicht zitiert wurde in der Bibliography auftaucht
+\nocite{*} %ermï¿½glicht, dass auch Literatur, welche nicht zitiert wurde in der Bibliography auftaucht
 \bibliography{Projektarbeit} %ruft die Bibliography-Datei auf
 \bibliographystyle{plain} %setzt den Zitierstil
 \pagebreak
