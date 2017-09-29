@@ -93,7 +93,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \section{Introduction}
 \begin{figure}[h]
 	\centering
-  \includegraphics[width=\textwidth]{./Abbildungen/64_velocity.png}
+  \includegraphics[width=\textwidth]{./Abbildungen/256_velocity_4.png}
 	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field}
 	\label{introuction_picture}
 \end{figure}
@@ -208,6 +208,7 @@ These equations form a set of partial differential equations, as a consequence s
 Turbulent flows contain eddies of all sizes and forms. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was developed further by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
 \newline
 The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is the called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
+\nomenclature[gtL]{$\tau_\mathrm{L}$}{Eddy turnover time}
 \nomenclature[rL]{$L$}{Integral length scale}
 \nomenclature[rU]{$U$}{Characteristic velocity}
 \nomenclature[rt*]{$t^*$}{Eddy turnover time}
@@ -430,7 +431,7 @@ The turbulence was simulated on a cubic grid using $64^3$,$96^3$,$128^3$ and $25
 the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p.344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 \begin{figure}[h]
 	\centering
-  \includegraphics[width=0.9\textwidth]{./../Simulationsergebnisse/variationWolken/128/kineticEnergy_time.pdf}
+  \includegraphics[width=0.9\textwidth]{./Abbildungen/128/kineticEnergy_time.pdf}
 	\caption{Kinetic Energy over eddy turnover times for different numbers of clustered particles with fixed all-over particle number}
 	\label{kineticEnergy_time_128}
 \end{figure}
@@ -447,13 +448,13 @@ It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic 
     \centering
     \begin{minipage}{.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./../Simulationsergebnisse/variationWolken/128/der(kineticEnergy)_time.pdf}
+        \includegraphics[width=\linewidth]{./Abbildungen/128/der(kineticEnergy)_time.pdf}
         \caption{Change in kinetic Energy over eddy turnover times}
         \label{der(kineticEnergy)_time_128}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./../Simulationsergebnisse/variationWolken/128/coupling_time.pdf}
+        \includegraphics[width=\linewidth]{./Abbildungen/128/coupling_time.pdf}
         \caption{Coupling Rate over eddy turnover times}
         \label{coupling_time_128}
     \end{minipage}
@@ -467,18 +468,18 @@ In difference to the others, the case in which 1000 particles were clustered sho
 \newline
 The same impression can be achieved by looking at the graphs describing the coupling rate (figure \ref{coupling_time_128}). The particle-laden-case makes the biggest jump into negative coupling rate. The higher the number of coupled particles, the lower is the amount of the coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= ???$, $\phi_\mathrm{m}=???$).
+Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$).
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l | c c c c c c c }
-$m_\mathrm{c}$ & $u_0$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ & $Pr$ \\
+$m_\mathrm{c}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
 \hline
 \hline
-1 & 0.21496 & 0.79150 & 0.0432 & 0.00333 & 43.360 &\\
-10 & 0.22364 & 1.02918 & 0.03866 & 0.00312 & 39.5653 &\\
-50 & 0.25654 & 1.78788 & 0.03144 & 0.00272 & 34.4702 &\\
-100 & 0.28357 & 2.26144 & 0.02940 & 0.00257 & 33.8869 &\\
-1000 & 0.33543 & 2.2855 & 0.03184 & 0.00256 & 39.8993 &\\
+1 & 0.79150 & 0.0432 & 0.00333 & 43.360 &\\
+10 & 1.02918 & 0.03866 & 0.00312 & 39.5653 &\\
+50 & 1.78788 & 0.03144 & 0.00272 & 34.4702 &\\
+100 & 2.26144 & 0.02940 & 0.00257 & 33.8869 &\\
+1000 & 2.2855 & 0.03184 & 0.00256 & 39.8993 &\\
 \hline
 \end{tabular}
 \caption{Variables of the first set of simulations one turnover time after injection for the $128^3$-case}
@@ -489,7 +490,7 @@ $m_\mathrm{c}$ & $u_0$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\
 To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even physically questionable results. In these simulations, no particle clustering was used, just different numbers of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. An example for the deviation in kinetic energy for different numbers of particles can be found on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
 \begin{figure}[h]
 	\centering
-  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
+  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl//128/kineticEnergy_numberOfParticles.pdf}
 	\caption{Results for initializing different numbers of particles}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
