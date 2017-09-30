@@ -94,7 +94,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./Abbildungen/256_velocity_4.png}
-	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field}
+	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field simulated on a $256^3$-grid (For creation see Appendix A)}
 	\label{introuction_picture}
 \end{figure}
 This work deals with the effects of particles on an the flow conditions of isotropic turbulent flows.
@@ -249,8 +249,6 @@ Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 Together these scales form a powerful tool to understand, compute and describe turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-\textbf{Gravity anschauen, Terminal Velocity einfuegen}
-\newline
 This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on \cite{computationalMethodsforMultiphaseFlow}.
 \newline
 In this context small and heavy rigid particles with a spherical shape are considered. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
@@ -458,7 +456,7 @@ In difference to the others, the case in which 1000 particles were clustered sho
 \newline
 The same impression can be achieved by looking at the graphs describing the coupling rate (figure \ref{coupling_time_128}). The particle-laden-case makes the biggest jump into negative coupling rate. The higher the number of coupled particles, the lower is the amount of the coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$).
+Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l | c c c c c c c }
@@ -502,4 +500,7 @@ This work was supervised by Konstantin Fr\"ohlich, we would like to express our 
 \bibliography{Projektarbeit} %ruft die Bibliography-Datei auf
 \bibliographystyle{plain} %setzt den Zitierstil
 \pagebreak
+\section{Appendix A}
+\subsection*{Creating of pictures showing tubular structures}
+The pictures used in the Introduction were generated using ParaView, an open-source-software developed by a joint-venture of Kitware and the Los Alamos National Laboratory. More information about the software can be found at www.paraview.org. To show the tubular structures in a turbulent flow, two filters were used: One was the AIALambda2Criterion1-Filter and the other one was the ISOVolume1-Filter. These filters were then set to visualize the velocity of the flow colored by magnitude. To diversify the different velocity-magnitudes, a rainbow-colorscheme was used. 
 \end{document}
