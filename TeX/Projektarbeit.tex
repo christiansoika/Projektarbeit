@@ -406,10 +406,6 @@ The updated particle position must be corrected by an additional term according 
 \subsection{Particle clustering}
 \nomenclature[rmc]{$m_\mathrm{c}$}{Number of clustered particles}
 The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
-\newline
-\newline
-Projektion (noComputationalParticles), Diskretisierung
-implizite LES (Motivation fuer LES -  Pope Chapter 9, Bild 9.4), DNS
 \pagebreak
 \section{Results}
 The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
