@@ -12,7 +12,8 @@
 		\nompageref{8}
   \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {3.27}
 		\nompageref{12}
-  \item [{$\rho$}]\begingroup Density\nomeqref {3.1}\nompageref{7}
+  \item [{$\rho$}]\begingroup Fluid density\nomeqref {3.1}
+		\nompageref{7}
   \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {3.34}
 		\nompageref{13}
   \item [{$\matrix{\tau}$}]\begingroup Stress tensor\nomeqref {3.3}
@@ -47,7 +48,7 @@
 		\nompageref{7}
   \item [{$e$}]\begingroup Specific internal energy\nomeqref {3.5}
 		\nompageref{8}
-  \item [{$\vec{F}$}]\begingroup Force per unit volume from particle on fluid\nomeqref {3.20}
+  \item [{$\vec{F}$}]\begingroup Force per unitary volume from particle on fluid\nomeqref {3.20}
 		\nompageref{11}
   \item [{$\vec{f}_\mathrm{a}$}]\begingroup Added mass force\nomeqref {3.23}
 		\nompageref{12}
@@ -92,10 +93,11 @@
   \item [{$S$}]\begingroup Sutherland temperature\nomeqref {3.10}
 		\nompageref{8}
   \item [{$T$}]\begingroup Temperature\nomeqref {3.9}\nompageref{8}
-  \item [{$t^*$}]\begingroup Eddy turnover time\nomeqref {3.11}
-		\nompageref{9}
-  \item [{$\vec{u}$}]\begingroup Velocity\nomeqref {3.1}\nompageref{7}
-  \item [{$U$}]\begingroup Characteristic velocity\nomeqref {3.11}
+  \item [{$t^*$}]\begingroup Initial eddy turnover time\nomeqref {3.35}
+		\nompageref{14}
+  \item [{$\vec{u}$}]\begingroup Fluid velocity\nomeqref {3.1}
+		\nompageref{7}
+  \item [{$U$}]\begingroup Characteristic fluid velocity\nomeqref {3.11}
 		\nompageref{9}
   \item [{$\mathrm{v}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {3.22}
 		\nompageref{12}
