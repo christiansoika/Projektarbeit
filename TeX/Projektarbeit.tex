@@ -97,21 +97,21 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field simulated on a $256^3$-grid (For creation see Appendix A)}
 	\label{introuction_picture}
 \end{figure}
-This work deals with the effects of particles on an the flow conditions of isotropic turbulent flows.
-There are many examples of these particle laden turbulent flows in nature, for example in volcanic eruptions and in the "white water" of breaking waves.
+This work deals with the effects of particles on the flow conditions of isotropic turbulent flows.
+There are many examples of these particle laden turbulent flows in nature, e.g. in volcanic eruptions and in the "white water" of breaking waves.
 \newline
-Multiphase flows also occur in many technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil refineries and sediment accumulation in pipelines are just three of many cases, where it is of huge interest to predict the influence of particles on the turbulence of the mean flow.
-Of major industrial interest is the fuel dispersion and combustion in an petrol-powered engine. To get a homogeneous and fast combustion, both should take place at turbulent flow conditions. One could say it is an important question, in which way and intensity the particles influence the turbulence.
+Multiphase flows also occur in many technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil refineries and sediment accumulation in pipelines are just three of many cases, where it is of huge interest to predict the influence of particles on the turbulence of the flow.
+Of major industrial interest are the fuel dispersion and combustion in an petrol-powered engine. To get a homogeneous and fast combustion, both should take place at turbulent flow conditions. One could say it is an important question, in which way and intensity the particles influence the turbulence.
 \newline
-Another important example is an fluidized bed. This is an application to realize an effective suspension and combustion of fluid particles in a vessel. The particles, which are at the bottom of the vessel, are suspended by a fluid, in most cases a gas, that streams from beyond the particles threw the porous bottom, if the pressure is larger than the gravity of the particles. While this happens the fluid suspends the particles and the contact between fluid and particles is very intimate, which facilitates for example the combustion of material with a low caloric content, the in situ absorption of the pollutants deriving from the combustion and the action of a catalyst. This process aims to produce a suspension with less heterogeneous regions, what means bubbles with a much smaller concentration of particles. Hence turbulence is very important requirement to produce a homogeneous fluid stream for effective and complete combustion.
+Another important example is an fluidized bed. This is an application to realize an effective suspension and combustion of fluid particles in a vessel. The particles, which are at the bottom of the vessel, are suspended by a fluid, in most cases a gas, that streams from beyond the particles threw the porous bottom, if the force, which is exerted by the pressure on the particles' surface,  is larger than the gravity of the particles. While this happens the fluid suspends the particles and the contact between fluid and particles is very intimate, which facilitates for example the combustion of material with a low caloric content, the in situ absorption of the pollutants deriving from the combustion and the action of a catalyst. This process aims to produce a suspension with less heterogeneous regions, what means bubbles with a much smaller concentration of particles. Hence turbulence is a very important requirement to produce a homogeneous fluid stream for effective and complete combustion.
 \newline
 In this work the influence of the particles on the streaming conditions is presented by using DNS and LES simulations. The focus lies on analyzing the energy transfer between particles and fluid as well as the intensity of the decrease of turbulent kinetic energy in the fluid.  
 At the beginning some mathematical background information about modeling turbulent single phase and particle laden flows are given. 
-Following the Navier-Stokes equations and the different scales of turbulent motion are presented as an approach to modelling turbulence. In addition to this for particle laden flows the equations of motion are expanded by a new term that describes the forces acting between fluid and particles. 
-Also the coupling rate, that describes the exchanged energy is introduced.
-Then the computational basics of methods used in this work are introduced. First the simulation methods DNS and LES, how they work and in which case which one is used is explained.
-Them the used discretization tool to integrate the particle tracking equations, that works with a predictor-corrector-scheme, is described.     
-Finally the computational method 'particle clustering' is introduced. This approach aims to decrease the computational effort of particle laden simulations. It works that way that the particles are coupled to cluster and each cluster is considered as one particle.
+Additionally the Navier-Stokes equations and the different scales of turbulent motion are presented as an approach to modelling turbulence. For particle laden flows the equations of motion are expanded by a new term that describes the forces acting between fluid and particles. 
+Also the coupling rate that describes the exchanged energy and the computational basics of methods used in this work are introduced. 
+According to the computational basics the simulation methods DNS and LES, how they work and in which case which one is used is explained.
+Then the used discretization method to integrate the particle tracking equations, which is a predictor-corrector-scheme, is described.     
+Finally the computational method 'particle clustering' is introduced. This approach aims to decrease the computational effort of particle laden simulations. It works the following way: the particles are coupled to clusters and each cluster is considered as one particle.
 \newline
 In the following the deviations caused by using this method are determined and the applicability is evaluated. Therefore the influence of the number of particles per cluster on the accuracy of the plots of the turbulent kinetic energy and the exchanged energy between particles and fluid per time is identified.
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
@@ -119,7 +119,7 @@ Also the number of particles that is needed to get consistent average values for
 \section{Mathematical models}
 \subsection{Single-phase flow} %Christian
 In this section the mathematical basics for understanding and simulating turbulent flows are discussed. However, it should be pointed out that this is no
-complete treatise of the mathematical and physical basics. The reader can achieve further insight on this topic by looking at different books and papers, 
+complete treatise of the mathematical and physical basics. The reader can achieve further insight on this topic by considering different books and papers, 
 e.g. \cite{turbulentFlows}.
 \newline
 \subsubsection{The Navier-Stokes equations}
@@ -132,10 +132,10 @@ they can be written in the so-called 'divergence form':
 \begin{equation}
   \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{H} = 0.
 \end{equation}
-The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the density $ \rho $, 
-the velocity $ \vec{u} $ and the specific inner energy $ E $: 
-\nomenclature[gr]{$\rho$}{Density}
-\nomenclature[ru]{$\vec{u}$}{Velocity}
+The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the fluid density $ \rho $, 
+the fluid velocity $ \vec{u} $ and the specific inner energy $ E $: 
+\nomenclature[gr]{$\rho$}{Fluid density}
+\nomenclature[ru]{$\vec{u}$}{Fluid velocity}
 \nomenclature[rE]{$E$}{Specific inner energy}
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
@@ -158,10 +158,10 @@ The contents of the two vectors are displayed below:
  \vec{H^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\tau}\\ \matrix{\tau} \vec{u} + \vec{q} \end{array} \right).
 \end{equation}
 $ \vec{H^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
-with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity. The Reynolds number 
+with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity only. The Reynolds number 
 $ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
-fact that two familiar objects with the same Reynolds number behave similar in turbulence.
-To solve the Navier-Stokes equations, more information regarding some variables is required. For Calculating the specific inner Energy $ E $ 
+fact that two familiar objects with the same Reynolds number behave similar in flows.
+To solve the Navier-Stokes equations, more information regarding some variables is required. For calculating the specific inner energy $ E $ 
 and the heat conduction $ \vec{q} $, the following equations are used:
 \nomenclature[gg]{$\gamma$}{Isentropic exponent}
 \nomenclature[re]{$e$}{Specific internal energy}
@@ -199,25 +199,25 @@ $ \mu $ can be approximated through Sutherland's law, which is based on the idea
 \begin{equation}
  \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S}.
 \end{equation}
-S is in this case the Sutherland temperature.
+In this case S is the Sutherland temperature.
 To achieve closure the caloric state equation $ e = c_v T $ and the state equation for an ideal gas $
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_p - c_v $. 
 These equations form a set of partial differential equations, as a consequence starting values are needed.
 \pagebreak
 \subsubsection{Turbulent motion across all scales}
-Turbulent flows contain eddies of all sizes and forms. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was developed further by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
+Turbulent flows contain eddies of all sizes and shapes. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was further developed by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
 \newline
-The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is the called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
+The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
 \nomenclature[gtL]{$\tau_\mathrm{L}$}{Eddy turnover time}
 \nomenclature[rL]{$L$}{Integral length scale}
-\nomenclature[rU]{$U$}{Characteristic velocity}
+\nomenclature[rU]{$U$}{Characteristic fluid velocity}
 \nomenclature[rt*]{$t^*$}{Eddy turnover time}
 \begin{equation}
 \tau_\mathrm{L} = \frac{L}{U},
 \end{equation}
 where $U$ denotes the characteristic velocity.
 \newline
-The smallest scales in a turbulent flow are the Kolmogorov length ($\eta$) and time ($\tau_\mathrm{\eta}$) scale. At this scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \sim \frac{U^3}{L} $ they can be written as
+The smallest scales in a turbulent flow are the Kolmogorov length ($\eta$) and time ($\tau_\mathrm{\eta}$) scale. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \approx \frac{U^3}{L} $ they can be written as
 \nomenclature[gh]{$\eta$}{Kolmogorov length scale}
 \nomenclature[gth]{$\tau_\mathrm{\eta}$}{Kolmogorov time scale}
 \begin{equation}
@@ -238,20 +238,20 @@ It can be seen from these to equations that the spacing between the scales incre
 A scale between these two is the Taylor microscale, often referred to as 'turbulence length scale'. 
 \nomenclature[gl]{$\lambda$}{Taylor microscale}
 Although it lacks of a physical interpretation, it is often used to describe the intermediate range between integral and Kolmogorov scales. 
-This scales definition is: 
+This scale's definition is: 
 \begin{equation}
 \lambda = \sqrt{15 \frac{\nu}{\epsilon}} |\vec{v'}|
 \end{equation}
-with $|\vec{v'}|$ denoting the absolute value of the velocities fluctuation. This scale can be used to compute another Reynolds number $Re_\mathrm{\lambda}$:
+with $|\vec{v'}|$ denoting the absolute value of the velocity's fluctuation. This scale can be used to compute another Reynolds number $Re_\mathrm{\lambda}$:
 \begin{equation}
 Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 \end{equation}
-Together these scales form a powerful tool to understand, compute and describe turbulent flows. 
+Together, these scales form a powerful tool to understand, compute and describe turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on \cite{computationalMethodsforMultiphaseFlow}.
+This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
 \newline
-In this context small and heavy rigid particles with a spherical shape are considered. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
+In this context small and heavy rigid particles with a spherical shape are considered. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from Maxey and Riley \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 \newline
 Due to the small particle concentration, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
 \newline
@@ -262,12 +262,12 @@ Hence the continuity equation becomes
 \begin{equation}
 \vec{\nabla} \cdot\vec{u} = 0.
 \end{equation}
-After including all the simplifications mentioned before the Navier-Stokes equations - described in chapter 1 - become
+After including all the simplifications mentioned before, the Navier-Stokes equations - described in chapter 1 - become
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
-\nomenclature[rF]{$\vec{F}$}{Force per unit volume from particle on fluid}
-The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unit volume on the fluid.
+\nomenclature[rF]{$\vec{F}$}{Force per unitary volume from particle on fluid}
+The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unitary volume on the fluid.
 $\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
 \nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
@@ -275,11 +275,11 @@ $\vec{F}$ could be approximated by a superposition of Dirac's delta functions ov
 \end{equation}
 $\vec{x}_\mathrm{p}^\mathrm{n} $ is the position of the n-th particle and results from the kinematic equation 
 \begin{equation}
- \frac{\mathrm{d}\vec{x}_\mathrm{p}}{\mathrm{d}t} = \vec{v}_\mathrm{p}^\mathrm{n},
+ \frac{\mathrm{d}\vec{x}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \vec{v}_\mathrm{p}^\mathrm{n},
 \end{equation}
 with $\vec{v}_{\mathrm{p}}^\mathrm{n}$ being the velocity of the n-th particle.
 \newline
-$\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid an particles. The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
+$\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid and particles. The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
 \newline
 Also it plays an important role in the equation of motion of the particles:
 \nomenclature[rv]{$\mathrm{v}_\mathrm{p}$}{Particle volume}
@@ -299,16 +299,16 @@ Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is paral
 \begin{equation}
 \vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
 \end{equation}
-It depends on the empirical drag coefficient defined after Schiller and Naumann as
+It depends on the empirical drag coefficient defined by Schiller and Naumann as
 \begin{equation} \label{C_d}
 C_\mathrm{d} = \frac{24}{Re_\mathrm{p}}(1+0.15Re_\mathrm{p}^\mathrm{0.687}).
 \end{equation}
 $\vec{u}$ is the velocity of the uniform stream, which is distant enough from the particle that it is not disturbed by it.
 The other partial hydrodynamical force, the lift force $\vec{f}_\mathrm{l}$ is perpendicular to the undisturbed streamlines.
 Furthermore the added mass force $\vec{f}_\mathrm{a}$ represents the influence of the fluid's inertia that has an impact on the particle, if it has a different acceleration than the mean flow.
-Hence it could be determined by
+Hence it can be determined by
 \begin{equation}
-\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)
+\vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl).
 \end{equation}
 The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that results from of the vortices behind the particles into account. Basselt's result, neglecting the finite size correction, is proportional to $\vec\nabla^\mathrm{2}\vec{u}$:
 \nomenclature[gn]{$\nu$}{Kinematic viscosity}
@@ -324,19 +324,19 @@ The relation of the history force and the added mass force with the assumption o
 \begin{equation}
 \frac{|\vec{f}_\mathrm{h}|}{|\vec{f}_\mathrm{a}|}\simeq 18 \sqrt{\frac{\nu\tau}{d_\mathrm{p}^\mathrm{2}}}.
 \end{equation}
-Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \sim \frac{d_\mathrm{p}^\mathrm{2}}{\nu}$.
+Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \propto \frac{d_\mathrm{p}^\mathrm{2}}{\nu}$.
 \nomenclature[gtp]{$\tau_\mathrm{p}$}{Particle relaxation time}
 \nomenclature[rd]{$d_\mathrm{p}$}{Particle diameter}
 It follows that the history force is also negligible compared to the drag force.
-For the lift force the situation is similar, because is is also proportional to the fluid density and the length scale of the ambient flow vorticity might be much greater than the particle size.
+For the lift force the situation is similar, because it is also proportional to the fluid density and the length scale of the ambient flow vorticity might be much greater than the particle size.
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
-Due to this assumptions (\ref{navier_stokes_particle}) becomes
+Due to these assumptions (\ref{navier_stokes_particle}) becomes
 \begin{equation}
 \rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}+\vec{f}_\mathrm{d}^\mathrm{n}.
 \end{equation}
 This equation can be rewritten with help of the relaxation time $\tau_\mathrm{p}$, which physically represents the time scale over which the drag force decreases the particle's relative velocity to zero. At one point in the fluid with the proportionality 
 \begin{equation}
-\frac{\rho_\mathrm{p} v_\mathrm{p}}{\tau_\mathrm{p}^\mathrm{n}} \sim f_\mathrm{d}
+\frac{\rho_\mathrm{p} v_\mathrm{p}}{\tau_\mathrm{p}^\mathrm{n}} \propto f_\mathrm{d}
 \end{equation} 
 it follows the equation for the relaxation time
 \begin{equation}
@@ -368,7 +368,7 @@ The coupling rate $\psi$, that describes the transferred Energy per time between
 \begin{equation}
 \psi = \vec{F} \vec{u}. 
 \end{equation}
-Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
+Hence it results from the force per unitary volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
 \section{Numerical methods} %Julian
@@ -376,7 +376,7 @@ To simulate flows like those described above there are two options. The direct n
 \subsection{Direct numerical simulation}
 The basis of the direct numerical simulation (DNS) are the Navier-Stokes equations as described above. The idea is that the computer is very good at calculating and solves these equations completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number. These computational resources were not available until the 1970s. Even though it is not advisable to resolve every scale of motion, if only the contained energy is of greatest interest. With the large-eddy simulation, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.%zum Uebergang zu LES siehe Pope S. 352 und Fig. 9.4
 \subsection{Large-eddy simulation}
-Due to the fact that DNS is effortful and wasting resources if a fully resolved resolution is not required, large-eddy simulation (LES) was created to save time and resources. This is especially efficient if mainly the temporal energy trend is considered, because the energy containing larger-scale motion is completely resolved and the indeed small effects of the expensive smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
+Due to the fact that DNS is effortful and wasting resources if a fully resolved resolution is not required, large-eddy simulation (LES) was created to save time and resources. This is especially efficient if mainly the temporal energy trend is considered, because the energy containing larger-scale motion is completely resolved and the indeed small effects of the smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
 \newline
 Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus we call it implicit LES (ILES) \cite{implicitLES}. %als Zitat die Dissertation TUM Hickel
 \subsection{Discretisation}
@@ -411,8 +411,8 @@ The high number of point particles require even more computational resources for
 The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
 \cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
 The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
-The turbulence was simulated on a cubic grid using $64^3$,$96^3$,$128^3$ and $256^3$ grid points. As a consequence of grid refinement the first three cases were simulated using LES, 
-the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p.344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
+The turbulence was simulated on a cubic grid using $64^3$ ,$96^3$, $128^3$ and $256^3$ grid points. As a consequence of grid refinement the first three cases were simulated using LES, 
+the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p. 344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 \begin{figure}[h]
 	\centering
   \includegraphics[width=0.9\textwidth]{./Abbildungen/128/kineticEnergy_time.pdf}
@@ -426,33 +426,33 @@ The turbulence was initialized using a seed-based random generator. To achieve p
 at which a restart file was written out. This procedure ensures a fully developed turbulent 
 flow, which has emancipated from the initialization. In this flow field, a specific number of spherical particles were injected. 
 \newline
-With the aim of minimized computational effort for simulating the particle-laden flow while still achieving high quality results, a clustering of particles was integrated into the simulation tool. To investigate the differences in accuracy for different particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations were then set up with the overall same number of particles ($ 10^6 $), altering just the number of particles in one cluster. Then the simulations were carried out normally and result in the graphs  at hand(Figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
+With the aim of minimized computational effort for simulating the particle-laden flow while still achieving high quality results, a clustering of particles was integrated into the simulation tool. To investigate the differences in accuracy for different particles sizes, the variable $m_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster. The simulations were then set up with the overall same number of particles ($ 10^6 $), altering just the number of particles in one cluster. Then the simulations were carried out normally and result in the graphs  at hand (figure \ref{kineticEnergy_time_128}, \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128}). 
 It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles. The kinetic energy in the particle-laden cases drops more rapidly in the time-period after the injection than the particle-free case due to a higher dissipation rate induced by the particles. 
 \begin{figure}[h]
     \centering
     \begin{minipage}{.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/128/der(kineticEnergy)_time.pdf}
-        \caption{Change in kinetic Energy over eddy turnover times}
+        \caption{Change in kinetic energy over eddy turnover times}
         \label{der(kineticEnergy)_time_128}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/128/coupling_time.pdf}
-        \caption{Coupling Rate over eddy turnover times}
+        \caption{Coupling rate over eddy turnover times}
         \label{coupling_time_128}
     \end{minipage}
 \end{figure}
 \newline
-Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the results differ a lot from unclustered simulations. Looking at the results for the change in kinetic Energy, the difference becomes evident: The higher $ m_\mathrm{c} $ is, the lower is the drop in rate of change of the kinetic energy. It approaches more and more the particle free case. A similar result was found by Schneiders et al \cite{Schneiders2017}. The particles therefore have two effects on the fluid: Firstly, the viscous dissipation rises in the case of particle-load. Secondly, there is always an energy transfer from the particles to the surrounding fluid. Both of these effects influence the kinetic energy and an equality in the energy balance for the particles can be observed at about one eddy turnover time for the unclustered simulation. At this point in time the rate of kinetic energy flowing from the particles to the fluid matches the \textit{additional} rate of dissipated energy induced by the particles.
+Fitting to this first results, the Graphs of figure \ref{der(kineticEnergy)_time_128} and \ref{coupling_time_128} clearly show that for simulations with highly clustered particles the results differ a lot from unclustered simulations. Looking at the results for the change in kinetic energy, the difference becomes evident: The higher $ m_\mathrm{c} $ is, the lower is the drop in rate of change of the kinetic energy. It approaches more and more the particle free case. A similar result was found by Schneiders et al \cite{Schneiders2017}. The particles therefore have two effects on the fluid: Firstly, the viscous dissipation rises in the case of particle-load. Secondly, there is always an energy transfer from the particles to the surrounding fluid. Both of these effects influence the kinetic energy and an equality in the energy balance for the particles can be observed at about one eddy turnover time for the unclustered simulation. At this point in time the rate of kinetic energy flowing from the particles to the fluid matches the \textit{additional} rate of dissipated energy induced by the particles.
 \newline
-Schneiders` results show, that for particles with the same diameter this point is reached later in time for more dense particles due to their inertia. It could be observed a similar effect with the simulation at hand: The more particles are summarized in one cluster, the later the balanced state of energy flow an dissipation is achieved. From this point on, the kinetic energy drops slower than in the particle-free case.
+Schneiders` results show that for particles with the same diameter this point is reached later in time for more dense particles due to their inertia. It could be observed a similar effect with the simulation at hand: The more particles are summarized in one cluster, the later the balanced state of energy flow and dissipation is achieved. From this point on, the kinetic energy drops slower than in the particle-free case.
 \newline
-In difference to the others, the case in which 1000 particles were clustered shows a strange behavior. It catches up to the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additionally the change in kinetic Energy shows inconstancy which can also be traced back to the small number of clusters. The amount is just to small to achieve high-quality information in the statistical variables. 
+In difference to the others, the case in which 1000 particles were clustered shows a strange behavior. It catches up to the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additionally, the change in kinetic Energy shows inconstancy which can also be traced back to the small number of clusters. The amount is just too small to achieve high-quality information in the statistical variables. 
 \newline
-The same impression can be achieved by looking at the graphs describing the coupling rate (figure \ref{coupling_time_128}). The particle-laden-case makes the biggest jump into negative coupling rate. The higher the number of coupled particles, the lower is the amount of the coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
+The same impression can be achieved by looking at the graphs describing the coupling rate (figure \ref{coupling_time_128}). The particle-laden case makes the biggest jump into negative coupling rate. The higher the number of clustered particles, the lower is the amount of the coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$). 
+Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l | c c c c c c c }
@@ -471,21 +471,21 @@ $m_\mathrm{c}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\et
 \end{center}
 \end{table}
 \newline
-To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even physically questionable results. In these simulations, no particle clustering was used, just different numbers of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. An example for the deviation in kinetic energy for different numbers of particles can be found on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
+To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even physically questionable results. In these simulations, no particle clustering was used, just different numbers of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. An example for the deviation in kinetic energy for different numbers of particles can be found in figure \ref{kineticEnergy_numberOfParticles}. 
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
 	\caption{Results for initializing different numbers of particles}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
-The normalized difference in turbulent kinetic Energy shows in this one-time simulation a correlation between particle number and accuracy in the simulation. Although this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of the data. One-time simulations in other grid sizes show similar results.
+The normalized difference in turbulent kinetic energy of the particles ($E_\mathrm{kB}$) and the flow itself ($E_\mathrm{k}$) shows in this one-time simulation a correlation between particle number and accuracy in the simulation. Although this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^2$, $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of data. One-time simulations in other grid sizes show similar results.
 \pagebreak
 \section{Conclusion and outlook}
 In this work two sets of simulations were carried out to evaluate a method for lowering computational effort and to find a limit of particles at which a simulation becomes inaccurate. 
 \newline
-To achieve this goals, first the mathematical basics for understanding particle-free and particle-laden flows were introduced. The reader achieved knowledge about the Navier-Stokes equations and their enhancement for computing interactions between fluid and particles. In the following the reader got information about the numerical basics and methods for simulating such complicated phenomena. 
+To achieve these goals, first the mathematical basics for understanding particle-free and particle-laden flows were introduced. The reader achieved knowledge about the Navier-Stokes equations and their enhancement for computing interactions between fluid and particles. In the following the reader got information about the numerical basics and methods for simulating such complicated phenomena. 
 \newline
-The results presented in this work show, that for a sufficiently exact simulation, particle clustering has to be treated with caution. Depending on the application maybe small numbers of clustered particles could be used, but the savings in computing time would not balance out the loss in accuracy. This is the case in particular high numbers of clustered particles at which the results get highly inaccurate. Maybe investigations on smaller numbers of clustered particles could follow, the space between 2 and 10 could be closed by simulations in the future to determine the real border for inaccurate results. 
+The results presented in this work show, that for a sufficiently exact simulation, particle clustering has to be treated with caution. Depending on the application maybe small numbers of clustered particles could be used, but the savings in computing time would not compensate the loss in accuracy. This is the case in particular high numbers of clustered particles at which the results get highly inaccurate. Maybe investigations on smaller numbers of clustered particles could follow, the space between 2 and 10 could be closed by simulations in the future to determine the real border for inaccurate results. 
 \newline
 Further investigation is needed regarding the second set of simulation, in which the goal was to find out which number of particles is necessary to get accurate results for the turbulent kinetic energy of the particles. The deviation of the averaged kinetic energy of the particles and the fluid should be zero. This difference converges to zero with high numbers of particles. The distribution of the experiment`s outcomes should match the well-known normal distribution, which leads to analyzing the standard deviation. Concluding, further simulations should be carried out until a sufficient standard deviation can be computed, from which an assumption about the accuracy of the initialization could be made.
 \subsection*{Acknowledgements}
