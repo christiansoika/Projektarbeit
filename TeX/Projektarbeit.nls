@@ -2,29 +2,31 @@
 
  \nomgroup{G}
 
-  \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {3.12}
-		\nompageref{9}
   \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {3.5}
 		\nompageref{8}
+  \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {3.12}
+		\nompageref{9}
   \item [{$\lambda$}]\begingroup Taylor microscale\nomeqref {3.16}
 		\nompageref{9}
-  \item [{$\matrix{\tau}$}]\begingroup Stress tensor\nomeqref {3.3}
-		\nompageref{7}
   \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {3.5}
 		\nompageref{8}
-  \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {3.28}
+  \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {3.27}
 		\nompageref{12}
-  \item [{$\psi$}]\begingroup Coupling rate\nomeqref {3.38}
-		\nompageref{14}
   \item [{$\rho$}]\begingroup Density\nomeqref {3.1}\nompageref{7}
-  \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {3.37}
-		\nompageref{14}
+  \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {3.34}
+		\nompageref{13}
+  \item [{$\matrix{\tau}$}]\begingroup Stress tensor\nomeqref {3.3}
+		\nompageref{7}
   \item [{$\tau_\mathrm{\eta}$}]\begingroup Kolmogorov time scale\nomeqref {3.12}
 		\nompageref{9}
-  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {3.36}
-		\nompageref{14}
-  \item [{$\tau_\mathrm{p}$}]\begingroup Particle relaxation time\nomeqref {3.31}
+  \item [{$\tau_\mathrm{L}$}]\begingroup Eddy turnover time\nomeqref {3.11}
+		\nompageref{9}
+  \item [{$\tau_\mathrm{p}$}]\begingroup Particle relaxation time\nomeqref {3.29}
 		\nompageref{13}
+  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {3.34}
+		\nompageref{13}
+  \item [{$\psi$}]\begingroup Coupling rate\nomeqref {3.35}
+		\nompageref{14}
 
  \nomgroup{O}
 
@@ -37,28 +39,26 @@
 		\nompageref{8}
   \item [{$c_v$}]\begingroup Specific isochoric heat capacity\nomeqref {3.7}
 		\nompageref{8}
-  \item [{$d_\mathrm{p}$}]\begingroup Particle diameter\nomeqref {3.31}
+  \item [{$d_\mathrm{p}$}]\begingroup Particle diameter\nomeqref {3.29}
 		\nompageref{13}
-  \item [{$f_\mathrm{D}$}]\begingroup Drag correction\nomeqref {3.37}
-		\nompageref{14}
+  \item [{$f_\mathrm{D}$}]\begingroup Drag correction\nomeqref {3.34}
+		\nompageref{13}
   \item [{$E$}]\begingroup Specific inner energy\nomeqref {3.1}
 		\nompageref{7}
   \item [{$e$}]\begingroup Specific internal energy\nomeqref {3.5}
 		\nompageref{8}
   \item [{$\vec{F}$}]\begingroup Force per unit volume from particle on fluid\nomeqref {3.20}
 		\nompageref{11}
-  \item [{$\vec{f}_\mathrm{a}$}]\begingroup Added mass force\nomeqref {3.24}
+  \item [{$\vec{f}_\mathrm{a}$}]\begingroup Added mass force\nomeqref {3.23}
 		\nompageref{12}
-  \item [{$\vec{f}_\mathrm{d}$}]\begingroup Drag force\nomeqref {3.24}
+  \item [{$\vec{f}_\mathrm{d}$}]\begingroup Drag force\nomeqref {3.23}
 		\nompageref{12}
-  \item [{$\vec{f}_\mathrm{h}$}]\begingroup History force\nomeqref {3.24}
+  \item [{$\vec{f}_\mathrm{h}$}]\begingroup History force\nomeqref {3.23}
 		\nompageref{12}
-  \item [{$\vec{f}_\mathrm{l}$}]\begingroup Lift force\nomeqref {3.24}
+  \item [{$\vec{f}_\mathrm{l}$}]\begingroup Lift force\nomeqref {3.23}
 		\nompageref{12}
   \item [{$\vec{f}^\mathrm{n}$}]\begingroup Sum of forces acting on the fluid\nomeqref {3.20}
 		\nompageref{11}
-  \item [{$\vec{g}$}]\begingroup Gravity constant\nomeqref {3.23}
-		\nompageref{12}
   \item [{$\vec{H}$}]\begingroup Container for fluctuating variables in the Navier-Stokes equations\nomeqref {3.0}
 		\nompageref{7}
   \item [{$\vec{H^\mathrm{i}}$}]\begingroup Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations\nomeqref {3.2}
@@ -83,10 +83,10 @@
 		\nompageref{8}
   \item [{$Re$}]\begingroup Reynolds number\nomeqref {3.3}
 		\nompageref{7}
-  \item [{$Re_\mathrm{p}$}]\begingroup Particle Reynolds number\nomeqref {3.24}
+  \item [{$Re_\mathrm{p}$}]\begingroup Particle Reynolds number\nomeqref {3.23}
 		\nompageref{12}
-  \item [{$r_\mathrm{p}$}]\begingroup Particle radius\nomeqref {3.37}
-		\nompageref{14}
+  \item [{$r_\mathrm{p}$}]\begingroup Particle radius\nomeqref {3.34}
+		\nompageref{13}
   \item [{$\matrix{S}$}]\begingroup Rate-of-strain-tensor\nomeqref {3.9}
 		\nompageref{8}
   \item [{$S$}]\begingroup Sutherland temperature\nomeqref {3.10}
@@ -97,11 +97,11 @@
   \item [{$\vec{u}$}]\begingroup Velocity\nomeqref {3.1}\nompageref{7}
   \item [{$U$}]\begingroup Characteristic velocity\nomeqref {3.11}
 		\nompageref{9}
-  \item [{$\mathrm{v}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {3.23}
+  \item [{$\mathrm{v}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {3.22}
 		\nompageref{12}
-  \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity\nomeqref {3.37}
-		\nompageref{14}
-  \item [{$\vec{x}_\mathrm{p}$}]\begingroup Particle position\nomeqref {3.37}
-		\nompageref{14}
+  \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity\nomeqref {3.34}
+		\nompageref{13}
+  \item [{$\vec{x}_\mathrm{p}$}]\begingroup Particle position\nomeqref {3.34}
+		\nompageref{13}
 
 \end{thenomenclature}

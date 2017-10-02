@@ -94,7 +94,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./Abbildungen/256_velocity_4.png}
-	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field}
+	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field simulated on a $256^3$-grid (For creation see Appendix A)}
 	\label{introuction_picture}
 \end{figure}
 This work deals with the effects of particles on an the flow conditions of isotropic turbulent flows.
@@ -249,13 +249,11 @@ Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 Together these scales form a powerful tool to understand, compute and describe turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-\textbf{Gravity anschauen, Terminal Velocity einfuegen}
-\newline
 This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on \cite{computationalMethodsforMultiphaseFlow}.
 \newline
 In this context small and heavy rigid particles with a spherical shape are considered. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 \newline
-Due to the \textbf{small particle concentration}, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
+Due to the small particle concentration, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
 \newline
 At describing the motion of the particles in the following the fact that we deal with gas-solid flows is an advantage, since several simplifications can be made.
 \newline
@@ -284,19 +282,19 @@ with $\vec{v}_{\mathrm{p}}^\mathrm{n}$ being the velocity of the n-th particle.
 $\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid an particles. The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
 \newline
 Also it plays an important role in the equation of motion of the particles:
+\nomenclature[rv]{$\mathrm{v}_\mathrm{p}$}{Particle volume}
 \begin{equation}
 \mathrm{v}_\mathrm{p} \rho_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \mathrm{v}_\mathrm{p} \rho_\mathrm{p}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
 \end{equation}
-\nomenclature[rv]{$\mathrm{v}_\mathrm{p}$}{Particle volume}
 As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could be divided in several forces. Then the equation of particle motion looks like:
-\begin{equation} \label{navier_stokes_particle}
-m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}+\rho \mathrm{v}_\mathrm{p}\biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}- \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
-\end{equation}
 \nomenclature[rfd]{$\vec{f}_\mathrm{d}$}{Drag force}
 \nomenclature[rfl]{$\vec{f}_\mathrm{l}$}{Lift force}
 \nomenclature[rfa]{$\vec{f}_\mathrm{a}$}{Added mass force}
 \nomenclature[rfh]{$\vec{f}_\mathrm{h}$}{History force}
 \nomenclature[rRep]{$Re_\mathrm{p}$}{Particle Reynolds number}
+\begin{equation} \label{navier_stokes_particle}
+m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}+\rho \mathrm{v}_\mathrm{p}\biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}- \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
+\end{equation}
 Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
 \begin{equation}
 \vec{f}_\mathrm{d}=-\frac{3}{4}\rho \mathrm{v}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})
@@ -313,22 +311,22 @@ Hence it could be determined by
 \vec{f}_\mathrm{a} =  \frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)
 \end{equation}
 The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that results from of the vortices behind the particles into account. Basselt's result, neglecting the finite size correction, is proportional to $\vec\nabla^\mathrm{2}\vec{u}$:
+\nomenclature[gn]{$\nu$}{Kinematic viscosity}
 \begin{equation}
 \vec{f}_\mathrm{h} = \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).  
 \end{equation}
-\nomenclature[gn]{$\nu$}{Kinematic viscosity}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
 In this case of gas-solid suspensions several simplifications could be made.
 \newline
 In the following the fact that the added mass force, the lift force and the history force are negligible small compared to the drag force is shown using a rough approximation.
-Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheForcesActingOnParticlesInTurbulentFlows} show that the added mass force is much smaller than the drag force for all density ratios and that ratios among the forces and the Stokes drag decrease with rising particle density.
+Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows} show that the added mass force is much smaller than the drag force for all density ratios and that ratios among the forces and the Stokes drag decrease with rising particle density.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relaxation time of the order of $\tau$ results in
 \begin{equation}
 \frac{|\vec{f}_\mathrm{h}|}{|\vec{f}_\mathrm{a}|}\simeq 18 \sqrt{\frac{\nu\tau}{d_\mathrm{p}^\mathrm{2}}}.
 \end{equation}
-\nomenclature[rd]{$d_\mathrm{p}$}{Particle diameter}
 Hence it is of the order of the ratio of the diffusion length to the particle diameter, which might be of the order of one, if $\tau \sim \frac{d_\mathrm{p}^\mathrm{2}}{\nu}$.
 \nomenclature[gtp]{$\tau_\mathrm{p}$}{Particle relaxation time}
+\nomenclature[rd]{$d_\mathrm{p}$}{Particle diameter}
 It follows that the history force is also negligible compared to the drag force.
 For the lift force the situation is similar, because is is also proportional to the fluid density and the length scale of the ambient flow vorticity might be much greater than the particle size.
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
@@ -355,21 +353,21 @@ Then the equation of motion of the particles becomes
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
 \nomenclature[gtps]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
-\begin{equation}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d},
-\end{equation}
-with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
-\newline
 \nomenclature[rrp]{$r_\mathrm{p}$}{Particle radius}
 \nomenclature[grp]{$\rho_\mathrm{p}$}{Particle density}
 \nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position}
 \nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity}
 \nomenclature[rD]{$f_\mathrm{D}$}{Drag correction}
+\begin{equation}
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d},
+\end{equation}
+with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
+\newline
 The coupling rate $\psi$, that describes the transferred Energy per time between particles and fluid, is defined as
+\nomenclature[gx]{$\psi$}{Coupling rate}
 \begin{equation}
 \psi = \vec{F} \vec{u}. 
 \end{equation}
-\nomenclature[gx]{$\psi$}{Coupling rate}
 Hence it results from the force per unit volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
@@ -408,10 +406,6 @@ The updated particle position must be corrected by an additional term according 
 \subsection{Particle clustering}
 \nomenclature[rmc]{$m_\mathrm{c}$}{Number of clustered particles}
 The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
-\newline
-\newline
-Projektion (noComputationalParticles), Diskretisierung
-implizite LES (Motivation fuer LES -  Pope Chapter 9, Bild 9.4), DNS
 \pagebreak
 \section{Results}
 The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
@@ -458,7 +452,7 @@ In difference to the others, the case in which 1000 particles were clustered sho
 \newline
 The same impression can be achieved by looking at the graphs describing the coupling rate (figure \ref{coupling_time_128}). The particle-laden-case makes the biggest jump into negative coupling rate. The higher the number of coupled particles, the lower is the amount of the coupling rate. This evolution continues until the physicality vanishes and the randomness starts to show at the results for $m_\mathrm{c}$ higher than 50. 
 \newline
-Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$).
+Being very similar in the time shortly after the injection, the flow statistics diverge more and more when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_properties} on page \pageref{table_properties}. The ratio of the densities for this simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was 0.0794048628, so that $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l | c c c c c c c }
@@ -480,7 +474,7 @@ $m_\mathrm{c}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\et
 To find out at which number of particles the results are sufficiently exact, a second set of simulations was carried out. As mathematics of turbulent flows are based on averaged variables, small numbers of particles can lead to false and even physically questionable results. In these simulations, no particle clustering was used, just different numbers of particles were injected into the same flow. For these simulations similar properties to the ones from the first set of simulations were used, just the mentioned number of particles was changed. An example for the deviation in kinetic energy for different numbers of particles can be found on page \pageref{kineticEnergy_numberOfParticles} on figure \ref{kineticEnergy_numberOfParticles}. 
 \begin{figure}[h]
 	\centering
-  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl//128/kineticEnergy_numberOfParticles.pdf}
+  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
 	\caption{Results for initializing different numbers of particles}
 	\label{kineticEnergy_numberOfParticles}
 \end{figure}
@@ -502,4 +496,7 @@ This work was supervised by Konstantin Fr\"ohlich, we would like to express our 
 \bibliography{Projektarbeit} %ruft die Bibliography-Datei auf
 \bibliographystyle{plain} %setzt den Zitierstil
 \pagebreak
+\section{Appendix A}
+\subsection*{Creating of pictures showing tubular structures}
+The pictures used in the Introduction were generated using ParaView, an open-source-software developed by a joint-venture of Kitware and the Los Alamos National Laboratory. More information about the software can be found at www.paraview.org. To show the tubular structures in a turbulent flow, two filters were used: One was the AIALambda2Criterion1-Filter and the other one was the ISOVolume1-Filter. These filters were then set to visualize the velocity of the flow colored by magnitude. To diversify the different velocity-magnitudes, a rainbow-colorscheme was used. 
 \end{document}
