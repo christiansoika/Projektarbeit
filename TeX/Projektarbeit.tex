@@ -168,7 +168,7 @@ with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{\bar
 $ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
 fact that two familiar objects with the same Reynolds number behave similar in flows.
 To solve the Navier-Stokes equations, more information regarding some variables is required. For calculating the specific inner energy $ E $ 
-and the heat conduction $ \vec{q} $, the following equations are used:
+and the heat conduction $ \vec{q} $, the following equations are used
 \nomenclature[gg]{$\gamma$}{Isentropic exponent}
 \nomenclature[re]{$e$}{Specific internal energy}
 \nomenclature[rPr]{$Pr$}{Prandtl number}
@@ -177,7 +177,7 @@ and the heat conduction $ \vec{q} $, the following equations are used:
  E = e  \frac{1}{2} \vec{|u|}^2,
 \end{equation}
 \begin{equation}
- \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T
+ \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T,
 \end{equation}
 with 
 \nomenclature[rcp]{$c_\mathrm{p}$}{Specific isobaric heat capacity}
@@ -187,33 +187,31 @@ with
 \end{equation}
 and the Prandtl number
 \nomenclature[rkt]{$k_\mathrm{t}$}{Thermal conductivity}
-\begin{equation}
- Pr = \frac{\mu_\infty c_\mathrm{p}}{k_\mathrm{t}}
-\end{equation}
+$ Pr = \frac{\mu_\infty c_\mathrm{p}}{k_\mathrm{t}}$
 using the specific heat capacities of the fluid $ c_\mathrm{v} $ and $ c_\mathrm{p} $.
 If one could assume that the fluid is a newtonian fluid, the linear correlation between stress and the rate of strain results in:
 \nomenclature[rI]{$\matrix{\bar{I}}$}{Identity tensor}
 \nomenclature[rS]{$\matrix{S}$}{Rate-of-strain tensor}
 \nomenclature[rT]{$T$}{Temperature}
 \begin{equation}
- \matrix{\bar{\tau}} = 2 \mu \matrix{\bar{S}} - \frac{2}{3} \mu (\vec\nabla * \vec{u}) \matrix{\bar{I}}
+ \matrix{\bar{\tau}} = 2 \mu \matrix{\bar{S}} - \frac{2}{3} \mu (\vec\nabla \cdot \vec{u}) \matrix{\bar{I}},
 \end{equation}
 in which $ \matrix{\bar{S}} = \frac{(\vec\nabla \vec{u})(\vec\nabla \vec{u})^T}{2} $ denotes the rate-of-strain tensor. Additionally, the viscosity
-$ \mu $ can be approximated through Sutherland's law, which is based on the ideal gas-theory: 
+$ \mu $ can be approximated by Sutherland's law, which is based on the ideal gas-theory
 \nomenclature[rS]{$S$}{Sutherland temperature}
 \nomenclature[rR]{$R$}{Specific gas constant}
 \begin{equation}
- \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S}.
+ \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S},
 \end{equation}
-In this case S is the Sutherland temperature.
+where S is the Sutherland temperature.
 To achieve closure the caloric state equation $ e = c_\mathrm{v} T $ and the state equation for an ideal gas $
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mathrm{p} - c_\mathrm{v} $. 
 These equations form a set of partial differential equations, as a consequence starting values are needed.
 \pagebreak
-\subsection{Turbulent motion across all scales}
-Turbulent flows contain eddies of all sizes and shapes. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was further developed by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
+\subsection{Scales of turbulent flows}
+Turbulent flows contain eddies of all sizes and shapes. Large-scale eddies bring energy to the flow which is then passed down to smaller-scales, and finally dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was further developed by Kolmogorov \cite{Kolmogorov1941}.
 \newline
-The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
+The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the 'energy-containing range'. The length scale is called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
 \nomenclature[gtL]{$\tau_\mathrm{L}$}{Eddy turnover time}
 \nomenclature[rL]{$L$}{Integral length scale}
 \nomenclature[rU]{$U$}{Characteristic fluid velocity}
@@ -238,20 +236,19 @@ Both these scales are coupled by the Reynolds number:
 \begin{equation}
 \frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = {Re_\mathrm{L}}^{1/2}.
 \end{equation}
-It can be seen from these to equations that the spacing between the scales increases for higher Reynolds numbers. 
+It can be observed from these equations that the spacing between the scales increases for higher Reynolds numbers. 
 \newline
 A scale between these two is the Taylor microscale, often referred to as 'turbulence length scale'. 
 \nomenclature[gl]{$\lambda$}{Taylor microscale}
-Although it lacks of a physical interpretation, it is often used to describe the intermediate range between integral and Kolmogorov scales. 
+It is often used to describe the intermediate range between integral and Kolmogorov scales. 
 This scale's definition is: 
 \begin{equation}
 \lambda = \sqrt{15 \frac{\nu}{\epsilon}} |\vec{v'}|
 \end{equation}
-with $|\vec{v'}|$ denoting the absolute value of the velocity's fluctuation. This scale can be used to compute another Reynolds number $Re_\mathrm{\lambda}$:
+with $|\vec{v'}|$ denoting the absolute value of the velocity's fluctuation. This scale can be used to compute the Taylor-scale Reynolds number $Re_\mathrm{\lambda}$:
 \begin{equation}
 Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 \end{equation}
-Together, these scales form a powerful tool to understand, compute and describe turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} %Steffen
 This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
@@ -378,8 +375,8 @@ Hence it results from the force per unitary volume exerted between the fluid and
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
 \section{Numerical methods} %Julian
-To simulate flows like those described above there are two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
-\subsection{Discretization}
+Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS (direct numerical simulation) and the LES (large-eddy simulation). The basis of both are the Navier-Stokes equations as described above.
+\subsection{Discretization of the particle dynamics}
 To integrate the Lagrangian particle tracking equations, discussed above, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
 \begin{equation}
 f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\partial t} + \frac{\partial f(t + \delta t)}{\partial t} \right ]
@@ -388,9 +385,11 @@ is used.
 \newline
 The first step is the prediction of the new particle position $\vec{x}_{\mathrm{p}, n+1}$ using a Taylor expansion for a small time step $\delta t$
 \begin{equation}
-\vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \delta t \vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t^2 \vec{a}_{\mathrm{p}, n}.
+\vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \delta t \vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t^2 \vec{a}_{\mathrm{p}, n},
 \end{equation}
-Due to the computational effort we will put the fluid velocity $\vec{u}(\vec{x}_{\mathrm{p}, n+1})$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ on the level of the nearest cell fluid velocity.
+with $\vec{a}_{\mathrm{p}, n}$ particle acceleration. %"How is a computed?" - 
+\newline
+To avoid filtering effects, we will set the fluid velocity $\vec{u}(\vec{x}_{\mathrm{p}, n+1})$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ equal to the nearest cell fluid velocity. %more precisely, discussion with Konstantin
 \newline
 The updated velocity and acceleration are calculated as
 \begin{equation}
@@ -404,16 +403,16 @@ The updated particle position must be corrected by an additional term according 
 \vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left( \vec{v}_{\mathrm{p}, n+1} + \vec{v}_{\mathrm{p}, n} \right) + \frac{1}{12} \delta t^2 \left( \vec{a}_{\mathrm{p}, n+1} - \vec{a}_{\mathrm{p}, n} \right).
 \end{equation}
 \subsection{Direct numerical simulation}
-The basis of the direct numerical simulation (DNS) are the Navier-Stokes equations as described above. The idea is that the computer is very good at calculating and solves these equations completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number. These computational resources were not available until the 1970s. Even though it is not advisable to resolve every scale of motion, if only the contained energy is of greatest interest. With the large-eddy simulation, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.%zum Uebergang zu LES siehe Pope S. 352 und Fig. 9.4
+With DNS, the Navier-Stokes equations are solved completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number: $N^3 \propto 4.4 Re_{\mathrm{L}}^{9/4} \approx 0.06 Re_{\mathrm{\lambda}}^{9/2}$ with N size of the simulation. These computational resources were not available until the 1970s. With the LES, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.%zum Uebergang zu LES siehe Pope S. 352 und Fig. 9.4
 \subsection{Large-eddy simulation}
-Due to the fact that DNS is effortful and wasting resources if a fully resolved resolution is not required, large-eddy simulation (LES) was created to save time and resources. This is especially efficient if mainly the temporal energy trend is considered, because the energy containing larger-scale motion is completely resolved and the indeed small effects of the smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
+Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing larger-scale motion is completely resolved and the small effects of the smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
 \newline
 Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus we call it implicit LES (ILES) \cite{implicitLES}. %als Zitat die Dissertation TUM Hickel
 \subsection{Particle clustering}
 \nomenclature[rmc]{$m_\mathrm{c}$}{Number of clustered particles}
 \nomenclature[rnp]{$N_\mathrm{p}$}{Number of physical particles}
 \nomenclature[rnc]{$N_\mathrm{c}$}{Number of computational particles}
-The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
+The high number of point-particles requires even more computational resources for the particle-laden simulations than for the single-phase simulations. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
 \pagebreak
 \section{Results}
 \begin{figure}[h]
