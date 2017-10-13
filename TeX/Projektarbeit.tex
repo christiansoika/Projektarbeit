@@ -378,6 +378,13 @@ Hence it results from the force per unitary volume exerted between the fluid and
 It is an useful variable to describe how much the main fluid and the particles influence each other.
 \pagebreak
 \section{Numerical methods} %Julian
+
+
+The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
+\cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
+The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
+
+
 To simulate flows like those described above there are two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
 \subsection{Discretization}
 To integrate the Lagrangian particle tracking equations, discussed above, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
@@ -431,9 +438,6 @@ The high number of point particles require even more computational resources for
         \label{64_velocity}
     \end{minipage}
 \end{figure}
-The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
-\cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
-The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
 The turbulence was simulated on a cubic grid using $64^3$ ,$96^3$, $128^3$ and $256^3$ grid points. As a consequence of grid refinement the first three cases were simulated using LES, 
 the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p. 344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 \begin{figure}[h]
