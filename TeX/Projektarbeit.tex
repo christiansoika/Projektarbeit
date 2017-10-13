@@ -25,18 +25,27 @@
 
 \RequirePackage{ifthen}
 \renewcommand{\nomgroup}[1]{%
-  \ifthenelse{\equal{#1}{R}}{\item[\textbf{Roman Letters}]}{%
-    \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Letters}]}{%
+  \ifthenelse{\equal{#1}{R}}{\item[\textbf{Roman Symbols}]}{%
+    \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
       \ifthenelse{\equal{#1}{O}}{\item[\textbf{Operators}]}{}}}}
 
 \renewcommand*\vec[1]{\boldsymbol{#1}}
 \renewcommand*\matrix[1]{\boldsymbol{#1}}
 
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
+
+\cftsetindents{section}{0em}{2.65em}   
+\cftsetindents{subsection}{1.5em}{3em}   
+\cftsetindents{subsubsection}{2.5em}{3.5em}
 %setzt die fettgedruckte Schreibweise fuer Vektoren und Matrizen
 
 \geometry{top=3cm, bottom=4cm}
 \geometry{bindingoffset=1.5cm} %offset zum binden
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}  % definere gerade Linie mit 0.5mm Dicke
+
+\makeindex %
 
 \begin{document}
 \begin{titlepage}
@@ -73,6 +82,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 
 \makenomenclature %erstellt und druckt die Nomenklatur-Tabelle
 
+
 \renewcommand{\refname}{}
 \renewcommand{\nomname}{}
 
@@ -93,27 +103,23 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \section{Introduction}
 \begin{figure}[h]
 	\centering
-  \includegraphics[width=\textwidth]{./Abbildungen/256_velocity_4.png}
-	\caption{$\lambda_\mathrm{2}$-contours colored by velocity magnitude: Tubular structures in an isotropic flow field simulated on a $256^3$-grid (For creation see Appendix A)}
-	\label{introuction_picture}
+  \includegraphics[width=\textwidth]{./Abbildungen/TurbulentMotion_Introduction.png}
+	\caption{Photograph courtesy of Hassan Nagib and Thomas Corke: Formation of an nearly isotropic turbulent flow field behind a grid}
+	\label{introduction_picture}
 \end{figure}
-This work deals with the effects of particles on the flow conditions of isotropic turbulent flows.
-There are many examples of these particle laden turbulent flows in nature, e.g. in volcanic eruptions and in the "white water" of breaking waves.
+Particle laden turbulent flows are ubiquitous in nature, e.g. in volcanic eruptions and in the "white water" of breaking waves.
+Spray automization in fuel injectors, cyclonic particle separation in oil refineries and sediment accumulation in pipelines are examples of technical applications, where it is of huge interest to predict the impact of particles on turbulent flows.
+Turbulence augmentation or attenuation by particles is therefore a decisive factor.
 \newline
-Multiphase flows also occur in many technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil refineries and sediment accumulation in pipelines are just three of many cases, where it is of huge interest to predict the influence of particles on the turbulence of the flow.
-Of major industrial interest are the fuel dispersion and combustion in an petrol-powered engine. To get a homogeneous and fast combustion, both should take place at turbulent flow conditions. One could say it is an important question, in which way and intensity the particles influence the turbulence.
+A study on the impact of particles on the flow conditions of isotropic turbulent flows is presented at hand.
+In this work the influence of the particles on the conditions is presented. Analyzing the energy transfer between particles and fluid will be focused.  
 \newline
-Another important example is an fluidized bed. This is an application to realize an effective suspension and combustion of fluid particles in a vessel. The particles, which are at the bottom of the vessel, are suspended by a fluid, in most cases a gas, that streams from beyond the particles threw the porous bottom, if the force, which is exerted by the pressure on the particles' surface,  is larger than the gravity of the particles. While this happens the fluid suspends the particles and the contact between fluid and particles is very intimate, which facilitates for example the combustion of material with a low caloric content, the in situ absorption of the pollutants deriving from the combustion and the action of a catalyst. This process aims to produce a suspension with less heterogeneous regions, what means bubbles with a much smaller concentration of particles. Hence turbulence is a very important requirement to produce a homogeneous fluid stream for effective and complete combustion.
-\newline
-In this work the influence of the particles on the streaming conditions is presented by using DNS and LES simulations. The focus lies on analyzing the energy transfer between particles and fluid as well as the intensity of the decrease of turbulent kinetic energy in the fluid.  
-At the beginning some mathematical background information about modeling turbulent single phase and particle laden flows are given. 
-Additionally the Navier-Stokes equations and the different scales of turbulent motion are presented as an approach to modelling turbulence. For particle laden flows the equations of motion are expanded by a new term that describes the forces acting between fluid and particles. 
-Also the coupling rate that describes the exchanged energy and the computational basics of methods used in this work are introduced. 
+First, some mathematical background information about modeling single phase and particle laden flows are given. 
+Additionally, the scales of turbulent motion are described.
 According to the computational basics the simulation methods DNS and LES, how they work and in which case which one is used is explained.
-Then the used discretization method to integrate the particle tracking equations, which is a predictor-corrector-scheme, is described.     
-Finally the computational method 'particle clustering' is introduced. This approach aims to decrease the computational effort of particle laden simulations. It works the following way: the particles are coupled to clusters and each cluster is considered as one particle.
-\newline
-In the following the deviations caused by using this method are determined and the applicability is evaluated. Therefore the influence of the number of particles per cluster on the accuracy of the plots of the turbulent kinetic energy and the exchanged energy between particles and fluid per time is identified.
+Then the used discretization method to integrate the particle tracking equations is described.     
+Finally the computational method 'particle clustering' is introduced. 
+In the following the deviations caused by using this method are determined and the applicability is evaluated.
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
 \pagebreak
 \section{Mathematical models}
@@ -126,11 +132,11 @@ e.g. \cite{turbulentFlows}.
 The Navier-Stokes equations are of great importance for understanding turbulent phenomena. This set of equations exists in forms for compressible and
 incompressible fluids. For an infinitesimal small volume element $ \mathrm{d} \tau $ and using the cartesian coordinate system, 
 they can be written in the so-called 'divergence form':
-\nomenclature[o]{$\vec\nabla$}{Nabla-operator} %Erstellt automatisch die Nomenclature-Liste
-\nomenclature[rQ]{$\vec{Q}$}{Container for conserved variables in the Navier-Stokes equations}
-\nomenclature[rH]{$\vec{H}$}{Container for fluctuating variables in the Navier-Stokes equations}
+\nomenclature[o]{$\vec\nabla$}{Nabla operator} %Erstellt automatisch die Nomenclature-Liste
+\nomenclature[rQ]{$\vec{Q}$}{Vector of conservative Eulerian variables}
+\nomenclature[rH]{$\vec{\bar{H}}$}{Flux tensor}
 \begin{equation}
-  \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{H} = 0.
+  \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{\bar{H}} = 0.
 \end{equation}
 The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the fluid density $ \rho $, 
 the fluid velocity $ \vec{u} $ and the specific inner energy $ E $: 
@@ -140,25 +146,25 @@ the fluid velocity $ \vec{u} $ and the specific inner energy $ E $:
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
 \end{equation}
-$ \vec{H} $ is the flux vector which stores all the floating variables and may be split up into two parts:
-\nomenclature[rHi]{$\vec{H^\mathrm{i}}$}{Stores the inviscid variables in the flux-vector included in the Navier-Stokes equations}
-\nomenclature[rHv]{$\vec{H^\mathrm{v}}$}{Stores the viscous variables in the flux-vector included in the Navier-Stokes equations} 
+$ \vec{\bar{H}} $ is the flux vector which stores all the floating variables and may be split up into two parts:
+\nomenclature[rHi]{$\vec{\bar{H}^\mathrm{i}}$}{Inviscid part of the flux tensor}
+\nomenclature[rHv]{$\vec{\bar{H}^\mathrm{v}}$}{Viscous part of the flux tensor} 
 \begin{equation}
- \vec{H} = \vec{H^\mathrm{i}} + \vec{H^\mathrm{v}}.
+ \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}}.
 \end{equation}
 The contents of the two vectors are displayed below:
 \nomenclature[rp]{$p$}{Pressure}
 \nomenclature[rRe]{$Re$}{Reynolds number}
-\nomenclature[gt]{$\matrix{\tau}$}{Stress tensor}
-\nomenclature[rq]{$\vec{q}$}{Heat conduction}
+\nomenclature[gt]{$\matrix{\bar{\tau}}$}{Stress tensor}
+\nomenclature[rq]{$\vec{q}$}{Heat conduction vector}
 \begin{equation}
- \vec{H^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right),
+ \vec{\bar{H}^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right),
 \end{equation}
 \begin{equation}
- \vec{H^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\tau}\\ \matrix{\tau} \vec{u} + \vec{q} \end{array} \right).
+ \vec{\bar{H}^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right).
 \end{equation}
-$ \vec{H^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
-with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{H^\mathrm{v}} $ represents the effects of viscosity only. The Reynolds number 
+$ \vec{\bar{H}^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
+with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{\bar{H}^\mathrm{v}} $ represents the effects of viscosity only. The Reynolds number 
 $ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
 fact that two familiar objects with the same Reynolds number behave similar in flows.
 To solve the Navier-Stokes equations, more information regarding some variables is required. For calculating the specific inner energy $ E $ 
@@ -174,44 +180,43 @@ and the heat conduction $ \vec{q} $, the following equations are used:
  \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T
 \end{equation}
 with 
-\nomenclature[rcp]{$c_p$}{Specific isobaric heat capacity}
-\nomenclature[rcv]{$c_v$}{Specific isochoric heat capacity}
+\nomenclature[rcp]{$c_\mathrm{p}$}{Specific isobaric heat capacity}
+\nomenclature[rcv]{$c_\mathrm{v}$}{Specific isochoric heat capacity}
 \begin{equation}
  \gamma = \frac{c_p}{c_v}
 \end{equation}
 and the Prandtl number
-\nomenclature[rkt]{$k_t$}{Thermal conductivity}
+\nomenclature[rkt]{$k_\mathrm{t}$}{Thermal conductivity}
 \begin{equation}
- Pr = \frac{\mu_\infty c_p}{k_t}
+ Pr = \frac{\mu_\infty c_\mathrm{p}}{k_\mathrm{t}}
 \end{equation}
-using the specific heat capacities of the fluid $ c_v $ and $ c_p $.
+using the specific heat capacities of the fluid $ c_\mathrm{v} $ and $ c_\mathrm{p} $.
 If one could assume that the fluid is a newtonian fluid, the linear correlation between stress and the rate of strain results in:
-\nomenclature[rI]{$\matrix{I}$}{Identity tensor}
-\nomenclature[rS]{$\matrix{S}$}{Rate-of-strain-tensor}
+\nomenclature[rI]{$\matrix{\bar{I}}$}{Identity tensor}
+\nomenclature[rS]{$\matrix{S}$}{Rate-of-strain tensor}
 \nomenclature[rT]{$T$}{Temperature}
 \begin{equation}
- \matrix{\tau} = 2 \mu \matrix{S} - \frac{2}{3} \mu (\vec\nabla * \vec{u}) \matrix{I}
+ \matrix{\bar{\tau}} = 2 \mu \matrix{\bar{S}} - \frac{2}{3} \mu (\vec\nabla * \vec{u}) \matrix{\bar{I}}
 \end{equation}
-in which $ \matrix{S} = \frac{(\vec\nabla \vec{u})(\vec\nabla \vec{u})^T}{2} $ denotes the rate-of-strain-tensor. Additionally, the viscosity
+in which $ \matrix{\bar{S}} = \frac{(\vec\nabla \vec{u})(\vec\nabla \vec{u})^T}{2} $ denotes the rate-of-strain tensor. Additionally, the viscosity
 $ \mu $ can be approximated through Sutherland's law, which is based on the ideal gas-theory: 
 \nomenclature[rS]{$S$}{Sutherland temperature}
-\nomenclature[rR]{$R$}{Universal gas constant}
+\nomenclature[rR]{$R$}{Specific gas constant}
 \begin{equation}
  \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S}.
 \end{equation}
 In this case S is the Sutherland temperature.
-To achieve closure the caloric state equation $ e = c_v T $ and the state equation for an ideal gas $
-p = \rho R T $ are used. The specific gas constant is determined by $ R = c_p - c_v $. 
+To achieve closure the caloric state equation $ e = c_\mathrm{v} T $ and the state equation for an ideal gas $
+p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mathrm{p} - c_\mathrm{v} $. 
 These equations form a set of partial differential equations, as a consequence starting values are needed.
 \pagebreak
-\subsubsection{Turbulent motion across all scales}
+\subsection{Turbulent motion across all scales}
 Turbulent flows contain eddies of all sizes and shapes. Large-scale eddies bring energy to the flow which is then passed down to smaller-scale eddies and in the end dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was further developed by Kolmogorov and published 1941 \cite{Kolmogorov1941}.
 \newline
 The first set of scales describe the large eddies. These scales are called \textit{integral} scales and are determined by the physical boundaries of the flow. As said before, at these scales the energy is brought into the flow, creating the so-called 'energy-containing range'. The length scale is called integral length scale $L$, and the corresponding timescale which is most times called 'eddy turnover time' is defined as:
 \nomenclature[gtL]{$\tau_\mathrm{L}$}{Eddy turnover time}
 \nomenclature[rL]{$L$}{Integral length scale}
 \nomenclature[rU]{$U$}{Characteristic fluid velocity}
-\nomenclature[rt*]{$t^*$}{Eddy turnover time}
 \begin{equation}
 \tau_\mathrm{L} = \frac{L}{U},
 \end{equation}
@@ -219,7 +224,7 @@ where $U$ denotes the characteristic velocity.
 \newline
 The smallest scales in a turbulent flow are the Kolmogorov length ($\eta$) and time ($\tau_\mathrm{\eta}$) scale. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \approx \frac{U^3}{L} $ they can be written as
 \nomenclature[gh]{$\eta$}{Kolmogorov length scale}
-\nomenclature[gth]{$\tau_\mathrm{\eta}$}{Kolmogorov time scale}
+\nomenclature[gth]{$\tau_{\mathrm{\eta}}$}{Kolmogorov time scale}
 \begin{equation}
 \eta = \biggl (\frac{\nu^3 L}{U^3} \biggl )^{1/4},
 \end{equation}
@@ -266,7 +271,7 @@ After including all the simplifications mentioned before, the Navier-Stokes equa
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
-\nomenclature[rF]{$\vec{F}$}{Force per unitary volume from particle on fluid}
+\nomenclature[rF]{$\vec{F}$}{Force per unitary volume of the particle acting on the fluid}
 The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unitary volume on the fluid.
 $\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
 \nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
@@ -282,7 +287,7 @@ with $\vec{v}_{\mathrm{p}}^\mathrm{n}$ being the velocity of the n-th particle.
 $\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid and particles. The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
 \newline
 Also it plays an important role in the equation of motion of the particles:
-\nomenclature[rv]{$\mathrm{v}_\mathrm{p}$}{Particle volume}
+\nomenclature[rv]{$\mathrm{V}_\mathrm{p}$}{Particle volume}
 \begin{equation}
 \mathrm{v}_\mathrm{p} \rho_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \mathrm{v}_\mathrm{p} \rho_\mathrm{p}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
 \end{equation}
@@ -355,8 +360,8 @@ Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_
 \nomenclature[gtps]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
 \nomenclature[rrp]{$r_\mathrm{p}$}{Particle radius}
 \nomenclature[grp]{$\rho_\mathrm{p}$}{Particle density}
-\nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position}
-\nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity}
+\nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position vector}
+\nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity vector}
 \nomenclature[rD]{$f_\mathrm{D}$}{Drag correction}
 \begin{equation}
 \rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{ps}}f_\mathrm{d},
@@ -364,6 +369,7 @@ Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_
 with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
 \newline
 The coupling rate $\psi$, that describes the transferred Energy per time between particles and fluid, is defined as
+\nomenclature[rt*]{$t^*$}{Time normalized by the initial eddy turnover time}
 \nomenclature[gx]{$\psi$}{Coupling rate}
 \begin{equation}
 \psi = \vec{F} \vec{u}. 
@@ -373,13 +379,7 @@ It is an useful variable to describe how much the main fluid and the particles i
 \pagebreak
 \section{Numerical methods} %Julian
 To simulate flows like those described above there are two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
-\subsection{Direct numerical simulation}
-The basis of the direct numerical simulation (DNS) are the Navier-Stokes equations as described above. The idea is that the computer is very good at calculating and solves these equations completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number. These computational resources were not available until the 1970s. Even though it is not advisable to resolve every scale of motion, if only the contained energy is of greatest interest. With the large-eddy simulation, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.%zum Uebergang zu LES siehe Pope S. 352 und Fig. 9.4
-\subsection{Large-eddy simulation}
-Due to the fact that DNS is effortful and wasting resources if a fully resolved resolution is not required, large-eddy simulation (LES) was created to save time and resources. This is especially efficient if mainly the temporal energy trend is considered, because the energy containing larger-scale motion is completely resolved and the indeed small effects of the smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
-\newline
-Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus we call it implicit LES (ILES) \cite{implicitLES}. %als Zitat die Dissertation TUM Hickel
-\subsection{Discretisation}
+\subsection{Discretization}
 To integrate the Lagrangian particle tracking equations, discussed above, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
 \begin{equation}
 f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\partial t} + \frac{\partial f(t + \delta t)}{\partial t} \right ]
@@ -403,11 +403,34 @@ The updated particle position must be corrected by an additional term according 
 \begin{equation}
 \vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left( \vec{v}_{\mathrm{p}, n+1} + \vec{v}_{\mathrm{p}, n} \right) + \frac{1}{12} \delta t^2 \left( \vec{a}_{\mathrm{p}, n+1} - \vec{a}_{\mathrm{p}, n} \right).
 \end{equation}
+\subsection{Direct numerical simulation}
+The basis of the direct numerical simulation (DNS) are the Navier-Stokes equations as described above. The idea is that the computer is very good at calculating and solves these equations completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number. These computational resources were not available until the 1970s. Even though it is not advisable to resolve every scale of motion, if only the contained energy is of greatest interest. With the large-eddy simulation, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.%zum Uebergang zu LES siehe Pope S. 352 und Fig. 9.4
+\subsection{Large-eddy simulation}
+Due to the fact that DNS is effortful and wasting resources if a fully resolved resolution is not required, large-eddy simulation (LES) was created to save time and resources. This is especially efficient if mainly the temporal energy trend is considered, because the energy containing larger-scale motion is completely resolved and the indeed small effects of the smaller-scale motion are just modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
+\newline
+Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus we call it implicit LES (ILES) \cite{implicitLES}. %als Zitat die Dissertation TUM Hickel
 \subsection{Particle clustering}
 \nomenclature[rmc]{$m_\mathrm{c}$}{Number of clustered particles}
+\nomenclature[rnp]{$N_\mathrm{p}$}{Number of physical particles}
+\nomenclature[rnc]{$N_\mathrm{c}$}{Number of computational particles}
 The high number of point particles require even more computational resources for the particle-laden simulation. The main idea to reduce this requirement is to create clusters of point particles, meaning that a new variable $m_\mathrm{c}$ is introduced. We consider a cluster of $m_\mathrm{c}$ point particles as one larger point particle, i.e. the program has less particles to simulate. To compensate this lack of particles, the coupling force is multiplied by $m_\mathrm{c}$, due to the $m_\mathrm{c}$-fold mass of the (cluster-)particles. In chapter 5 (results) we evaluate the legitimacy of particle clustering and the maximum acceptable value of $m_\mathrm{c}$.
 \pagebreak
 \section{Results}
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{./Abbildungen/256_velocity_4.png}
+        \caption{???}
+        \label{256_velocity}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{./Abbildungen/64_velocity.png}
+        \caption{??? Appendix A}
+        \label{64_velocity}
+    \end{minipage}
+\end{figure}
 The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
 \cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
 The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
@@ -415,7 +438,7 @@ The turbulence was simulated on a cubic grid using $64^3$ ,$96^3$, $128^3$ and $
 the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p. 344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 \begin{figure}[h]
 	\centering
-  \includegraphics[width=0.9\textwidth]{./Abbildungen/128/kineticEnergy_time.pdf}
+  \includegraphics[width=0.9\textwidth]{./Abbildungen/256/kineticEnergy_time.pdf}
 	\caption{Kinetic Energy over eddy turnover times for different numbers of clustered particles with fixed all-over particle number}
 	\label{kineticEnergy_time_128}
 \end{figure}
