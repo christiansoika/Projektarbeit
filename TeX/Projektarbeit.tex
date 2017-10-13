@@ -377,6 +377,16 @@ It is an useful variable to describe how much the main fluid and the particles i
 \section{Numerical methods} %Julian
 Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS (direct numerical simulation) and the LES (large-eddy simulation). The basis of both are the Navier-Stokes equations as described above.
 \subsection{Discretization of the particle dynamics}
+
+
+The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
+\cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
+The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
+
+
+To simulate flows like those described above there are two options. The direct numerical simulation (DNS) is the easier one to understand, although it is numerically very expensive. The Large-eddy simulation (LES) is numerically more capable, still we must accept certain inaccuracies. These two numerical methods are now discussed in the following chapter.
+\subsection{Discretization}
+>>>>>>> 0f2860ee5921c774f723643d1171cb3d98410dc1
 To integrate the Lagrangian particle tracking equations, discussed above, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
 \begin{equation}
 f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\partial t} + \frac{\partial f(t + \delta t)}{\partial t} \right ]
@@ -430,9 +440,6 @@ The high number of point-particles requires even more computational resources fo
         \label{64_velocity}
     \end{minipage}
 \end{figure}
-The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
-\cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
-The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
 The turbulence was simulated on a cubic grid using $64^3$ ,$96^3$, $128^3$ and $256^3$ grid points. As a consequence of grid refinement the first three cases were simulated using LES, 
 the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p. 344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
 \begin{figure}[h]
