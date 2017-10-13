@@ -18,6 +18,7 @@
 \usepackage{geometry} %Gr�ߟe des Bodys innerhalb der Seite 
 \usepackage[utf8]{inputenc} 
 \usepackage{ifthen}
+\usepackage{caption}
 
 %bindet die benutzten Packages ein
 
@@ -35,6 +36,8 @@
 \renewcommand{\thesection}{\Roman{section}} 
 \renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
+
+\captionsetup[figure]{font=footnotesize}
 
 \cftsetindents{section}{0em}{2.65em}   
 \cftsetindents{subsection}{1.5em}{3em}   
