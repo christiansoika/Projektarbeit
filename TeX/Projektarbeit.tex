@@ -438,8 +438,7 @@ The high number of point particles require even more computational resources for
         \label{64_velocity}
     \end{minipage}
 \end{figure}
-The turbulence was simulated on a cubic grid using $64^3$ ,$96^3$, $128^3$ and $256^3$ grid points. As a consequence of grid refinement the first three cases were simulated using LES, 
-the case in which $256^3$ cells were used is carried out as DNS. Further information can be gained by looking at \cite[p. 344-357 for DNS and p. 558-639 for LES]{turbulentFlows}.
+The turbulent flow was simulated on a cartesian grid of a cubic domain using $64^3$, $96^3$, $128^3$ and $256^3$ grid points. As a consequence of missing smaller scales and therefore the utilization of a subgrid-scale model the first three cases were simulated using LES. The $256^3$-case is capable of portraying these, it is therefore a direct numerical simulation. 
 \begin{figure}[h]
 	\centering
   \includegraphics[width=0.9\textwidth]{./Abbildungen/256/kineticEnergy_time.pdf}
@@ -459,13 +458,13 @@ It can be seen in figure \ref{kineticEnergy_time_128} that the decay in kinetic 
     \centering
     \begin{minipage}{.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./Abbildungen/128/der(kineticEnergy)_time.pdf}
+        \includegraphics[width=\linewidth]{./Abbildungen/256/der(kineticEnergy)_time.pdf}
         \caption{Change in kinetic energy over eddy turnover times}
         \label{der(kineticEnergy)_time_128}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./Abbildungen/128/coupling_time.pdf}
+        \includegraphics[width=\linewidth]{./Abbildungen/256/coupling_time.pdf}
         \caption{Coupling rate over eddy turnover times}
         \label{coupling_time_128}
     \end{minipage}
