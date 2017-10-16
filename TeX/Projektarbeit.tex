@@ -145,48 +145,40 @@ In the following the deviations caused by using this method are determined and t
 >>>>>>> 4113d64895656e6ba27b195eb1861d9a73879796
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
 \pagebreak
-\section{Mathematical models}
-\subsection{Single-phase flow} %Christian
-In this section the mathematical basics for understanding and simulating turbulent flows are discussed. However, it should be pointed out that this is no
-complete treatise of the mathematical and physical basics. The reader can achieve further insight on this topic by considering different books and papers, 
-e.g. \cite{turbulentFlows}.
-\newline
-\subsubsection{The Navier-Stokes equations}
-The Navier-Stokes equations are of great importance for understanding turbulent phenomena. This set of equations exists in forms for compressible and
-incompressible fluids. For an infinitesimal small volume element $ \mathrm{d} \tau $ and using the cartesian coordinate system, 
-they can be written in the so-called 'divergence form':
+\section{Mathematical models}%Einleitung unbedingt noch bearbeiten! 2017-10-16
+\subsection{Single phase flow} %Christian
+In this section, the mathematical models are introduced, which describe turbulent flows. For a more detailed description, see e.g. \cite{turbulentFlows}.
+\newline%"Here should be a description what will follow, and the general structure of the chapter."
+\subsubsection{Equations governing the fluid phase}
+The conservation of mass, momentum and energy for a control volume reads
 \nomenclature[o]{$\vec\nabla$}{Nabla operator} %Erstellt automatisch die Nomenclature-Liste
 \nomenclature[rQ]{$\vec{Q}$}{Vector of conservative Eulerian variables}
 \nomenclature[rH]{$\vec{\bar{H}}$}{Flux tensor}
 \begin{equation}
-  \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{\bar{H}} = 0.
+ \int\limits_V \frac{\partial{\vec{Q}}}{\partial{t}} \, \mathrm{d} V+ \int\limits_{\partial{V}} \vec{\bar{H}} \cdot \vec{n} \, \mathrm{d} A = \vec0
 \end{equation}
-The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the fluid density $ \rho $, 
-the fluid velocity $ \vec{u} $ and the specific inner energy $ E $: 
+with time $t$ and the flux tensor $ \vec{\bar{H}} $.
+The vector $ \vec{Q} $ contains the variables fluid density $ \rho $, 
+fluid velocity $ \vec{u} $ and specific inner energy $ E $: 
 \nomenclature[gr]{$\rho$}{Fluid density}
 \nomenclature[ru]{$\vec{u}$}{Fluid velocity}
 \nomenclature[rE]{$E$}{Specific inner energy}
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
 \end{equation}
-$ \vec{\bar{H}} $ is the flux vector which stores all the floating variables and may be split up into two parts:
+$ \vec{\bar{H}} $ is the flux tensor which contains the inviscid and viscous flux, i.e.:
 \nomenclature[rHi]{$\vec{\bar{H}^\mathrm{i}}$}{Inviscid part of the flux tensor}
-\nomenclature[rHv]{$\vec{\bar{H}^\mathrm{v}}$}{Viscous part of the flux tensor} 
-\begin{equation}
- \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}}.
-\end{equation}
-The contents of the two vectors are displayed below:
+\nomenclature[rHv]{$\vec{\bar{H}^\mathrm{v}}$}{Viscous part of the flux tensor}
 \nomenclature[rp]{$p$}{Pressure}
 \nomenclature[rRe]{$Re$}{Reynolds number}
 \nomenclature[gt]{$\matrix{\bar{\tau}}$}{Stress tensor}
 \nomenclature[rq]{$\vec{q}$}{Heat conduction vector}
 \begin{equation}
- \vec{\bar{H}^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right),
-\end{equation}
-\begin{equation}
- \vec{\bar{H}^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right).
-\end{equation}
-$ \vec{\bar{H}^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
+ \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}} = 
+ \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right) - 
+ \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right)
+\end{equation} %hier weiter Julian 2017-10-16
+$ \vec{\bar{H}^\mathrm{i}} $ contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
 with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{\bar{H}^\mathrm{v}} $ represents the effects of viscosity only. The Reynolds number 
 $ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
 fact that two familiar objects with the same Reynolds number behave similar in flows.
