@@ -108,7 +108,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 	\label{introuction_picture}
 \end{figure}
 This work deals with the effects of particles on the flow conditions of isotropic turbulent flows.
-There are many examples of these particle laden turbulent flows in nature, e.g. in volcanic eruptions and in the "white water" of breaking waves.
+There are many examples of these particle-laden turbulent flows in nature, e.g. in volcanic eruptions and in the "white water" of breaking waves.
 \newline
 Multiphase flows also occur in many technical applications. Spray automization in fuel injectors, cyclonic particle separation in oil refineries and sediment accumulation in pipelines are just three of many cases, where it is of huge interest to predict the influence of particles on the turbulence of the flow.
 Of major industrial interest are the fuel dispersion and combustion in an petrol-powered engine. To get a homogeneous and fast combustion, both should take place at turbulent flow conditions. One could say it is an important question, in which way and intensity the particles influence the turbulence.
@@ -116,12 +116,12 @@ Of major industrial interest are the fuel dispersion and combustion in an petrol
 Another important example is an fluidized bed. This is an application to realize an effective suspension and combustion of fluid particles in a vessel. The particles, which are at the bottom of the vessel, are suspended by a fluid, in most cases a gas, that streams from beyond the particles threw the porous bottom, if the force, which is exerted by the pressure on the particles' surface,  is larger than the gravity of the particles. While this happens the fluid suspends the particles and the contact between fluid and particles is very intimate, which facilitates for example the combustion of material with a low caloric content, the in situ absorption of the pollutants deriving from the combustion and the action of a catalyst. This process aims to produce a suspension with less heterogeneous regions, what means bubbles with a much smaller concentration of particles. Hence turbulence is a very important requirement to produce a homogeneous fluid stream for effective and complete combustion.
 \newline
 In this work the influence of the particles on the streaming conditions is presented by using DNS and LES simulations. The focus lies on analyzing the energy transfer between particles and fluid as well as the intensity of the decrease of turbulent kinetic energy in the fluid.  
-At the beginning some mathematical background information about modeling turbulent single phase and particle laden flows are given. 
-Additionally the Navier-Stokes equations and the different scales of turbulent motion are presented as an approach to modelling turbulence. For particle laden flows the equations of motion are expanded by a new term that describes the forces acting between fluid and particles. 
+At the beginning some mathematical background information about modeling turbulent single phase and particle-laden flows are given. 
+Additionally the Navier-Stokes equations and the different scales of turbulent motion are presented as an approach to modelling turbulence. For particle-laden flows the equations of motion are expanded by a new term that describes the forces acting between fluid and particles. 
 Also the coupling rate that describes the exchanged energy and the computational basics of methods used in this work are introduced. 
 According to the computational basics the simulation methods DNS and LES, how they work and in which case which one is used is explained.
 Then the used discretization method to integrate the particle tracking equations, which is a predictor-corrector-scheme, is described.     
-Finally the computational method 'particle clustering' is introduced. This approach aims to decrease the computational effort of particle laden simulations. It works the following way: the particles are coupled to clusters and each cluster is considered as one particle.
+Finally the computational method 'particle clustering' is introduced. This approach aims to decrease the computational effort of particle-laden simulations. It works the following way: the particles are coupled to clusters and each cluster is considered as one particle.
 \newline
 In the following the deviations caused by using this method are determined and the applicability is evaluated. Therefore the influence of the number of particles per cluster on the accuracy of the plots of the turbulent kinetic energy and the exchanged energy between particles and fluid per time is identified.
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
@@ -258,26 +258,20 @@ Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 Together, these scales form a powerful tool to understand, compute and describe turbulent flows. 
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
+This work deals with particle-laden fluids, therefore the interaction between particles and the carrier fluid needs to be considered in the equation of motion. The phenomenon described in this study is called two-way-coupling. This chapter is based on the thesis of Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
 \newline
-In this context small and heavy rigid particles with a spherical shape are considered. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from Maxey and Riley \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
+In this context small and heavy rigid particles with a spherical shape are regarded. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from Maxey and Riley \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their diameter $ d_\mathrm{p} $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 \newline
-Due to the small particle concentration, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
+Due to the small particle concentration, a popular method to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
 \newline
-At describing the motion of the particles in the following the fact that we deal with gas-solid flows is an advantage, since several simplifications can be made.
-\newline
-First the perspective is taken on the influence of the particles on the carrier fluid. Here the assumptions that the fluid is incompressible and that there is no mass exchange over the particle surface are used. In addition to this the gravity is neglected in the used simulations.
-Hence the continuity equation becomes
-\begin{equation}
-\vec{\nabla} \cdot\vec{u} = 0.
-\end{equation}
-After including all the simplifications mentioned before, the Navier-Stokes equations - described in chapter 1 - become
+The assumptions that the fluid is incompressible and that mass exchange over the particle surface as well as gravity are negligible are used. 
+After including all the simplifications mentioned before, the Navier-Stokes equations for the carrier fluid - described in chapter 1 - become
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
 \nomenclature[rF]{$\vec{F}$}{Force per unitary volume of the particle acting on the fluid}
 The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unitary volume on the fluid.
-$\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
+$\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $\vec{x}_\mathrm{p}^\mathrm{n}$ of each particle:
 \nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
 \vec{F} = \sum \limits_{n=1}^{N_\mathrm{p}} \vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})\delta(\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}).
@@ -302,7 +296,7 @@ As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could b
 \nomenclature[rfh]{$\vec{f}_\mathrm{h}$}{History force}
 \nomenclature[rRep]{$Re_\mathrm{p}$}{Particle Reynolds number}
 \begin{equation} \label{navier_stokes_particle}
-m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}+\rho \mathrm{v}_\mathrm{p}\biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}- \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
+m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}+\rho \mathrm{v}_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
 \end{equation}
 Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
 \begin{equation}
@@ -325,9 +319,9 @@ The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that resul
 \vec{f}_\mathrm{h} = \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).  
 \end{equation}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
-In this case of gas-solid suspensions several simplifications could be made.
+In this case of gas-solid suspensions several simplifications could be made, because of the density ratio $\rho_\mathrm{p}/\rho >> 1$.
 \newline
-In the following the fact that the added mass force, the lift force and the history force are negligible small compared to the drag force is shown using a rough approximation.
+In the following the fact that the added mass force, the lift force and the history force are negligible small compared to the drag force is shown.
 Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows} show that the added mass force is much smaller than the drag force for all density ratios and that ratios among the forces and the Stokes drag decrease with rising particle density.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relaxation time of the order of $\tau$ results in
 \begin{equation}
@@ -341,7 +335,7 @@ For the lift force the situation is similar, because it is also proportional to 
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
 Due to these assumptions (\ref{navier_stokes_particle}) becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}+\vec{f}_\mathrm{d}^\mathrm{n}.
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \vec{f}_\mathrm{d}^\mathrm{n}.
 \end{equation}
 This equation can be rewritten with help of the relaxation time $\tau_\mathrm{p}$, which physically represents the time scale over which the drag force decreases the particle's relative velocity to zero. At one point in the fluid with the proportionality 
 \begin{equation}
@@ -354,11 +348,11 @@ it follows the equation for the relaxation time
 where $v_\mathrm{r}^\mathrm{n}$ is the relative velocity. 
 With equation (\ref{C_d}) and the Reynolds number in relation to the particles $Re_\mathrm{p}^\mathrm{n}=\frac{v_\mathrm{r}^\mathrm{n}d_\mathrm{p}}{\nu}$, with the particle diameter $d_\mathrm{p}$ it follows:
 \begin{equation}
-\tau_\mathrm{p}^\mathrm{n} = \frac{\rho_\mathrm{p}}{p}\frac{d_\mathrm{p}^2}{18\nu}\frac{1}{1+0.15Re_\mathrm{p}^\mathrm{n^\mathrm{0.687}}}.
+\tau_\mathrm{p}^\mathrm{n} = \frac{\rho_\mathrm{p}}{\rho}\frac{d_\mathrm{p}^2}{18\nu}\frac{1}{1+0.15Re_\mathrm{p}^\mathrm{n^\mathrm{0.687}}}.
 \end{equation} 
 Then the equation of motion of the particles becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = -\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
 \nomenclature[gtps]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
@@ -372,11 +366,11 @@ Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_
 \end{equation}
 with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
 \newline
-The coupling rate $\psi$, that describes the transferred Energy per time between particles and fluid, is defined as
+The coupling rate $\psi$, that describes the transferred energy per time between particles and fluid, is defined as
 \nomenclature[rt*]{$t^*$}{Time normalized by the initial eddy turnover time}
 \nomenclature[gx]{$\psi$}{Coupling rate}
 \begin{equation}
-\psi = \vec{F} \vec{u}. 
+\psi = \vec{F} \cdot \vec{u}. 
 \end{equation}
 Hence it results from the force per unitary volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe how much the main fluid and the particles influence each other.
