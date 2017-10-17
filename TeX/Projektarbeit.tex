@@ -136,38 +136,42 @@ e.g. \cite{turbulentFlows}.
 The Navier-Stokes equations are of great importance for understanding turbulent phenomena. This set of equations exists in forms for compressible and
 incompressible fluids. For an infinitesimal small volume element $ \mathrm{d} \tau $ and using the cartesian coordinate system, 
 they can be written in the so-called 'divergence form':
+=======
+\section{Mathematical models}%Einleitung unbedingt noch bearbeiten! 2017-10-16
+\subsection{Single phase flow} %Christian
+In this section, the mathematical models are introduced, which describe turbulent flows. For a more detailed description, see e.g. \cite{turbulentFlows}.
+\newline%"Here should be a description what will follow, and the general structure of the chapter."
+\subsubsection{Equations governing the fluid phase}
+The conservation of mass, momentum and energy for a control volume reads
+>>>>>>> ede43e304ccababe981fce73602ed68e36dbde22
 \nomenclature[o]{$\vec\nabla$}{Nabla operator} %Erstellt automatisch die Nomenclature-Liste
 \nomenclature[rQ]{$\vec{Q}$}{Vector of conservative Eulerian variables}
 \nomenclature[rH]{$\vec{\bar{H}}$}{Flux tensor}
 \begin{equation}
-  \frac{\partial{\vec{Q}}}{\partial{t}} + \vec\nabla \vec{\bar{H}} = 0.
+ \int\limits_V \frac{\partial{\vec{Q}}}{\partial{t}} \, \mathrm{d} V+ \int\limits_{\partial{V}} \vec{\bar{H}} \cdot \vec{n} \, \mathrm{d} A = \vec0
 \end{equation}
-The vector $ \vec{Q} $ contains all the variables which are conserved, i.e. the fluid density $ \rho $, 
-the fluid velocity $ \vec{u} $ and the specific inner energy $ E $: 
+with time $t$ and the flux tensor $ \vec{\bar{H}} $.
+The vector $ \vec{Q} $ contains the variables fluid density $ \rho $, 
+fluid velocity $ \vec{u} $ and specific inner energy $ E $: 
 \nomenclature[gr]{$\rho$}{Fluid density}
 \nomenclature[ru]{$\vec{u}$}{Fluid velocity}
 \nomenclature[rE]{$E$}{Specific inner energy}
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
 \end{equation}
-$ \vec{\bar{H}} $ is the flux vector which stores all the floating variables and may be split up into two parts:
+$ \vec{\bar{H}} $ is the flux tensor which contains the inviscid and viscous flux, i.e.:
 \nomenclature[rHi]{$\vec{\bar{H}^\mathrm{i}}$}{Inviscid part of the flux tensor}
-\nomenclature[rHv]{$\vec{\bar{H}^\mathrm{v}}$}{Viscous part of the flux tensor} 
-\begin{equation}
- \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}}.
-\end{equation}
-The contents of the two vectors are displayed below:
+\nomenclature[rHv]{$\vec{\bar{H}^\mathrm{v}}$}{Viscous part of the flux tensor}
 \nomenclature[rp]{$p$}{Pressure}
 \nomenclature[rRe]{$Re$}{Reynolds number}
 \nomenclature[gt]{$\matrix{\bar{\tau}}$}{Stress tensor}
 \nomenclature[rq]{$\vec{q}$}{Heat conduction vector}
 \begin{equation}
- \vec{\bar{H}^\mathrm{i}} = \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right),
-\end{equation}
-\begin{equation}
- \vec{\bar{H}^\mathrm{v}} = - \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right).
-\end{equation}
-$ \vec{\bar{H}^\mathrm{i}} $ is called inviscid flux and contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
+ \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}} = 
+ \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right) - 
+ \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right)
+\end{equation} %hier weiter Julian 2017-10-16
+$ \vec{\bar{H}^\mathrm{i}} $ contains only the variables that are independent of the fluids viscosity, it describes the way a fluid 
 with a viscosity of zero would behave. In contrast, the viscous flux $ \vec{\bar{H}^\mathrm{v}} $ represents the effects of viscosity only. The Reynolds number 
 $ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia to tenacity, which makes it very valuable for understanding turbulent flows. This is also due to the 
 fact that two familiar objects with the same Reynolds number behave similar in flows.
@@ -255,26 +259,20 @@ Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 \end{equation}
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-This work deals with particle laden fluids, therefore the impact of them on the flow behavior of the fluid needs to be described. The phenomenon described in this script is called two-way-coupling. This chapter is based on Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
+This work deals with particle-laden fluids, therefore the interaction between particles and the carrier fluid needs to be considered in the equation of motion. The phenomenon described in this study is called two-way-coupling. This chapter is based on the thesis of Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
 \newline
-In this context small and heavy rigid particles with a spherical shape are considered. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from Maxey and Riley \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their radius $ r_p $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
+In this context small and heavy rigid particles with a spherical shape are regarded. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from Maxey and Riley \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their diameter $ d_\mathrm{p} $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 \newline
-Due to the small particle concentration, the best and most common way to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
+Due to the small particle concentration, a popular method to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
 \newline
-At describing the motion of the particles in the following the fact that we deal with gas-solid flows is an advantage, since several simplifications can be made.
-\newline
-First the perspective is taken on the influence of the particles on the carrier fluid. Here the assumptions that the fluid is incompressible and that there is no mass exchange over the particle surface are used. In addition to this the gravity is neglected in the used simulations.
-Hence the continuity equation becomes
-\begin{equation}
-\vec{\nabla} \cdot\vec{u} = 0.
-\end{equation}
-After including all the simplifications mentioned before, the Navier-Stokes equations - described in chapter 1 - become
+The assumptions that the fluid is incompressible and that mass exchange over the particle surface as well as gravity are negligible are used. 
+After including all the simplifications mentioned before, the Navier-Stokes equations for the carrier fluid - described in chapter 1 - become
 \begin{equation}
 \rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
 \end{equation}
 \nomenclature[rF]{$\vec{F}$}{Force per unitary volume of the particle acting on the fluid}
 The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unitary volume on the fluid.
-$\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $x_p^n$ of each particle:
+$\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $\vec{x}_\mathrm{p}^\mathrm{n}$ of each particle:
 \nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
 \vec{F} = \sum \limits_{n=1}^{N_\mathrm{p}} \vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})\delta(\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}).
@@ -299,7 +297,7 @@ As already mentioned $\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})$ could b
 \nomenclature[rfh]{$\vec{f}_\mathrm{h}$}{History force}
 \nomenclature[rRep]{$Re_\mathrm{p}$}{Particle Reynolds number}
 \begin{equation} \label{navier_stokes_particle}
-m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}+\rho \mathrm{v}_\mathrm{p}\biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}- \biggl)+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
+m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = m_\mathrm{p}+\rho \mathrm{v}_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}+\vec{f}_\mathrm{d}+\vec{f}_\mathrm{l}+\vec{f}_\mathrm{a}+\vec{f}_\mathrm{h}+\vec{f}_\mathrm{additional}
 \end{equation}
 Here $\vec{f}_\mathrm{d}$ represents the hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}} $:
 \begin{equation}
@@ -322,9 +320,9 @@ The history force $\vec{f}_\mathrm{h}$ takes diffusion and convection that resul
 \vec{f}_\mathrm{h} = \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).  
 \end{equation}
 The last term $\vec{f}_\mathrm{additional}$ is attached for the case that we have to take other forces like electrostatic interactions into account.
-In this case of gas-solid suspensions several simplifications could be made.
+In this case of gas-solid suspensions several simplifications could be made, because of the density ratio $\rho_\mathrm{p}/\rho >> 1$.
 \newline
-In the following the fact that the added mass force, the lift force and the history force are negligible small compared to the drag force is shown using a rough approximation.
+In the following the fact that the added mass force, the lift force and the history force are negligible small compared to the drag force is shown.
 Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows} show that the added mass force is much smaller than the drag force for all density ratios and that ratios among the forces and the Stokes drag decrease with rising particle density.
 The relation of the history force and the added mass force with the assumption of comparable accelerations, with the relaxation time of the order of $\tau$ results in
 \begin{equation}
@@ -338,7 +336,7 @@ For the lift force the situation is similar, because it is also proportional to 
 It shows that the particle motion is only depending on the the hydrodynamical drag force which results from the actual difference between the fluid velocity $\vec{u}(\vec{x}_\mathrm{p})$ at particle position $\vec{x}_\mathrm{p}$ and the particle velocity $\vec{v}_\mathrm{p}$.
 Due to these assumptions (\ref{navier_stokes_particle}) becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}+\vec{f}_\mathrm{d}^\mathrm{n}.
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \vec{f}_\mathrm{d}^\mathrm{n}.
 \end{equation}
 This equation can be rewritten with help of the relaxation time $\tau_\mathrm{p}$, which physically represents the time scale over which the drag force decreases the particle's relative velocity to zero. At one point in the fluid with the proportionality 
 \begin{equation}
@@ -351,11 +349,11 @@ it follows the equation for the relaxation time
 where $v_\mathrm{r}^\mathrm{n}$ is the relative velocity. 
 With equation (\ref{C_d}) and the Reynolds number in relation to the particles $Re_\mathrm{p}^\mathrm{n}=\frac{v_\mathrm{r}^\mathrm{n}d_\mathrm{p}}{\nu}$, with the particle diameter $d_\mathrm{p}$ it follows:
 \begin{equation}
-\tau_\mathrm{p}^\mathrm{n} = \frac{\rho_\mathrm{p}}{p}\frac{d_\mathrm{p}^2}{18\nu}\frac{1}{1+0.15Re_\mathrm{p}^\mathrm{n^\mathrm{0.687}}}.
+\tau_\mathrm{p}^\mathrm{n} = \frac{\rho_\mathrm{p}}{\rho}\frac{d_\mathrm{p}^2}{18\nu}\frac{1}{1+0.15Re_\mathrm{p}^\mathrm{n^\mathrm{0.687}}}.
 \end{equation} 
 Then the equation of motion of the particles becomes
 \begin{equation}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \rho_\mathrm{p}-\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
+\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = -\rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}^\mathrm{n}-\vec{u}^\mathrm{n}}{\tau_\mathrm{p}^\mathrm{n}}.
 \end{equation}
 Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_\mathrm{p}}{\rho}$, that is the particle response time at resting fluid conditions, there finally exists another form of this equation 
 \nomenclature[gtps]{$\tau_\mathrm{ps}$}{Stokes relaxation time}
@@ -369,11 +367,11 @@ Using the Stokes response time $\tau_\mathrm{ps} =\frac{d^2}{18 \nu} \frac{\rho_
 \end{equation}
 with $f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{n^{0.687}}$, which is a correction factor describing the flow conditions and not the drag force mentioned before.
 \newline
-The coupling rate $\psi$, that describes the transferred Energy per time between particles and fluid, is defined as
+The coupling rate $\psi$, that describes the transferred energy per time between particles and fluid, is defined as
 \nomenclature[rt*]{$t^*$}{Time normalized by the initial eddy turnover time}
 \nomenclature[gx]{$\psi$}{Coupling rate}
 \begin{equation}
-\psi = \vec{F} \vec{u}. 
+\psi = \vec{F} \cdot \vec{u}. 
 \end{equation}
 Hence it results from the force per unitary volume exerted between the fluid and the particles and the main velocity of the fluid.
 It is an useful variable to describe how much the main fluid and the particles influence each other.
