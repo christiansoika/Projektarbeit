@@ -144,6 +144,9 @@ Finally the computational method 'particle clustering' is introduced.
 In the following the deviations caused by using this method are determined and the applicability is evaluated.
 >>>>>>> 4113d64895656e6ba27b195eb1861d9a73879796
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
+
+-Due to the small particle concentration, a popular method to describe these flows is the point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy.
+
 \pagebreak
 \section{Mathematical models}
 \subsection{Single-phase flow} %Christian
@@ -274,33 +277,49 @@ Re_\mathrm{\lambda} = \frac{|\vec{v'}| \lambda}{\nu}.
 \end{equation}
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-This work deals with particle-laden fluids, therefore the interaction between particles and the carrier fluid needs to be considered in the equation of motion. The phenomenon described in this study is called two-way-coupling. This chapter is based on the thesis of Prosperetti and Tryggvason \cite{computationalMethodsforMultiphaseFlow}.
+This work deals with particle-laden fluids, therefore the interaction between particles and the carrier fluid needs to be considered in the equation of motion. The phenomenon described in this study is called two-way-coupling. This chapter is based on \cite{computationalMethodsforMultiphaseFlow}.
 \newline
-In this context small and heavy rigid particles with a spherical shape are regarded. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from Maxey and Riley \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their diameter $ d_\mathrm{p} $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
+In this thesis, small and heavy rigid particles with a spherical shape are regarded. The basic equation of motion for this case is the Maxey Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}. Their diameter $ d_\mathrm{p} $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
 \newline
-Due to the small particle concentration, a popular method to describe these flows is the point particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle-particle interactions and particle-wall interactions are neglected.  
+Due to the small particle concentration, a popular method to describe these flows is the point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle collision are neglected.
 \newline
 The assumptions that the fluid is incompressible and that mass exchange over the particle surface as well as gravity are negligible are used. 
-After including all the simplifications mentioned before, the Navier-Stokes equations for the carrier fluid - described in chapter 1 - become
-\begin{equation}
-\rho\biggl(\frac{\partial{\vec{u}}}{\partial{t}}+\vec{\nabla} \cdot (\vec{u}\vec{u})\biggl) = -\vec{\nabla}p + \mu\nabla^\mathrm{2}\vec{u}-\vec{F}.
-\end{equation}
-\nomenclature[rF]{$\vec{F}$}{Force per unitary volume of the particle acting on the fluid}
-The influence of the particles on the fluid is represented by the new term $\vec{F}$, wich describes the force per unitary volume on the fluid.
-$\vec{F}$ could be approximated by a superposition of Dirac's delta functions over all particles, centered at the location $\vec{x}_\mathrm{p}^\mathrm{n}$ of each particle:
+After including all the simplifications mentioned before, the Navier-Stokes equation for the carrier fluid "Gleichung xy " - described in chapter 1 - is extended by the force $\vec{F}$ that acts on the ambient cells with different intensity regarding on the distance between these cells and the particle:
+\nomenclature[rF]{$\vec{F}$}{Force per unit volume of the particle acting on the fluid}
 \nomenclature[rfn]{$\vec{f}^\mathrm{n}$}{Sum of forces acting on the fluid}
 \begin{equation}
-\vec{F} = \sum \limits_{n=1}^{N_\mathrm{p}} \vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})\delta(\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}).
+\vec{F} = \vec{F}_\mathrm{pp} \cdot \frac{\mathrm{e}^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2})\big)}}{\sum \limits_{i} e^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2}) \big)}},
 \end{equation}
-$\vec{x}_\mathrm{p}^\mathrm{n} $ is the position of the n-th particle and results from the kinematic equation 
+with the distance between particle postion and midpoint of the cell $d_\mathrm{i}$, the length of the cells $\Delta$ and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells.
+$\vec{F}_\mathrm{pp}$ is the sum of pressure and shear forces acting on the particles and is described explicit in the Maxey Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
+Reduced to the governing forces acting on the particles the equation of motion for the particles becomes
+\begin{multline} \label{navier_stokes_particle}
+\\ m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} =\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t} -\frac{3}{4}\rho \mathrm{v}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})+ \frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl) + 
+\\ \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).
+\end{multline}
+The individual forces on the right hand side are stated in the following:
+\newline
+\begin{itemize} 
+\item  $\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}$: 
+
+\item  $-\frac{3}{4}\rho \mathrm{v}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-    \vec{u}|(\vec{v}_\mathrm{p}-\vec{u})$:
+hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}}$ defined by Schiller and Naumann as
+\begin{equation} \label{C_d}
+C_\mathrm{d} = \frac{24}{Re_\mathrm{p}}(1+0.15Re_\mathrm{p}^\mathrm{0.687}).
+\end{equation} 
+\item $\frac{1}{2}\rho \mathrm{v}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)$:
+added mass force, that represents the influence of the fluid's inertia that has an impact on the particle, if it has a different acceleration than the mean flow.
+\item $\frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl) $: 
+The history force takes diffusion and convection into account that results from the vortices behind the particles 
+\end{itemize}
+ 
+
+The kinematic equation of a particle is  
 \begin{equation}
  \frac{\mathrm{d}\vec{x}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \vec{v}_\mathrm{p}^\mathrm{n},
 \end{equation}
 with $\vec{v}_{\mathrm{p}}^\mathrm{n}$ being the velocity of the n-th particle.
-\newline
-$\vec{f}^\mathrm{n}$ is the sum of forces acting between fluid and particles. The delta function results in one if $\vec{x}-\vec{x}_\mathrm{p}^\mathrm{n}$ becomes zero and otherwise it is zero. By this means, the coupling forces act at the position of each particle on the fluid. 
-\newline
-Also it plays an important role in the equation of motion of the particles:
+
 \nomenclature[rv]{$\mathrm{V}_\mathrm{p}$}{Particle volume}
 \begin{equation}
 \mathrm{v}_\mathrm{p} \rho_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}^\mathrm{n}}{\mathrm{d}t} = \mathrm{v}_\mathrm{p} \rho_\mathrm{p}+\vec{f}^\mathrm{n}(\vec{x}_\mathrm{p}^\mathrm{n})
