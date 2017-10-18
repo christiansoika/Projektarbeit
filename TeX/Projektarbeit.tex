@@ -509,71 +509,95 @@ The normalized difference in kinetic energy $E_\mathrm{kB}$ of the particles and
 5. Ungenauigkeits-Plot
 \newline
 \begin{figure}[h]
-	\centering
-  \includegraphics[width=\textwidth]{./../Simulationsergebnisse/variationPartikelAnzahl/128/kineticEnergy_numberOfParticles.pdf}
-	\caption{Results for initializing different numbers of particles}
-	\label{kineticEnergy_numberOfParticles}
-\end{figure}
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+ 	   \includegraphics[width=\linewidth]{./Abbildungen/kineticEnergy_numberOfParticles.pdf}
+	   \caption{???}
+	\label{kineticEnergy_numberofparticles}
+    \end{minipage}%
+        \begin{minipage}{0.5\textwidth}
+        \centering
+       % \begin{table}[h]
+	%\begin{center}
+	\begin{tabular}{l l | c c c c c c }
+	$\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
+	\hline
+	\hline
+	1 & & 0.97& 0.039 & 0.0032 & 38.73 &\\
+	10 & & 2.08 & 0.028 & 0.0026 & 28.66 &\\
+	50 & & 3.51 & 0.024 & 0.0023 & 27.31 &\\
+	100 & & 3.51 & 0.025 & 0.0023 & 29.42 &\\
+	\hline
+	\end{tabular}
+	%\caption{Variables of the first set of simulations one turnover time after injection for the $256^3$-case}
+	\label{table_values}
+	%\end{center}
+	%\end{table}
+    \end{minipage}
+    \end{figure}
 \newline
 6. Plots von Ek und dE
 \newline
 \begin{figure}[h]
     \centering
-    \begin{minipage}{.5\textwidth}
-        \centering
- 	   \includegraphics[width=0.9\textwidth]{./Abbildungen/256/kineticEnergy_time.pdf}
-	   \caption{Kinetic energy $E_\mathrm{k}$ normalized by initial value of particle-free case $E_  \mathrm{k,0}$ as a function of time normalized by initial eddy turnover time for different numbers of clustered particles with fixed all-over particle number. The injection time is marked by $t_\mathrm{inj}$, particle-free case by (s.p.), particle-laden cases by (p.l.) enhanced with number of grid points and ratio of physical to computational particles $\lambda_\mathrm{c}$. A faster dissipation of turbulent kinetic energy can be seen for particle-laden cases in regard to the particle-free case due to additional dissipation induced by the particle-load.}
-	\label{kineticEnergy_time_128}
-    \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{./Abbildungen/256/coupling_time.pdf}
-        \caption{Coupling rate normalized by referencial dissipation over time normalized by inital eddy turnover time: Higher coupling rates can be observed for smaller numbers of clustered particles. Both highly-clustered cases with 50 and 100 particles per cluster show anomalies.}
-        \label{coupling_time_128}
+ 	   \includegraphics[width=\linewidth]{./Abbildungen/256/kineticEnergy_time.pdf}
+	   \caption{???}
+	\label{kineticEnergy_time_128}
+    \end{minipage}%
+\begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/256/der(kineticEnergy)_time.pdf}
+        \caption{???}
+        \label{der_kineticEnergy_256}
     \end{minipage}
 \end{figure}
 \newline
-7. Plot für Dissipation
+7. Plot für Dissipation und Coupling Rate
 \newline
 \begin{figure}[h]
     \centering
-    \begin{minipage}{.5\textwidth}
-        
+    \begin{minipage}{0.5\textwidth}
+         \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/256/diss_time.pdf}
+        \caption{???}
+        \label{diss_time_256}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/coupling_time.pdf}
-        \caption{Coupling rate normalized by referencial dissipation over time normalized by inital eddy turnover time: Higher coupling rates can be observed for smaller numbers of clustered particles. Both highly-clustered cases with 50 and 100 particles per cluster show anomalies.}
-        \label{coupling_time_128}
+        \caption{???}
+        \label{coupling_time_256}
     \end{minipage}
 \end{figure}
 \newline
 8. Table mit Werten von 256-Simulation
 \newline
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{l l | c c c c c c }
-$\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
-\hline
-\hline
-1 & & 0.97& 0.039 & 0.0032 & 38.73 &\\
-10 & & 2.08 & 0.028 & 0.0026 & 28.66 &\\
-50 & & 3.51 & 0.024 & 0.0023 & 27.31 &\\
-100 & & 3.51 & 0.025 & 0.0023 & 29.42 &\\
-\hline
-\end{tabular}
-\caption{Variables of the first set of simulations one turnover time after injection for the $256^3$-case}
-\label{table_properties}
-\end{center}
-\end{table}
 \newline
-9.Vergleich DNS <-> LES (Plot)
+9.Plot fuer kinetische Energie der Partikel und Vergleichsplot DNS <-> LES (Coupling Rate)
+\newline
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{.5\textwidth}
+         \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/256/particlekineticenergy_time.pdf}
+        \caption{???}
+        \label{particlekineticenergy_time_256}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/vergleich_coupling_time.pdf}
+        \caption{???}
+        \label{vergleich_coupling_time_256}
+    \end{minipage}
+\end{figure}
+\newline
+11. Erklärung aller Plots mittels kinetic energy budget
 \newline
 \newline
-10. Erklärung aller Plots mittels kinetic energy budget
-\newline
-\newline
-11. Computational savings
+12. Computational savings
 \pagebreak
 \section{Conclusion and outlook}
 In this work, two sets of simulations were carried out to evaluate a method for lowering computational effort. 
