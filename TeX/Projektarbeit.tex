@@ -469,7 +469,6 @@ The turbulence was initialized using a seed-based random generator. To achieve p
 at which a restart file was written out. This procedure ensures a fully developed turbulent 
 flow, which has emancipated from the initialization. In this flow field, a specific number of spherical point-particles were injected. 
 \newline
-The ratio of the densities for this set of simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was set to match $d_\mathrm{p} \approx 0.6 \eta$. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. In all of these simulations the volume and mass fractions $\phi_\mathrm{v}$ and $\phi_\mathrm{m}$ were constant ($\phi_\mathrm{v}= 10^{-3}$, $\phi_\mathrm{m}=1$). 
 \newline
 With the aim of more efficient computational effort for simulating the particle-laden flow while still achieving high quality results, a clustering of particles was implemented. For this purpose, the variable $\lambda_\mathrm{c}$ was introduced to the code describing the number of particles in one cluster, leading to the results at hand. The simulations were then set up with the overall same number of  a million particles, altering just the number of particles in one cluster. These simulations result in the graphs included in this work. 
 It can be seen in Fig. \ref{kineticEnergy_time_128} that the decay in kinetic energy from the starting point depends highly on the number of clustered particles.
@@ -496,9 +495,11 @@ The normalized difference in kinetic energy $E_\mathrm{kB}$ of the particles and
 \section{Neufassung Results}
 1. Simulation Properties \& Assumptions
 \newline
+In this section the results of the performed simulation will be pointed out with special emphasis on turbulent kinetic energy budgets and their influence on particle-laden turbulent flows.
 \newline
-2. Vorgehensweise bei Simulationen
+All cases were simulated on a cubic domain and a cartesian grid using multiple grid refinement levels, $64^3$, $96^3$ and $128^3$ representing the LES hence the need to model smaller scales with SGS-models is present. Due to higher grid refinement in the $256^3$-case, these smaller scales can be dreictly simulated and therefore this simulation is a DNS.
 \newline
+The particle-free case was initialized using a seed-based random generator. At $t^* \approx 0.27$ a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation including particle-load. Both these cases, DNSs of a single-phase and a particle-laden flow will used as reference for analyzing other results. Single-phase simulations will in the following be referred to as sP, and particle-laden ones as PP. The PP-simulation was set up to match the volume fraction $\phi_\mathrm{v}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=1$. Both were constant in all simulations regarding particle clustering. The ratio of the densities for this set of simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was set to match $d_\mathrm{p} \approx 0.6 \eta$. The injection of spherical point-particles was carried out interpolating the velocities of the surrounding fluid. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. 
 \newline
 3. Turbulent kinetic Energy budgets (Schneiders)
 \newline
