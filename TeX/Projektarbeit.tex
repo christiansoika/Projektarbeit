@@ -455,15 +455,6 @@ Simulating only the larger-scale motions is called filtering, which means that t
 The high number of point particles requires even more computational resources for the particle-laden simulations than for the single-phase simulations. The main idea to reduce this requirement is to create clusters of point particles. For this purpose the ratio $\lambda_\mathrm{c}$ of physical point particles $N_\mathrm{p}$ to computational point particles $N_\mathrm{c}$ is introduced ($\lambda_\mathrm{c} = \frac{N_\mathrm{p}}{N_\mathrm{c}}$). To compensate this lack of particles, the coupling force is multiplied by $\lambda_\mathrm{c}$, due to the $\lambda_\mathrm{c}$-fold mass of the (cluster-)particles.
 \pagebreak
 \section{Results}
-The results by Schneiders et al. \cite{Schneiders2017} show that for particles with constant diameter this point is reached later in time for more dense particles due to their inertia. It could be observed a similar effect with the simulation presented here: The more particles are summarized in one cluster, the later the balanced state of energy flow and dissipation is achieved. From this point on, the kinetic energy drops slower than in the particle-free case.
-\newline
-In difference to the others, the case in which many particles were clustered show a different behavior in this thesis. It catches up to the particle-free case very fast, which leads to the conclusion that the amount of clusters is so small that the flow almost behaves like one without particles. Additionally, the change in kinetic energy shows inconstancy which can also be traced back to the small number of clusters. The amount is just too small to achieve high-quality information in the statistical variables. 
-\newline
-The same impression can be achieved by analyzing the graphs describing the coupling rate (Fig. \ref{coupling_time_128}). The particle-laden case makes the biggest jump into negative coupling rate. The higher the number of clustered particles, the lower is the amount of the coupling rate. At high values for $\lambda_\mathrm{c}$ the simulations start to show remarkable differences. 
-
-
-\pagebreak
-\section{Neufassung Results}
 In this section the properties and results of the simulations that have been carried out will be presented. Special emphasis will be put on the turbulent kinetic energy budgets and their use to interpret the findings.
 \subsection{Simulation properties \& assumptions}
 In this section the results of the performed simulation will be pointed out with special emphasis on turbulent kinetic energy budgets and their influence on particle-laden turbulent flows.
@@ -505,7 +496,7 @@ In this equation, $\vec{\bar{\varepsilon}} (t)$ displays the dissipation rate of
 \end{equation}
 can be formulated using the velocity of the fluid $\vec{u}_\mathrm{p}$ at the particle position.
 \newline
-\subsection{Results}
+\subsection{Simulation results}
 \begin{figure}[h]
     \centering
     \begin{minipage}{0.5\textwidth}
@@ -553,19 +544,22 @@ The second set of simulations conducted in this work is set up to investigate th
     \end{minipage}
 \end{figure}
 \newline
-Being very similar in the time shortly after the injection, the flow statistics diverge for different $\lambda_\mathrm{c}$ when time passes by. The variables of these simulations one turnover time after the injection can be found in table \ref{table_values}. 
+Fig. \ref{diss_time_256} and \ref{coupling_time_256} can be interpreted using the turbulent kinetic energy budget introduced earlier. The PP-case without clustering shows a lower dissipation rate than the sP-case, both highly-clustered cases show a higher rate over the monitored period of time. The coupling rate is negative all this time for the PP-cases with $\lambda_\mathrm{c}$ and positive for the higher-clustered cases. Both these effects form the change in kinetic energy in particle-laden isotropic flow found in Fig. \ref{der_kineticEnergy_256}.
+\newline
+Being very similar in the time shortly after the injection, the flow statistics diverge for different $\lambda_\mathrm{c}$ rapidly. The variables of these simulations one turnover time after the injection can be found in table \ref{table_values}. 
 \begin{table}[h]
 	\begin{center}
 	\begin{tabular}{l l | c c c c c c }
 	$\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
 	\hline
 	\hline
-	1 & & 0.97& 0.039 & 0.0032 & 38.73 &\\
-	10 & & 2.08 & 0.028 & 0.0026 & 28.66 &\\
-	50 & & 3.51 & 0.024 & 0.0023 & 27.31 &\\
-	100 & & 3.51 & 0.025 & 0.0023 & 29.42 &\\
+	1 &16.78 & 0.97& 0.039 & 0.0032 & 38.73 &\\
+	10 &167.78 & 2.08 & 0.028 & 0.0026 & 28.66 &\\
+	50 &838.86 & 3.51 & 0.024 & 0.0023 & 27.31 &\\
+	100 &1677.72 & 3.51 & 0.025 & 0.0023 & 29.42 &\\
 	\hline
 	\end{tabular}
+	\captionsetup{width=0.9\linewidth}
 	\caption{Variables of the first set of simulations one turnover time after injection for the $256^3$-case}
 	\label{table_values}
 	\end{center}
@@ -577,19 +571,16 @@ Being very similar in the time shortly after the injection, the flow statistics 
     \begin{minipage}[t]{.5\textwidth}
          \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/particlekineticenergy_time.pdf}
-        \caption{???}
+        \caption{Kinetic energy of the particles $E_\mathrm{kB}$ normalized by initial kinetic energy. The PP-case without clustering shows the biggest decay in kinetic energy. }
         \label{particlekineticenergy_time_256}
     \end{minipage}%
     \begin{minipage}[t]{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/vergleich_coupling_time.pdf}
-        \caption{???}
+        \caption{Coupling Rate $\Psi$ with constant $\lambda_\mathrm{c}$ for various resolutions. A relation of resolution and accuracy can be observed.}
         \label{vergleich_coupling_time_256}
     \end{minipage}
 \end{figure}
-\newline
-11. Erklärung aller Plots mittels kinetic energy budget
-\newline
 \newline
 12. Computational savings
 \pagebreak
