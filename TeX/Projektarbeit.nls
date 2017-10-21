@@ -1,114 +1,127 @@
 \begin{thenomenclature} 
 
+ \nomgroup{A}
+
+  \item [{DNS}]\begingroup Direct numerical simulation\nomeqref {1.0}
+		\nompageref{2}
+  \item [{ILES}]\begingroup Implicit large-eddy simulation\nomeqref {1.0}
+		\nompageref{2}
+  \item [{LES}]\begingroup Large eddy simulation\nomeqref {1.0}
+		\nompageref{2}
+  \item [{PP}]\begingroup Particle-laden simulation\nomeqref {1.0}
+		\nompageref{2}
+  \item [{SGS}]\begingroup Subgrid scale\nomeqref {1.0}\nompageref{2}
+  \item [{sP}]\begingroup Single-phase simulation\nomeqref {1.0}
+		\nompageref{2}
+
  \nomgroup{G}
 
-  \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {III.5}
-		\nompageref{6}
-  \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {III.12}
-		\nompageref{7}
-  \item [{$\lambda$}]\begingroup Taylor microscale\nomeqref {III.16}
-		\nompageref{7}
-  \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {III.5}
-		\nompageref{6}
-  \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {III.27}
-		\nompageref{10}
-  \item [{$\rho$}]\begingroup Fluid density\nomeqref {III.1}
+  \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {2.3}
+		\nompageref{3}
+  \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {2.9}
 		\nompageref{5}
-  \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {III.34}
-		\nompageref{11}
-  \item [{$\matrix{\bar{\tau}}$}]\begingroup Stress tensor\nomeqref {III.3}
+  \item [{$\lambda$}]\begingroup Taylor microscale\nomeqref {2.13}
 		\nompageref{5}
-  \item [{$\tau_\mathrm{\eta}$}]\begingroup Kolmogorov time scale\nomeqref {III.12}
+  \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {2.3}
+		\nompageref{3}
+  \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {2.20}
 		\nompageref{7}
-  \item [{$\tau_\mathrm{L}$}]\begingroup Eddy turnover time\nomeqref {III.11}
+  \item [{$\rho$}]\begingroup Fluid density\nomeqref {2.1}
+		\nompageref{3}
+  \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {2.25}
+		\nompageref{8}
+  \item [{$\matrix{\bar{\tau}}$}]\begingroup Stress tensor\nomeqref {2.2}
+		\nompageref{3}
+  \item [{$\tau_{\mathrm{\eta}}$}]\begingroup Kolmogorov time scale\nomeqref {2.9}
+		\nompageref{5}
+  \item [{$\tau_\mathrm{L}$}]\begingroup Eddy turnover time\nomeqref {2.8}
+		\nompageref{5}
+  \item [{$\tau_\mathrm{p}$}]\begingroup Particle relaxation time\nomeqref {2.20}
 		\nompageref{7}
-  \item [{$\tau_\mathrm{p}$}]\begingroup Particle relaxation time\nomeqref {III.29}
-		\nompageref{11}
-  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {III.34}
-		\nompageref{11}
-  \item [{$\psi$}]\begingroup Coupling rate\nomeqref {III.35}
-		\nompageref{12}
+  \item [{$\tau_\mathrm{ps}$}]\begingroup Stokes relaxation time\nomeqref {2.25}
+		\nompageref{8}
+  \item [{$\psi$}]\begingroup Coupling rate\nomeqref {2.26}
+		\nompageref{8}
 
  \nomgroup{O}
 
-  \item [{$\vec\nabla$}]\begingroup Nabla operator\nomeqref {III.0}
-		\nompageref{5}
+  \item [{$\vec\nabla$}]\begingroup Nabla operator\nomeqref {2.0}
+		\nompageref{3}
 
  \nomgroup{R}
 
-  \item [{$c_\mathrm{p}$}]\begingroup Specific isobaric heat capacity\nomeqref {III.7}
-		\nompageref{6}
-  \item [{$c_\mathrm{v}$}]\begingroup Specific isochoric heat capacity\nomeqref {III.7}
-		\nompageref{6}
-  \item [{$d_\mathrm{p}$}]\begingroup Particle diameter\nomeqref {III.29}
-		\nompageref{11}
-  \item [{$f_\mathrm{D}$}]\begingroup Drag correction\nomeqref {III.34}
-		\nompageref{11}
-  \item [{$E$}]\begingroup Specific inner energy\nomeqref {III.1}
-		\nompageref{5}
-  \item [{$e$}]\begingroup Specific internal energy\nomeqref {III.5}
-		\nompageref{6}
-  \item [{$\vec{F}$}]\begingroup Force per unitary volume of the particle acting on the fluid\nomeqref {III.20}
-		\nompageref{9}
-  \item [{$\vec{f}_\mathrm{a}$}]\begingroup Added mass force\nomeqref {III.23}
-		\nompageref{10}
-  \item [{$\vec{f}_\mathrm{d}$}]\begingroup Drag force\nomeqref {III.23}
-		\nompageref{10}
-  \item [{$\vec{f}_\mathrm{h}$}]\begingroup History force\nomeqref {III.23}
-		\nompageref{10}
-  \item [{$\vec{f}_\mathrm{l}$}]\begingroup Lift force\nomeqref {III.23}
-		\nompageref{10}
-  \item [{$\vec{f}^\mathrm{n}$}]\begingroup Sum of forces acting on the fluid\nomeqref {III.20}
-		\nompageref{9}
-  \item [{$\vec{\bar{H}}$}]\begingroup Flux tensor\nomeqref {III.0}
-		\nompageref{5}
-  \item [{$\vec{\bar{H}^\mathrm{i}}$}]\begingroup Inviscid part of the flux tensor\nomeqref {III.2}
-		\nompageref{5}
-  \item [{$\vec{\bar{H}^\mathrm{v}}$}]\begingroup Viscous part of the flux tensor\nomeqref {III.2}
-		\nompageref{5}
-  \item [{$\matrix{\bar{I}}$}]\begingroup Identity tensor\nomeqref {III.9}
-		\nompageref{6}
-  \item [{$k_t$}]\begingroup Thermal conductivity\nomeqref {III.8}
-		\nompageref{6}
-  \item [{$L$}]\begingroup Integral length scale\nomeqref {III.11}
+  \item [{$c_\mathrm{p}$}]\begingroup Specific isobaric heat capacity\nomeqref {2.5}
+		\nompageref{3}
+  \item [{$c_\mathrm{v}$}]\begingroup Specific isochoric heat capacity\nomeqref {2.5}
+		\nompageref{3}
+  \item [{$d_\mathrm{p}$}]\begingroup Particle diameter\nomeqref {2.20}
 		\nompageref{7}
-  \item [{$m_\mathrm{c}$}]\begingroup Number of clustered particles\nomeqref {IV.5}
-		\nompageref{14}
-  \item [{$N_\mathrm{c}$}]\begingroup Number of computational particles\nomeqref {IV.5}
-		\nompageref{14}
-  \item [{$N_\mathrm{p}$}]\begingroup Number of physical particles\nomeqref {IV.5}
-		\nompageref{14}
-  \item [{$p$}]\begingroup Pressure\nomeqref {III.3}\nompageref{5}
-  \item [{$Pr$}]\begingroup Prandtl number\nomeqref {III.5}
+  \item [{$f_\mathrm{D}$}]\begingroup Drag correction\nomeqref {2.25}
+		\nompageref{8}
+  \item [{$E$}]\begingroup Specific inner energy\nomeqref {2.1}
+		\nompageref{3}
+  \item [{$e$}]\begingroup Specific internal energy\nomeqref {2.3}
+		\nompageref{3}
+  \item [{$\vec{F}$}]\begingroup Force per unit volume of the particle acting on the fluid\nomeqref {2.15}
 		\nompageref{6}
-  \item [{$\vec{Q}$}]\begingroup Vector of conservative Eulerian variables\nomeqref {III.0}
-		\nompageref{5}
-  \item [{$\vec{q}$}]\begingroup Heat conduction vector\nomeqref {III.3}
-		\nompageref{5}
-  \item [{$R$}]\begingroup Specific gas constant\nomeqref {III.10}
-		\nompageref{6}
-  \item [{$Re$}]\begingroup Reynolds number\nomeqref {III.3}
-		\nompageref{5}
-  \item [{$Re_\mathrm{p}$}]\begingroup Particle Reynolds number\nomeqref {III.23}
-		\nompageref{10}
-  \item [{$r_\mathrm{p}$}]\begingroup Particle radius\nomeqref {III.34}
-		\nompageref{11}
-  \item [{$\matrix{S}$}]\begingroup Rate-of-strain tensor\nomeqref {III.9}
-		\nompageref{6}
-  \item [{$S$}]\begingroup Sutherland temperature\nomeqref {III.10}
-		\nompageref{6}
-  \item [{$T$}]\begingroup Temperature\nomeqref {III.9}\nompageref{6}
-  \item [{$t^*$}]\begingroup Time normalized by the initial eddy turnover time\nomeqref {III.35}
-		\nompageref{12}
-  \item [{$\vec{u}$}]\begingroup Fluid velocity\nomeqref {III.1}
-		\nompageref{5}
-  \item [{$U$}]\begingroup Characteristic fluid velocity\nomeqref {III.11}
+  \item [{$\vec{f}_\mathrm{a}$}]\begingroup Added mass force\nomeqref {2.20}
 		\nompageref{7}
-  \item [{$\mathrm{V}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {III.22}
-		\nompageref{10}
-  \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity vector\nomeqref {III.34}
+  \item [{$\vec{f}_\mathrm{d}$}]\begingroup Drag force\nomeqref {2.20}
+		\nompageref{7}
+  \item [{$\vec{f}_\mathrm{h}$}]\begingroup History force\nomeqref {2.20}
+		\nompageref{7}
+  \item [{$\vec{f}_\mathrm{l}$}]\begingroup Lift force\nomeqref {2.20}
+		\nompageref{7}
+  \item [{$\vec{f}^\mathrm{n}$}]\begingroup Sum of forces acting on the fluid\nomeqref {2.15}
+		\nompageref{6}
+  \item [{$\vec{\bar{H}}$}]\begingroup Flux tensor\nomeqref {2.0}
+		\nompageref{3}
+  \item [{$\vec{\bar{H}^\mathrm{i}}$}]\begingroup Inviscid part of the flux tensor\nomeqref {2.2}
+		\nompageref{3}
+  \item [{$\vec{\bar{H}^\mathrm{v}}$}]\begingroup Viscous part of the flux tensor\nomeqref {2.2}
+		\nompageref{3}
+  \item [{$\matrix{\bar{I}}$}]\begingroup Identity tensor\nomeqref {2.6}
+		\nompageref{4}
+  \item [{$k_\mathrm{t}$}]\begingroup Thermal conductivity\nomeqref {2.6}
+		\nompageref{4}
+  \item [{$L$}]\begingroup Integral length scale\nomeqref {2.8}
+		\nompageref{5}
+  \item [{$\lambda_\mathrm{c}$}]\begingroup Ratio of physical point particles to computational point particles\nomeqref {4.0}
 		\nompageref{11}
-  \item [{$\vec{x}_\mathrm{p}$}]\begingroup Particle position vector\nomeqref {III.34}
+  \item [{$N_\mathrm{c}$}]\begingroup Number of computational point particles\nomeqref {4.0}
 		\nompageref{11}
+  \item [{$N_\mathrm{p}$}]\begingroup Number of physical point particles\nomeqref {4.0}
+		\nompageref{11}
+  \item [{$p$}]\begingroup Pressure\nomeqref {2.2}\nompageref{3}
+  \item [{$Pr$}]\begingroup Prandtl number\nomeqref {2.3}\nompageref{3}
+  \item [{$\vec{Q}$}]\begingroup Vector of conservative Eulerian variables\nomeqref {2.0}
+		\nompageref{3}
+  \item [{$\vec{q}$}]\begingroup Heat conduction vector\nomeqref {2.2}
+		\nompageref{3}
+  \item [{$R$}]\begingroup Specific gas constant\nomeqref {2.7}
+		\nompageref{4}
+  \item [{$Re$}]\begingroup Reynolds number\nomeqref {2.2}
+		\nompageref{3}
+  \item [{$Re_\mathrm{p}$}]\begingroup Particle Reynolds number\nomeqref {2.20}
+		\nompageref{7}
+  \item [{$r_\mathrm{p}$}]\begingroup Particle radius\nomeqref {2.25}
+		\nompageref{8}
+  \item [{$\matrix{S}$}]\begingroup Rate-of-strain tensor\nomeqref {2.6}
+		\nompageref{4}
+  \item [{$S$}]\begingroup Sutherland temperature\nomeqref {2.7}
+		\nompageref{4}
+  \item [{$T$}]\begingroup Temperature\nomeqref {2.6}\nompageref{4}
+  \item [{$t^*$}]\begingroup Time normalized by the initial eddy turnover time\nomeqref {2.26}
+		\nompageref{8}
+  \item [{$\vec{u}$}]\begingroup Fluid velocity\nomeqref {2.1}
+		\nompageref{3}
+  \item [{$U$}]\begingroup Characteristic fluid velocity\nomeqref {2.8}
+		\nompageref{5}
+  \item [{$\mathrm{V}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {2.20}
+		\nompageref{7}
+  \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity vector\nomeqref {2.25}
+		\nompageref{8}
+  \item [{$\vec{x}_\mathrm{p}$}]\begingroup Particle position vector\nomeqref {2.25}
+		\nompageref{8}
 
 \end{thenomenclature}

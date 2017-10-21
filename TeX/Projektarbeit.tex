@@ -30,8 +30,9 @@
 \renewcommand{\nomgroup}[1]{%
   \ifthenelse{\equal{#1}{R}}{\item[\textbf{Roman Symbols}]}{%
     \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
-      \ifthenelse{\equal{#1}{O}}{\item[\textbf{Operators}]}{}}}}
-
+      \ifthenelse{\equal{#1}{O}}{\item[\textbf{Operators}]}{%
+	\ifthenelse{\equal{#1}{A}}{\item[\textbf{Acronyms}]}{}}}}}%
+	
 \renewcommand*\vec[1]{\boldsymbol{#1}}
 \renewcommand*\matrix[1]{\boldsymbol{#1}}
 
@@ -93,18 +94,21 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \setlength{\parindent}{0pt}
 
 \pagebreak
-
 \tableofcontents{} %erstellt die Inhaltsangabe
- 
+\thispagestyle{empty}
 \pagebreak
 
 \renewcommand{\thesection}{\Roman{section}}
+\pagenumbering{Roman} 
 
 \section{Nomenclature}
 \printnomenclature
 \pagebreak
 \renewcommand{\thesection}{\arabic{section}}
+\setcounter{section}{0}
 \section{Introduction}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \begin{figure}[h]
 	\centering
   \includegraphics[width=\textwidth]{./Abbildungen/TurbulentMotion_Introduction.png}
@@ -148,7 +152,12 @@ In the following the deviations caused by using this method are determined and t
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
 
 -Due to the small particle concentration, a popular method to describe these flows is the point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy.
-
+\nomenclature[aDNS]{DNS}{Direct numerical simulation}
+\nomenclature[aLES]{LES}{Large eddy simulation}
+\nomenclature[aSGS]{SGS}{Subgrid scale}
+\nomenclature[asP]{sP}{Single-phase simulation}
+\nomenclature[aPP]{PP}{Particle-laden simulation}
+\nomenclature[aILES]{ILES}{Implicit large-eddy simulation}
 \pagebreak
 \section{Mathematical models}%Einleitung unbedingt noch bearbeiten! 2017-10-16
 \subsection{Single phase flow} %Christian
@@ -156,7 +165,7 @@ In this section, the mathematical models are introduced, which describe turbulen
 \newline%"Here should be a description what will follow, and the general structure of the chapter."
 \subsubsection{Equations governing the fluid phase}
 The conservation of mass, momentum and energy for a control volume reads
-\nomenclature[o]{$\vec\nabla$}{Nabla operator} %Erstellt automatisch die Nomenclature-Liste
+\nomenclature[oN]{$\vec\nabla$}{Nabla operator} %Erstellt automatisch die Nomenclature-Liste
 \nomenclature[rQ]{$\vec{Q}$}{Vector of conservative Eulerian variables}
 \nomenclature[rH]{$\vec{\bar{H}}$}{Flux tensor}
 \begin{equation}
@@ -462,7 +471,6 @@ In this section the results of the performed simulation will be pointed out with
 All cases were simulated on a cubic domain and a cartesian grid using multiple grid refinement levels, $64^3$, $96^3$ and $128^3$ representing the LES hence the need to model smaller scales with SGS-models is present. Due to higher grid refinement in the $256^3$-case, these smaller scales can be directly simulated and therefore this simulation is a DNS.
 \newline
 The particle-free case was initialized using a seed-based random generator. At $t^* \approx 0.27$ a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation including particle-load. Both these cases, DNSs of a single-phase and a particle-laden flow will used as reference for analyzing other results. Single-phase simulations will in the following be referred to as sP, and particle-laden ones as PP. The PP-simulation was set up to match the volume fraction $\phi_\mathrm{v}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=1$. Both were constant in all simulations regarding particle clustering. The ratio of the densities for this set of simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter was set to match $d_\mathrm{p} \approx 0.6 \eta$. The injection of a million spherical point-particles was carried out interpolating the velocities of the surrounding fluid. At the timestep of injection the Stokes response time $\tau_\mathrm{ps}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. 
-\newline
 \subsection{The turbulent kinetic energy budget}
 The change in kinetic energy of the fluid is in particle-laden decaying isotropic turbulence determined by the coupling rate $\Psi$, which describes the energy transfer between both fluid and particle phase, and the integral dissipation rate $\vec{\varepsilon}$:
 \begin{equation}
@@ -478,11 +486,11 @@ were $\vec{:}$ denotes the inner tensor product. This rate can then be integrate
 \end{equation}
 As the dissipation rate is always of positive value, it acts a sink for the fluid's turbulent kinetic energy. In difference to that, the coupling rate can serve either as source or sink, depending on the acceleration of the particles \cite{mechanismsoftwowaycoupling}. The coupling rate for point-particles is defined as
 \begin{equation}
-\Psi (t) = \sum_{p=1}^{N_\mathrm{p}} \psi_\mathrm{p}= - \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \bullet\vec{v}_\mathrm{p},
+\Psi (t) = \sum_{p=1}^{N_\mathrm{p}} \psi_\mathrm{p}= - \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \times\vec{v}_\mathrm{p},
 \end{equation}
 describing the transfer of kinetic energy resulting from surface forces at each particle. 
 \begin{equation}
-\frac{\mathrm{d}E_{kB}}{\mathrm{d}t} = - \Psi (t)
+\frac{\mathrm{d}E_\mathrm{kB}}{\mathrm{d}t} = - \Psi (t)
 \end{equation}
 therefore is the rate of change for global kinetic energy of the particles.
 Additionally the particles change the fluid's rate of dissipation $\vec{\varepsilon}$ due to their volume forces. 
@@ -492,7 +500,7 @@ Schneiders et al. \cite{schneiders2017} therefore proposed a separation of dissi
 \end{equation}
 In this equation, $\vec{\bar{\varepsilon}} (t)$ displays the dissipation rate of the flow field and $\vec{\varepsilon}' (t)$ is the additional dissipation rate introduced by the injected point-particles. For $\rho_\mathrm{p} \gg \rho$ and the point-particle approach the equation
 \begin{equation}
-	\vec{\varepsilon}' = \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \bullet (\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})
+	\vec{\varepsilon}' = \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \times (\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})
 \end{equation}
 can be formulated using the velocity of the fluid $\vec{u}_\mathrm{p}$ at the particle position.
 \newline
@@ -564,7 +572,7 @@ Being very similar in the time shortly after the injection, the flow statistics 
 	\label{table_values}
 	\end{center}
 	\end{table}
-9.Plot fuer kinetische Energie der Partikel und Vergleichsplot DNS <-> LES (Coupling Rate)
+In Fig. \ref{particlekineticenergy_time_256} the kinetic energy of the particles is displayed. \textbf{Die Abbildungen passen inhaltlich nicht zueinander???}. Fig. \ref{vergleich_coupling_time_256} can be used to point out the difference between the results for LES and DNS. It is evident that a correlation between inaccuracy of the simulations and the refinement level of the grid exists. For the same relation of physical point particles to computational point particles the results show different behavior depending on the grids refinement level. The unclustered PP-case is included as reference. With $\lambda_\mathrm{c}=50$ being a relatively high ratio the $\mathrm{LES}_\mathrm{64}$ shows the most accurate results, the DNS shows the most inaccurate. This is due to the number of cells the force of the particles is projected on, which grows for each refinement step. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
 \newline
 \begin{figure}[h]
     \centering
@@ -582,7 +590,7 @@ Being very similar in the time shortly after the injection, the flow statistics 
     \end{minipage}
 \end{figure}
 \newline
-12. Computational savings
+The computational savings of this method may be present, their effect is not as prevalent as it needs to be to compensate for the inaccurate results.
 \pagebreak
 \section{Conclusion and outlook}
 In this work, two sets of simulations were carried out to evaluate a method for lowering computational effort. 
