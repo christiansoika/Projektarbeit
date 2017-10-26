@@ -151,7 +151,11 @@ In the following the deviations caused by using this method are determined and t
 >>>>>>> 4113d64895656e6ba27b195eb1861d9a73879796
 Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
 
--Due to the small particle concentration, a popular method to describe these flows is the point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy.
+-Due to the small particle concentration, a popular method to describe these flows is the point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy.\newline
+
+-The phenomenon is called two-way-coupling. \newline
+-In this thesis, small and heavy rigid particles with a spherical shape in a incompressible fluid are regarded. Their diameter $ d_\mathrm{p} $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
+-Due to the low particle concentration, a popular method to describe these flows is the Lagrangian point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle collision as well as mass exchenge over the particle surface and gravity are neglected.
 \nomenclature[aDNS]{DNS}{Direct numerical simulation}
 \nomenclature[aLES]{LES}{Large eddy simulation}
 \nomenclature[aSGS]{SGS}{Subgrid scale}
@@ -160,9 +164,9 @@ Also the number of particles that is needed to get consistent average values for
 \nomenclature[aILES]{ILES}{Implicit large-eddy simulation}
 \pagebreak
 \section{Mathematical models}%Einleitung unbedingt noch bearbeiten! 2017-10-25
-To provide a common basis of knowledge, the basic equations and scales of a flow are discussed in the following.%anderes Wort für discussed?
+To provide a common basis of knowledge, the basic equations and scales of a flow are discussed, as well as particle-considering equations. %anderes Wort für discussed?
 \subsection{Single phase flow} %Christian
-In this section, the mathematical models are introduced, which describe turbulent flows. For a more detailed description, see e.g. \cite{turbulentFlows}.
+In this section, the mathematical models are introduced, which describe turbulent flows. For a more detailed description, see e.g. \cite{turbulentFlows}. 
 \newline%"Here should be a description what will follow, and the general structure of the chapter."
 \subsubsection{Equations governing the fluid phase}
 The conservation of mass, momentum and energy for a control volume reads
@@ -188,7 +192,7 @@ $\vec{\bar{H}} $ is the flux tensor which contains the inviscid and viscous flux
 \nomenclature[rRe]{$Re$}{Reynolds number}
 \nomenclature[gt]{$\matrix{\bar{\tau}}$}{Stress tensor}
 \nomenclature[rq]{$\vec{q}$}{Heat conduction vector}
-\begin{equation}
+\begin{equation} \label{NavierStokes}
 \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}} = 
  \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right) - 
  \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right)
@@ -289,12 +293,9 @@ Re_\mathrm{\lambda} = \frac{|\vec{u'}| \lambda}{\nu}.
 \end{equation}
 \pagebreak
 \subsection{Particle dynamics} %Steffen
-This work deals with particle-laden fluids, therefore the interaction between particles and the carrier fluid needs to be considered in the dynamic equation of both media. The phenomenon is called two-way-coupling. 
+This chapter deals with the forces acting between particles and the carrier fluid, as well as their incorporation in the dynamic equations.
 \newline
-In this thesis, small and heavy rigid particles with a spherical shape in a incompressible fluid are regarded. Their diameter $ d_\mathrm{p} $ is even smaller than the Kolmogorov scale $ \eta $, but also large enough to neglect the Brownian motion.
-\newline
-Due to the low particle concentration, a popular method to describe these flows is the Lagrangian point-particle approach, which means that every particle is treated as a mathematical point source of mass, momentum and energy. In this case the focus lies on the momentum exchange, effects like particle collision as well as mass exchenge over the particle surface and gravity are neglected.
-To take the forces acting from the particles on the fluid into account the Navier-Stokes equation for the carrier fluid "Gleichung xy " is extended by the force $\vec{F}$ that acts on the ambient cells with different intensity regarding on the distance between these cells and the particle:
+To take the forces acting from the particles on the fluid into account the Navier-Stokes equation for the carrier fluid \eqref{NavierStokes} is extended by the force $\vec{F}$ that acts on the ambient cells with different intensity regarding on the distance between these cells and the particle:
 \nomenclature[rF]{$\vec{F}$}{Force per unit volume of the particle acting on the fluid}
 \nomenclature[rfn]{$\vec{F}_\mathrm{pp}$}{Sum of forces acting on the particles}
 \begin{equation}
@@ -303,7 +304,7 @@ To take the forces acting from the particles on the fluid into account the Navie
 with the distance between particle postion and midpoint of the cell $d_\mathrm{i}$, the length of the cells $\Delta$ and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells. In this work a $\sigma$ value of 4 was used.
 $\vec{F}_\mathrm{pp}$ is the sum of pressure and shear forces acting on the particles and is described explicit in the Maxey Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
 $\vec{F}_\mathrm{pp}$ could be divided into several forces. 
-Reduced to the governing forces acting on the particles the dynamic equation of the particles becomes
+Reduced to the governing forces acting on the particles and under neglection of gravity the dynamic equation of the particles becomes
 \begin{multline} \label{navier_stokes_particle}
 \\ \vec{F}_\mathrm{pp} = m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} =\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t} -\frac{3}{4}\rho \mathrm{V}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})+ \frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl) + 
 \\ \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).
@@ -317,11 +318,12 @@ pressure gradient of the undisturbed flow
 \item  $-\frac{3}{4}\rho \mathrm{V}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-    \vec{u}|(\vec{v}_\mathrm{p}-\vec{u})$:\newline
 hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}}$ defined by Schiller and Naumann as
 $C_\mathrm{d} = \frac{24}{Re_\mathrm{p}}(1+0.15Re_\mathrm{p}^\mathrm{0.687})$.
+It is described by the Stokes' law as the force of viscosity acting on the interface of small spherical particles and fluid that can be achieved at very low Reynolds numbers in a viscous fluid.
 
 \item $\frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)$:\newline
 added mass force, that represents the influence of the fluid's inertia that has an impact on the particle, if it has a different acceleration than the particles
 \item $\frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl) $: \newline
-history force taking diffusion and convection into account that results from vortices slipstream
+history force taking diffusion and convection into account that results from vortices in the slipstream of the particles
 \end{itemize}
 
 As presented by Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheForcesActingOnParticlesInTurbulentFlows} compared to the Stokes drag all other forces could be neglected with rising particle density, so due to the density relation $\rho_\mathrm{p}/\rho >> 1$, $\vec{F}_\mathrm{pp}$ can be approximately reduced to the dominating viscous drag.\eqref{navier_stokes_particle} becomes 
@@ -329,7 +331,7 @@ As presented by Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheF
 \vec{F}_\mathrm{pp} =  m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = \frac{3}{4}\rho \mathrm{V}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u}).
 \end{equation} 
 Using the particle Reynolds number $Re_\mathrm{p} = \frac{v_\mathrm{r}d_\mathrm{p}}{\nu}$ with the relative velocity between particle and fluid $v_\mathrm{r}$,  \eqref{kurze_Partikelgleichung} can be compressed, which is described in detail in \cite{computationalMethodsforMultiphaseFlow}.
-\begin{equation}
+\begin{equation} \label{shortPaticleDynamics}
 \rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = \rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}-\vec{u}}{\tau_\mathrm{p}}f_\mathrm{d}.
 \end{equation}
 Here the particle response time $\tau_\mathrm{p} = \frac{(\rho_\mathrm{p}/\rho)d^\mathrm{2}}{18\nu}$ is introduced which is a time constant in the exponential decay of the particle velocity as a result of an upcoming fluid drag and physically represents the time scale over which the drag force decreases the particle's relative velocity to zero.
@@ -341,7 +343,7 @@ Together with the kinematic equation of a particle
 \begin{equation}
  \frac{\mathrm{d}\vec{x}_\mathrm{p}}{\mathrm{d}t} = \vec{v}_\mathrm{p},
 \end{equation}
-the equations -Gl main flow- and \eqref{navier_stokes_particle} form the basic equations for the particle laden system. 
+the adjusted equation \eqref{NavierStokes} and \eqref{shortPaticleDynamics} form the basic equations for the particle laden system. 
 
 
 
@@ -358,17 +360,9 @@ the equations -Gl main flow- and \eqref{navier_stokes_particle} form the basic e
 \nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position vector}
 \nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity vector}
 \nomenclature[rD]{$f_\mathrm{D}$}{Drag correction}
-----------------------------------------------------------------------------------------------------\newline
-In results:
-The coupling rate $\psi$, that describes the transferred energy per time between particles and fluid, is defined as
-\nomenclature[rt*]{$t^*$}{Time normalized by the initial eddy turnover time}
-\nomenclature[gx]{$\psi$}{Coupling rate}
-\begin{equation}
-\psi = \vec{F} \cdot \vec{u}. 
-\end{equation}
-Hence it results from the force per unitary volume exerted between the fluid and the particles and the main velocity of the fluid.
-It is an useful variable to describe how much the main fluid and the particles influence each other.
+
 \pagebreak
+
 \section{Numerical methods} %Julian
 Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS (direct numerical simulation) and the LES (large-eddy simulation). The basis of both are the Navier-Stokes equations as described above.
 \subsection{Discretization of the particle dynamics}
