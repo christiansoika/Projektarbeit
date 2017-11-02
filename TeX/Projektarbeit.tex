@@ -467,7 +467,6 @@ The coupling rate in the special case of point particles then simplifies to
     \end{minipage}
     \end{figure}
 The first set of simulation was set up to investigate how different numbers of injected particles have an influence on the difference of turbulent kinetic energy of both particle and fluid. As mathematical description of turbulent flows is based on statistics, small numbers of particles can lead to questionable results. An example for the deviation in kinetic energy for different numbers of particles can be found in Fig. \ref{kineticEnergy_numberofparticles}. The normalized difference in kinetic energy $E_\mathrm{kB}$ of the particles and the flow itself $E_\mathrm{k}$ shows in this single simulation a correlation between particle number and accuracy in the simulation. Although this was just a single initialization of particles in a flow, it can be stated that simulations using only $10^3$ or even up to $10^4$ particles are not accurate enough for technical or scientific use of data. Simulations in other grid sizes show similar results.
-\newline
 \begin{figure}[h]
     \centering
     \begin{minipage}[t]{0.5\textwidth}
@@ -490,18 +489,18 @@ The second set of simulations conducted in this work is set up to investigate th
     \begin{minipage}[t]{0.5\textwidth}
          \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/diss_time.pdf}
-        \caption{Normalized dissipation rate $\vec{\varepsilon}$ over time normalized by initial eddy turnover time. The unclustered PP-case shows a lower dissipation rate than the sP-case. Highly clustered PP-cases show a higher dissipation rate.}
+        \caption{Normalized dissipation rate $\bar{\vec{\varepsilon}}$ over time normalized by initial eddy turnover time. The unclustered PP-case shows a lower dissipation rate than the sP-case. Highly clustered PP-cases show a higher dissipation rate.}
         \label{diss_time_256}
     \end{minipage}%
     \begin{minipage}[t]{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/coupling_time.pdf}
-        \caption{Normalized coupling rate $\Psi$ over time normalized by initial eddy turnover time. The PP-case without clustering show the lowest coupling rate. Both highly-clustered PP-cases show physically questionable behavior.}
+        \caption{Normalized coupling rate $\Psi_\mathrm{pp}$ over time normalized by initial eddy turnover time. The PP-case without clustering show the lowest coupling rate. Both highly-clustered PP-cases show physically questionable behavior.}
         \label{coupling_time_256}
     \end{minipage}
 \end{figure}
 \newline
-Fig. \ref{diss_time_256} and \ref{coupling_time_256} can be interpreted using the turbulent kinetic energy budget introduced earlier. The PP-case without clustering shows a lower dissipation rate than the sP-case, both highly-clustered cases show a higher rate over the monitored period of time. The coupling rate is negative all this time for the PP-cases with $\lambda_\mathrm{c}$ and positive for the higher-clustered cases. Both these effects form the change in kinetic energy in particle-laden isotropic flow found in Fig. \ref{der_kineticEnergy_256}.
+Fig. \ref{diss_time_256} and \ref{coupling_time_256} can be interpreted using the turbulent kinetic energy budget introduced earlier. The PP-case without clustering shows a lower dissipation rate than the sP-case, both highly-clustered cases show a higher rate over the monitored period of time, which is an unphysical behavior. The coupling rate is negative all this time for the PP-cases with $\lambda_\mathrm{c}$ and positive for the higher-clustered cases. Both these effects form the change in kinetic energy in particle-laden isotropic flow found in Fig. \ref{der_kineticEnergy_256}.
 \newline
 Being very similar in the time shortly after the injection, the flow statistics diverge for different $\lambda_\mathrm{c}$ rapidly. The variables of these simulations one turnover time after the injection can be found in table \ref{table_values}. 
 \begin{table}[h]
@@ -521,8 +520,7 @@ Being very similar in the time shortly after the injection, the flow statistics 
 	\label{table_values}
 	\end{center}
 	\end{table}
-In Fig. \ref{particlekineticenergy_time_256} the kinetic energy of the particles is displayed. \textbf{Die Abbildungen passen inhaltlich nicht zueinander???}. Fig. \ref{vergleich_coupling_time_256} can be used to point out the difference between the results for LES and DNS. It is evident that a correlation between inaccuracy of the simulations and the refinement level of the grid exists. For the same relation of physical point particles to computational point particles the results show different behavior depending on the grids refinement level. The unclustered PP-case is included as reference. With $\lambda_\mathrm{c}=50$ being a relatively high ratio the $\mathrm{LES}_\mathrm{64}$ shows the most accurate results, the DNS shows the most inaccurate. This is due to the number of cells the force of the particles is projected on, which grows for each refinement step. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
-\newline
+In Fig. \ref{particlekineticenergy_time_256} the kinetic energy of the particles is displayed. As $\lambda_\mathrm{c}$ rises, the decay in the kinetic energy of the particles becomes smaller. This behavior leads to the assumption that the clustering produces the behavior of heavy particles as the results fit to the findings of Schneiders et al. \cite{Schneiders2017}. Fig. \ref{vergleich_coupling_time_256} can be used to point out the difference between the results for LES and DNS. It is evident that a correlation between inaccuracy of the simulations and the refinement level of the grid exists. For the same relation of physical point particles to computational point particles the results show different behavior depending on the grid refinement level. The unclustered PP-case is included as reference. With $\lambda_\mathrm{c}=50$ being a relatively high ratio the $\mathrm{LES}_\mathrm{64}$ shows the most similar results, the DNS shows a large difference. This is due to the number of cells the force of the particles is projected on, which grows for each refinement step. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
 \begin{figure}[h]
     \centering
     \begin{minipage}[t]{.5\textwidth}
@@ -534,7 +532,7 @@ In Fig. \ref{particlekineticenergy_time_256} the kinetic energy of the particles
     \begin{minipage}[t]{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/vergleich_coupling_time.pdf}
-        \caption{Coupling Rate $\Psi$ with constant $\lambda_\mathrm{c}$ for various resolutions. A relation of resolution and accuracy can be observed.}
+        \caption{Coupling Rate $\Psi_\mathrm{pp}$ with constant $\lambda_\mathrm{c}$ for various resolutions. A relation of resolution and accuracy can be observed.}
         \label{vergleich_coupling_time_256}
     \end{minipage}
 \end{figure}
