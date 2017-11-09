@@ -148,7 +148,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[grp]{$\rho_\mathrm{p}$}{Particle density}
 \nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position vector}
 \nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity vector}
-\nomenclature[rfD]{$f_\mathrm{D}$}{Drag correction}
+\nomenclature[rfD]{$f_\mathrm{d}$}{Drag correction}
 \nomenclature[gmc]{$\lambda_\mathrm{c}$}{Ratio of physical point particles to computational point particles}
 \nomenclature[rnp]{$N_\mathrm{p}$}{Number of physical point particles}
 \nomenclature[rnc]{$N_\mathrm{c}$}{Number of computational point particles}
@@ -282,7 +282,7 @@ The first set of scales describe the large eddies. At these scales the energy is
 \begin{equation}
 \tau_\mathrm{L} = \frac{L}{U},
 \end{equation}
-with the integral length scale $L$ and the characteristic fluid velocity $U$.
+with the integral length scale $L$ (\ref{eq:integralLengthScale}) and the characteristic fluid velocity $U$.
 \newline
 The smallest scales in a turbulent flow are the Kolmogorov length $\eta$ and time scale $\tau_\mathrm{\eta}$. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \approx \frac{U^3}{L} $ they can be written as
 \begin{equation}
@@ -302,22 +302,25 @@ and
 \end{equation}
 It can be observed from these equations that the spacing between the scales increases for higher Reynolds numbers. 
 \newline
-Characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $\vec{u'}$ at two different positions 
+Characteristic length scales $\lambda$ and $L$ of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $\vec{u'}$ at two different positions 
 $\vec{x}$ and $\vec{x} + \vec{r}$ at the same time $t$
 \begin{equation}
 R (\vec{x}, \vec{r}) = \frac{\overline{\vec{u'}(\vec{x}, t)\vec{u'}(\vec{x} + \vec{r}, t)}}{\sqrt{\overline{\vec{u'}^2(\vec{x}, t)}}\sqrt{\overline{\vec{u'}^2(\vec{x} + \vec{r}, t)}}},
 \end{equation}
 as
 \begin{equation}
- \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial r^2}\biggl)
+ \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial r^2}\biggl),
 \end{equation}
-or
 \begin{equation}
 \lambda = \sqrt{15 \frac{\nu}{\epsilon}} |\vec{u'}|
 \end{equation}
-with $\lambda$ being the Taylor microscale and $|\vec{u'}|$ denoting the absolute value of the velocity's fluctuation.
+or
+\begin{equation} \label{eq:integralLengthScale}
+L = \int_{0}^{\infty} R (\vec{x}, \vec{r})  \, \mathrm{d}\vec{r}
+\end{equation}
+with $\lambda$ being the Taylor microscale, $L$ the integral length scale and $|\vec{u'}|$ denoting the absolute value of the velocity's fluctuation.
 \newline
-This scale can be used to compute the Taylor-scale Reynolds number
+The Taylor microscale can be used to compute the Taylor-scale Reynolds number
 \begin{equation}
 Re_\mathrm{\lambda} = \frac{|\vec{u'}| \lambda}{\nu}.
 \end{equation}
@@ -387,7 +390,7 @@ To avoid filtering effects, the fluid velocity $\vec{u}(\vec{x}_{\mathrm{p}, n+1
 \newline
 The updated velocity and acceleration are calculated as
 \begin{equation}
-\vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p}, }n + \frac{f_\mathrm{D}}{\tau_\mathrm{p}}\vec{u}(\vec{x}_{\mathrm{p}, n+1}) \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
+\vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p}, }n + \frac{f_\mathrm{d}}{\tau_\mathrm{p}}\vec{u}(\vec{x}_{\mathrm{p}, n+1}) \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
 \end{equation}
 \begin{equation}
 \vec{a}_{\mathrm{p}, n+1} = \frac{\frac{f_\mathrm{D}}{\tau_\mathrm{p}} \left(\vec{u}(\vec{x}_{\mathrm{p}, n+1}) - \vec{v}_{\mathrm{p}, n} - \frac{1}{2} \delta t \vec{a}_{\mathrm{p}, n} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t}.
@@ -418,7 +421,7 @@ With DNS, the Navier-Stokes equations are solved completely. This provides a ver
 \end{figure}
 Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing larger-scale motion is completely resolved and the small effects of the smaller-scale motion are modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
 \newline
-Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by $\bar U(\vec{x}) = \int_{-\infty}^{\infty} G(\vec{r})U(\vec{x} - \vec{r})  \, \mathrm{d}\vec(r)$, with $G(\vec{r}) $ being a homogeneous filter function. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus it is called implicit LES (ILES) \cite{implicitLES}. 
+Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by $\bar U(\vec{x}) = \int_{-\infty}^{\infty} G(\vec{r})U(\vec{x} - \vec{r})  \, \mathrm{d}\vec{r}$, with $G(\vec{r}) $ being a homogeneous filter function. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus it is called implicit LES (ILES) \cite{implicitLES}. 
 \subsection{Computational point particles}
 The high number of point particles requires even more computational resources for the particle-laden simulations than for the single-phase simulations. The idea to reduce this requirement is to create clusters of point particles. For this purpose the ratio $\lambda_\mathrm{c}$ of physical point particles $N_\mathrm{p}$ to computational point particles $N_\mathrm{c}$ is introduced ($\lambda_\mathrm{c} = \frac{N_\mathrm{p}}{N_\mathrm{c}}$). To compensate this lack of particles, the coupling force is multiplied by $\lambda_\mathrm{c}$, due to the $\lambda_\mathrm{c}$-fold mass of the (cluster-)particles.
 \newline
