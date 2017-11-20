@@ -139,10 +139,12 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[rL]{$L$}{Integral length scale}
 \nomenclature[rU]{$U$}{Characteristic fluid velocity}
 \nomenclature[gh]{$\eta$}{Kolmogorov length scale}
+\nomenclature[gh0]{$\eta_\mathrm{0}$}{Initial Kolmogorov length scale}
 \nomenclature[gth]{$\tau_{\mathrm{\eta}}$}{Kolmogorov time scale}
 \nomenclature[rF]{$\vec{F}$}{Force vector per unit volume of the particle acting on the fluid}
 \nomenclature[rFn]{$\vec{F}_\mathrm{pp}$}{Sum vector of forces acting on the particles}
 \nomenclature[rVp]{$\mathrm{V}_\mathrm{p}$}{Particle volume}
+\nomenclature[rVf]{$\mathrm{V}_\mathrm{f}$}{Fluid volume}
 \nomenclature[rRep]{$Re_\mathrm{p}$}{Particle Reynolds number}
 \nomenclature[gnu]{$\nu$}{Kinematic viscosity}
 \nomenclature[rdp]{$d_\mathrm{p}$}{Particle diameter}
@@ -188,6 +190,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[ru']{$\vec{u}'$}{Vector of fluid velocity fluctuations}
 \nomenclature[rCd]{$C_\mathrm{d}$}{Empirical drag coefficient}
 \nomenclature[rmp]{$m_\mathrm{p}$}{Particle mass}
+\nomenclature[rmf]{$m_\mathrm{f}$}{Fluid mass}
 \nomenclature[rvr]{$v_\mathrm{r}$}{Relative velocity between particle and fluid}
 %Nomenclature
 
@@ -439,12 +442,7 @@ The simulations were carried out using ZFS, the simulation tool developed and im
 The tool is capable of simulating finite-volume flows of compressible fluids. In the simulations, which results the reader can see at hand, the Mach-number $Ma$ was set to 0.1 to simulate an almost incompressible fluid.
 \pagebreak
 \section{Results}
-In this section the properties and results of the simulations that have been carried out will be presented. Special emphasis will be put on the turbulent kinetic energy budgets and their use to interpret the findings.
-\newline
-\subsection{Simulation properties}
-All cases were simulated on a cubic domain and a cartesian grid using multiple grid refinement levels, $64^3$, $96^3$ and $128^3$ representing the LES hence the need to model smaller scales with SGS-models is present. Due to higher grid refinement in the $256^3$-case, these smaller scales can be directly simulated and therefore this simulation is a DNS.
-\newline
-The particle-free case was initialized using a seed-based random generator. At the time normalized by eddy turnover time $t^* \approx 0.27$ a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation including particle load. Both these cases, DNSs of a single-phase and a particle-laden flow will be used as reference for analyzing other results. Single-phase simulations will in the following be referred to as sP, and particle-laden ones as PP. The PP simulation was set up to match the volume fraction $\phi_\mathrm{v}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=1$. Both were constant in all simulations regarding CPPs. The ratio of the densities for this set of simulations was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$, the particle diameter is matched by $d_\mathrm{p} \approx 0.6 \eta$. In this work a smoothing parameter $\sigma$ of 4 was used. The injection of a million spherical point-particles was carried out interpolating the velocities of the surrounding fluid. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was 0.03497, the Prandtl number was 0.72 and $Re_\lambda$ was 57.9757. 
+In this section, the properties and results of the DNS and LES of particle-laden decaying isotropic turbulence which have been carried out will be presented. An additional test to find out which CPP-factor could be used is presented. Special emphasis will be put on the turbulent kinetic energy budgets and their use to interpret the findings.
 \newline
 \subsection{The turbulent kinetic energy budget}
 The change in kinetic energy of the fluid in particle-laden decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between both fluid and particle phase $\frac{\partial E_\mathrm{k}}{\partial t}$, and the integral dissipation rate $\vec{\varepsilon}$:
@@ -486,6 +484,10 @@ The coupling rate in the special case of point particles then simplifies to
 \begin{equation}
 \Psi_\mathrm{pp} (t) = - \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \cdot \vec{u}_\mathrm{p}.
 \end{equation}
+\newline\subsection{Simulation setup}
+All cases were simulated on a cubic domain and a Cartesian grid using different grid refinement levels. For the LES-cases $64^3$, $96^3$ and $128^3$ are employed, hence the need to model smaller scales with SGS-models, which have already been validated in \cite{ValidationOfParticleLadenLargeEddySimulationUsingHPCSystems}. For a DNS, $256^3$ cells are necessary to resolve all scales.
+\newline
+The particle-free case was initialized using a seed-based number random generator, which is described in detail in \cite{??? Quelle einfügen}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was ??? and $Re_\lambda \approx 58$. 
 \newline
 \subsection{Simulation results}
 \begin{figure}[h]
