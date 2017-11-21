@@ -441,54 +441,43 @@ The tool is capable of simulating finite-volume flows of compressible fluids. In
 In this section, the properties and results of the DNS and LES of particle-laden decaying isotropic turbulence which have been carried out will be presented. An additional test to find out which CPP-factor could be used is presented. Special emphasis will be put on the turbulent kinetic energy budgets and their use to interpret the findings.
 \newline
 \subsection{Turbulence modulation by particles}
+The particle-laden decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between both fluid and particle phase, the background (Begriff pruefen!!!) dissipation rate $\vec{\bar{\varepsilon}}$ and the particle-induced dissipation rate $\vec{\varepsilon}'$:
 \begin{equation}
 \frac{\mathrm{d} E_\mathrm{k}}{\mathrm{d} t} = \Psi (t) - \vec{\bar{\varepsilon}} (t) - \vec{\varepsilon}' (t).
 \end{equation}
+In this equation, $\vec{\bar{\varepsilon}} (t)$ displays the dissipation rate of the flow field and $\vec{\varepsilon}' (t)$ is the additional dissipation rate introduced by the injected point-particles. 
+As the dissipation rate is always of positive value, it acts as a sink for the fluid's turbulent kinetic energy. In difference to that, the coupling rate can serve either as source or sink, depending on the acceleration of the particles \cite{mechanismsoftwowaycoupling}. The coupling rate for fully resolved particles $\Psi$ is defined as
 \begin{equation}
 \Psi (t) = \sum_{p=1}^{N_\mathrm{p}} \Psi_\mathrm{p}= - \sum_{p=1}^{N_\mathrm{p}} (\vec{F}_\mathrm{p} \cdot \vec{v}_\mathrm{p} + \vec{T}_\mathrm{p} \cdot \vec{\omega}_\mathrm{p}),
 \end{equation}
-\begin{equation}
-\bar\varepsilon (t) = \int\limits_{\Upsilon_\mathrm{f}} \epsilon(t) \mathrm{d}V.
-\end{equation}
+using surface force $\vec{F}_\mathrm{p}$, particle velocity $\vec{v}_\mathrm{p}$, torque $\vec{T}_\mathrm{p}$ and angular velocity $\vec{\omega}_\mathrm{p}$ to describe the transfer of kinetic energy resulting at each particle. The torque can be neglected for the used point-particle approach.
+\newline
+As mentioned before, the flow field is considered nearly incompressible, therefore the equation  for the viscous dissipation rate can be approximated by
 \begin{equation}
  \epsilon (t) \approx 2 \mu \vec{\bar{S}}\vec{:}\vec{\bar{S}},
 \end{equation}
+where $\vec{:}$ denotes the inner tensor product. This rate can then be integrated over the fluid domain excluding particles and their direct surroundings $\Upsilon_\mathrm{f}$, leading to 
 \begin{equation}
-	\vec{\varepsilon}' = \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \cdot (\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p}) Gleichung ergaenzen,
+\bar\varepsilon (t) = \int\limits_{\Upsilon_\mathrm{f}} \epsilon(t) \mathrm{d}V.
 \end{equation}
+Additionally the particles change the fluid's rate of dissipation $\vec{\varepsilon}$ due to their volume forces. The additional dissipation rate for fully resolved particles can be computed by
+\begin{equation}
+	\vec{\varepsilon}' = \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \cdot (\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p}), (Gleichung ergaenzen)
+\end{equation}
+using the velocity of the fluid $\vec{u}_\mathrm{p}$ at the particle position.
 \begin{equation}
 	\frac{\mathrm{d} E_\mathrm{k}}{\mathrm{d} t} = \vec{F} \cdot \vec{u} - \bar{\varepsilon}
 \end{equation}
+For $\rho_\mathrm{p} \gg \rho$ and the point-particle approach the coupling rate $\Psi$ and the additional dissipation rate $\vec{\varepsilon}'$ are implicitly coupled:
 \begin{equation}
-\Psi_\mathrm{pp} (t) = - \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \cdot \vec{u}_\mathrm{p}.
+\Psi_\mathrm{pp} (t) = \Psi -\vec{\varepsilon}'(t) = - \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \cdot \vec{u}_\mathrm{p}.
 \end{equation}
-The decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between both fluid and particle phase $\frac{\mathrm{d} E_\mathrm{k}}{\mathrm{d} t}$, and the integral dissipation rate $\vec{\varepsilon}$:
+This leads to 
 \begin{equation}
 \frac{\mathrm{d} E_\mathrm{k}}{\mathrm{d} t} = \Psi_\mathrm{pp} (t) - \vec{\varepsilon} (t).
 \end{equation}
-As mentioned before, the flow field is considered nearly incompressible, therefore the equation  for the viscous dissipation rate can be approximated by
 \newline
-where $\vec{:}$ denotes the inner tensor product. This rate can then be integrated over the fluid domain excluding particles and their direct surroundings $\Upsilon_\mathrm{f}$, leading to 
-\newline
-As the dissipation rate is always of positive value, it acts as a sink for the fluid's turbulent kinetic energy. In difference to that, the coupling rate can serve either as source or sink, depending on the acceleration of the particles \cite{mechanismsoftwowaycoupling}. The coupling rate for fully resolved particles is defined as
-\newline
-using surface force $\vec{F}_\mathrm{p}$, particle velocity $\vec{v}_\mathrm{p}$, torque $\vec{T}_\mathrm{p}$ and angular velocity $\vec{\omega}_\mathrm{p}$ to describe the transfer of kinetic energy resulting at each particle. The torque can be neglected for the used point-particle approach. Therefore
-\begin{equation}
-\frac{\mathrm{d}E_\mathrm{kB}}{\mathrm{d}t} = - \Psi (t)
-\end{equation}
-is the rate of change for the global kinetic energy of the particles.
-Additionally the particles change the fluid's rate of dissipation $\vec{\varepsilon}$ due to their volume forces. 
-Schneiders et al. \cite{schneiders2017} therefore proposed a separation of dissipation rates for suspended heavy particles
-\newline
-In this equation, $\vec{\bar{\varepsilon}} (t)$ displays the dissipation rate of the flow field and $\vec{\varepsilon}' (t)$ is the additional dissipation rate introduced by the injected point-particles. For $\rho_\mathrm{p} \gg \rho$ and the point-particle approach the coupling rate $\Psi$ and the additional dissipation rate $\vec{\varepsilon}'$ are implicitly coupled
-\begin{equation}
-\Psi_\mathrm{pp} (t) = \Psi -\vec{\varepsilon}'.
-\end{equation}
-The additional dissipation rate for fully resolved particles can be computed by
-\newline
-using the velocity of the fluid $\vec{u}_\mathrm{p}$ at the particle position.
-The coupling rate in the special case of point particles then simplifies to the energy exchange rate due to the point particles
-\newline\subsection{Simulation setup}
+\subsection{Simulation setup}
 All cases were simulated on a cubic domain and a Cartesian grid using different grid refinement levels. For the LES-cases $64^3$, $96^3$ and $128^3$ are employed, hence the need to model smaller scales with SGS-models, which have already been validated in \cite{ValidationOfParticleLadenLargeEddySimulationUsingHPCSystems}. For a DNS, $256^3$ cells are necessary to resolve all scales.
 \newline
 The particle-free case was initialized using a seed-based number random generator, which is described in detail in \cite{??? Quelle einfuegen}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was ??? and $Re_\lambda \approx 58$. 
