@@ -236,10 +236,10 @@ Also the number of particles that is needed to get consistent average values for
 Finally, a short conclusion is given.
 \pagebreak
 \section{Mathematical models}
-To provide a common basis of knowledge, the basic equations and scales of a flow are introduced, as well as particle-considering equations.
+In this section the Navier-Stokes equations in integral formulation, the characteristic turbulent scales and the kinematic and dynamic equations for the particle phase are introduced.
 \newline
 \subsection{Equations governing the fluid phase}
-The conservation of mass, momentum and energy for a control volume reads
+The conservation of mass, momentum and energy for a control volume V reads
 \begin{equation}
   \int\limits_V \frac{\partial{\vec{Q}}}{\partial{t}} \, \mathrm{d} V+ \int\limits_{\partial{V}} \vec{\bar{H}} \cdot \vec{n} \, \mathrm{d} A = \vec0
 \end{equation}
@@ -253,41 +253,37 @@ $\vec{\bar{H}} $ is the flux tensor which contains the inviscid and viscous flux
 \begin{equation} \label{NavierStokes}
 \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}} = 
  \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right) - 
- \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right).
+ \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right),
 \end{equation} 
-$ \vec{\bar{H}^\mathrm{i}} $ contains the variables that are independent of the fluid's viscosity and $ \vec{\bar{H}^\mathrm{v}} $ represents the effects of viscosity, with shear stress $\matrix{\bar{\tau}}$ and heat conduction $\vec{q}$. The Reynolds number 
-$ Re = \frac{\rho v d}{\mu} $ is defined to be the ratio of inertia forces to viscous forces. This is also due to the 
-fact that two familiar objects with Re being identical behave similar in flows.
-To solve the Navier-Stokes equations, more information regarding some variables is required. For calculating the specific inner energy $ E $ 
-and the heat conduction $ \vec{q} $, the following equations are used
+with the shear stress $\matrix{\bar{\tau}}$, heat conduction $\vec{q}$ and the pressure p. The Reynolds number 
+$ Re = \frac{\rho_\infty u_\infty l_\mathrm{ref}}{\mu_\infty} $ is defined to be the ratio of inertia forces to viscous forces with reference density $\rho_\infty$, velocity $u_\infty$, length $l_\mathrm{ref}$ and dynamic viscosity $\mu_\infty$. 
+\newline
+The specific inner energy $ E $ 
+and the heat conduction $ \vec{q}$ are defined as
 \begin{equation}
- E = e  \frac{1}{2} \vec{|u|}^2,
+ E = e  \frac{1}{2} \vec{|u|}^2 \, \mathrm{and}
 \end{equation}
 \begin{equation}
  \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T,
 \end{equation}
-with 
-\begin{equation}
- \gamma = \frac{c_p}{c_v}
-\end{equation}
-and the Prandtl number
+with the constant capacity ratio $\gamma = \frac{c_p}{c_v}$ and the Prandtl number
 $ Pr = \frac{\mu_\infty c_\mathrm{p}}{k_\mathrm{t}}$
-using the specific heat capacities of the fluid $ c_\mathrm{v} $ and $ c_\mathrm{p} $.
-Assuming that the fluid is a newtonian fluid, the linear correlation between the stress and the rate of strain results in:
+using the specific heat capacities of the fluid $ c_\mathrm{v} $ and $ c_\mathrm{p} $ and thermal conductivity $k_\mathrm{t}$.
+Assuming that the fluid is newtonian, the Stokes hypothesis yields
 \begin{equation}
  \matrix{\bar{\tau}} = 2 \mu \matrix{\bar{S}} - \frac{2}{3} \mu (\vec\nabla \cdot \vec{u}) \matrix{\bar{I}},
 \end{equation}
 in which $ \matrix{\bar{S}} = \frac{(\vec\nabla \vec{u})(\vec\nabla \vec{u})^T}{2} $ denotes the rate-of-strain tensor. Additionally, the viscosity
 $ \mu $ can be approximated by Sutherland's law
 \begin{equation}
- \mu (T) = \mu_\infty \biggl(\frac{T}{t_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S},
+ \mu (T) = \mu_\infty \biggl(\frac{T}{T_\infty}\biggl)^{3/2} \frac{T_\infty + S}{T + S},
 \end{equation}
-where S is the Sutherland temperature. Sutherland's law is based on the ideal gas theory.
+where S is the Sutherland temperature.
 To achieve closure the caloric state equation $ e = c_\mathrm{v} T $ and the state equation for an ideal gas $
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mathrm{p} - c_\mathrm{v} $. 
 \newline
 \subsection{Scales of turbulent flows}
-Turbulent flows contain eddies, which are the reverse currents in the flow, of all sizes and shapes. Large-scale eddies bring energy to the flow, which is then passed down to smaller scales, and finally dissipated into heat by viscous effects. This behavior is called the 'energy cascade' and was first described by Richardson in the year 1920 \cite{Richardson1920}. The theory then was quantified by Kolmogorov \cite{Kolmogorov1941}.
+Turbulent flows ccan be described as a superposition of chaotic, three-dimensional vortical structures of various scales (eddies). Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
 \newline
 The first set of scales describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The corresponding timescale, which is most times called 'eddy turnover time', is defined as
 \begin{equation}
@@ -487,7 +483,7 @@ The coupling rate in the special case of point particles then simplifies to
 \newline\subsection{Simulation setup}
 All cases were simulated on a cubic domain and a Cartesian grid using different grid refinement levels. For the LES-cases $64^3$, $96^3$ and $128^3$ are employed, hence the need to model smaller scales with SGS-models, which have already been validated in \cite{ValidationOfParticleLadenLargeEddySimulationUsingHPCSystems}. For a DNS, $256^3$ cells are necessary to resolve all scales.
 \newline
-The particle-free case was initialized using a seed-based number random generator, which is described in detail in \cite{??? Quelle einfügen}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was ??? and $Re_\lambda \approx 58$. 
+The particle-free case was initialized using a seed-based number random generator, which is described in detail in \cite{??? Quelle einfuegen}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was ??? and $Re_\lambda \approx 58$. 
 \newline
 \subsection{Simulation results}
 \begin{figure}[h]
