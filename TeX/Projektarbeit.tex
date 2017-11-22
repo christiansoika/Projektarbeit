@@ -283,7 +283,30 @@ To achieve closure the caloric state equation $ e = c_\mathrm{v} T $ and the sta
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mathrm{p} - c_\mathrm{v} $. 
 \newline
 \subsection{Scales of turbulent flows}
-Turbulent flows ccan be described as a superposition of chaotic, three-dimensional vortical structures of various scales (eddies). Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
+Turbulent flows can be described as a superposition of chaotic, three-dimensional vortical structures of various scales (eddies). Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
+\newline
+Considering homogeneous isotropic turbulence, with zero mean velocity and the integral dissipation rate $\epsilon$, the characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $u'$ at two different positions 
+$\vec{x}$ and $\vec{x} + r$ at the same time $t$
+\begin{equation}
+R (\vec{x}, r) = \frac{\overline{u'(\vec{x}, t)u'(\vec{x} + r, t)}}{\overline{u'^2}},
+\end{equation}
+as
+\begin{equation}
+ \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial r^2}\Bigr|_{\substack{r=0}}\biggl),
+\end{equation}
+\begin{equation}
+\lambda = \sqrt{15 \frac{\nu}{\epsilon}} u'
+\end{equation}
+or
+\begin{equation} \label{eq:integralLengthScale}
+L = \int_{0}^{\infty} R (\vec{x}, r)  \, \mathrm{d}r
+\end{equation}
+with $\lambda$ being the Taylor microscale, $L$ the integral length scale and $|\vec{u'}|$ denoting the absolute value of the velocity's fluctuation.
+\newline
+The Taylor microscale can be used to compute the Taylor-scale Reynolds number
+\begin{equation}
+Re_\mathrm{\lambda} = \frac{u' \lambda}{\nu}.
+\end{equation}
 \newline
 The first set of scales describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The corresponding timescale, which is most times called 'eddy turnover time', is defined as
 \begin{equation}
