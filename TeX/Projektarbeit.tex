@@ -480,7 +480,7 @@ This leads to
 \subsection{Simulation setup}
 All cases were simulated on a cubic domain and a Cartesian grid using different grid refinement levels. For the LES-cases $64^3$, $96^3$ and $128^3$ are employed, hence the need to model smaller scales with SGS-models, which have already been validated in \cite{ValidationOfParticleLadenLargeEddySimulationUsingHPCSystems}. For a DNS, $256^3$ cells are necessary to resolve all scales.
 \newline
-The particle-free case was initialized using a seed-based number random generator, which is described in detail in \cite{??? Quelle einfuegen}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was ??? and $Re_\lambda \approx 58$. 
+The particle-free case was initialized using a seed-based number random generator, which is described in detail in \cite{orszag1969numerical}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence. This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the particle response time $\tau_\mathrm{p}$ was ??? and $Re_\lambda \approx 58$. 
 \newline
 \subsection{Simulation results}
 \begin{figure}[h]
@@ -535,13 +535,13 @@ Being very similar in the time shortly after the injection, the flow statistics 
 \begin{table}[h]
 	\begin{center}
 	\begin{tabular}{l l | c c c c c c }
-	$\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ & $\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
+	$\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ & $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ &$\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ \\
 	\hline
 	\hline
-	1 &16.78 & 0.97& 0.039 & 0.0032 & 38.73 &\\
-	10 &167.78 & 2.08 & 0.028 & 0.0026 & 28.66 &\\
-	50 &838.86 & 3.51 & 0.024 & 0.0023 & 27.31 &\\
-	100 &1677.72 & 3.51 & 0.025 & 0.0023 & 29.42 &\\
+	1 &16.78 & & 0.97& 0.039 & 0.0032 & 38.73 &\\
+	10 &167.78 & & 2.08 & 0.028 & 0.0026 & 28.66 &\\
+	50 &838.86 & & 3.51 & 0.024 & 0.0023 & 27.31 &\\
+	100 &1677.72 & & 3.51 & 0.025 & 0.0023 & 29.42 &\\
 	\hline
 	\end{tabular}
 	\captionsetup{width=0.9\linewidth}
@@ -579,6 +579,7 @@ Further investigation is needed regarding the second set of simulation (Fig. \re
 %This work was supervised by Konstantin Fr\"ohlich, we would like to express our gratitude. Thank you for the chance of learning about turbulent flows and simulations, the advice and the deep insights in scientific work. We also appreciate the chance of writing this work at the Institute of Aerodynamics of the RWTH Aachen University.
 \pagebreak
 \section{References}
+\vspace*{-1.2cm}
 \nocite{*} %erm�glicht, dass auch Literatur, welche nicht zitiert wurde in der Bibliography auftaucht
 \bibliography{Projektarbeit} %ruft die Bibliography-Datei auf
 \bibliographystyle{plain} %setzt den Zitierstil
