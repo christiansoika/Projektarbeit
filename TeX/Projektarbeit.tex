@@ -285,9 +285,9 @@ p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mat
 Turbulent flows can be described as a superposition of chaotic, three-dimensional vortical structures of various scales (eddies). Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
 \newline
 Considering homogeneous isotropic turbulence, with zero mean velocity and the integral dissipation rate $\epsilon$, the characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $u'$ at two different positions 
-$\vec{x}$ and $\vec{x} + r$ at the same time $t$
+$\vec{x}$ and $\vec{x} + \vec{e}r$ at the same time $t$
 \begin{equation}
-R (\vec{x}, r) = \frac{\overline{u'(\vec{x}, t)u'(\vec{x} + r, t)}}{\overline{u'^2}},
+R (r, t) = \frac{\overline{u'(\vec{x}, t)u'(\vec{x} + \vec{e}r, t)}}{\overline{u'^2}},
 \end{equation}
 as
 \begin{equation}
@@ -298,20 +298,20 @@ as
 \end{equation}
 or
 \begin{equation} \label{eq:integralLengthScale}
-L = \int_{0}^{\infty} R (\vec{x}, r)  \, \mathrm{d}r
+L = \int_{0}^{\infty} R (r, t)  \, \mathrm{d}r
 \end{equation}
-with $\lambda$ being the Taylor microscale, $L$ the integral length scale and $|\vec{u'}|$ denoting the absolute value of the velocity's fluctuation.
+with $\lambda$ being the Taylor microscale, $L$ the integral length scale, $u'$ denoting the absolute value of the velocity's fluctuation and $\vec{e}$ pointing in the same direction as $\vec{u'}$ with $|\vec{e}| = 1$.
 \newline
 The Taylor microscale can be used to compute the Taylor-scale Reynolds number
 \begin{equation}
 Re_\mathrm{\lambda} = \frac{u' \lambda}{\nu}.
 \end{equation}
 \newline
-The first set of scales describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The corresponding timescale, which is most times called 'eddy turnover time', is defined as
+$L$ and the corresponding timescale $\tau_\mathrm{L}$, which is most times called 'eddy turnover time', describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The eddy turnover time is defined by
 \begin{equation}
 \tau_\mathrm{L} = \frac{L}{U},
 \end{equation}
-with the integral length scale $L$ (\ref{eq:integralLengthScale}) and the characteristic fluid velocity $U$.
+with the characteristic fluid velocity $U$.
 \newline
 The smallest scales in a turbulent flow are the Kolmogorov length $\eta$ and time scale $\tau_\mathrm{\eta}$. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \approx \frac{U^3}{L} $ they can be written as
 \begin{equation}
@@ -327,32 +327,10 @@ Both these scales are coupled by the Reynolds numbers
 \end{equation}
 and
 \begin{equation}
-\frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = {Re_\mathrm{L}}^{1/2}.
+\frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = {Re_\mathrm{L}}^{1/2}
 \end{equation}
+with ${Re_\mathrm{L}}^{1/2} = \frac{u' L}{\nu}$.
 It can be observed from these equations that the spacing between the scales increases for higher Reynolds numbers. 
-\newline
-Characteristic length scales $\lambda$ and $L$ of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $\vec{u'}$ at two different positions 
-$\vec{x}$ and $\vec{x} + \vec{r}$ at the same time $t$
-\begin{equation}
-R (\vec{x}, \vec{r}) = \frac{\overline{\vec{u'}(\vec{x}, t)\vec{u'}(\vec{x} + \vec{r}, t)}}{\sqrt{\overline{\vec{u'}^2(\vec{x}, t)}}\sqrt{\overline{\vec{u'}^2(\vec{x} + \vec{r}, t)}}},
-\end{equation}
-as
-\begin{equation}
- \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial \vec{r}^2}\biggl),
-\end{equation}
-\begin{equation}
-\lambda = \sqrt{15 \frac{\nu}{\epsilon}} |\vec{u'}|
-\end{equation}
-or
-\begin{equation} \label{eq:integralLengthScale}
-L = \int_{0}^{\infty} R (\vec{x}, \vec{r})  \, \mathrm{d}\vec{r}
-\end{equation}
-with $\lambda$ being the Taylor microscale, $L$ the integral length scale and $|\vec{u'}|$ denoting the absolute value of the velocity's fluctuation.
-\newline
-The Taylor microscale can be used to compute the Taylor-scale Reynolds number
-\begin{equation}
-Re_\mathrm{\lambda} = \frac{|\vec{u'}| \lambda}{\nu}.
-\end{equation}
 \newline
 \subsection{Particle dynamics} %Steffen
 
@@ -397,6 +375,7 @@ the Eqs.  \eqref{NavierStokes} and \eqref{kurze_Partikelgleichung} form a closed
 Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS (direct numerical simulation) and the LES (large-eddy simulation). The basis of both are the Navier-Stokes equations as described above.
 \newline
 \subsection{Discretization of the particle dynamics}
+<<<<<<< HEAD
 
 To model the impact of the particles on the fluid, the Navier-Stokes equations \eqref{NavierStokes} are extended by momentum sources or sinks. The feedback force of the particles is exerted on the fluid using a distance based weighting function
 \begin{equation}
@@ -405,6 +384,9 @@ To model the impact of the particles on the fluid, the Navier-Stokes equations \
 with the distance between particle postion and the cell center $d_\mathrm{i}$, the grid width $\Delta$, and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells.
 
 To integrate the Lagrangian particle tracking equations, discussed before, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
+=======
+To compute the Lagrangian particle trajectories, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
+>>>>>>> 011b9ddc2e2f024fa6bd26fb857144fea7c492fc
 \begin{equation}
 f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\partial t} + \frac{\partial f(t + \delta t)}{\partial t} \right ]
 \end{equation}
@@ -414,11 +396,11 @@ The first step is the prediction of the new particle position $\vec{x}_{\mathrm{
 \begin{equation}
 \vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \delta t \vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t^2 \vec{a}_{\mathrm{p}, n},
 \end{equation}
-with $\vec{a}_{\mathrm{p}, n}$ particle acceleration. 
+with $\vec{a}_{\mathrm{p}, n}$ particle acceleration, where the subscript $\mathrm{p}$ denotes the particle and the subscript $n$ the time step.
 \newline
 To avoid filtering effects, the fluid velocity $\vec{u}(\vec{x}_{\mathrm{p}, n+1})$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ is set equal to the nearest cell fluid velocity. 
 \newline
-The updated velocity and acceleration are calculated as
+The predicted velocity and acceleration are calculated with
 \begin{equation}
 \vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p}, }n + \frac{f_\mathrm{d}}{\tau_\mathrm{p}}\vec{u}(\vec{x}_{\mathrm{p}, n+1}) \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
 \end{equation}
