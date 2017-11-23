@@ -151,7 +151,6 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[grp]{$\rho_\mathrm{p}$}{Particle density}
 \nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{Particle position vector}
 \nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{Particle velocity vector}
-\nomenclature[rfD]{$f_\mathrm{d}$}{Drag correction}
 \nomenclature[gmc]{$\lambda_\mathrm{c}$}{Ratio of physical point particles to computational point particles}
 \nomenclature[rnp]{$N_\mathrm{p}$}{Number of physical point particles}
 \nomenclature[rnc]{$N_\mathrm{c}$}{Number of computational point particles}
@@ -168,7 +167,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[gepss]{$\vec{\bar{\varepsilon}}$}{Integral dissipation rate of the flow field}
 \nomenclature[geps']{$\vec{\varepsilon}'$}{Additional integral particle induced dissipation rate}
 \nomenclature[odelta1]{$\delta$}{Small step of the following variable}
-\nomenclature[od]{$\frac{\mathrm{d}}{\mathrm{d}t}$}{Time derivative}
+\nomenclature[od]{$\frac{\mathrm{d}}{\mathrm{d}t}$}{Material derivative}
 \nomenclature[oD]{$\frac{\mathrm{D}}{\mathrm{D}t}$}{Time derivative following a fluid unit}
 \nomenclature[odelta2]{$\frac{\partial{}}{\partial{t}}$}{Partial derivative with respect to time}
 \nomenclature[oO]{$\vec{:}$}{Inner tensor product}
@@ -188,7 +187,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[rN]{$N$}{Grid refinement of the simulation}
 \nomenclature[rG(r)]{$G(r)$}{Filter function}
 \nomenclature[ru']{$\vec{u}'$}{Vector of fluid velocity fluctuations}
-\nomenclature[rCd]{$C_\mathrm{d}$}{Empirical drag coefficient}
+\nomenclature[rCd]{$\phi(Re_\mathrm{p}$}{Empirical drag correction factor}
 \nomenclature[rmp]{$m_\mathrm{p}$}{Particle mass}
 \nomenclature[rmf]{$m_\mathrm{f}$}{Fluid mass}
 \nomenclature[rvr]{$v_\mathrm{r}$}{Relative velocity between particle and fluid}
@@ -240,7 +239,7 @@ In this section the Navier-Stokes equations in integral formulation, the charact
 \newline
 \subsection{Equations governing the fluid phase}
 The conservation of mass, momentum and energy for a control volume V reads
-\begin{equation}
+\begin{equation} \label{NavierStokes}
   \int\limits_V \frac{\partial{\vec{Q}}}{\partial{t}} \, \mathrm{d} V+ \int\limits_{\partial{V}} \vec{\bar{H}} \cdot \vec{n} \, \mathrm{d} A = \vec0
 \end{equation}
 with time $t$ and the flux tensor $ \vec{\bar{H}} $.
@@ -250,7 +249,7 @@ fluid velocity $ \vec{u} $ and specific inner energy $ E $:
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
 \end{equation}
 $\vec{\bar{H}} $ is the flux tensor which contains the inviscid and viscous flux, i.e.
-\begin{equation} \label{NavierStokes}
+\begin{equation} 
 \vec{\bar{H}} = \vec{\bar{H}^\mathrm{i}} + \vec{\bar{H}^\mathrm{v}} = 
  \left( \begin{array}{c}\rho \vec{u}\\\rho \vec{u} \vec{u} + p\\\vec{u} (\rho E + p) \end{array} \right) - 
  \frac{1}{Re} \left( \begin{array}{c}\ 0 \\ \matrix{\bar{\tau}}\\ \matrix{\bar{\tau}} \vec{u} + \vec{q} \end{array} \right),
@@ -356,54 +355,55 @@ Re_\mathrm{\lambda} = \frac{|\vec{u'}| \lambda}{\nu}.
 \end{equation}
 \newline
 \subsection{Particle dynamics} %Steffen
-To take the forces acting from the particles on the fluid into account the Navier-Stokes equation for the carrier fluid \eqref{NavierStokes} is extended by the force $\vec{F}$ that acts on the ambient cells with different intensity regarding on the distance between these cells and the particle
-\begin{equation}
-\vec{F} = \vec{F}_\mathrm{pp} \cdot \frac{\mathrm{e}^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2})\big)}}{\sum \limits_{i} e^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2}) \big)}},
-\end{equation}
-with the distance between particle postion and midpoint of the cell $d_\mathrm{i}$, the length of the cells $\Delta$ and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells.
-$\vec{F}_\mathrm{pp}$ is the sum of pressure and shear forces acting on the particles and is described explicitly in the Maxey-Riley equation that can be achieved from \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
-$\vec{F}_\mathrm{pp}$ can be divided into several forces. 
+
+$\vec{F}_\mathrm{pp}$ is the sum of several pressure and shear forces acting on the particles and is described explicitly by the Maxey-Riley equation \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
 Reduced to the governing forces acting on the particles and with neglection of gravity the dynamic equation of the particles becomes
 \begin{multline} \label{navier_stokes_particle}
-\\ \vec{F}_\mathrm{pp} = m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} =\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t} -\frac{3}{4}\rho \mathrm{V}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u})+ \frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl) + 
-\\ \frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl).
+ \vec{F}_\mathrm{pp} = m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} =\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t} + 3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p})+ \frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl) +
+\\ 3 \pi \mu d_\mathrm{p}\int_{0}^{t} K(t) (t-t') \cdot \biggl(\frac{\mathrm{d}\vec{u}_\mathrm{p}}{\mathrm{d}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)dt'.
 \end{multline}
-$\vec{v}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the particle velocity vector with the time derivative $\mathrm{d}/\mathrm{d}t$ following a sphere while $\mathrm{D}/\mathrm{D}t$  is the time derivative following a fluid unit. 
+$\vec{v}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the particle velocity vector with the time derivative $\mathrm{d}/\mathrm{d}t$ along the particle trajectory while $\mathrm{D}/\mathrm{D}t$  is the material derivative at one point. $\vec{u}_\mathrm{p}(t) = \vec{u}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the velocity of the undisturbed fluid at the particle position $\vec{x}_\mathrm{p}$.
 The individual forces on the right side of the equation are stated in the following:
 \begin{itemize} 
 \item  $\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}$: \newline
 pressure gradient of the undisturbed flow
-\item  $-\frac{3}{4}\rho \mathrm{V}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-    \vec{u}|(\vec{v}_\mathrm{p}-\vec{u})$:\newline
-hydrodynamical drag force that is parallel to the undisturbed streamlines, which depends on an empirical drag coefficient $C_{\mathrm{d}}$ defined by Schiller and Naumann as
-$C_\mathrm{d} = \frac{24}{Re_\mathrm{p}}(1+0.15Re_\mathrm{p}^\mathrm{0.687})$.
-It is described by the Stokes' law as the force of viscosity acting on the interface of small spherical particles and fluid that can be achieved at very low Reynolds numbers in a viscous fluid
+\item $3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p}):$\newline
+quasi-steady Stokes drag that is parallel to the undisturbed streamlines and is described by the Stokes' law as the force of viscosity acting on the interface of small spherical particles and fluid that can be achieved at very low Reynolds numbers in a viscous fluid
 
 \item $\frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)$:\newline
 added mass force, representing the influence of the fluid's inertia that has an impact on the particle, in case of a different acceleration than the particles
-\item $\frac{3}{2}d_\mathrm{p}^\mathrm{2}\rho\sqrt{\pi\nu}\int_{t_\mathrm{0}}^{t} \frac{\mathrm{d}t'}{(t-t')^\mathrm{1/2}} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl) $: \newline
-history force taking diffusion and convection into account that results from vortices in the slipstream of the particles
+\item $3 \pi \mu d_\mathrm{p}\int_{0}^{t} K(t) (t-t') \cdot \biggl(\frac{\mathrm{d}\vec{u}_\mathrm{p}}{\mathrm{d}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)dt'$: \newline
+Basset history force taking the unsteady motion into account using a history kernel $K(t)$ 
 \end{itemize}
 
-As presented by Vincenzo Armenio and Virgilio Fiorotto \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows} compared to the Stokes drag all other forces could be neglected with rising particle density, so due to the density ratio being $\rho_\mathrm{p}/\rho \gg 1$, $\vec{F}_\mathrm{pp}$ can be approximately reduced to the dominating viscous drag. \eqref{navier_stokes_particle} becomes 
+\eqref{navier_stokes_particle} is based on Stokes flow conditions, i.e., vanishing particle Reynolds number $Re_\mathrm{p} \ll 1$. In addition in this thesis, particles with $d_\mathrm{p} \ll \eta$ are investigated.
+As a result for heavy particles, the drag force is the dominating contributor of Eq. \eqref{navier_stokes_particle} as reported by \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows}. Therefore $\vec{F}_\mathrm{pp}$ can be reduced to
 \begin{equation} \label{kurze_Partikelgleichung}
-\vec{F}_\mathrm{pp} =  m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = \frac{3}{4}\rho \mathrm{V}_\mathrm{p} \frac{C_\mathrm{d}}{d_\mathrm{p}}|\vec{v}_\mathrm{p}-\vec{u}|(\vec{v}_\mathrm{p}-\vec{u}).
-\end{equation} 
-Using the particle Reynolds number $Re_\mathrm{p} = \frac{v_\mathrm{r}d_\mathrm{p}}{\nu}$ with the relative velocity between particle and fluid $v_\mathrm{r}$,  \eqref{kurze_Partikelgleichung} can be compressed, which is described in detail in \cite{computationalMethodsforMultiphaseFlow}.
-\begin{equation} \label{shortPaticleDynamics}
-\rho_\mathrm{p}\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = \rho_\mathrm{p}\frac{\vec{v}_\mathrm{p}-\vec{u}}{\tau_\mathrm{p}}f_\mathrm{d}.
+\vec{F}_\mathrm{pp} =  m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = 3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p}).
 \end{equation}
-Here the particle response time $\tau_\mathrm{p} = \frac{(\rho_\mathrm{p}/\rho)d_\mathrm{p}^\mathrm{2}}{18\nu}$ is introduced which is a time constant in the exponential decay of the particle velocity as a result of an upcoming fluid drag and physically represents the time scale over which the drag force decreases the particle's relative velocity to zero.
-$f_\mathrm{d} = 1+0.15Re_\mathrm{p}^\mathrm{0.687}$ is a correction factor depending on the flow conditions.
-Together with the kinematic equation of a particle   
+$\phi(Re_\mathrm{p}) = 1+0.15Re_\mathrm{p}^\mathrm{0.687}$ is an empirical correction factor for finite Rep. \newline Eq. \eqref{kurze_Partikelgleichung} can be reformulated to
+\begin{equation} \label{shortPaticleDynamics}
+\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = \frac{\phi(Re_\mathrm{p})}{\tau_\mathrm{p}}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p}),
+\end{equation}
+with the particle relaxation time $\tau_\mathrm{p}=\frac{1}{18}\frac{\rho_\mathrm{p}}{\rho_\mathrm{f}}\frac{d_\mathrm{p}^\mathrm{2}}{\nu}$. 
+\newline
+Together with the kinematic equation    
 \begin{equation}
  \frac{\mathrm{d}\vec{x}_\mathrm{p}}{\mathrm{d}t} = \vec{v}_\mathrm{p},
 \end{equation}
-the adjusted equation \eqref{NavierStokes} and \eqref{shortPaticleDynamics} form the basic equations for the particle laden system. 
+the Eqs.  \eqref{NavierStokes} and \eqref{kurze_Partikelgleichung} form a closed system of equations.
 \pagebreak
 \section{Numerical methods} %Julian
 Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS (direct numerical simulation) and the LES (large-eddy simulation). The basis of both are the Navier-Stokes equations as described above.
 \newline
 \subsection{Discretization of the particle dynamics}
+
+To model the impact of the particles on the fluid, the Navier-Stokes equations \eqref{NavierStokes} are extended by momentum sources or sinks. The feedback force of the particles is exerted on the fluid using a distance based weighting function
+\begin{equation}
+\vec{F} = \vec{F}_\mathrm{pp} \cdot \frac{\mathrm{e}^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2})\big)}}{\sum \limits_{i} e^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2}) \big)}},
+\end{equation}
+with the distance between particle postion and the cell center $d_\mathrm{i}$, the grid width $\Delta$, and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells.
+
 To integrate the Lagrangian particle tracking equations, discussed before, a predictor-corrector scheme based on the trapezoidal rule for numerical integration
 \begin{equation}
 f (t + \delta t) \approx f(t) + \frac{\delta t}{2} \left[ \frac{\partial f(t)}{\partial t} + \frac{\partial f(t + \delta t)}{\partial t} \right ]
