@@ -20,6 +20,7 @@
 \usepackage{ifthen}
 \usepackage{caption}
 \usepackage{multirow}
+\usepackage{subfig}
 %bindet die benutzten Packages ein
 
 \linespread{1.25}
@@ -420,20 +421,27 @@ With DNS, the Navier-Stokes equations are solved completely. This provides a ver
     \centering
     \begin{minipage}[t]{.5\textwidth}
         \centering
-        \includegraphics[width=0.95\linewidth]{./Abbildungen/256_velocity_4.png}
+        \subfloat[]{\includegraphics[width=0.95\linewidth]{./Abbildungen/256_velocity_4.png}}
         \label{256_velocity}
     \end{minipage}%
     \begin{minipage}[t]{0.5\textwidth}
         \centering
-        \includegraphics[width=0.95\linewidth]{./Abbildungen/64_velocity.png}
+        \subfloat[]{\includegraphics[width=0.95\linewidth]{./Abbildungen/64_velocity.png}}
         \label{64_velocity}
     \end{minipage}
     \captionsetup{width=0.97\linewidth}
-\caption{Comparison between DNS and LES. 'Worm-like' structures in an isotropic flow field simulated in different grid resolutions. The more refined grid on the left show more and better resolved structures, while the right picture reveals more artificially generated artifacts. For creation see Appendix A.}
+\caption{Instantaneous snapshot of the parallel projection of an isotropic decaying turbulent flow field computed by a DNS (a) and a LES (b). 'Worm-like' structures in an isotropic turbulent flow field. The more refined grid on the left shows more and better resolved structures, while the right picture reveals more artificially generated artifacts. For details on creation, see Appendix A.}
+\label{comparisonLESDNS}
 \end{figure}
-Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing larger-scale motion is completely resolved and the small effects of the smaller-scale motion are modeled. Otherwise in DNS resolving the small dissipative scale would require most of the computational resources.
+Otherwise in DNS resolving the small dissipative scale would require most of the computational resources. Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing large scales are completely resolved and the impact of the small scales on the large scales are modeled.
 \newline
-Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by $\bar U(\vec{x}) = \int_{-\infty}^{\infty} G(\vec{r})U(\vec{x} - \vec{r})  \, \mathrm{d}\vec{r}$, with $G(\vec{r}) $ being a homogeneous filter function. For further information on filter functions, the works of Pope \cite{turbulentFlows} should be considered. To model the filtered smaller-scale motions usually a subgrid-scale (SGS) model is used. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus it is called implicit LES (ILES) \cite{implicitLES}.
+Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by 
+\begin{equation}
+\bar U(\vec{x}) = \int_{-\infty}^{\infty} G(\vec{r})U(\vec{x} - \vec{r})  \, \mathrm{d}\vec{r},
+\end{equation}
+with $G(\vec{r}) $ being a homogeneous filter function \cite{turbulentFlows}. To model the filtered smaller-scale motions a subgrid-scale (sgs) model is necessary. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus it is called implicit LES (ILES) \cite{implicitLES}.
+\newline
+Even though the small scales are modeled in the LES, the effects of filtering can be seen in figure \ref{comparisonLESDNS}.
 \newline
 \pagebreak
 \section{Results}
