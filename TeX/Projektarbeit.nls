@@ -2,6 +2,8 @@
 
  \nomgroup{A}
 
+  \item [{CPP}]\begingroup Computational point particles\nomeqref {.0}
+		\nompageref{I}
   \item [{DNS}]\begingroup Direct numerical simulation\nomeqref {.0}
 		\nompageref{I}
   \item [{ILES}]\begingroup Implicit large-eddy simulation\nomeqref {.0}
@@ -10,6 +12,7 @@
 		\nompageref{I}
   \item [{PP}]\begingroup Particle-laden simulation\nomeqref {.0}
 		\nompageref{I}
+  \item [{rms}]\begingroup Root mean square\nomeqref {.0}\nompageref{I}
   \item [{SGS}]\begingroup Subgrid scale\nomeqref {.0}\nompageref{I}
   \item [{sP}]\begingroup Single-phase simulation\nomeqref {.0}
 		\nompageref{I}
@@ -26,6 +29,8 @@
   \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {.0}
 		\nompageref{I}
   \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {.0}
+		\nompageref{I}
+  \item [{$\eta_\mathrm{0}$}]\begingroup Initial Kolmogorov length scale\nomeqref {.0}
 		\nompageref{I}
   \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {.0}
 		\nompageref{I}
@@ -58,14 +63,14 @@
 		\nompageref{I}
   \item [{$\vec{\omega}_\mathrm{p}$}]\begingroup Particle angular velocity vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\Upsilon_\mathrm{f}$}]\begingroup Full fluid domain\nomeqref {.0}
+  \item [{$\Upsilon_\mathrm{f}$}]\begingroup Fluid domain without particle surroundings\nomeqref {.0}
 		\nompageref{I}
 
  \nomgroup{O}
 
   \item [{$\frac{\mathrm{D}}{\mathrm{D}t}$}]\begingroup Time derivative following a fluid unit\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\frac{\mathrm{d}}{\mathrm{d}t}$}]\begingroup Time derivative\nomeqref {.0}
+  \item [{$\frac{\mathrm{d}}{\mathrm{d}t}$}]\begingroup Material derivative\nomeqref {.0}
 		\nompageref{I}
   \item [{$\delta$}]\begingroup Small step of the following variable\nomeqref {.0}
 		\nompageref{I}
@@ -81,7 +86,7 @@
   \item [{$A$}]\begingroup Control surface\nomeqref {.0}\nompageref{I}
   \item [{$\vec{a}_\mathrm{p}$}]\begingroup Particle acceleration\nomeqref {.0}
 		\nompageref{I}
-  \item [{$C_\mathrm{d}$}]\begingroup Empirical drag coefficient\nomeqref {.0}
+  \item [{$\phi(Re_\mathrm{p}$}]\begingroup Empirical drag correction factor\nomeqref {.0}
 		\nompageref{I}
   \item [{$c_\mathrm{p}$}]\begingroup Specific isobaric heat capacity\nomeqref {.0}
 		\nompageref{I}
@@ -100,8 +105,6 @@
   \item [{$E_\mathrm{kB}$}]\begingroup Turbulent kinetic energy of the particles\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{F}$}]\begingroup Force vector per unit volume of the particle acting on the fluid\nomeqref {.0}
-		\nompageref{I}
-  \item [{$f_\mathrm{D}$}]\begingroup Drag correction\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{F}_\mathrm{pp}$}]\begingroup Sum vector of forces acting on the particles\nomeqref {.0}
 		\nompageref{I}
@@ -122,6 +125,8 @@
   \item [{$L$}]\begingroup Integral length scale\nomeqref {.0}
 		\nompageref{I}
   \item [{$Ma$}]\begingroup Mach number\nomeqref {.0}\nompageref{I}
+  \item [{$m_\mathrm{f}$}]\begingroup Fluid mass\nomeqref {.0}
+		\nompageref{I}
   \item [{$m_\mathrm{p}$}]\begingroup Particle mass\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{n}$}]\begingroup Normal vector\nomeqref {.0}
@@ -162,6 +167,8 @@
   \item [{$\vec{u}_\mathrm{p}$}]\begingroup Vector of fluid velocity at the particle position\nomeqref {.0}
 		\nompageref{I}
   \item [{$V$}]\begingroup Control volume\nomeqref {.0}\nompageref{I}
+  \item [{$\mathrm{V}_\mathrm{f}$}]\begingroup Fluid volume\nomeqref {.0}
+		\nompageref{I}
   \item [{$\mathrm{V}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity vector\nomeqref {.0}

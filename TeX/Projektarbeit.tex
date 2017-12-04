@@ -107,7 +107,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[aCPP]{CPP}{Computational point particles}
 \nomenclature[aDNS]{DNS}{Direct numerical simulation}
 \nomenclature[aLES]{LES}{Large-eddy simulation}
-\nomenclature[aSGS]{SGS}{Subgrid scale}
+\nomenclature[asgs]{sgs}{Subgrid scale}
 \nomenclature[asP]{sP}{Single-phase simulation}
 \nomenclature[aPP]{PP}{Particle-laden simulation}
 \nomenclature[aILES]{ILES}{Implicit large-eddy simulation}
@@ -162,7 +162,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[gpsipp]{$\Psi_\mathrm{pp}$}{Integral coupling rate using the point-particle approach}
 \nomenclature[gtp]{$\tau_\mathrm{p}$}{Particle response time}
 \nomenclature[gD]{$\Delta$}{Cell length}
-\nomenclature[rdi]{$d_\mathrm{i}$}{Distance between particle position and center of the cell}
+\nomenclature[rdi]{$d_\mathrm{i}$}{Distance between particle position and cell center}
 \nomenclature[gphiv]{$\phi_\mathrm{v}$}{Volume fraction}
 \nomenclature[gphim]{$\phi_\mathrm{m}$}{Mass fraction}
 \nomenclature[gYf]{$\Upsilon_\mathrm{f}$}{Fluid domain without particle surroundings}
@@ -189,7 +189,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[rN]{$N$}{Grid refinement of the simulation}
 \nomenclature[rG(r)]{$G(r)$}{Filter function}
 \nomenclature[ru']{$\vec{u}'$}{Vector of fluid velocity fluctuations}
-\nomenclature[rCd]{$\phi(Re_\mathrm{p}$}{Empirical drag correction factor}
+\nomenclature[gCd]{$\phi(Re_\mathrm{p})$}{Empirical drag correction factor}
 \nomenclature[rmp]{$m_\mathrm{p}$}{Particle mass}
 \nomenclature[rmf]{$m_\mathrm{f}$}{Fluid mass}
 \nomenclature[rvr]{$v_\mathrm{r}$}{Relative velocity between particle and fluid}
@@ -218,22 +218,22 @@ Spray automization in fuel injectors, cyclonic particle separation in oil refine
 Turbulence augmentation or attenuation by particles is therefore a decisive factor.
 \newline
 A study about the impact of particles on the isotropic decaying turbulent flow is presented.
-Incompressible, isothermal and isotropic decaying turbulence will serve as the carrier flow. Gravity is omitted to avoid prominent directions. Isotropic turbulence is a relatively good assumption when a small region of a high-Reynolds-number flow, which is not affected by boundary effects, is observed \cite{Kolmogorov1941}. This fact is visualized by Fig \ref{introduction_picture}. Describing turbulent flows is a large task because of the involvement of many different scales of turbulent motion.
+Incompressible, isothermal and isotropic decaying turbulence will serve as the carrier flow. Gravity is omitted to avoid prominent directions. Isotropic turbulence is a relatively good assumption when a small region of a high-Reynolds-number flow, which is not affected by boundary effects, is observed \cite{Kolmogorov1941}. This fact is visualized by Fig \ref{introduction_picture}. Describing turbulent flows is a difficultsgs task because of the involvement of many different scales of turbulent motion.
 \newline
-In this work the influence of the particles on the isotropic decaying turbulence is numerically calculated by using direct numerical (DNS) and large-eddy simulations (LES). Direct numerical simulations are able to resolve all scales of turbulent motion due to their high grid refinement. Large-eddy simulations have a lower grid resolution and use therefore a subgrid-scale model (SGS) to model these scales. This type of simulation therefore has a lower computational effort.
+In this work the influence of the particles on the isotropic decaying turbulence is numerically calculated by using direct numerical (DNS) and large-eddy simulations (LES). Direct numerical simulations are able to resolve all scales of turbulent motion due to their high grid refinement. Large-eddy simulations have a lower grid resolution and use therefore a subgrid-scale model (sgs) to model these scales. This type of simulation therefore has a lower computational effort.
 \newline
-The simulations were carried out using the point-particle approach, where each particle is tracked via a Langrangian approach. The feedback of the particles on the flow field is modeled by sources and sinks, which is referred to as two-way coupling. Alternatives are one-way coupling, at which only the flow exert influence on the particles, and four-way coupling, which extends two-way coupling by particle-particle interactions. Two-way coupling is fitting for the simulations in this study, because the volume fraction $\phi_\mathrm{v}= 10^{-3}$ of the particles is large enough to alter the turbulence. Volume fractions below $\phi_\mathrm{v}= 10^{-6}$ are referred to as one-way coupling and the interactions that can be observed at values greater than $\phi_\mathrm{v}= 10^{-3}$ are called four-way coupling \cite{particleladenTurbulentFlows:DirectSimulationAndClosureModels}\cite{OnPredictingParticle-LadenTurbulentFlows}.
+The simulations were carried out using the point-particle approach, where each particle is tracked via a Langrangian approach. The feedback of the particles on the flow field is modeled by sources and sinks, which is referred to as two-way coupling. Alternatives are one-way coupling, at which only the flow exerts influence on the particles, and four-way coupling, which extends two-way coupling by particle-particle interactions. Two-way coupling is fitting for the simulations in this study, because the volume fraction $\phi_\mathrm{v}= 10^{-3}$ of the particles is large enough to alter the turbulence. Volume fractions below $\phi_\mathrm{v}= 10^{-6}$ are referred to as one-way coupling and the interactions that can be observed at values greater than $\phi_\mathrm{v}= 10^{-3}$ are attributed to four-way coupling \cite{particleladenTurbulentFlows:DirectSimulationAndClosureModels}\cite{OnPredictingParticle-LadenTurbulentFlows}.
 The particle diameter is defined to be smaller than the Kolmogorov scale, i.e. the smallest scale of the turbulent flow. The particle density is much higher than the fluid density.
 \newline
 To lower the computational effort in general, a new variable, which describes the fraction of physical to numerical point particles, is introduced and validated.
 \newline
-The structure of this work is described in the following. 
+In the following the structure of this work is described. 
 First, mathematical models for single-phase and particle dynamics are given. 
 Additionally, the scales of turbulent motion are described.
-Thereafter, the computational basics of both DNS and LES and their respective advantages and disadvantages are explained.
-Subsequently, the used discretization method to integrate the particle tracking equations is described and the 'computational point particles', in the following referred to as CPP, are introduced. 
-The CPP approach is validated by analyzing turbulent kinetic energy budgets for LES and DNS. For this purpose firstly a test is conducted to find out which number of CPPs is appropriate for further evaluation.
-Also the number of particles that is needed to get consistent average values for the flow characteristics is investigated.
+Subsequently, the used discretization method to integrate the particle tracking equations is described and the 'computational point particles', in the following referred to as CPP, are introduced.
+Thereafter, the computational basics of both DNS and LES and their respective advantages and disadvantages are explained. 
+The CPP approach is validated by analyzing turbulent kinetic energy budgets for LES and DNS. For this purpose a test is conducted at first to find out which number of CPPs is appropriate for further evaluation.
+Also the number of particles that is needed to get consistent averaged values for the flow characteristics is investigated.
 Finally, a short conclusion is given.
 \pagebreak
 \section{Mathematical models}
@@ -284,9 +284,9 @@ To achieve closure the caloric state equation $ e = c_\mathrm{v} T $ and the sta
 p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mathrm{p} - c_\mathrm{v} $. 
 \newline
 \subsection{Scales of turbulent flows}
-Turbulent flows can be described as a superposition of chaotic, three-dimensional vortical structures of various scales (eddies). Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
+Turbulent flows can be described as a superposition of chaotic, three-dimensional vortical structures of various scales, referred to as eddies. Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
 \newline
-Considering homogeneous isotropic turbulence, with zero mean velocity and the integral dissipation rate $\epsilon$, the characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $u'$ at two different positions 
+Considering homogeneous isotropic turbulence, with zero mean velocity and the integral dissipation rate $\varepsilon$, the characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $u'$ at two different positions 
 $\vec{x}$ and $\vec{x} + \vec{e}r$ at the same time $t$
 \begin{equation}
 R (r, t) = \frac{\overline{u'(\vec{x}, t)u'(\vec{x} + \vec{e}r, t)}}{\overline{u'^2}},
@@ -296,7 +296,7 @@ as
  \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial r^2}\Bigr|_{\substack{r=0}}\biggl),
 \end{equation}
 \begin{equation}
-\lambda = \sqrt{15 \frac{\nu}{\epsilon}} u'
+\lambda = \sqrt{15 \frac{\nu}{\varepsilon}} u'
 \end{equation}
 or
 \begin{equation} \label{eq:integralLengthScale}
@@ -309,13 +309,13 @@ The Taylor microscale can be used to compute the Taylor-scale Reynolds number
 Re_\mathrm{\lambda} = \frac{u' \lambda}{\nu}.
 \end{equation}
 \newline
-$L$ and the corresponding timescale $\tau_\mathrm{L}$, which is most times called 'eddy turnover time', describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The eddy turnover time is defined by
+$L$ and the corresponding timescale $\tau_\mathrm{L}$, which is mostly called 'eddy turnover time', describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The eddy turnover time is defined by
 \begin{equation}
 \tau_\mathrm{L} = \frac{L}{U},
 \end{equation}
 with the characteristic fluid velocity $U$.
 \newline
-The smallest scales in a turbulent flow are the Kolmogorov length $\eta$ and time scale $\tau_\mathrm{\eta}$. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\epsilon \approx \frac{U^3}{L} $ they can be written as
+The smallest scales in a turbulent flow are the Kolmogorov length $\eta$ and time scale $\tau_\mathrm{\eta}$. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\varepsilon \approx \frac{U^3}{L} $ they can be written as
 \begin{equation}
 \eta = \biggl (\frac{\nu^3 L}{U^3} \biggl )^{1/4}
 \end{equation}
@@ -331,13 +331,13 @@ and
 \begin{equation}
 \frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = {Re_\mathrm{L}}^{1/2}
 \end{equation}
-with ${Re_\mathrm{L}}^{1/2} = \frac{u' L}{\nu}$.
+with $Re_\mathrm{L} = \frac{u' L}{\nu}$.
 It can be observed from these equations that the spacing between the scales increases for higher Reynolds numbers. 
 \newline
 \subsection{Particle dynamics} %Steffen
 
 $\vec{F}_\mathrm{pp}$ is the sum of several pressure and shear forces acting on the particles and is described explicitly by the Maxey-Riley equation \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
-Reduced to the governing forces acting on the particles and with neglection of gravity the dynamic equation of the particles becomes
+Reduced to the governing forces and with neglection of gravity the dynamic equation of the particles becomes
 \begin{multline} \label{navier_stokes_particle}
  \vec{F}_\mathrm{pp} = m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} =\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t} + 3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p})+ \frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl) +
 \\ 3 \pi \mu d_\mathrm{p}\int_{0}^{t} K(t) (t-t') \cdot \biggl(\frac{\mathrm{d}\vec{u}_\mathrm{p}}{\mathrm{d}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)dt'.
@@ -345,12 +345,13 @@ Reduced to the governing forces acting on the particles and with neglection of g
 $\vec{v}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the particle velocity vector with the time derivative $\mathrm{d}/\mathrm{d}t$ along the particle trajectory while $\mathrm{D}/\mathrm{D}t$  is the material derivative at one point. $\vec{u}_\mathrm{p}(t) = \vec{u}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the velocity of the undisturbed fluid at the particle position $\vec{x}_\mathrm{p}$.
 The individual forces on the right side of the equation are stated in the following:
 \begin{itemize} 
-\item  $\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}$: \newline
+\item  $\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}$: \newline
 pressure gradient of the undisturbed flow
 \item $3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p}):$\newline
 quasi-steady Stokes drag that is parallel to the undisturbed streamlines and is described by the Stokes' law as the force of viscosity acting on the interface of small spherical particles and fluid that can be achieved at very low Reynolds numbers in a viscous fluid
 
-\item $\frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)$:\newline
+\item $\frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)$:
+\newline
 added mass force, representing the influence of the fluid's inertia that has an impact on the particle, in case of a different acceleration than the particles
 \item $3 \pi \mu d_\mathrm{p}\int_{0}^{t} K(t) (t-t') \cdot \biggl(\frac{\mathrm{d}\vec{u}_\mathrm{p}}{\mathrm{d}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)dt'$: \newline
 Basset history force taking the unsteady motion into account using a history kernel $K(t)$ 
@@ -361,11 +362,11 @@ As a result for heavy particles, the drag force is the dominating contributor of
 \begin{equation} \label{kurze_Partikelgleichung}
 \vec{F}_\mathrm{pp} =  m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = 3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p}).
 \end{equation}
-$\phi(Re_\mathrm{p}) = 1+0.15Re_\mathrm{p}^\mathrm{0.687}$ is an empirical correction factor for finite Rep. \newline Eq. \eqref{kurze_Partikelgleichung} can be reformulated to
+The empirical correction factor $\phi(Re_\mathrm{p}) = 1+0.15Re_\mathrm{p}^\mathrm{0.687}$ is used for finite $\mathrm{Re_\mathrm{p}}$. \newline Eq. \eqref{kurze_Partikelgleichung} can be reformulated to
 \begin{equation} \label{shortPaticleDynamics}
 \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = \frac{\phi(Re_\mathrm{p})}{\tau_\mathrm{p}}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p}),
 \end{equation}
-with the particle relaxation time $\tau_\mathrm{p}=\frac{1}{18}\frac{\rho_\mathrm{p}}{\rho_\mathrm{f}}\frac{d_\mathrm{p}^\mathrm{2}}{\nu}$. 
+with the particle relaxation time $\tau_\mathrm{p}=\frac{1}{18}\frac{\rho_\mathrm{p}}{\rho}\frac{d_\mathrm{p}^\mathrm{2}}{\nu}$. 
 \newline
 Together with the kinematic equation    
 \begin{equation}
@@ -391,21 +392,23 @@ The first step is the prediction of the new particle position $\vec{x}_{\mathrm{
 \end{equation}
 with $\vec{a}_{\mathrm{p}, n}$ particle acceleration, where the subscript $\mathrm{p}$ denotes the particle and the subscript $n$ the time step.
 \newline
-To avoid filtering effects, the fluid velocity $\vec{u}(\vec{x}_{\mathrm{p}, n+1})$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ is set equal to the nearest cell fluid velocity. 
+To avoid filtering effects, the fluid velocity $\vec{u}_{\mathrm{p}, n+1}$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ is set equal to the nearest cell fluid velocity. 
 \newline
 The predicted velocity and acceleration are calculated with
 \begin{equation}
-\vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p}, }n + \frac{f_\mathrm{d}}{\tau_\mathrm{p}}\vec{u}(\vec{x}_{\mathrm{p}, n+1}) \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
+\vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_\mathrm{p,n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p, n}} + \frac{f_\mathrm{d}}{\tau_\mathrm{p}}\vec{u}_{\mathrm{p}, n+1} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
 \end{equation}
 \begin{equation}
-\vec{a}_{\mathrm{p}, n+1} = \frac{\frac{f_\mathrm{D}}{\tau_\mathrm{p}} \left(\vec{u}(\vec{x}_{\mathrm{p}, n+1}) - \vec{v}_{\mathrm{p}, n} - \frac{1}{2} \delta t \vec{a}_{\mathrm{p}, n} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t}.
+\vec{a}_{\mathrm{p}, n+1} = \frac{\frac{f_\mathrm{D}}{\tau_\mathrm{p}} \left(\vec{u}_{\mathrm{p}, n+1} - \vec{v}_{\mathrm{p}, n} - \frac{1}{2} \delta t \vec{a}_{\mathrm{p}, n} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t}.
 \end{equation}
 The updated particle position must be corrected by an additional term according to the trapezoidal rule
 \begin{equation}
 \vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \frac{1}{2} \delta t \left( \vec{v}_{\mathrm{p}, n+1} + \vec{v}_{\mathrm{p}, n} \right) + \frac{1}{12} \delta t^2 \left( \vec{a}_{\mathrm{p}, n+1} - \vec{a}_{\mathrm{p}, n} \right).
 \end{equation}
 \newline
-These approaches to compute the particle trajectories require a lot of computational resources. Due to reduce this requirement clusters of point particles are created. For this purpose the ratio $\lambda_\mathrm{c}$ of physical point particles $N_\mathrm{p}$ to CPPs $N_\mathrm{c}$ is introduced ($\lambda_\mathrm{c} = \frac{N_\mathrm{p}}{N_\mathrm{c}}$). To compensate this lack of particles, the feedback force is multiplied by $\lambda_\mathrm{c}$, due to the $\lambda_\mathrm{c}$-fold mass of the (cluster-)particles.
+These approaches to compute the particle trajectories require a lot of computational resources. 
+\newline
+Due to reduce this requirement the creation of numerical clusters of point particles is considered. For this purpose the ratio $\lambda_\mathrm{c}$ of physical point particles $N_\mathrm{p}$ to CPPs $N_\mathrm{c}$ is introduced ($\lambda_\mathrm{c} = \frac{N_\mathrm{p}}{N_\mathrm{c}}$). To compensate this lack of particles, the feedback force is multiplied by $\lambda_\mathrm{c}$, due to the $\lambda_\mathrm{c}$-fold mass of the (cluster-)particles.
 \newline
 To model the impact of the particles on the fluid, the Navier-Stokes equations \eqref{NavierStokes} are extended by momentum sources or sinks. The feedback force of the particles is exerted on the fluid using a distance based weighting function
 \begin{equation}
@@ -414,7 +417,7 @@ To model the impact of the particles on the fluid, the Navier-Stokes equations \
 with the distance between particle postion and the cell center $d_\mathrm{i}$, the grid width $\Delta$, and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells.
 \newline
 \subsection{Direct numerical simulation}
-With DNS, the Navier-Stokes equations are solved completely. This provides a very accurate result, as all scales of motion are being resolved. Still it requires an immense level of computational resources which increases rapidly with the Reynolds number: $N \propto Re_{\mathrm{\lambda}}^{9/2}$ with the gridsize N of the simulation. With the LES, as described below, the computational effort is 99.98 \% less compared to DNS, which indeed is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.
+With DNS, the Navier-Stokes equations are solved completely. This provides a very accurate result, as all scales of motion are being resolved. Hence it requires an immense level of computational resources which increases rapidly with the Reynolds number: $N \propto Re_{\mathrm{\lambda}}^{9/2}$ with the gridsize N of the simulation. With the LES, as described below, the computational effort is 99.98 \% less compared to DNS, which is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.
 \newline
 \subsection{Large-eddy simulation}
 \begin{figure}[h]
@@ -430,16 +433,16 @@ With DNS, the Navier-Stokes equations are solved completely. This provides a ver
         \label{64_velocity}
     \end{minipage}
     \captionsetup{width=0.97\linewidth}
-\caption{Instantaneous snapshot of the parallel projection of an isotropic decaying turbulent flow field computed by a DNS (a) and a LES (b). 'Worm-like' structures in an isotropic turbulent flow field. The more refined grid on the left shows more and better resolved structures, while the right picture reveals more artificially generated artifacts. For details on creation, see Appendix A.}
+\caption{Instantaneous snapshot of the parallel projection of an isotropic decaying turbulent flow field computed by a DNS (a) and a $\mathrm{LES_{64}}$ (b). 'Worm-like' structures in an isotropic turbulent flow field. The more refined grid on the left shows more and better resolved structures, while the right picture reveals more artificially generated artifacts. For details on creation, see Appendix A.}
 \label{comparisonLESDNS}
 \end{figure}
-Otherwise in DNS resolving the small dissipative scale would require most of the computational resources. Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing large scales are completely resolved and the impact of the small scales on the large scales are modeled.
+Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing large scales are completely resolved and the impact of the small scales on the large scales are modeled.
 \newline
 Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by 
 \begin{equation}
 \bar U(\vec{x}) = \int_{-\infty}^{\infty} G(\vec{r})U(\vec{x} - \vec{r})  \, \mathrm{d}\vec{r},
 \end{equation}
-with $G(\vec{r}) $ being a homogeneous filter function \cite{turbulentFlows}. To model the filtered smaller-scale motions a subgrid-scale (sgs) model is necessary. According to Hickel (2007) the interference between explicit SGS and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit SGS model. Thus it is called implicit LES (ILES) \cite{implicitLES}.
+with $G(\vec{r}) $ being a homogeneous filter function \cite{turbulentFlows}. To model the filtered smaller-scale motions a subgrid-scale (sgs) model is necessary. According to Hickel (2007) the interference between explicit sgs and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit sgs model. Thus it is called implicit LES (ILES) \cite{implicitLES}.
 \newline
 Even though the small scales are modeled in the LES, the effects of filtering can be seen in figure \ref{comparisonLESDNS}.
 \newline
@@ -448,7 +451,7 @@ Even though the small scales are modeled in the LES, the effects of filtering ca
 In this section, the properties and results of the DNS and LES of particle-laden decaying isotropic turbulence which have been carried out will be presented. An additional test to find out which  number of CPPs could be used is presented. Special emphasis will be put on the turbulent kinetic energy budgets and their use to interpret the findings.
 \newline
 \subsection{Turbulence modulation by particles}
-The particle-laden turbulence modulation by particles in decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between both fluid and particle phase, the background dissipation rate of the flow field $\bar{\varepsilon}$ and the particle-induced dissipation rate $\varepsilon'$. These variables form an equation which describes the change in turbulent kinetic energy:
+The particle-laden turbulence modulation by particles in decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between both fluid and particle phase, the background dissipation rate of the flow field $\bar{\varepsilon}$ and the particle-induced dissipation rate $\varepsilon'$. These variables together form an equation which describes the change in turbulent kinetic energy
 \begin{equation}
 \frac{\mathrm{d} E_\mathrm{k}}{\mathrm{d} t} = \Psi (t) - \bar{\varepsilon} (t) - \varepsilon' (t).
 \end{equation}
@@ -470,7 +473,7 @@ Additionally the particles change the fluid's rate of dissipation due to their v
 \begin{equation}
 	\varepsilon' = \sum_{p=1}^{N_\mathrm{p}} \vec{F}_\mathrm{p} \cdot (\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})+ \vec{T}_\mathrm{p} \cdot (\vec{\Omega}_\mathrm{p} - \vec{\omega}_\mathrm{p}), \; \rho_\mathrm{p} \gg \rho,
 \end{equation}
-using the velocity of the fluid $\vec{u}_\mathrm{p}$ and the vorticity vector of the undisturbed flow about one particle $\vec{\Omega}_\mathrm{p}$, both at the particle position. Fluid inertia and hydrostatic and shear stresses were neglected in this study.
+using the velocity of the fluid $\vec{u}_\mathrm{p}$ and the vorticity vector of the undisturbed flow around one particle $\vec{\Omega}_\mathrm{p}$, both at the particle position. Fluid inertia as well as hydrostatic and shear stresses were neglected in this study.
 \newline
 For $\rho_\mathrm{p} \gg \rho$ and the point-particle approach the coupling rate $\Psi$ and the additional dissipation rate $\varepsilon'$ are implicitly coupled. Torque and angular velocity were neglected for the used point-particle approach, leading to
 \begin{equation}
@@ -482,11 +485,11 @@ This leads to
 \end{equation}
 \newline
 \subsection{Simulation setup}
-All cases were simulated on a cubic domain and a Cartesian grid using different grid refinement levels. For the LES-cases $64^3$, $96^3$ and $128^3$ are employed, hence the need to model smaller scales with SGS-models, which have already been validated in \cite{ValidationOfParticleLadenLargeEddySimulationUsingHPCSystems}. For a DNS, $256^3$ cells are necessary to resolve all scales.
+All cases were simulated on a cubic domain and a Cartesian grid using different grid refinement levels. For the LES-cases $64^3$, $96^3$ and $128^3$ are employed, hence the need to model smaller scales with sgs models, which have already been validated in \cite{ValidationOfParticleLadenLargeEddySimulationUsingHPCSystems}. For a DNS, $256^3$ cells are necessary to resolve all scales.
 \newline
 The particle-free case was initialized using a seed-based number random generator, a process which is described in detail in \cite{orszag1969numerical}. At the initial eddy turnover time $t^*=t\frac{\varepsilon_\mathrm{0}}{{u_\mathrm{0}}^2} \approx 0.27=t_\mathrm{inj}^*$, using the initial viscous dissipation rate $\varepsilon_\mathrm{0}$ and initial rms-velocity $u_\mathrm{0}$, a restart file is written out to initialize the subsequent simulation of the particle-laden isotropic turbulence.
 \newline
-This file is then used to set up a second simulation, where the particles are initialized at random positions with the fluid velocity. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. The density ratio was set to $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the Reynolds number at the Taylor microscale was $Re_\lambda \approx 58$. 
+This file is then used to set up a second simulation, where the particles are initialized with the fluid velocity at random positions. The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. Hence the density ratio was $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the timestep of injection the Reynolds number of the Taylor microscale was $Re_\lambda \approx 58$. 
 \newline
 \subsection{Simulation results}
 \begin{figure}[h]
@@ -497,7 +500,7 @@ This file is then used to set up a second simulation, where the particles are in
     \end{minipage}%
         \begin{minipage}{0.5\textwidth}
         \centering
-        \caption{Initializing different numbers of point-particles for a $\mathrm{LES_{128}}$. An inaccuracy can be observed for small numbers of particles. This behavior can be observed for all other resolutions. The relative deviation of turbulent kinetic energy of particles and carrier flow is below 1\% for $10^4$ particles.}
+        \caption{Initializing different numbers of point-particles for a $\mathrm{LES_{128}}$. An inaccuracy can be observed for small numbers of particles. This behavior can be noticed for all other resolutions. The relative deviation of turbulent kinetic energy of particles and carrier flow is below 1\% for $10^4$ particles.}
 	\label{kineticEnergy_numberofparticles}
     \end{minipage}
     \end{figure}
@@ -533,21 +536,25 @@ This file is then used to set up a second simulation, where the particles are in
 \end{figure}
 The first set of simulation was set up to investigate how different numbers of injected particles have an influence on the difference of turbulent kinetic energy of both particle and fluid. As mathematical description of turbulent flows is based on statistics, small numbers of particles can lead to questionable results. 
 \newline
-An example for the deviation in kinetic energy for different numbers of particles can be found in Fig. \ref{kineticEnergy_numberofparticles}. The normalized difference in kinetic energy $E_\mathrm{kB}$ of the particles and the flow itself $E_\mathrm{k}$ shows a correlation between particle number and accuracy in in this single simulation. One-time simulations in other grid sizes show similar results. This simulations served as test and a first evaluation, which number of CPPs are purposeful to simulate. As the flow statistics are relatively accurate for simulations with only $10^4$ particles, the method of CPPs could be a useful tool to lower computational effort. This leads to the assumption that simulations with a $\lambda_\mathrm{c}$ of 100 seem fitting with an overall number of a million particles. 
+An example for the deviation in kinetic energy for different numbers of particles can be found in Fig. \ref{kineticEnergy_numberofparticles}. The normalized difference in kinetic energy $E_\mathrm{kB}$ of the particles and the flow itself $E_\mathrm{k}$ shows a correlation between particle number and accuracy in this single simulation. One-time simulations in other grid sizes show similar results. 
 \newline
-The second set of simulations of this study is set up to investigate the influence of CPPs on the accuracy of the simulations to find out which amount can be implemented without high loss in accuracy. For this purpose, the variable $\lambda_\mathrm{c}$, which was established before, was implemented in the program code. All simulations were then set up with the overall same number of a million particles, altering the CPPs. Simulations were conducted for $\lambda_\mathrm{c}=$10,50 and 100. Additionally simulations of the single-phase flow and an unclustered particle-laden flow were conducted. A DNS was serves as reference for later evaluations. 
+This simulations served as test and a first evaluation, which number of CPPs are purposeful to simulate. As the flow statistics are relatively accurate for simulations with only $10^4$ particles, the method of CPPs could be a useful tool to lower computational effort. This leads to the assumption that simulations with a $\lambda_\mathrm{c}$ of 100 seem fitting with an overall number of a million particles. 
+\newline
+The second set of simulations of this study is set up to investigate the influence of CPPs on the accuracy of the simulations to find out which amount can be implemented without high loss in accuracy. For this purpose, the variable $\lambda_\mathrm{c}$, which was established before, was implemented in the program code. All simulations were then set up with the overall same number of a million particles, altering the CPPs. Simulations were conducted for $\lambda_\mathrm{c}=$10, 50 and 100. Additionally simulations of the single-phase flow and an unclustered particle-laden flow were conducted. A DNS serves as reference for later evaluations. 
 \newline
 It can be seen in Fig. \ref{kineticEnergy_time_256} that the decay in turbulent kinetic energy $E_\mathrm{k}$ normalized by initial turbulent kinetic Energy $E_\mathrm{k,0}$ from the injection point depends highly on the number of clustered particles. It can be stated that the flow's statistics for high $\lambda_\mathrm{c}$ converge towards the sP-case. 
 \newline
 As it can be seen in Fig. \ref{comparison_LES_DNS} the behavior of lower-resolution particle-laden simulations seems to be less prone to CPPs, as the lower-resolution simulations are more similar to the PP-DNS reference.
 \newline
-Figs. \ref{diss_time_256} and \ref{coupling_time_256} can be interpreted using the turbulent kinetic energy budget introduced earlier. The PP-case without clustering shows a lower dissipation rate (normalized with the referencial dissipation rate $\varepsilon_\mathrm{ref}=\frac{u_0^3}{L}$) than the sP-case. Both highly-clustered cases show a higher rate over the monitored period of time, which is an unphysical behavior. The coupling rate is negative the whole time for the PP-cases with lower $\lambda_\mathrm{c}$ and positive for the higher-clustered cases. The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* \approx 1$ can be found in Tab.\ref{table_values_DNS_LES}. 
+Figs. \ref{diss_time_256} and \ref{coupling_time_256} can be interpreted using the turbulent kinetic energy budget introduced earlier. The PP-case without clustering shows a lower dissipation rate (normalized with the referencial dissipation rate $\varepsilon_\mathrm{ref}=\frac{u_0^3}{L}$) than the sP-case. Both highly-clustered cases show a higher rate over the monitored period of time, which is an unphysical behavior. 
+\newline
+The coupling rate is negative the whole time for the PP-cases with lower $\lambda_\mathrm{c}$ and positive for the higher-clustered cases. The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* \approx 1$ can be found in Tab.\ref{table_values_DNS_LES}. 
 Being very similar in the time shortly after the injection, the flow statistics diverge for different $\lambda_\mathrm{c}$ in case of the DNS rapidly. For a high number of CPPs, the simulations drift away from the reference, leading even to unphysical behavior for $\lambda_\mathrm{c} \gg 50$. 
 \begin{table}[]
 	\begin{center}
 	\begin{tabular}{| c | c l | c c c c c c c |}
 	\hline
-	Case & $\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ &$\epsilon \frac{{u_0}^3}{L}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ & $E_\mathrm{k}/E_\mathrm{k,0}$ & $E_\mathrm{kB}/E_\mathrm{k,0}$ & \\
+	Case & $\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ &$\varepsilon \frac{L}{{u_0}^3}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ & $E_\mathrm{k}/E_\mathrm{k,0}$ & $E_\mathrm{kB}/E_\mathrm{k,0}$ & \\
 	\hline
 	\hline
 	\multirow{4}{*}{DNS}
@@ -569,7 +576,7 @@ Being very similar in the time shortly after the injection, the flow statistics 
 	\label{table_values_DNS_LES}
 	\end{center}
 	\end{table}
-In difference to that, the LES shows less impact to change in CPPs. 
+In difference to that, the $\mathrm{LES_{64}}$ shows less impact to change in CPPs. 
 \newline
 In Fig. \ref{particlekineticenergy_time_256} the kinetic energy of the particles is displayed. For increasing $\lambda_\mathrm{c}$, the kinetic energy of the particles becomes smaller. This behavior leads to the assumption that the clustering produces the behavior of heavy particles as the results fit to the findings of Schneiders \cite{Schneiders2017}. 
 \newline
@@ -594,7 +601,7 @@ A correlation between the fraction of masses of one particle cluster to one cell
 The simulation on a $64^3$-grid is therefore less susceptible to altering the CPPs because the cells, and therefore the mass of one cell, are substantially bigger than in the $256^3$-grid for a constant domain size.
 \pagebreak
 \section{Conclusion and outlook}
-In this study, multiple simulations were carried out to evaluate a method for lowering computational effort. The statistics of simulations on multiple resolutions were compared and evaluated. CPPs therefore have been validated, when properly used they could be a useful tool to achieve less computing time. 
+In this study multiple simulations were carried out to evaluate a method for lowering computational effort. The statistics of simulations on various resolutions were compared and evaluated. CPPs have been validated to be a useful tool to achieve less computing time, if properly used.
 \newline
 The DNS showed to be prone for errors created by CPPs. Coupling and dissipation rate were affected very much by them, leading even to unphysical results. In contrast to that the coarser-grid simulations were less prone to CPPs, as multiple comparisons showed. The mass-fraction of one particle-cluster to the fluid content of one cell showed to be an important factor in statistical accuracy. This is because of self-induced disturbances of the particles. These particle clusters seem to behave like heavier particles, as comparisons with results from other literature show.
 \newline
