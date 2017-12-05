@@ -13,13 +13,15 @@
   \item [{PP}]\begingroup Particle-laden simulation\nomeqref {.0}
 		\nompageref{I}
   \item [{rms}]\begingroup Root mean square\nomeqref {.0}\nompageref{I}
-  \item [{SGS}]\begingroup Subgrid scale\nomeqref {.0}\nompageref{I}
+  \item [{sgs}]\begingroup Subgrid scale\nomeqref {.0}\nompageref{I}
   \item [{sP}]\begingroup Single-phase simulation\nomeqref {.0}
 		\nompageref{I}
 
  \nomgroup{G}
 
   \item [{$\Delta$}]\begingroup Cell length\nomeqref {.0}\nompageref{I}
+  \item [{$\epsilon$}]\begingroup Viscous dissipation rate\nomeqref {.0}
+		\nompageref{I}
   \item [{$\vec{\varepsilon}$}]\begingroup Integral dissipation rate\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{\varepsilon}'$}]\begingroup Additional integral particle induced dissipation rate\nomeqref {.0}
@@ -61,6 +63,8 @@
 		\nompageref{I}
   \item [{$\tau_\mathrm{p}$}]\begingroup Particle response time\nomeqref {.0}
 		\nompageref{I}
+  \item [{$\phi(\mathrm{Re_p})$}]\begingroup Empirical drag correction factor\nomeqref {.0}
+		\nompageref{I}
   \item [{$\vec{\omega}_\mathrm{p}$}]\begingroup Particle angular velocity vector\nomeqref {.0}
 		\nompageref{I}
   \item [{$\Upsilon_\mathrm{f}$}]\begingroup Fluid domain without particle surroundings\nomeqref {.0}
@@ -86,13 +90,11 @@
   \item [{$A$}]\begingroup Control surface\nomeqref {.0}\nompageref{I}
   \item [{$\vec{a}_\mathrm{p}$}]\begingroup Particle acceleration\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\phi(Re_\mathrm{p}$}]\begingroup Empirical drag correction factor\nomeqref {.0}
-		\nompageref{I}
   \item [{$c_\mathrm{p}$}]\begingroup Specific isobaric heat capacity\nomeqref {.0}
 		\nompageref{I}
   \item [{$c_\mathrm{v}$}]\begingroup Specific isochoric heat capacity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$d_\mathrm{i}$}]\begingroup Distance between particle position and center of the cell\nomeqref {.0}
+  \item [{$d_\mathrm{i}$}]\begingroup Distance between particle position and cell center\nomeqref {.0}
 		\nompageref{I}
   \item [{$d_\mathrm{p}$}]\begingroup Particle diameter\nomeqref {.0}
 		\nompageref{I}
@@ -110,7 +112,7 @@
 		\nompageref{I}
   \item [{$\vec{F}_\mathrm{p}$}]\begingroup Particle surface force vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$G(r)$}]\begingroup Filter function\nomeqref {.0}
+  \item [{$G(r)$}]\begingroup Homogeneous filter function\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{\bar{H}}$}]\begingroup Flux tensor\nomeqref {.0}
 		\nompageref{I}
@@ -120,11 +122,12 @@
 		\nompageref{I}
   \item [{$\matrix{\bar{I}}$}]\begingroup Identity tensor\nomeqref {.0}
 		\nompageref{I}
+  \item [{$K(t)$}]\begingroup History kernel\nomeqref {.0}
+		\nompageref{I}
   \item [{$k_\mathrm{t}$}]\begingroup Thermal conductivity\nomeqref {.0}
 		\nompageref{I}
   \item [{$L$}]\begingroup Integral length scale\nomeqref {.0}
 		\nompageref{I}
-  \item [{$Ma$}]\begingroup Mach number\nomeqref {.0}\nompageref{I}
   \item [{$m_\mathrm{f}$}]\begingroup Fluid mass\nomeqref {.0}
 		\nompageref{I}
   \item [{$m_\mathrm{p}$}]\begingroup Particle mass\nomeqref {.0}
@@ -144,6 +147,8 @@
   \item [{$\vec{q}$}]\begingroup Heat conduction vector\nomeqref {.0}
 		\nompageref{I}
   \item [{$R$}]\begingroup Specific gas constant\nomeqref {.0}
+		\nompageref{I}
+  \item [{$R (r, t)$}]\begingroup Two-point correlation\nomeqref {.0}
 		\nompageref{I}
   \item [{$Re$}]\begingroup Reynolds number\nomeqref {.0}\nompageref{I}
   \item [{$Re_\mathrm{p}$}]\begingroup Particle Reynolds number\nomeqref {.0}
@@ -166,6 +171,8 @@
 		\nompageref{I}
   \item [{$\vec{u}_\mathrm{p}$}]\begingroup Vector of fluid velocity at the particle position\nomeqref {.0}
 		\nompageref{I}
+  \item [{$\bar U(\vec{x})$}]\begingroup Filtered velocity field\nomeqref {.0}
+		\nompageref{I}
   \item [{$V$}]\begingroup Control volume\nomeqref {.0}\nompageref{I}
   \item [{$\mathrm{V}_\mathrm{f}$}]\begingroup Fluid volume\nomeqref {.0}
 		\nompageref{I}
@@ -173,11 +180,28 @@
 		\nompageref{I}
   \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$v_\mathrm{r}$}]\begingroup Relative velocity between particle and fluid\nomeqref {.0}
-		\nompageref{I}
   \item [{$\vec{x}$}]\begingroup Position vector\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{x}_\mathrm{p}$}]\begingroup Particle position vector\nomeqref {.0}
+		\nompageref{I}
+
+ \nomgroup{S}
+
+  \item [{f}]\begingroup Fluid-concerning variables\nomeqref {.0}
+		\nompageref{I}
+  \item [{$\infty, \mathrm{ref}$}]\begingroup Referential variables\nomeqref {.0}
+		\nompageref{I}
+  \item [{$\lambda$}]\begingroup Taylor-microscale variables\nomeqref {.0}
+		\nompageref{I}
+  \item [{L}]\begingroup Variables regarding the integral lengthscale\nomeqref {.0}
+		\nompageref{I}
+  \item [{n}]\begingroup Variable at n-th timestep\nomeqref {.0}
+		\nompageref{I}
+  \item [{$\mathrm{n+1}$}]\begingroup Variable at (n+1)-th timestep\nomeqref {.0}
+		\nompageref{I}
+  \item [{p}]\begingroup Particle-concerning variables\nomeqref {.0}
+		\nompageref{I}
+  \item [{$0$}]\begingroup Starting values of the variable\nomeqref {.0}
 		\nompageref{I}
 
 \end{thenomenclature}

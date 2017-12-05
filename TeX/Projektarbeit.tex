@@ -14,7 +14,7 @@
 \usepackage{multicol}
 \usepackage{float}
 \usepackage[section]{placeins}
-\usepackage[english]{babel} 
+\usepackage[english, ngerman]{babel} 
 \usepackage{geometry} %Gr�ߟe des Bodys innerhalb der Seite 
 \usepackage[utf8]{inputenc} 
 \usepackage{ifthen}
@@ -32,7 +32,8 @@
   \ifthenelse{\equal{#1}{R}}{\item[\textbf{Roman Symbols}]}{%
     \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
       \ifthenelse{\equal{#1}{O}}{\item[\textbf{Operators}]}{%
-	\ifthenelse{\equal{#1}{A}}{\item[\textbf{Acronyms}]}{}}}}}%
+	\ifthenelse{\equal{#1}{A}}{\item[\textbf{Acronyms}]}{%
+	  \ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{}}}}}}%
 	
 \renewcommand*\vec[1]{\boldsymbol{#1}}
 \renewcommand*\matrix[1]{\boldsymbol{#1}}
@@ -69,7 +70,9 @@
 \textsc{\LARGE{Julian Stemmermann, Steffen Trienekens und Christian Soika}}\\[0.5cm]
 \HRule \\[0.4cm]
 {\Large{Aerodynamisches Institut der RWTH Aachen}}\\[.5cm]
+\begin{otherlanguage}{ngerman}
 {\large \today} \\[1.5cm] % heutiges Datum
+\end{otherlanguage}
 \vfill % So viel Platz lassen, dass es bis zur Ende der Seite geht, wobei die Abstände bei dem nächsten vfill gleich sind
 \begin{flushleft} \large  %Einrückung, groß
 \begin{tabular}{ll} % Tabelle
@@ -103,6 +106,18 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \pagenumbering{Roman} 
 
 %Nomenclature
+\nomenclature[sinftyref]{$\infty, \mathrm{ref}$}{Referential variables}
+\nomenclature[sp]{p}{Particle-concerning variables}
+\nomenclature[sl]{$\lambda$}{Taylor-microscale variables}
+\nomenclature[sL]{L}{Variables regarding the integral lengthscale}
+\nomenclature[sz]{$0$}{Starting values of the variable}
+\nomenclature[sn]{n}{Variable at n-th timestep}
+\nomenclature[snn]{$\mathrm{n+1}$}{Variable at (n+1)-th timestep}
+\nomenclature[sf]{f}{Fluid-concerning variables}
+\nomenclature[rK(t)]{$K(t)$}{History kernel}
+\nomenclature[geps]{$\epsilon$}{Viscous dissipation rate}
+\nomenclature[rUx]{$\bar U(\vec{x})$}{Filtered velocity field}
+\nomenclature[gW]{$\phi(\mathrm{Re_p})$}{Empirical drag correction factor}
 \nomenclature[arms]{rms}{Root mean square}
 \nomenclature[aCPP]{CPP}{Computational point particles}
 \nomenclature[aDNS]{DNS}{Direct numerical simulation}
@@ -177,7 +192,6 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[rA]{$A$}{Control surface}
 \nomenclature[rap]{$\vec{a}_\mathrm{p}$}{Particle acceleration}
 \nomenclature[gsigma]{$\sigma$}{Smoothing parameter}
-\nomenclature[rMa]{$Ma$}{Mach number}
 \nomenclature[rEk]{$E_\mathrm{k}$}{Turbulent kinetic energy of the fluid}
 \nomenclature[rFp]{$\vec{F}_\mathrm{p}$}{Particle surface force vector}
 \nomenclature[rTp]{$\vec{T}_\mathrm{p}$}{Particle torque vector}
@@ -187,12 +201,11 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[rup]{$\vec{u}_\mathrm{p}$}{Vector of fluid velocity at the particle position}
 \nomenclature[rV]{$V$}{Control volume}
 \nomenclature[rN]{$N$}{Grid refinement of the simulation}
-\nomenclature[rG(r)]{$G(r)$}{Filter function}
+\nomenclature[rG(r)]{$G(r)$}{Homogeneous filter function}
 \nomenclature[ru']{$\vec{u}'$}{Vector of fluid velocity fluctuations}
-\nomenclature[gCd]{$\phi(Re_\mathrm{p})$}{Empirical drag correction factor}
 \nomenclature[rmp]{$m_\mathrm{p}$}{Particle mass}
 \nomenclature[rmf]{$m_\mathrm{f}$}{Fluid mass}
-\nomenclature[rvr]{$v_\mathrm{r}$}{Relative velocity between particle and fluid}
+\nomenclature[rR(r,t)]{$R (r, t)$}{Two-point correlation}
 %Nomenclature
 
 \setlength{\nomitemsep}{-\parsep}
@@ -583,18 +596,18 @@ In Fig. \ref{particlekineticenergy_time_256} the kinetic energy of the particles
 Fig. \ref{vergleich_coupling_time_256} can be used to point out the difference in susceptibility for this method. It is evident that a correlation between inaccuracy of the simulations and the refinement level of the grid exists. For the same ratio of physical point particles to CPPs the results show different behavior depending on the grid refinement level. The unclustered PP-case is included as reference. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
 \begin{figure}[]
     \centering
+     \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/vergleich_coupling_time50.pdf}
+        \caption{Point-particle coupling rate $\Psi_\mathrm{pp}$ with constant $\lambda_\mathrm{c}$ for various resolutions. A relation of resolution and accuracy can be observed.}
+        \label{vergleich_coupling_time_256}
+        \end{minipage}%
     \begin{minipage}[t]{.5\textwidth}
          \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/particlekineticenergy_time.pdf}
         \caption{Kinetic energy of the particles $E_\mathrm{kB}$ normalized by initial turbulent kinetic energy. The PP-case without clustering shows the biggest decay in kinetic energy. }
         \label{particlekineticenergy_time_256}
-    \end{minipage}%
-    \begin{minipage}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./Abbildungen/vergleich_coupling_time50.pdf}
-        \caption{Point-particle coupling rate $\Psi_\mathrm{pp}$ with constant $\lambda_\mathrm{c}$ for various resolutions. A relation of resolution and accuracy can be observed.}
-        \label{vergleich_coupling_time_256}
-        \end{minipage}
+    \end{minipage}
 \end{figure}
 A correlation between the fraction of masses of one particle cluster to one cell can be observed in Tab. \ref{table_values_DNS_LES}. It seems to be the case that for increasing mass ratio of one cluster to one cell the simulation results become less accurate. This phenomenon was first described by Maxey and Patel \cite{maxey1997simulations}, as particle-induced point forces induce a vorticity to the flow at the particle position. Additionally they pointed out that a nonuniform particle distribution, caused by particle inertia or added mass, would have a larger impact on the turbulent kinetic energy of the carrier flow.
 \newline 
