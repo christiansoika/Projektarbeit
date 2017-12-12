@@ -342,29 +342,29 @@ It can be observed from these equations that the spacing between the scales incr
 \newline
 \subsection{Particle dynamics} %Steffen
 
-The sum of several pressure and shear forces acting on the particles is described by the Maxey-Riley equation \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
-Reduced to the governing forces and with neglection of gravity the force $\vec{F}_\mathrm{pp}$ acting on the particle reads
+$\vec{F}_\mathrm{pp}$ is the sum of several pressure and shear forces acting on the particles and is described explicitly by the Maxey-Riley equation \cite{EquationOfMotionForASmallRigidSphereInANonuniformFlow}.
+Reduced to the governing forces and with neglection of gravity the dynamic equation of the particles becomes
 \begin{multline} \label{navier_stokes_particle}
  \vec{F}_\mathrm{pp} = m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} =\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t} + 3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p})+ \frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl) +
 \\ 3 \pi \mu d_\mathrm{p}\int_{0}^{t} K(t) (t-t') \cdot \biggl(\frac{\mathrm{d}\vec{u}_\mathrm{p}}{\mathrm{d}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)dt'.
 \end{multline}
-$\vec{v}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the particle velocity vector with the time derivative $\mathrm{d}/\mathrm{d}t$ along the particle trajectory while $\mathrm{D}/\mathrm{D}t$  is the material derivative at one point. $\vec{u}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the velocity of the undisturbed fluid at the particle position $\vec{x}_\mathrm{p}$.
+$\vec{v}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the particle velocity vector with the time derivative $\mathrm{d}/\mathrm{d}t$ along the particle trajectory while $\mathrm{D}/\mathrm{D}t$  is the material derivative at one point. $\vec{u}_\mathrm{p}(t) = \vec{u}_\mathrm{p}(\vec{x}_\mathrm{p},t)$ is the velocity of the undisturbed fluid at the particle position $\vec{x}_\mathrm{p}$.
 The individual forces on the right side of the equation are stated in the following:
 \begin{itemize} 
 \item  $\rho V_\mathrm{p}\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}$: \newline
 pressure gradient of the undisturbed flow
 \item $3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p}):$\newline
-quasi-steady Stokes drag parallel to the undisturbed streamlines, which is described by the Stokes' law as the force acting on ________ particles at very low Reynolds numbers in viscous flows
+quasi-steady Stokes drag that is parallel to the undisturbed streamlines and is described by the Stokes' law as the force of viscosity acting on the interface of small spherical particles and fluid that can be achieved at very low Reynolds numbers in a viscous fluid
 
 \item $\frac{1}{2}\rho \mathrm{V}_\mathrm{p} \biggl(\frac{\mathrm{D}\vec{u}_\mathrm{p}}{\mathrm{D}t}-\frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t}\biggl)$:
 \newline
-added mass force, which represents the influence of the fluid's inertia in case of a different acceleration than the particles
+added mass force, representing the influence of the fluid's inertia that has an impact on the particle, in case of a different acceleration than the particles
 \item $3 \pi \mu d_\mathrm{p}\int_{0}^{t} K(t) (t-t') \cdot \biggl(\frac{\mathrm{d}\vec{u}_\mathrm{p}}{\mathrm{d}t'}- \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t'}\biggl)dt'$: \newline
 Basset history force taking the unsteady motion into account using a history kernel $K(t)$ 
 \end{itemize}
 
-Equation \eqref{navier_stokes_particle} is based on Stokes flow conditions, i.e., vanishing particle Reynolds number $Re_\mathrm{p} \ll 1$, and in general only valid for particles with $d_\mathrm{p} \ll \eta$.
-For heavy particles, the drag force is the dominating contributor of Eq. \eqref{navier_stokes_particle} as reported in \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows}. Therefore $\vec{F}_\mathrm{pp}$ can be reduced to
+\eqref{navier_stokes_particle} is based on Stokes flow conditions, i.e., vanishing particle Reynolds number $Re_\mathrm{p} \ll 1$. In addition in this thesis, particles with $d_\mathrm{p} \ll \eta$ are investigated.
+As a result for heavy particles, the drag force is the dominating contributor of Eq. \eqref{navier_stokes_particle} as reported by \cite{TheImportanceOfTheFocusActingOnParticlesInTurbulentFlows}. Therefore $\vec{F}_\mathrm{pp}$ can be reduced to
 \begin{equation} \label{kurze_Partikelgleichung}
 \vec{F}_\mathrm{pp} =  m_\mathrm{p} \frac{\mathrm{d}\vec{v}_\mathrm{p}}{\mathrm{d}t} = 3 \pi \mu d_\mathrm{p}(\vec{u}_\mathrm{p}-\vec{v}_\mathrm{p})\phi(Re_\mathrm{p}).
 \end{equation}
