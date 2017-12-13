@@ -2,206 +2,198 @@
 
  \nomgroup{A}
 
-  \item [{CPP}]\begingroup Computational point particles\nomeqref {.0}
+  \item [{CPP}]\begingroup computational point particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{DNS}]\begingroup Direct numerical simulation\nomeqref {.0}
+  \item [{DNS}]\begingroup direct numerical simulation\nomeqref {.0}
 		\nompageref{I}
-  \item [{ILES}]\begingroup Implicit large-eddy simulation\nomeqref {.0}
+  \item [{ILES}]\begingroup implicit large-eddy simulation\nomeqref {.0}
 		\nompageref{I}
-  \item [{LES}]\begingroup Large-eddy simulation\nomeqref {.0}
+  \item [{LES}]\begingroup large-eddy simulation\nomeqref {.0}
 		\nompageref{I}
-  \item [{PP}]\begingroup Particle-laden simulation\nomeqref {.0}
+  \item [{PP}]\begingroup particle-laden simulation\nomeqref {.0}
 		\nompageref{I}
-  \item [{rms}]\begingroup Root mean square\nomeqref {.0}\nompageref{I}
-  \item [{sgs}]\begingroup Subgrid scale\nomeqref {.0}\nompageref{I}
-  \item [{sP}]\begingroup Single-phase simulation\nomeqref {.0}
+  \item [{rms}]\begingroup root mean square\nomeqref {.0}\nompageref{I}
+  \item [{sgs}]\begingroup subgrid scale\nomeqref {.0}\nompageref{I}
+  \item [{sP}]\begingroup single-phase simulation\nomeqref {.0}
 		\nompageref{I}
 
  \nomgroup{G}
 
-  \item [{$\Delta$}]\begingroup Cell length\nomeqref {.0}\nompageref{I}
-  \item [{$\epsilon$}]\begingroup Viscous dissipation rate\nomeqref {.0}
+  \item [{$\Delta$}]\begingroup cell length\nomeqref {.0}\nompageref{I}
+  \item [{$\epsilon$}]\begingroup viscous dissipation rate\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\varepsilon}$}]\begingroup Integral dissipation rate\nomeqref {.0}
+  \item [{$\vec{\varepsilon}$}]\begingroup integral dissipation rate\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\varepsilon}'$}]\begingroup Additional integral particle induced dissipation rate\nomeqref {.0}
+  \item [{$\vec{\varepsilon}'$}]\begingroup integral particle induced dissipation rate\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\bar{\varepsilon}}$}]\begingroup Integral dissipation rate of the flow field\nomeqref {.0}
+  \item [{$\vec{\bar{\varepsilon}}$}]\begingroup integral dissipation rate of the background flow field\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\gamma$}]\begingroup Isentropic exponent\nomeqref {.0}
+  \item [{$\gamma$}]\begingroup isentropic exponent\nomeqref {.0}
 		\nompageref{I}
   \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\eta_\mathrm{0}$}]\begingroup Initial Kolmogorov length scale\nomeqref {.0}
+  \item [{$\eta_\mathrm{0}$}]\begingroup initial Kolmogorov length scale\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\mu$}]\begingroup Dynamic viscosity\nomeqref {.0}
+  \item [{$\mu$}]\begingroup dynamic viscosity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\lambda_\mathrm{c}$}]\begingroup Ratio of physical point particles to computational point particles\nomeqref {.0}
+  \item [{$\lambda_\mathrm{c}$}]\begingroup ratio of physical point particles to computational point particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\nu$}]\begingroup Kinematic viscosity\nomeqref {.0}
+  \item [{$\nu$}]\begingroup kinematic viscosity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\phi_\mathrm{m}$}]\begingroup Mass fraction\nomeqref {.0}
+  \item [{$\phi_\mathrm{m}$}]\begingroup mass fraction\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\phi_\mathrm{v}$}]\begingroup Volume fraction\nomeqref {.0}
+  \item [{$\phi_\mathrm{v}$}]\begingroup volume fraction\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\Psi$}]\begingroup Integral coupling rate\nomeqref {.0}
+  \item [{$\Psi$}]\begingroup integral coupling rate\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\Psi_\mathrm{p}$}]\begingroup Coupling rate for one particle\nomeqref {.0}
+  \item [{$\Psi_\mathrm{p}$}]\begingroup coupling rate for one particle\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\Psi_\mathrm{pp}$}]\begingroup Integral coupling rate using the point-particle approach\nomeqref {.0}
+  \item [{$\Psi_\mathrm{pp}$}]\begingroup integral coupling rate using the point-particle approach\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\rho$}]\begingroup Fluid density\nomeqref {.0}\nompageref{I}
-  \item [{$\rho_\mathrm{p}$}]\begingroup Particle density\nomeqref {.0}
+  \item [{$\rho$}]\begingroup fluid density\nomeqref {.0}\nompageref{I}
+  \item [{$\rho_\mathrm{p}$}]\begingroup particle density\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\sigma$}]\begingroup Smoothing parameter\nomeqref {.0}
+  \item [{$\sigma$}]\begingroup smoothing parameter\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\matrix{\bar{\tau}}$}]\begingroup Stress tensor\nomeqref {.0}
+  \item [{$\matrix{\bar{\tau}}$}]\begingroup stress tensor\nomeqref {.0}
 		\nompageref{I}
   \item [{$\tau_{\mathrm{\eta}}$}]\begingroup Kolmogorov time scale\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\tau_\mathrm{L}$}]\begingroup Eddy turnover time\nomeqref {.0}
+  \item [{$\tau_\mathrm{L}$}]\begingroup eddy turnover time\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\tau_\mathrm{p}$}]\begingroup Particle response time\nomeqref {.0}
+  \item [{$\tau_\mathrm{p}$}]\begingroup particle response time\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\phi(\mathrm{Re_p})$}]\begingroup Empirical drag correction factor\nomeqref {.0}
+  \item [{$\phi(\mathrm{Re_p})$}]\begingroup empirical drag correction factor as a function of the particle Reynolds number $Re_\mathrm{p}$\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\omega}_\mathrm{p}$}]\begingroup Particle angular velocity vector\nomeqref {.0}
+  \item [{$\vec{\omega}_\mathrm{p}$}]\begingroup particle angular velocity vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\Upsilon_\mathrm{f}$}]\begingroup Fluid domain without particle surroundings\nomeqref {.0}
+  \item [{$\Upsilon_\mathrm{f}$}]\begingroup fluid domain without particle surroundings\nomeqref {.0}
 		\nompageref{I}
 
  \nomgroup{O}
 
-  \item [{$\frac{\mathrm{D}}{\mathrm{D}t}$}]\begingroup Time derivative following a fluid unit\nomeqref {.0}
+  \item [{$\frac{\mathrm{D}}{\mathrm{D}t}$}]\begingroup time derivative following a fluid unit\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\frac{\mathrm{d}}{\mathrm{d}t}$}]\begingroup Material derivative\nomeqref {.0}
+  \item [{$\frac{\mathrm{d}}{\mathrm{d}t}$}]\begingroup material derivative\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\delta$}]\begingroup Small step of the following variable\nomeqref {.0}
+  \item [{$\delta t$}]\begingroup time step\nomeqref {.0}\nompageref{I}
+  \item [{$\frac{\partial{}}{\partial{t}}$}]\begingroup partial derivative with respect to time\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\frac{\partial{}}{\partial{t}}$}]\begingroup Partial derivative with respect to time\nomeqref {.0}
+  \item [{$\vec\nabla$}]\begingroup nabla operator\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec\nabla$}]\begingroup Nabla operator\nomeqref {.0}
-		\nompageref{I}
-  \item [{$\vec{:}$}]\begingroup Inner tensor product\nomeqref {.0}
+  \item [{$\vec{:}$}]\begingroup inner tensor product\nomeqref {.0}
 		\nompageref{I}
 
  \nomgroup{R}
 
-  \item [{$A$}]\begingroup Control surface\nomeqref {.0}\nompageref{I}
-  \item [{$\vec{a}_\mathrm{p}$}]\begingroup Particle acceleration\nomeqref {.0}
+  \item [{$A$}]\begingroup control surface\nomeqref {.0}\nompageref{I}
+  \item [{$\vec{a}_\mathrm{p}$}]\begingroup particle acceleration\nomeqref {.0}
 		\nompageref{I}
-  \item [{$c_\mathrm{p}$}]\begingroup Specific isobaric heat capacity\nomeqref {.0}
+  \item [{$c_\mathrm{p}$}]\begingroup specific isobaric heat capacity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$c_\mathrm{v}$}]\begingroup Specific isochoric heat capacity\nomeqref {.0}
+  \item [{$c_\mathrm{v}$}]\begingroup specific isochoric heat capacity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$d_\mathrm{i}$}]\begingroup Distance between particle position and cell center\nomeqref {.0}
+  \item [{$d_\mathrm{i}$}]\begingroup distance between particle position and cell center\nomeqref {.0}
 		\nompageref{I}
-  \item [{$d_\mathrm{p}$}]\begingroup Particle diameter\nomeqref {.0}
+  \item [{$d_\mathrm{p}$}]\begingroup particle diameter\nomeqref {.0}
 		\nompageref{I}
-  \item [{$E$}]\begingroup Specific inner energy\nomeqref {.0}
+  \item [{$E$}]\begingroup specific inner energy\nomeqref {.0}
 		\nompageref{I}
-  \item [{$e$}]\begingroup Specific internal energy\nomeqref {.0}
+  \item [{$e$}]\begingroup specific internal energy\nomeqref {.0}
 		\nompageref{I}
-  \item [{$E_\mathrm{k}$}]\begingroup Turbulent kinetic energy of the fluid\nomeqref {.0}
+  \item [{$E_\mathrm{k}$}]\begingroup turbulent kinetic energy of the fluid\nomeqref {.0}
 		\nompageref{I}
-  \item [{$E_\mathrm{kB}$}]\begingroup Turbulent kinetic energy of the particles\nomeqref {.0}
+  \item [{$E_\mathrm{kB}$}]\begingroup mean kinetic energy of the particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{F}$}]\begingroup Force vector per unit volume of the particle acting on the fluid\nomeqref {.0}
+  \item [{$\vec{F}$}]\begingroup force vector per unit volume of the particle acting on the fluid\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{F}_\mathrm{pp}$}]\begingroup Sum vector of forces acting on the particles\nomeqref {.0}
+  \item [{$\vec{F}_\mathrm{p}$}]\begingroup force vector acting on the particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{F}_\mathrm{p}$}]\begingroup Particle surface force vector\nomeqref {.0}
+  \item [{$\vec{F}_\mathrm{pp}$}]\begingroup force vector acting on the point-particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{$G(r)$}]\begingroup Homogeneous filter function\nomeqref {.0}
+  \item [{$G(r)$}]\begingroup homogeneous filter function\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\bar{H}}$}]\begingroup Flux tensor\nomeqref {.0}
+  \item [{$\vec{\bar{H}}$}]\begingroup flux tensor\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\bar{H}^\mathrm{i}}$}]\begingroup Inviscid part of the flux tensor\nomeqref {.0}
+  \item [{$\vec{\bar{H}^\mathrm{i}}$}]\begingroup inviscid part of the flux tensor\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\bar{H}^\mathrm{v}}$}]\begingroup Viscous part of the flux tensor\nomeqref {.0}
+  \item [{$\vec{\bar{H}^\mathrm{v}}$}]\begingroup viscous part of the flux tensor\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\matrix{\bar{I}}$}]\begingroup Identity tensor\nomeqref {.0}
+  \item [{$\matrix{\bar{I}}$}]\begingroup identity tensor\nomeqref {.0}
 		\nompageref{I}
-  \item [{$K(t)$}]\begingroup History kernel\nomeqref {.0}
+  \item [{$K(t)$}]\begingroup history kernel\nomeqref {.0}
 		\nompageref{I}
-  \item [{$k_\mathrm{t}$}]\begingroup Thermal conductivity\nomeqref {.0}
+  \item [{$k_\mathrm{t}$}]\begingroup thermal conductivity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$L$}]\begingroup Integral length scale\nomeqref {.0}
+  \item [{$L$}]\begingroup integral length scale\nomeqref {.0}
 		\nompageref{I}
-  \item [{$m_\mathrm{f}$}]\begingroup Fluid mass\nomeqref {.0}
+  \item [{$m_\mathrm{f}$}]\begingroup fluid mass\nomeqref {.0}
 		\nompageref{I}
-  \item [{$m_\mathrm{p}$}]\begingroup Particle mass\nomeqref {.0}
+  \item [{$m_\mathrm{p}$}]\begingroup particle mass\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{n}$}]\begingroup Normal vector\nomeqref {.0}
+  \item [{$\vec{n}$}]\begingroup normal vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$N$}]\begingroup Grid refinement of the simulation\nomeqref {.0}
+  \item [{$N$}]\begingroup grid refinement of the simulation\nomeqref {.0}
 		\nompageref{I}
-  \item [{$N_\mathrm{c}$}]\begingroup Number of computational point particles\nomeqref {.0}
+  \item [{$N_\mathrm{c}$}]\begingroup number of computational point particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{$N_\mathrm{p}$}]\begingroup Number of physical point particles\nomeqref {.0}
+  \item [{$N_\mathrm{p}$}]\begingroup number of physical point particles\nomeqref {.0}
 		\nompageref{I}
-  \item [{$p$}]\begingroup Pressure\nomeqref {.0}\nompageref{I}
+  \item [{$p$}]\begingroup pressure\nomeqref {.0}\nompageref{I}
   \item [{$Pr$}]\begingroup Prandtl number\nomeqref {.0}\nompageref{I}
-  \item [{$\vec{Q}$}]\begingroup Vector of conservative Eulerian variables\nomeqref {.0}
+  \item [{$\vec{Q}$}]\begingroup vector of conservative Eulerian variables\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{q}$}]\begingroup Heat conduction vector\nomeqref {.0}
+  \item [{$\vec{q}$}]\begingroup heat conduction vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$R$}]\begingroup Specific gas constant\nomeqref {.0}
+  \item [{$R$}]\begingroup specific gas constant\nomeqref {.0}
 		\nompageref{I}
-  \item [{$R (r, t)$}]\begingroup Two-point correlation\nomeqref {.0}
+  \item [{$R (r, t)$}]\begingroup two-point correlation as a function of the distance r and time t\nomeqref {.0}
 		\nompageref{I}
   \item [{$Re$}]\begingroup Reynolds number\nomeqref {.0}\nompageref{I}
-  \item [{$Re_\mathrm{p}$}]\begingroup Particle Reynolds number\nomeqref {.0}
+  \item [{$Re_\mathrm{p}$}]\begingroup particle Reynolds number\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\bar{S}}$}]\begingroup Rate-of-strain tensor\nomeqref {.0}
+  \item [{$\vec{\bar{S}}$}]\begingroup rate-of-strain tensor\nomeqref {.0}
 		\nompageref{I}
   \item [{$S$}]\begingroup Sutherland temperature\nomeqref {.0}
 		\nompageref{I}
-  \item [{$T$}]\begingroup Temperature\nomeqref {.0}\nompageref{I}
+  \item [{$T$}]\begingroup temperature\nomeqref {.0}\nompageref{I}
   \item [{$t$}]\begingroup time\nomeqref {.0}\nompageref{I}
-  \item [{$t^\mathrm{*}$}]\begingroup Time normalized by initial eddy turnover time\nomeqref {.0}
+  \item [{$t^\mathrm{*}$}]\begingroup time normalized by initial eddy turnover time\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{T}_\mathrm{p}$}]\begingroup Particle torque vector\nomeqref {.0}
+  \item [{$\vec{T}_\mathrm{p}$}]\begingroup particle torque vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{u}$}]\begingroup Fluid velocity\nomeqref {.0}
+  \item [{$\vec{u}$}]\begingroup fluid velocity vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$U$}]\begingroup Characteristic fluid velocity\nomeqref {.0}
+  \item [{$U$}]\begingroup characteristic fluid velocity\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{u}'$}]\begingroup Vector of fluid velocity fluctuations\nomeqref {.0}
+  \item [{$\vec{u}'$}]\begingroup vector of fluid velocity fluctuations\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{u}_\mathrm{p}$}]\begingroup Vector of fluid velocity at the particle position\nomeqref {.0}
+  \item [{$\vec{u}_\mathrm{p}$}]\begingroup vector of the undisturbed fluid velocity at the particle position\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\bar U(\vec{x})$}]\begingroup Filtered velocity field\nomeqref {.0}
+  \item [{$\bar{\vec{U}}(\vec{x})$}]\begingroup filtered velocity field\nomeqref {.0}
 		\nompageref{I}
-  \item [{$V$}]\begingroup Control volume\nomeqref {.0}\nompageref{I}
-  \item [{$\mathrm{V}_\mathrm{f}$}]\begingroup Fluid volume\nomeqref {.0}
+  \item [{$V$}]\begingroup control volume\nomeqref {.0}\nompageref{I}
+  \item [{$\mathrm{V}_\mathrm{f}$}]\begingroup fluid volume\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\mathrm{V}_\mathrm{p}$}]\begingroup Particle volume\nomeqref {.0}
+  \item [{$\mathrm{V}_\mathrm{p}$}]\begingroup particle volume\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{v}_\mathrm{p}$}]\begingroup Particle velocity vector\nomeqref {.0}
+  \item [{$\vec{v}_\mathrm{p}$}]\begingroup particle velocity vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{x}$}]\begingroup Position vector\nomeqref {.0}
+  \item [{$\vec{x}$}]\begingroup position vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{x}_\mathrm{p}$}]\begingroup Particle position vector\nomeqref {.0}
+  \item [{$\vec{x}_\mathrm{p}$}]\begingroup particle position vector\nomeqref {.0}
 		\nompageref{I}
 
  \nomgroup{S}
 
-  \item [{f}]\begingroup Fluid-concerning variables\nomeqref {.0}
+  \item [{$\infty$}]\begingroup freestream value\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\infty, \mathrm{ref}$}]\begingroup Referential variables\nomeqref {.0}
+  \item [{n}]\begingroup variable at n-th timestep\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\lambda$}]\begingroup Taylor-microscale variables\nomeqref {.0}
+  \item [{$\mathrm{n+1}$}]\begingroup variable at (n+1)-th timestep\nomeqref {.0}
 		\nompageref{I}
-  \item [{L}]\begingroup Variables regarding the integral lengthscale\nomeqref {.0}
-		\nompageref{I}
-  \item [{n}]\begingroup Variable at n-th timestep\nomeqref {.0}
-		\nompageref{I}
-  \item [{$\mathrm{n+1}$}]\begingroup Variable at (n+1)-th timestep\nomeqref {.0}
-		\nompageref{I}
-  \item [{p}]\begingroup Particle-concerning variables\nomeqref {.0}
-		\nompageref{I}
-  \item [{$0$}]\begingroup Starting values of the variable\nomeqref {.0}
+  \item [{ref}]\begingroup reference value\nomeqref {.0}\nompageref{I}
+  \item [{$0$}]\begingroup initial values of the variable\nomeqref {.0}
 		\nompageref{I}
 
 \end{thenomenclature}
