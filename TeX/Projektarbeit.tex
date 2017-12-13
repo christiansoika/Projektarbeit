@@ -510,9 +510,9 @@ This file is then used to set up a second simulation, where the particles are in
 	\label{kineticEnergy_numberofparticles}
     \end{minipage}
     \end{figure}
-First, a test is required to investigate the number of particles needed to achieve approximately converged statistics.
+At first, a test is required to investigate the number of particles needed to achieve approximately converged statistics.
 \newline %Graph 3
-Figure \ref{kineticEnergy_numberofparticles} shows the relative deviation of the particles' kinetic energy $E_\mathrm{kB}$ from the turbulent kinetic energy $E_\mathrm{k}$ at injection time for different numbers of particles. For higher numbers of particles the deviation subsides. For $10^4$ particles the deviation is below 1\%.
+Figure \ref{kineticEnergy_numberofparticles} therefore shows the relative deviation of the particles' kinetic energy $E_\mathrm{kB}$ from the turbulent kinetic energy $E_\mathrm{k}$ at injection time for different numbers of particles. For higher numbers of particles the deviation subsides. For $10^4$ particles the deviation is below 1\%.
 This leads to the assumption that simulations with a $\lambda_\mathrm{c}$ of 100 seem fitting with an overall number of a million particles. 
     \begin{figure}[]
     \centering
@@ -528,12 +528,13 @@ This leads to the assumption that simulations with a $\lambda_\mathrm{c}$ of 100
         \caption{Temporal development of the kinetic energy $E_\mathrm{k}$ normalized by its initial value $E_\mathrm{k,0}$ for different grid resolutions and with constant $\lambda_\mathrm{c}=50$. The lower-resolution simulation results are more similar to the particle-laden reference case PP-DNS.}
         \label{comparison_LES_DNS}
     \end{minipage}
-\end{figure}
+\end{figure}%
+\newline
 To investigate the influence of CPPs on the accuracy of the simulations, the variable $\lambda_\mathrm{c}$, introduced in Sec. 3.1, was implemented in the program code. All simulations were then set up with the overall same number of a million particles, and $\lambda_\mathrm{c}$ was set to 10, 50 and 100. Additionally, simulations of the single-phase flow and an unclustered particle-laden flow were conducted. A DNS serves as reference for later evaluations. 
 \newline %Graph 4
-Figure \ref{kineticEnergy_time_256} shows the evolution of the turbulent kinetic energy $E_\mathrm{k}$ normalized by the initial turbulent kinetic Energy $E_\mathrm{k,0}$ in time of the DNS using different $\lambda_\mathrm{c}$. Shortly after injection, the number of clustered particles has a high impact on the turbulent kinetic energy. For increasing $\lambda_\mathrm{c}$, the turbulence attenuation by particles is underpredicted.
+Figure \ref{kineticEnergy_time_256} shows the evolution of the turbulent kinetic energy $E_\mathrm{k}$ normalized by the initial turbulent kinetic Energy $E_\mathrm{k,0}$ in time of the DNS using different $\lambda_\mathrm{c}$ and constant grid resolution. Shortly after injection, the number of clustered particles has a high impact on the turbulent kinetic energy. For increasing $\lambda_\mathrm{c}$, the turbulence attenuation by particles is underpredicted.
 \newline %Graph 5
-The behavior of lower-resolution particle-laden simulations seems to be less prone to CPPs, as it can be seen in Fig. \ref{comparison_LES_DNS}. The same variables are displayed as in Fig. \ref{kineticEnergy_time_256}, this time for the same $\lambda_\mathrm{c}=100$ using different grid resolutions. The coarser simulations are closer to the PP-DNS reference as the high-resolution simulations.
+The behavior of lower-resolution particle-laden simulations seems to be less prone to CPPs, as it can be seen in Fig. \ref{comparison_LES_DNS}. The same variables are displayed as in Fig. \ref{kineticEnergy_time_256}, this time for constant $\lambda_\mathrm{c}=100$ using different grid resolutions. The coarser simulations are closer to the PP-DNS reference as the high-resolution simulations.
 \begin{figure}[]
     \centering
     \begin{minipage}[t]{0.5\textwidth}
@@ -548,7 +549,7 @@ The behavior of lower-resolution particle-laden simulations seems to be less pro
         \caption{Temporal development of the normalized point-particle coupling rate $\Psi_\mathrm{pp}$. The PP-case without clustering shows the lowest coupling rate. Both highly-clustered PP-cases show positive contribution in contrast to the reference case PP-DNS.}
         \label{coupling_time_256}
     \end{minipage}
-\end{figure}
+\end{figure}%
 %Zusammenfassung Graph 4&5
 It can be seen that both the CPPs and the grid refinement level have an influence on the simulation's accuracy. Therefore further investigations on the reasons of this behavior will follow.
 \newline %Graph 6
@@ -582,9 +583,10 @@ Bot these figures can be analyzed using the turbulent kinetic energy budget intr
 	\caption{Variables of the simulations at $t^*=1$ of the PP-DNS and the $\mathrm{PP-LES_{64}}$.}
 	\label{table_values_DNS_LES}
 	\end{center}
-	\end{table}
-	%Table 1
-The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* = 1$ can be found in Tab.\ref{table_values_DNS_LES}. A general trend for less accurate results can be observed for higher mass ratios of one particle cluster to the content of one cell. The simulation on a $64^3$-grid is therefore less susceptible to altering the CPPs because the cells, and therefore the mass of one cell, are substantially bigger than in the $256^3$-grid for a constant domain size. It seems to be the case that for increasing mass ratio of one cluster to one cell the simulation results become less accurate. This phenomenon was first described in \cite{maxey1997simulations}, as particle-induced point forces induce a vorticity to the flow at the particle position. Although this mass ratio is relatively big for the PP-DNS, this simulation delivers the best results. Higher grid refinement leads to better results, while higher mass fractions of particles to cells lead to less accurate results. The assumption that for the PP-DNS both these effects form the best compromise therefore is natural. 
+	\end{table}%Table1
+The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* = 1$ can be found in Tab.\ref{table_values_DNS_LES}. A general trend for less accurate results can be observed for higher mass ratios of one particle cluster to the content of one cell. As the $\mathrm{LES_{64}}$ is not fine enough to resolve the smaller scales, the first three values are not displayed in the table. The simulation on a $64^3$-grid is therefore less susceptible to altering the CPPs because the cells, and therefore the mass of one cell, are substantially bigger than in the $256^3$-grid for a constant domain size. It seems to be the case that for increasing mass ratio of one cluster to one cell the simulation results become less accurate. This phenomenon was first described in \cite{maxey1997simulations}, as particle-induced point forces induce a vorticity to the flow at the particle position. 
+\newline
+Although this mass ratio is relatively big for the PP-DNS, this simulation delivers the best results. Higher grid refinement leads to better results, while higher mass fractions of particles to cells lead to less accurate results. The assumption that for the PP-DNS both these effects form the best compromise therefore is natural. 
 \begin{figure}[]
     \centering
      \begin{minipage}[t]{0.5\textwidth}
@@ -599,11 +601,13 @@ The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* = 1$ can be found in Ta
         \caption{Temporal development of the kinetic energy of the particles $E_\mathrm{kB}$ normalized by initial turbulent kinetic energy. The PP-case without clustering shows the biggest decay in kinetic energy. }
         \label{particlekineticenergy_time_256}
     \end{minipage}
-\end{figure}
+\end{figure}%
 %Graph 8
-Figure \ref{vergleich_coupling_time_256} can be used to point out the difference in susceptibility for this method. The evolution of the point-particle coupling rate for different grid refinement levels is displayed. It is evident that a correlation between inaccuracy of the simulations and the refinement level of the grid exists. For the same ratio of physical point particles to CPPs the results show different behavior depending on the grid refinement level. The unclustered PP-case is included as reference. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
+Figure \ref{vergleich_coupling_time_256} can be used to point out the difference in susceptibility for this method. The evolution of the point-particle coupling rate $\Psi_\mathrm{pp}$ for different grid refinement levels is displayed. It is evident that a correlation between inaccuracy of the simulations and the refinement level of the grid exists. For the same ratio of physical point particles to CPPs the results show different behavior depending on the grid refinement level. The unclustered PP-case is included as reference. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
 \newline %Graph 9
 In Fig. \ref{particlekineticenergy_time_256}, the development of kinetic energy of the particles is displayed. For increasing $\lambda_\mathrm{c}$, the kinetic energy of the particles becomes larger. This behavior leads to the assumption that the clustering produces the behavior of heavy particles comparable to \cite{Schneiders2017}. 
+\newline
+All this results arise the question, if and how the method of CPPs could be used to optimize computational effort and still deliver accurate results. Therefore further investigation on this topic is needed. 
 \pagebreak
 \section{Conclusion and outlook}
 In this study multiple simulations were carried out to evaluate a method for lowering computational effort. The statistics of simulations on various resolutions were compared and evaluated. CPPs have been validated to be a useful tool to achieve less computing time, if properly used.
