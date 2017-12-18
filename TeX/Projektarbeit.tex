@@ -245,16 +245,16 @@ The CPP approach is validated via turbulent kinetic energy budgets for LES and D
 Finally, a short conclusion is given.
 \pagebreak
 \section{Mathematical models}
-In this section the Navier-Stokes equations in integral formulation, the characteristic turbulent scales and the kinematic and dynamic equations for the particle phase are introduced.
+In this section, the Navier-Stokes equations in integral formulation, the characteristic turbulent scales, and the kinematic and dynamic equations for the particle phase are introduced.
 \newline
 \subsection{Equations governing the fluid phase}
-The conservation of mass, momentum and energy for a control volume V reads
+The conservation of mass, momentum, and energy for a control volume V reads
 \begin{equation} \label{NavierStokes}
-  \int\limits_V \frac{\partial{\vec{Q}}}{\partial{t}} \, \mathrm{d} V+ \int\limits_{\partial{V}} \vec{\bar{H}} \cdot \vec{n} \, \mathrm{d} A = \vec0
+  \int\limits_V \frac{\partial{\vec{Q}}}{\partial{t}} \, \mathrm{d} V+ \int\limits_{\partial{V}} \vec{\bar{H}} \cdot \vec{n} \, \mathrm{d} A = \vec0,
 \end{equation}
-with time $t$ and the flux tensor $ \vec{\bar{H}} $.
+with the time $t$ and the flux tensor $ \vec{\bar{H}} $.
 The vector $ \vec{Q} $ contains the variables fluid density $ \rho $, 
-fluid velocity $ \vec{u} $ and specific inner energy $ E $: 
+fluid velocity $ \vec{u} $, and specific inner energy $ E $, with 
 \begin{equation}
  \vec{Q}= \left( \begin{array}{c}\rho\\\rho \vec{u}\\\rho E \end{array} \right).
 \end{equation}
@@ -270,7 +270,7 @@ $ Re = \frac{\rho_\infty u_\infty l_\mathrm{ref}}{\mu_\infty} $ is defined to be
 The specific inner energy $ E $ 
 and the heat conduction $ \vec{q}$ are defined as
 \begin{equation}
- E = e  \frac{1}{2} \vec{|u|}^2 \, \mathrm{and}
+ E = e  \frac{1}{2} \vec{|u|}^2, \, \mathrm{and}
 \end{equation}
 \begin{equation}
  \vec{q} = - \frac{\mu}{Pr (\gamma - 1)} \vec\nabla T,
@@ -294,17 +294,13 @@ p = \rho R T $ are used. The specific gas constant is determined by $ R = c_\mat
 \subsection{Scales of turbulent flows}
 Turbulent flows can be described as a superposition of chaotic, three-dimensional vortical structures of various scales, referred to as eddies. Larger eddies decay and pass their kinetic energy down to smaller scales. At the smallest scales, the kinetic energy finally dissipates into heat due to the viscous dissipation. This behavior is called the 'energy cascade' and was first described by Richardson \cite{Richardson1920} and quantified by Kolmogorov \cite{Kolmogorov1941}.
 \newline
-Considering homogeneous isotropic turbulence, with zero mean velocity and the integral dissipation rate $\varepsilon$, the characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $u'$ at two different positions 
+Considering homogeneous isotropic turbulence with zero mean velocity, the characteristic length scales of a turbulent flow can be defined by the two-point correlation $R$, which is the normalized product of the velocity's fluctuation $u'$ at two different positions 
 $\vec{x}$ and $\vec{x} + \vec{e}r$ at the same time $t$
 \begin{equation}
-R (r, t) = \frac{\overline{u'(\vec{x}, t)u'(\vec{x} + \vec{e}r, t)}}{\overline{u'^2}},
-\end{equation}
-as
-\begin{equation}
- \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial r^2}\Bigr|_{\substack{r=0}}\biggl),
+R (r, t) = \frac{\overline{u'(\vec{x}, t)u'(\vec{x} + \vec{e}r, t)}}{\overline{u'^2}}.
 \end{equation}
 \begin{equation}
-\lambda = \sqrt{15 \frac{\nu}{\varepsilon}} u'
+ \frac{1}{\lambda^2} = -\frac{1}{2}\biggl(\frac{\partial^2 R}{\partial r^2}\Bigr|_{\substack{r=0}}\biggl)
 \end{equation}
 or
 \begin{equation} \label{eq:integralLengthScale}
@@ -312,35 +308,35 @@ L = \int_{0}^{\infty} R (r, t)  \, \mathrm{d}r
 \end{equation}
 with $\lambda$ being the Taylor microscale, $L$ the integral length scale, $u'$ denoting the absolute value of the velocity's fluctuation and $\vec{e}$ pointing in the same direction as $\vec{u'}$ with $|\vec{e}| = 1$.
 \newline
-The Taylor microscale can be used to compute the Taylor-scale Reynolds number
+The Taylor microscale and the root-mean-square velocity $u_{\mathrm{rms}}$ can be used to compute the Taylor-scale Reynolds number
 \begin{equation}
-Re_\mathrm{\lambda} = \frac{u' \lambda}{\nu}.
+Re_\mathrm{\lambda} = \frac{u_{\mathrm{rms}} \lambda}{\nu}.
 \end{equation}
 \newline
-$L$ and the corresponding timescale $\tau_\mathrm{L}$, which is mostly called 'eddy turnover time', describe the large eddies. At these scales the energy is brought into the flow, creating the 'energy-containing range'. The eddy turnover time is defined by
+The integral length scale $L$ and the corresponding timescale $\tau_\mathrm{L}$, which is mostly called eddy turnover time, describe the large eddies. At these scales the energy is brought into the flow, creating the energy-containing range. The eddy turnover time is defined by
 \begin{equation}
-\tau_\mathrm{L} = \frac{L}{U},
+\tau_\mathrm{L} = \frac{L}{u_{\mathrm{rms}}},
 \end{equation}
-with the characteristic fluid velocity $U$.
+with the characteristic fluid velocity $u_{\mathrm{rms}}$.
 \newline
-The smallest scales in a turbulent flow are the Kolmogorov length $\eta$ and time scale $\tau_\mathrm{\eta}$. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\varepsilon \approx \frac{U^3}{L} $ they can be written as
+The smallest scales in a turbulent flow are the Kolmogorov length $\eta$ and time scale $\tau_\mathrm{\eta}$. At these scales, the effects of viscosity take place and the energy dissipates into heat. With the estimate $\varepsilon = \mathcal{O} \left(\frac{u_{\mathrm{rms}}^3}{L} \right)$ they can be written as
 \begin{equation}
-\eta = \biggl (\frac{\nu^3 L}{U^3} \biggl )^{1/4}
+\eta = \mathcal{O} \left( \left(\frac{\nu^3 L}{U^3} \right)^{1/4}\right)
 \end{equation}
 and
 \begin{equation}
-\tau_\mathrm{\eta} = \biggl (\frac{\nu L}{U^3} \biggl ).
+\tau_\mathrm{\eta} = \mathcal{O} \left( \left(\frac{\nu L}{U^3} \right) \right).
 \end{equation}
 Both these scales are coupled by the Reynolds numbers
 \begin{equation}
-\frac{L}{\eta} = Re^{3/4}
+\frac{L}{\eta} = \mathcal{O} \left({Re_{\mathrm{L}}}^{3/4}\right)
 \end{equation}
 and
 \begin{equation}
-\frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = {Re_\mathrm{L}}^{1/2}
+\frac{\tau_\mathrm{L}}{\tau_\mathrm{\eta}} = \mathcal{O} \left({Re_\mathrm{L}}^{1/2}\right)
 \end{equation}
 with $Re_\mathrm{L} = \frac{u' L}{\nu}$.
-It can be observed from these equations that the spacing between the scales increases for higher Reynolds numbers. 
+It can be observed from these equations that the range between the scales increases for higher Reynolds numbers. 
 \newline
 \subsection{Particle dynamics} %Steffen
 
@@ -383,8 +379,8 @@ Together with the kinematic equation
 the Eqs.  \eqref{NavierStokes} and \eqref{kurze_Partikelgleichung} form a closed system of equations.
 \pagebreak
 \section{Numerical methods} %Julian
-Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS (direct numerical simulation) and the LES (large-eddy simulation). The basis of both are the Navier-Stokes equations as described above. The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
-\cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods} \cite{aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
+Two numerical methods are discussed and their main differences pointed out in the following chapter, the DNS and the LES. The basis of both are the Navier-Stokes equations as described above. The simulations were carried out using ZFS, the simulation tool developed and implemented at the Institute of Aerodynamics at RWTH Aachen University 
+\cite{anAdaptiveMultilevelMultigridFormulationForCartesianHierarchicalGridMethods, aStrictlyConservativeCartesianCutCellMethodForCompressibleViscousFlowsOnAdaptiveGrids}. 
 The tool is capable of simulating compressible finite-volume flows using unstructured Cartesian grids.
 \newline
 \subsection{Discretization of the particle dynamics}
@@ -399,9 +395,7 @@ The first step is the prediction of the new particle position $\vec{x}_{\mathrm{
 \vec{x}_{\mathrm{p}, n+1} = \vec{x}_{\mathrm{p}, n} + \delta t \vec{v}_{\mathrm{p}, n} + \frac{1}{2} \delta t^2 \vec{a}_{\mathrm{p}, n},
 \end{equation}
 with $\vec{a}_{\mathrm{p}, n}$ particle acceleration, where the subscript $\mathrm{p}$ denotes the particle and the subscript $n$ the time step.
-\newline
 To avoid filtering effects, the fluid velocity $\vec{u}_{\mathrm{p}, n+1}$ at the particle position $\vec{x}_{\mathrm{p}, n+1}$ is set equal to the nearest cell fluid velocity. 
-\newline
 The predicted velocity and acceleration are calculated with
 \begin{equation}
 \vec{v}_{\mathrm{p}, n+1} = \frac{\vec{v}_\mathrm{p,n} + \frac{1}{2} \delta t \left(\vec{a}_{\mathrm{p, n}} + \frac{f_\mathrm{d}}{\tau_\mathrm{p}}\vec{u}_{\mathrm{p}, n+1} \right)}{1 + \frac{1}{2} \frac{f_\mathrm{D}}{\tau_\mathrm{p}} \delta t},
@@ -416,16 +410,16 @@ The updated particle position must be corrected by an additional term according 
 \newline
 These approaches to compute the particle trajectories require a lot of computational resources. 
 \newline
-Due to reduce this requirement the creation of numerical clusters of point particles is considered. For this purpose the ratio $\lambda_\mathrm{c}$ of physical point particles $N_\mathrm{p}$ to CPPs $N_\mathrm{c}$ is introduced ($\lambda_\mathrm{c} = \frac{N_\mathrm{p}}{N_\mathrm{c}}$). To compensate this lack of particles, the feedback force is multiplied by $\lambda_\mathrm{c}$, due to the $\lambda_\mathrm{c}$-fold mass of the (cluster-)particles.
+To reduce these requirements the creation of numerical clusters of point particles is considered. For this purpose the ratio $\lambda_\mathrm{c}$ of physical point particles $N_\mathrm{p}$ to CPPs $N_\mathrm{c}$ is introduced ($\lambda_\mathrm{c} = \frac{N_\mathrm{p}}{N_\mathrm{c}}$). To compensate this lack of particles, the feedback force is multiplied by $\lambda_\mathrm{c}$, due to the $\lambda_\mathrm{c}$-fold mass of the (cluster-)particles.
 \newline
-To model the impact of the particles on the fluid, the Navier-Stokes equations \eqref{NavierStokes} are extended by momentum sources or sinks. The feedback force of the particles is exerted on the fluid using a distance based weighting function
+To model the impact of the particles on the fluid, the Navier-Stokes equations \eqref{NavierStokes} are extended by momentum sources or sinks. The feedback force of the particles $F$ is exerted on the fluid using a distance based weighting function
 \begin{equation}
 \vec{F} = \vec{F}_\mathrm{pp} \cdot \frac{\mathrm{e}^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2})\big)}}{\sum \limits_{i} e^{- \big(d_\mathrm{i}^\mathrm{2}/(\sigma \Delta^\mathrm{2}) \big)}},
 \end{equation}
 with the distance between particle postion and the cell center $d_\mathrm{i}$, the grid width $\Delta$, and a smoothing parameter $\sigma$ that controls the distribution of $\vec{F}$ on the adjacent cells.
 \newline
 \subsection{Direct numerical simulation}
-With DNS, the Navier-Stokes equations are solved completely. This provides a very accurate result, as all scales of motion are being resolved. Hence it requires an immense level of computational resources which increases rapidly with the Reynolds number: $N \propto Re_{\mathrm{\lambda}}^{9/2}$ with the gridsize N of the simulation. With the LES, as described below, the computational effort is 99.98 \% less compared to DNS, which is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing larger-scale \cite{turbulentFlows}.
+With DNS, the Navier-Stokes equations are solved completely. This provides a very accurate result, as all scales of motion are being resolved. Hence it requires an immense level of computational resources which increases rapidly with the Reynolds number: $N \propto Re_{\mathrm{\lambda}}^{9/2}$ with the gridsize N of the simulation. With the LES, as described below, the computational effort is 99.98 \% less compared to DNS, which is the fraction of the dissipative scale. This leaves 0.02 \% of the flow, which is correlative with the fraction of the energy-containing large scales \cite{turbulentFlows}.
 \newline
 \subsection{Large-eddy simulation}
 \begin{figure}[h]
@@ -441,18 +435,18 @@ With DNS, the Navier-Stokes equations are solved completely. This provides a ver
         \label{64_velocity}
     \end{minipage}
     \captionsetup{width=0.97\linewidth}
-\caption{Instantaneous snapshot of the parallel projection of an isotropic decaying turbulent flow field computed by a DNS (a) and an $\mathrm{LES_{64}}$ (b). 'Worm-like' structures in an isotropic turbulent flow field. The more refined grid on the left shows more and better resolved structures, while the right picture reveals more artificially generated artifacts. For details on creation, see Appendix.}
+\caption{Instantaneous snapshot of the parallel projection of an isotropic decaying turbulent flow field computed by a DNS (a) and a $\mathrm{LES}$ (b). The DNS requires $256^3$ cells, whereas the LES employed $64^3$ cells. 'Worm-like' structures in an isotropic turbulent flow field. The more refined grid on the left shows more and better resolved structures, while the right picture reveals more artificially generated artifacts. For details on creation, see Appendix.}
 \label{comparisonLESDNS}
 \end{figure}
-Due to the fact that DNS is effortful, LES was created to save time and resources. The energy containing large scales are completely resolved and the impact of the small scales on the large scales are modeled.
+Due to the fact that DNS is effortful, LES was established to save time and resources. The energy containing large scales are completely resolved and the impact of the small scales on the large scales are modeled.
 \newline
-Simulating only the larger-scale motions is called filtering, which means that the smaller-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by 
+Simulating only the large-scale motions is called filtering, which means that the small-scale motions, also known as fluctuation, are filtered out. The filtered velocity field is calculated by 
 \begin{equation}
 \bar U(\vec{x}) = \int_{-\infty}^{\infty} G(\vec{r})U(\vec{x} - \vec{r})  \, \mathrm{d}\vec{r},
 \end{equation}
-with $G(\vec{r}) $ being a homogeneous filter function \cite{turbulentFlows}. To model the filtered smaller-scale motions a subgrid-scale (sgs) model is necessary. According to Hickel (2007) the interference between explicit sgs and the truncation error can be exploited, i.e. the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit sgs model. Thus it is called implicit LES (ILES) \cite{implicitLES}.
+with $G(\vec{r}) $ being a homogeneous filter function \cite{turbulentFlows}. To model the filtered smaller-scale motions a subgrid-scale (sgs) model is necessary. According to Hickel \cite{implicitLES} the interference between explicit sgs and the truncation error can be exploited, i.e., the truncation error can serve as model of the effects of unresolved scales, which is therefore an implicit sgs model. Thus it is called implicit LES (ILES).
 \newline
-Even though the small scales are modeled in the LES, the effects of filtering can be seen in figure \ref{comparisonLESDNS}.
+Even though the small scales are modeled in the LES, the effects of filtering can be observed in figure \ref{comparisonLESDNS}.
 \newline
 \pagebreak
 \section{Results}
