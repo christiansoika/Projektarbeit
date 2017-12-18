@@ -20,7 +20,7 @@
  \nomgroup{G}
 
   \item [{$\Delta$}]\begingroup cell length\nomeqref {.0}\nompageref{I}
-  \item [{$\epsilon$}]\begingroup viscous dissipation rate\nomeqref {.0}
+  \item [{$\varepsilon$}]\begingroup viscous dissipation rate\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{\varepsilon}$}]\begingroup integral dissipation rate\nomeqref {.0}
 		\nompageref{I}
@@ -34,9 +34,11 @@
 		\nompageref{I}
   \item [{$\eta_\mathrm{0}$}]\begingroup initial Kolmogorov length scale\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\mu$}]\begingroup dynamic viscosity\nomeqref {.0}
+  \item [{$\lambda$}]\begingroup Taylor microscale\nomeqref {.0}
 		\nompageref{I}
   \item [{$\lambda_\mathrm{c}$}]\begingroup ratio of physical point particles to computational point particles\nomeqref {.0}
+		\nompageref{I}
+  \item [{$\mu$}]\begingroup dynamic viscosity\nomeqref {.0}
 		\nompageref{I}
   \item [{$\nu$}]\begingroup kinematic viscosity\nomeqref {.0}
 		\nompageref{I}

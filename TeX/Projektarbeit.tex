@@ -18,7 +18,7 @@
 \usepackage{geometry} %Gr�ߟe des Bodys innerhalb der Seite 
 \usepackage[utf8]{inputenc} 
 \usepackage{ifthen}
-\usepackage{caption}
+\usepackage[labelsep=period]{caption}
 \usepackage{multirow}
 \usepackage{subfig}
 \usepackage{stfloats}
@@ -110,7 +110,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[sn]{n}{variable at n-th timestep}
 \nomenclature[snn]{$\mathrm{n+1}$}{variable at (n+1)-th timestep}
 \nomenclature[rK(t)]{$K(t)$}{history kernel}
-\nomenclature[geps]{$\epsilon$}{viscous dissipation rate}
+\nomenclature[geps]{$\varepsilon$}{viscous dissipation rate}
 \nomenclature[rUx]{$\bar{\vec{U}}(\vec{x})$}{filtered velocity field}
 \nomenclature[gW]{$\phi(\mathrm{Re_p})$}{empirical drag correction factor as a function of the particle Reynolds number $Re_\mathrm{p}$}
 \nomenclature[arms]{rms}{root mean square}
@@ -151,6 +151,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[rL]{$L$}{integral length scale}
 \nomenclature[rU]{$U$}{characteristic fluid velocity}
 \nomenclature[gh]{$\eta$}{Kolmogorov length scale}
+\nomenclature[gl]{$\lambda$}{Taylor microscale}
 \nomenclature[gh0]{$\eta_\mathrm{0}$}{initial Kolmogorov length scale}
 \nomenclature[gth]{$\tau_{\mathrm{\eta}}$}{Kolmogorov time scale}
 \nomenclature[rF]{$\vec{F}$}{force vector per unit volume of the particle acting on the fluid}
@@ -163,7 +164,7 @@ Erstpr\"ufer: &Univ.-Prof.\,Dr.-Ing. Wolfgang Schr\"oder
 \nomenclature[grp]{$\rho_\mathrm{p}$}{particle density}
 \nomenclature[rxp]{$\vec{x}_\mathrm{p}$}{particle position vector}
 \nomenclature[rvp]{$\vec{v}_\mathrm{p}$}{particle velocity vector}
-\nomenclature[gmc]{$\lambda_\mathrm{c}$}{ratio of physical point particles to computational point particles}
+\nomenclature[glc]{$\lambda_\mathrm{c}$}{ratio of physical point particles to computational point particles}
 \nomenclature[rnp]{$N_\mathrm{p}$}{number of physical point particles}
 \nomenclature[rnc]{$N_\mathrm{c}$}{number of computational point particles}
 \nomenclature[gpsi]{$\Psi$}{integral coupling rate}
@@ -455,10 +456,10 @@ Even though the small scales are modeled in the LES, the effects of filtering ca
 \newline
 \pagebreak
 \section{Results}
-In this section, the setup and the results of the DNS and LES of particle-laden decaying isotropic turbulence will be presented. Special emphasis will be put on the turbulent kinetic energy budgets and their use to interpret the results.
+In this section, the setup and the results of the DNS and LES of particle-laden decaying isotropic turbulence will be presented. Special emphasis will be put on the analysis of the turbulent kinetic energy budgets.
 \newline
 \subsection{Turbulence modulation by particles}
-The particle-laden turbulence modulation by particles in decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between the fluid and the particle phase, the background dissipation rate of the flow field $\bar{\varepsilon}$ and the particle-induced dissipation rate $\varepsilon'$. These contributions form an equation, which describes the change in turbulent kinetic energy
+The turbulence modulation by particles in  particle-laden decaying isotropic turbulence is determined by the coupling rate $\Psi$, which describes the energy transfer between the fluid and the particle phase, the background dissipation rate of the flow field $\bar{\varepsilon}$ and the particle-induced dissipation rate $\varepsilon'$. These contributions form an equation, which describes the change in turbulent kinetic energy
 \begin{equation}
 \frac{\mathrm{d} E_\mathrm{k}}{\mathrm{d} t} = \Psi (t) - \bar{\varepsilon} (t) - \varepsilon' (t).
 \end{equation}
@@ -470,11 +471,11 @@ using surface force $\vec{F}_\mathrm{p}$, particle velocity $\vec{v}_\mathrm{p}$
 \newline
 As mentioned before, the flow field is considered nearly incompressible, therefore the equation  for the viscous dissipation rate can be approximated by
 \begin{equation}
- \epsilon (t) \approx 2 \mu \vec{\bar{S}}\vec{:}\vec{\bar{S}},
+ \varepsilon (t) \approx 2 \mu \vec{\bar{S}}\vec{:}\vec{\bar{S}},
 \end{equation}
 where $\vec{:}$ denotes the inner tensor product. This rate can then be integrated over the fluid domain excluding particles and their direct surroundings $\Upsilon_\mathrm{f}$, which leads to the background dissipation rate
 \begin{equation}
-\bar{\varepsilon} (t) = \int\limits_{\Upsilon_\mathrm{f}} \epsilon(t) \mathrm{d}V.
+\bar{\varepsilon} (t) = \int\limits_{\Upsilon_\mathrm{f}} \varepsilon(t) \mathrm{d}V.
 \end{equation}
 Additionally, the particles change the fluid's rate of dissipation due to their volume forces. Neglecting fluid inertia forces, the additional dissipation rate for fully resolved particles can be computed by
 \begin{equation}
@@ -499,7 +500,7 @@ The particle-free case was initialized using a seed-based random number generato
 The single-phase DNS and particle-laden DNS will be used as reference for analyzing other results. The single-phase results will be in the following referred to as sP, and particle-laden results as PP. The PP simulations are set up to match the volume fraction $\phi_\mathrm{v}=\frac{V_\mathrm{p}}{V_\mathrm{f}}= 10^{-3}$ and mass fraction of $\phi_\mathrm{m}=\frac{m_\mathrm{p}}{m_\mathrm{f}}=1$. Hence, the density ratio is $\frac{\rho_\mathrm{p}}{\rho} = 1000$ and the particle diameter is $d_\mathrm{p} \approx 0.6 \eta_\mathrm{0}$ with $\eta_\mathrm{0}$ being the initial Kolmogorov length. At the time step of the injection, the Taylor Reynolds number is $Re_\lambda \approx 58$. 
 \newline
 \subsection{Simulation results}
-\begin{figure}[]
+\begin{figure}[h]
     \centering
     \begin{minipage}{0.5\textwidth}
         \centering
@@ -507,55 +508,38 @@ The single-phase DNS and particle-laden DNS will be used as reference for analyz
     \end{minipage}%
         \begin{minipage}{0.5\textwidth}
         \centering
-        \caption{Relative deviation of the kinetic energy of the particles  $E_\mathrm{kB}$ from the turbulent kinetic energy $E_\mathrm{k}$ at $t^*_\mathrm{inj}$ for an $\mathrm{LES_{128}}$. An inaccuracy can be observed for small numbers of particles. This behavior can be noticed for all other resolutions. Relative deviation of the particles' kinetic energy and the turbulent kinetic energy is below 1\% for $10^4$ particles.}
+        \caption{Relative deviation of the kinetic energy of the particles  $E_\mathrm{kB}$ from the turbulent kinetic energy $E_\mathrm{k}$ at $t^*_\mathrm{inj}$ for an $\mathrm{LES_{128}}$. An inaccuracy can be observed for small numbers of particles. This behavior can be noticed for all other resolutions. The relative deviation of the particles' kinetic energy and the turbulent kinetic energy is below 1\% for $10^4$ particles.}
 	\label{kineticEnergy_numberofparticles}
     \end{minipage}
     \end{figure}
 At first, a test is required to investigate the number of particles needed to achieve approximately converged statistics.
-\newline %Graph 3
-Figure \ref{kineticEnergy_numberofparticles} therefore shows the relative deviation of the particles' kinetic energy $E_\mathrm{kB}$ from the turbulent kinetic energy $E_\mathrm{k}$ at injection time for different numbers of particles. For higher numbers of particles the deviation subsides. For $10^4$ particles the deviation is below 1\%.
-This leads to the assumption that simulations with a $\lambda_\mathrm{c}$ of 100 seem fitting with an overall number of a million particles. 
-    \begin{figure}[]
+%Graph 3
+Figure \ref{kineticEnergy_numberofparticles} therefore shows the relative deviation of the particles' kinetic energy $E_\mathrm{kB}$ from the turbulent kinetic energy $E_\mathrm{k}$ at injection time $t^*_\mathrm{inj}$ for different numbers of particles. For higher numbers of particles the deviation decreases. For $10^4$ particles the deviation is below 1\%.
+This leads to the assumption that simulations with a $\lambda_\mathrm{c}$ of 100 seem fitting with an overall number of $10^6$ particles. 
+\begin{figure}[hb]
     \centering
-    \begin{minipage}[t]{0.5\textwidth}
+    \begin{minipage}[]{0.5\textwidth}
         \centering
  	   \includegraphics[width=\linewidth]{./Abbildungen/256/kineticEnergy_time.pdf}
-	   \caption{Temporal development with time normalized by initial eddy turnover time $t^*$ of the kinetic energy $E_\mathrm{k}$ normalized by its initial value $E_\mathrm{k,0}$. Shortly after the injection, the PP-cases separate from the sP-flow. The higher-clustered cases show significant differences compared to the reference case PP-DNS.}
+	   \caption{Temporal development of the kinetic energy $E_\mathrm{k}$ normalized by its initial value $E_\mathrm{k,0}$. Shortly after the injection, the PP-cases separate from the sP-flow. The higher-clustered cases show significant differences compared to the reference case PP-DNS.}
 	\label{kineticEnergy_time_256}
     \end{minipage}%
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[]{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/kineticEnergy_comp50.pdf}
-        \caption{Temporal development of the kinetic energy $E_\mathrm{k}$ normalized by its initial value $E_\mathrm{k,0}$ for different grid resolutions and with constant $\lambda_\mathrm{c}=50$. The lower-resolution simulation results are more similar to the particle-laden reference case PP-DNS.}
+        \caption{Temporal development of the kinetic energy $E_\mathrm{k}$ normalized by its initial value $E_\mathrm{k,0}$ for different grid resolutions and with constant $\lambda_\mathrm{c}=50$. The results of the less resolved cases are more similar to the particle-laden reference case PP-DNS.}
         \label{comparison_LES_DNS}
     \end{minipage}
 \end{figure}%
-\newline
-To investigate the influence of CPPs on the accuracy of the simulations, the variable $\lambda_\mathrm{c}$, introduced in Sec. 3.1, was implemented in the program code. All simulations were then set up with the overall same number of a million particles, and $\lambda_\mathrm{c}$ was set to 10, 50 and 100. Additionally, simulations of the single-phase flow and an unclustered particle-laden flow were conducted. A DNS serves as reference for later evaluations. 
+To investigate the influence of CPPs on the accuracy of the simulations, the variable $\lambda_\mathrm{c}$, introduced in Sec. 3.1, was implemented in the program code. All simulations were then set up with the overall same number of $10^6$ particles, and $\lambda_\mathrm{c}$ was set to 10, 50 and 100. Additionally, simulations of the single-phase flow and an unclustered particle-laden flow were conducted. A DNS serves as reference for later evaluations. 
 \newline %Graph 4
 Figure \ref{kineticEnergy_time_256} shows the evolution of the turbulent kinetic energy $E_\mathrm{k}$ normalized by the initial turbulent kinetic Energy $E_\mathrm{k,0}$ in time of the DNS using different $\lambda_\mathrm{c}$ and constant grid resolution. Shortly after injection, the number of clustered particles has a high impact on the turbulent kinetic energy. For increasing $\lambda_\mathrm{c}$, the turbulence attenuation by particles is underpredicted.
-\newline %Graph 5
-The behavior of lower-resolution particle-laden simulations seems to be less prone to CPPs, as it can be seen in Fig. \ref{comparison_LES_DNS}. The same variables are displayed as in Fig. \ref{kineticEnergy_time_256}, this time for constant $\lambda_\mathrm{c}=50$ using different grid resolutions. The coarser simulations are closer to the PP-DNS reference as the high-resolution simulations.
-\begin{figure}[]
-    \centering
-    \begin{minipage}[t]{0.5\textwidth}
-         \centering
-        \includegraphics[width=\linewidth]{./Abbildungen/256/diss_time.pdf}
-        \caption{Temporal development of the normalized dissipation rate $\bar{\vec{\varepsilon}}$. The unclustered PP-case shows a lower dissipation rate than the sP-case. Highly clustered PP-cases show a higher dissipation rate.}
-        \label{diss_time_256}
-    \end{minipage}%
-    \begin{minipage}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./Abbildungen/256/coupling_time.pdf}
-        \caption{Temporal development of the normalized point-particle coupling rate $\Psi_\mathrm{pp}$. The PP-case without clustering shows the lowest coupling rate. Both highly-clustered PP-cases show positive contribution in contrast to the reference case PP-DNS.}
-        \label{coupling_time_256}
-    \end{minipage}
-\end{figure}%
-\begin{table}[]
-	\begin{center}
+%Graph 5
+\begin{table}[tbp]
+	\centering
 	\begin{tabular}{| c | c l | c c c c c c c |}
 	\hline
-	Case & $\lambda_\mathrm{c}$& $\frac{m_\mathrm{c}}{m_\mathrm{V,cell}}$ &$\varepsilon \frac{L}{{u_0}^3}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ & $E_\mathrm{k}/E_\mathrm{k,0}$ & $E_\mathrm{kB}/E_\mathrm{k,0}$ & \\
+	Case & $\lambda_\mathrm{c}$& \multicolumn{1}{c|}{$\frac{m_\mathrm{c}}{m_\mathrm{v}}$} &$\varepsilon \frac{L}{{u_0}^3}$ & $\frac{\lambda}{L}$ & $\frac{\eta}{L} $ & $Re_\lambda$ & $\frac{E_\mathrm{k}}{E_\mathrm{k,0}}$ & $\frac{E_\mathrm{kB}}{E_\mathrm{k,0}}$ & \\[2pt]
 	\hline
 	\hline
 	\multirow{4}{*}{DNS}
@@ -572,54 +556,70 @@ The behavior of lower-resolution particle-laden simulations seems to be less pro
 	&100 & 26.21 & &  &  & 47.60 & 0.27 & 0.30 &\\
 	\hline
 	\end{tabular}
-	\captionsetup{width=0.9\linewidth}
-	\caption{Variables of the simulations at $t^*=1$ of the PP-DNS and the $\mathrm{PP-LES_{64}}$.}
+	\captionsetup{width=1\linewidth}
+	\captionsetup{font=footnotesize}
+	\caption{Non-dimensional variables of the simulations at $t^*=1$ of the PP-DNS and the $\mathrm{PP-LES_{64}}$: Ratio of physical to computational point-particles $\lambda_\mathrm{c}$, fraction of mass of one cluster $m_\mathrm{c}$ to the mass of one cell $m_\mathrm{v}$, viscous dissipation rate $\varepsilon$, Taylor microscale $\lambda$, Kolmogorov length $\eta$, Reynolds number for the Taylor microscale $Re_\mathrm{\lambda}$, kinetic energy of the fluid $E_\mathrm{k}$ and kinetic energy of the particles $E_\mathrm{kB}$. The dissipation rate, Taylor microscale and Kolmogorov length are not resolved by the $\mathrm{PP-LES_{64}}$.}
 	\label{table_values_DNS_LES}
-	\end{center}
 	\end{table}%Table1
-	\begin{figure}[]
+The behavior of lower-resolution particle-laden simulations seems to be less prone to CPPs as can be observed in Fig. \ref{comparison_LES_DNS}. The same variables are displayed as in Fig. \ref{kineticEnergy_time_256} for constant $\lambda_\mathrm{c}=50$ and varying grid resolutions. The coarser simulations are closer to the PP-DNS reference as the higher resolved simulations.
+%Zusammenfassung Graph 4&5
+It can be observed that both the CPPs and the grid refinement level have an impact on the accuracy of the simulation. Therefore, further investigations on the reasons of this behavior will follow.
+\begin{figure}[htb]
     \centering
-     \begin{minipage}[t]{0.5\textwidth}
+    \begin{minipage}[]{0.5\textwidth}
+         \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/256/diss_time.pdf}
+        \caption{Temporal development of the normalized dissipation rate $\bar{\vec{\varepsilon}}$. The unclustered PP-case shows a lower dissipation rate than the sP-case. Highly clustered PP-cases show a higher dissipation rate.}
+        \label{diss_time_256}
+    \end{minipage}%
+    \begin{minipage}[]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./Abbildungen/256/coupling_time.pdf}
+        \caption{Temporal development of the normalized point-particle coupling rate $\Psi_\mathrm{pp}$. The PP-case without clustering shows the lowest coupling rate. Both highly-clustered PP-cases show positive contribution in contrast to the reference case PP-DNS.}
+        \label{coupling_time_256}
+    \end{minipage}
+\end{figure}%
+%Graph 6
+The development of the normalized dissipation rate $\bar{\vec{\varepsilon}}$ is displayed in Fig. \ref{diss_time_256}, showing a lower rate for the unclustered PP-DNS and a higher rate for the higher-clustered DNS cases in comparison to the single-phase simulation.
+\newline %Graph 7
+Figure \ref{coupling_time_256} shows the temporal development of the point-particle coupling rate $\Psi_\mathrm{pp}$. Similar to Fig. \ref{diss_time_256}, the DNS with a high $\lambda_\mathrm{c}$ show larger deviation from the PP-DNS reference, leading to a positive coupling rate for $\lambda_\mathrm{c} > 50$.
+Both these figures can be analyzed using the turbulent kinetic energy budget introduced in Sec. 4.1.
+\newline
+The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* = 1$ can be found in Tab.\ref{table_values_DNS_LES}. A correlation between less accurate results and higher ratios of mass of a particle cluster $m_\mathrm{c}$ to the mass of one cell $m_\mathrm{v}$ can be observed. Since the $\mathrm{LES_{64}}$ is not fine enough to resolve the smaller scales, the viscous dissipation rate $\varepsilon$, the Taylor microscale $\lambda$ and the Kolmogorov length $\eta$ are not displayed in the table. The simulation on a $64^3$-grid is therefore less prone to the modeling error of the CPPs, because the cells and therefore the mass of one cell, are substantially bigger than in the $256^3$-grid. 
+It seems to be the case that for increasing mass ratio of one cluster to one cell the simulation results become less accurate. This phenomenon was first described in \cite{maxey1997simulations}, as particle-induced point forces induce a vorticity to the flow at the particle position. 
+\newline
+It has been shown in \cite{boivin_simonin_squires_1998} for a similar configuration, that PP-DNS correctly predicts the turbulence modulation. Higher grid refinement leads to better results, while higher mass fractions of particles to cells lead to less accurate results. 
+%Graph 8
+Figure \ref{vergleich_coupling_time_256} shows the temporal development 
+\begin{figure}[hb]
+    \centering
+     \begin{minipage}[]{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./Abbildungen/vergleich_coupling_time50.pdf}
-        \caption{Temporal development of the point-particle coupling rate $\Psi_\mathrm{pp}$ with constant $\lambda_\mathrm{c}$ for various resolutions. A relation of resolution and accuracy can be observed.}
+        \caption{Temporal development of the normalized point-particle coupling rate $\Psi_\mathrm{pp}$ with constant $\lambda_\mathrm{c}$ for various resolutions. A correlation between the resolution and the accuracy can be observed.}
         \label{vergleich_coupling_time_256}
         \end{minipage}%
-    \begin{minipage}[t]{.5\textwidth}
+    \begin{minipage}[]{.5\textwidth}
          \centering
         \includegraphics[width=\linewidth]{./Abbildungen/256/particlekineticenergy_time.pdf}
-        \caption{Temporal development of the kinetic energy of the particles $E_\mathrm{kB}$ normalized by initial turbulent kinetic energy. The PP-case without clustering shows the biggest decay in kinetic energy. }
+        \caption{Temporal development of the kinetic energy of the particles $E_\mathrm{kB}$ normalized by initial turbulent kinetic energy. The PP-case without clustering shows the biggest decay of the kinetic energy. }
         \label{particlekineticenergy_time_256}
     \end{minipage}
 \end{figure}%
-%Zusammenfassung Graph 4&5
-It can be seen that both the CPPs and the grid refinement level have an influence on the simulation's accuracy. Therefore further investigations on the reasons of this behavior will follow.
-\newline %Graph 6
-The development of the normalized dissipation rate $\bar{\vec{\varepsilon}}$ is displayed in Fig. \ref{diss_time_256}, showing a lower rate for the unclustered PP-DNS and a higher rate for the higher-clustered DNS cases in comparison to the single-phase simulation. The dissipation rate is therefore normalized by its reference value $\varepsilon_\mathrm{ref}=\frac{u_0^3}{L}$.
-\newline %Graph 7
-Figure \ref{coupling_time_256} displays the evolution in time of the point-particle coupling rate $\Psi_\mathrm{pp}$. Similar to Fig. \ref{diss_time_256}, the DNS with high CPP show larger deviation from the PP-DNS reference, leading to a positive coupling rate for $\lambda_\mathrm{c} > 50$.
-Bot these figures can be analyzed using the turbulent kinetic energy budget introduced in Sec. 4.1.
-\newline
-The variables of the DNS and $\mathrm{LES_{64}}$ at $t^* = 1$ can be found in Tab.\ref{table_values_DNS_LES}. A general trend for less accurate results can be observed for higher mass ratios of one particle cluster to the content of one cell. As the $\mathrm{LES_{64}}$ is not fine enough to resolve the smaller scales, the first three values are not displayed in the table. The simulation on a $64^3$-grid is therefore less susceptible to altering the CPPs because the cells, and therefore the mass of one cell, are substantially bigger than in the $256^3$-grid for a constant domain size. It seems to be the case that for increasing mass ratio of one cluster to one cell the simulation results become less accurate. This phenomenon was first described in \cite{maxey1997simulations}, as particle-induced point forces induce a vorticity to the flow at the particle position. 
-\newline
-Although this mass ratio is relatively high for the PP-DNS, this simulation delivers the best results. Higher grid refinement leads to better results, while higher mass fractions of particles to cells lead to less accurate results. 
-%Graph 8
-Figure \ref{vergleich_coupling_time_256} can be used to point out the difference in susceptibility for this method. The evolution of the point-particle coupling rate $\Psi_\mathrm{pp}$ for different grid refinement levels is displayed. It is evident that a correlation between the inaccuracy of the simulations and the refinement level of the grid exists. For the same ratio of physical point particles to CPPs the results show different behavior depending on the grid refinement level. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
+of the point-particle coupling rate $\Psi_\mathrm{pp}$ for different grid refinement levels. 
+It can be observed, that a correlation between the inaccuracy of the simulations and the refinement level of the grid exists. For the same ratio of physical to computational point particles, the results show different behavior depending on the grid refinement level. It is therefore less critical to cluster particles in lower-resolution grids, although the results are not nearly as accurate as for the unclustered simulations. 
 \newline %Graph 9
 In Fig. \ref{particlekineticenergy_time_256}, the development of kinetic energy of the particles is displayed. For increasing $\lambda_\mathrm{c}$, the kinetic energy of the particles becomes larger. This behavior leads to the assumption that the clustering produces the behavior of heavy particles comparable to \cite{Schneiders2017}. 
-\newline
-All this results arise the question, if and how the method of CPPs could be used to optimize computational effort and still deliver accurate results. Therefore further investigation on this topic is needed. 
 \pagebreak
 \section{Conclusion and outlook}
-In this study, the goal was to evaluate a method for lowering computational effort. Multiple simulations of particle-laden isotropic turbulence were carried out to investigate the influence of CPPs on the simulation accuracy of a DNS and multiple LES. A point-particle approach was used to simulate the two-way coupling of heavy particles and the surrounding fluid. The particle diameter was smaller than the Kolmogorov scale $d_\mathrm{p} < \eta$. A DNS on a grid with $256^3$ grid point served as reference for validation of the method of CPPs. CPPs were introduced in various numbers on multiple grid refinement levels. The concept of CPPs was object of this study because of the possible potential in lowering computational effort for future simulations. Therefore the accuracy of the simulations was the critical criteria. Several plots were created to analyze possible correlation of different variables and the influence of grid refinement level and CPPs. In addition to the evolution of the kinetic energy the point-particle coupling rate and the dissipation rate were evaluated.
+In this study, various simulations of particle-laden isotropic turbulence are carried out to investigate the influence of CPPs on the simulation accuracy of a DNS and LES. A point-particle approach is used to simulate the two-way coupling of heavy particles and the surrounding fluid. The particle diameter is smaller than the Kolmogorov scale $d_\mathrm{p} < \eta$. A DNS on a grid with $256^3$ cells served as reference for validation of the method of CPPs. CPPs are introduced in various numbers on multiple grid refinement levels. The concept of CPPs is object of this study because of the possible potential in lowering computational effort for future simulations. Therefore, the accuracy of the simulations is the critical criteria. The turbulent kinetic energy budget is investigated to analyze possible correlation of different variables and the influence of grid refinement level and CPPs. In addition to the evolution of the kinetic energy, the point-particle coupling rate and the dissipation rate are evaluated.
 \newline
-A correlation between the mass fraction of one particle cluster to the content of one cell was found. With this fraction increasing, the simulations diverge from the reference case. This behavior was found at all simulations. In contrast to that, the reference PP-DNS has a relatively high ratio of masses and is nevertheless the most accurate. In addition to that the results of simulations with lower mass ratios do not necessarily converge towards the reference. It is obvious that the mass ratio is not the only parameter responsible for accurate or inaccurate results. Most probably a combination of grid refinement and mass ratio is responsible for accuracy in the simulations.
+A correlation between the ratio of the mass of one particle cluster to the mass of a fluid cell is found. With an increasing ratio, the simulations diverge from the reference case. This behavior is found for all resolutions. Additionally, the results of simulations with lower mass ratios do not necessarily converge towards the reference. It is likely, that the mass ratio is not the only parameter responsible for accurate or inaccurate results. Most probably, a combination of grid refinement and mass ratio is responsible for accuracy in the simulations.
+It is found that the behavior of particle clusters as simulated in this work shows similarities to heavy particles, as simulated in \cite{Schneiders2017}.
 \newline
-It was found that the behavior of particle clusters as simulated in this work shows similarities to heavy particles, as simulated in \cite{Schneiders2017}.
-\newline
-The method evaluated in this work seems to be less useful for this particle parameters. Indeed the method could be useful for smaller particles, which would have a smaller fraction of mass for the same number of particles simulated. This feature could make the method worthwhile for them. Further investigation regarding this use case and the specific mass fraction and grid refinement combination could be tested in the future to develop a catalog of mass fractions, grid refinement and the resulting accuracy for practical use in technical applications. 
-%\subsection*{Acknowledgements}
-%This work was supervised by Konstantin Fr\"ohlich, we would like to express our gratitude. Thank you for the chance of learning about turbulent flows and simulations, the advice and the deep insights in scientific work. We also appreciate the chance of writing this work at the Institute of Aerodynamics of the RWTH Aachen University.
+The method evaluated in this work seems to be less useful for this particle parameters. Nevertheless the method could be useful for smaller particles, which would have a smaller fraction of mass for the same number of particles simulated. Further investigation for the requirements for the specific mass fraction and grid refinement combination could be tested in the future to develop a catalog of mass fractions, grid refinement and the resulting accuracy for practical use in technical applications. 
+\subsection*{Acknowledgements}
+We would like to thank Konstantin Fr\"ohlich, who supervised this work. Thank you for the chance of learning about turbulent flows and simulations, the advice and the deep insights in scientific work. We also appreciate the chance of writing this work at the Institute of Aerodynamics of the RWTH Aachen University.
 \pagebreak
 \section{References}
 \vspace*{-1.2cm}
