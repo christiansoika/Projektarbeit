@@ -22,17 +22,13 @@
   \item [{$\Delta$}]\begingroup cell length\nomeqref {.0}\nompageref{I}
   \item [{$\varepsilon$}]\begingroup viscous dissipation rate\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\varepsilon}$}]\begingroup integral dissipation rate\nomeqref {.0}
+  \item [{$\varepsilon'$}]\begingroup integral particle-induced dissipation rate\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\vec{\varepsilon}'$}]\begingroup integral particle induced dissipation rate\nomeqref {.0}
-		\nompageref{I}
-  \item [{$\vec{\bar{\varepsilon}}$}]\begingroup integral dissipation rate of the background flow field\nomeqref {.0}
+  \item [{$\bar{\varepsilon}$}]\begingroup integral dissipation rate of the background flow field\nomeqref {.0}
 		\nompageref{I}
   \item [{$\gamma$}]\begingroup isentropic exponent\nomeqref {.0}
 		\nompageref{I}
   \item [{$\eta$}]\begingroup Kolmogorov length scale\nomeqref {.0}
-		\nompageref{I}
-  \item [{$\eta_\mathrm{0}$}]\begingroup initial Kolmogorov length scale\nomeqref {.0}
 		\nompageref{I}
   \item [{$\lambda$}]\begingroup Taylor microscale\nomeqref {.0}
 		\nompageref{I}
@@ -41,6 +37,8 @@
   \item [{$\mu$}]\begingroup dynamic viscosity\nomeqref {.0}
 		\nompageref{I}
   \item [{$\nu$}]\begingroup kinematic viscosity\nomeqref {.0}
+		\nompageref{I}
+  \item [{$\vec{\omega}_\mathrm{p})$}]\begingroup vorticity vector of the undisturbed flow around one particle\nomeqref {.0}
 		\nompageref{I}
   \item [{$\phi_\mathrm{m}$}]\begingroup mass fraction\nomeqref {.0}
 		\nompageref{I}
@@ -63,7 +61,7 @@
 		\nompageref{I}
   \item [{$\tau_\mathrm{L}$}]\begingroup eddy turnover time\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\tau_\mathrm{p}$}]\begingroup particle response time\nomeqref {.0}
+  \item [{$\tau_\mathrm{p}$}]\begingroup particle relaxation time\nomeqref {.0}
 		\nompageref{I}
   \item [{$\phi(\mathrm{Re_p})$}]\begingroup empirical drag correction factor as a function of the particle Reynolds number $Re_\mathrm{p}$\nomeqref {.0}
 		\nompageref{I}
@@ -99,6 +97,8 @@
 		\nompageref{I}
   \item [{$d_\mathrm{p}$}]\begingroup particle diameter\nomeqref {.0}
 		\nompageref{I}
+  \item [{$\vec{e}$}]\begingroup unit vector in the same direction as $\vec{u}'$\nomeqref {.0}
+		\nompageref{I}
   \item [{$E$}]\begingroup specific inner energy\nomeqref {.0}
 		\nompageref{I}
   \item [{$e$}]\begingroup specific internal energy\nomeqref {.0}
@@ -131,11 +131,13 @@
 		\nompageref{I}
   \item [{$m_\mathrm{f}$}]\begingroup fluid mass\nomeqref {.0}
 		\nompageref{I}
-  \item [{$m_\mathrm{p}$}]\begingroup particle mass\nomeqref {.0}
+  \item [{$m_\mathrm{p}$}]\begingroup mass of one particle\nomeqref {.0}
+		\nompageref{I}
+  \item [{$m_\mathrm{v}$}]\begingroup mass of one cell\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{n}$}]\begingroup normal vector\nomeqref {.0}
 		\nompageref{I}
-  \item [{$N$}]\begingroup grid refinement of the simulation\nomeqref {.0}
+  \item [{$N$}]\begingroup number of numerical operations\nomeqref {.0}
 		\nompageref{I}
   \item [{$N_\mathrm{c}$}]\begingroup number of computational point particles\nomeqref {.0}
 		\nompageref{I}
@@ -152,7 +154,11 @@
   \item [{$R (r, t)$}]\begingroup two-point correlation as a function of the distance r and time t\nomeqref {.0}
 		\nompageref{I}
   \item [{$Re$}]\begingroup Reynolds number\nomeqref {.0}\nompageref{I}
+  \item [{$Re_\mathrm{L}$}]\begingroup Reynolds number for the integral scale\nomeqref {.0}
+		\nompageref{I}
   \item [{$Re_\mathrm{p}$}]\begingroup particle Reynolds number\nomeqref {.0}
+		\nompageref{I}
+  \item [{$Re_\lambda$}]\begingroup Taylor-scale Reynolds number\nomeqref {.0}
 		\nompageref{I}
   \item [{$\vec{\bar{S}}$}]\begingroup rate-of-strain tensor\nomeqref {.0}
 		\nompageref{I}
@@ -172,7 +178,7 @@
 		\nompageref{I}
   \item [{$\vec{u}_\mathrm{p}$}]\begingroup vector of the undisturbed fluid velocity at the particle position\nomeqref {.0}
 		\nompageref{I}
-  \item [{$\bar{\vec{U}}(\vec{x})$}]\begingroup filtered velocity field\nomeqref {.0}
+  \item [{$\bar{U}(\vec{x})$}]\begingroup filtered velocity field\nomeqref {.0}
 		\nompageref{I}
   \item [{$V$}]\begingroup control volume\nomeqref {.0}\nompageref{I}
   \item [{$\mathrm{V}_\mathrm{f}$}]\begingroup fluid volume\nomeqref {.0}
